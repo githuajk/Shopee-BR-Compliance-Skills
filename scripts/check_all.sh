@@ -11,15 +11,15 @@ export LD_LIBRARY_PATH=   # Hermes runtime shadows system OpenSSL; unset it.
 
 PY=python3
 
-echo "== 0/5  框架自检（并行开发框架不变量）=="
+echo "== 0/6  框架自检（并行开发框架不变量）=="
 $PY tools/framework_check.py | tail -3
 
 echo
-echo "== 1/5  公共契约校验（contracts/）=="
+echo "== 1/6  公共契约校验（contracts/）=="
 $PY tools/validate_contracts.py | tail -4
 
 echo
-echo "== 2/5  规则库 + 词库 Schema 校验 =="
+echo "== 2/6  规则库 + 词库 Schema 校验 =="
 for pair in \
   "data/schema/rule_collection.schema.json rules/" \
   "data/schema/lexicon.schema.json lexicon/" ; do
@@ -28,15 +28,23 @@ for pair in \
 done
 
 echo
-echo "== 3/5  引文逐字核验（无编造引文）=="
+echo "== 3/6  引文逐字核验（无编造引文）=="
 $PY tools/verify_citations.py | tail -3
 
 echo
-echo "== 4/5  共享夹具校验 =="
+echo "== 4/6  规则触发正则可编译性 =="
+$PY tools/check_rule_regex.py | tail -3
+
+echo
+echo "== 5/6  共享夹具校验 =="
 $PY tools/validate_fixtures.py | tail -3
 
 echo
-echo "== 5/5  任务包与所有权一致性 =="
+echo "== 5b/6 夹具与规则库一致性（正例真命中 / 反例真不命中）=="
+$PY tools/verify_fixtures.py | tail -3
+
+echo
+echo "== 6/6  任务包与所有权一致性 =="
 $PY tools/task_pack_check.py | tail -4
 
 echo

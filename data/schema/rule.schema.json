@@ -60,7 +60,11 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["field", "operator", "value"],
+        "required": [
+          "field",
+          "operator",
+          "value"
+        ],
         "properties": {
           "field": {
             "type": "string",
@@ -94,41 +98,76 @@
               "not_equals",
               "gt",
               "gte",
+              "length_lt",
               "lt",
               "lte",
               "image_count_lt",
               "image_count_gte",
               "has_field",
               "has_nonempty",
-              "field_missing"
+              "field_missing",
+              "history_missing_nonempty"
             ]
           },
           "value": {
             "description": "Operand. For regex operators this is the pattern string; for list operators an array of strings; for numeric operators a number; for has_field/field_missing it is the field name that must be present/absent.",
             "oneOf": [
-              {"type": "string"},
-              {"type": "number"},
-              {"type": "array", "items": {"type": "string"}},
-              {"type": "boolean"}
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "boolean"
+              }
             ]
           },
-          "case_sensitive": {"type": "boolean", "default": false},
+          "case_sensitive": {
+            "type": "boolean",
+            "default": false
+          },
           "requires_input": {
             "type": "array",
-            "items": {"type": "string"},
+            "items": {
+              "type": "string"
+            },
             "description": "Fields that must actually be present in the input for this condition to be evaluated. If one is absent, the condition is skipped (the input simply did not carry that data) instead of producing a finding."
           },
           "applies_to": {
             "type": "array",
-            "items": {"type": "string", "enum": ["title", "description", "attributes", "image", "all"]},
-            "default": ["all"]
+            "items": {
+              "type": "string",
+              "enum": [
+                "title",
+                "description",
+                "attributes",
+                "image",
+                "all"
+              ]
+            },
+            "default": [
+              "all"
+            ]
           }
         }
       }
     },
     "severity": {
       "type": "string",
-      "enum": ["info", "low", "medium", "high", "critical"]
+      "enum": [
+        "info",
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
     },
     "decision": {
       "type": "string",
@@ -144,10 +183,14 @@
     },
     "evidence_required": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "description": "Evidence artefacts (by evidence_type key) needed to close the case."
     },
-    "human_review_required": {"type": "boolean"},
+    "human_review_required": {
+      "type": "boolean"
+    },
     "source_url": {
       "type": "string",
       "format": "uri",
@@ -155,7 +198,12 @@
     },
     "source_tier": {
       "type": "string",
-      "enum": ["platform_official", "law", "internal_risk", "unverified"],
+      "enum": [
+        "platform_official",
+        "law",
+        "internal_risk",
+        "unverified"
+      ],
       "description": "Authority of the source. `unverified` means the rule is a hypothesis pending confirmation and MUST NOT be applied to block decisions."
     },
     "source_excerpt": {
@@ -164,7 +212,9 @@
     },
     "applies_to": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "description": "Scope notes: product categories, seller types, or 'all'."
     },
     "last_verified": {
@@ -174,17 +224,31 @@
     },
     "status": {
       "type": "string",
-      "enum": ["active", "draft", "deprecated", "suspended"]
+      "enum": [
+        "active",
+        "draft",
+        "deprecated",
+        "suspended"
+      ]
     },
     "version": {
       "type": "integer",
       "minimum": 1
     },
-    "notes": {"type": "string"},
-    "tags": {"type": "array", "items": {"type": "string"}},
+    "notes": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "references": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "description": "Other rule_ids this rule interacts with."
     }
   }

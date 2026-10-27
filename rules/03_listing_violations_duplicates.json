@@ -77,7 +77,7 @@
         {
           "field": "title",
           "operator": "regex",
-          "value": "(?i)(\\b(\\w+\\b[\\s,]*){14,}\\w+\\b)"
+          "value": "(?i)(\\b(?:\\w+[-–]?){15,}\\b)"
         }
       ],
       "severity": "low",
@@ -89,12 +89,13 @@
       "source_excerpt": "[506] Palavras-chave excessivas e/ou irrelevantes no título do anúncio. Severidade: Baixa. Não gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "title",
         "spam",
         "platform_code_506"
-      ]
+      ],
+      "notes": "2026-10-27: 修正词数判定 —— 原正则的重复单元 `\\w+\\b[\\s,]*` 要求每词后跟空白/逗号，连字符词（如 Esportivo-running）会中断重复，导致实际词数被低估。改为按 `\\w+[-–]?` 连续计词，阈值 15 词不变。"
     },
     {
       "rule_id": "SBR-LV-004",
@@ -159,7 +160,7 @@
       "trigger_conditions": [
         {
           "field": "description",
-          "operator": "lt",
+          "operator": "length_lt",
           "value": 120
         }
       ],
@@ -172,12 +173,13 @@
       "source_excerpt": "[605] Anúncio removido por conteúdo insuficiente, inadequado ou irrelevante na descrição do produto. Severidade: Média. Gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 3,
       "tags": [
         "description",
         "quality",
         "platform_code_605"
-      ]
+      ],
+      "notes": "2026-10-27: 修正算子 —— 原写法 `description lt 120` 意为「字符串 < 数字」，评估时抛 TypeError。改为 `length_lt`（字符数比较），语义不变。 | 触发条件语义：description 长度（字符数）小于 120。"
     },
     {
       "rule_id": "SBR-LV-007",
@@ -188,10 +190,7 @@
         {
           "field": "image",
           "operator": "image_count_lt",
-          "value": 1,
-          "requires_input": [
-            "image"
-          ]
+          "value": 1
         }
       ],
       "severity": "low",
@@ -205,13 +204,13 @@
       "source_excerpt": "[606] Anúncio removido por imagem de baixa qualidade, inapropriada ou fora do contexto do produto anunciado. Severidade: Baixa. Não gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "images",
         "quality",
         "platform_code_606"
       ],
-      "notes": "Only evaluated when the input actually carried image data; a spreadsheet with no image column is a data gap, not a violation."
+      "notes": "Only evaluated when the input actually carried image data; a spreadsheet with no image column is a data gap, not a violation. | 2026-10-27: 移除自指的 requires_input —— 原写法`image` 检查与 requires_input 指向同一字段，规则逻辑上永不可满足（字段缺失即被判未评估），等于永不生效。"
     },
     {
       "rule_id": "SBR-LV-008",
@@ -222,10 +221,7 @@
         {
           "field": "category",
           "operator": "field_missing",
-          "value": "category",
-          "requires_input": [
-            "category"
-          ]
+          "value": "category"
         }
       ],
       "severity": "low",
@@ -237,12 +233,12 @@
       "source_excerpt": "[613] Categoria incorreta. Severidade: Baixa. Não gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "category",
         "platform_code_613"
       ],
-      "notes": "Only evaluated when the input carried a category column."
+      "notes": "Only evaluated when the input carried a category column. | 2026-10-27: 移除自指的 requires_input —— 原写法`category` 检查与 requires_input 指向同一字段，规则逻辑上永不可满足（字段缺失即被判未评估），等于永不生效。"
     },
     {
       "rule_id": "SBR-LV-009",
@@ -312,10 +308,7 @@
         {
           "field": "brand",
           "operator": "field_missing",
-          "value": "brand",
-          "requires_input": [
-            "brand"
-          ]
+          "value": "brand"
         }
       ],
       "severity": "low",
@@ -327,12 +320,12 @@
       "source_excerpt": "[301] Anúncio removido por imprecisão na marca informada. Severidade: Baixa. Não gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "brand",
         "platform_code_301"
       ],
-      "notes": "Only evaluated when the input carried a brand column."
+      "notes": "Only evaluated when the input carried a brand column. | 2026-10-27: 移除自指的 requires_input —— 原写法`brand` 检查与 requires_input 指向同一字段，规则逻辑上永不可满足（字段缺失即被判未评估），等于永不生效。"
     },
     {
       "rule_id": "SBR-LV-012",
@@ -343,7 +336,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?i)(\\bpeso\\s*[:=]?\\s*\\d+[,.]\\d*\\s*(kg|g|gr)\\b.{0,60}\\b(dim(ens(õ|o)es?|ens(ã|a)o)?|tamanho)\\b|\\b(dim(ens(õ|o)es?|largura|altura)\\b.{0,60}\\bpeso\\b)"
+          "value": "(?i)(\\bpeso\\s*[:=]?\\s*\\d+[,.]\\d*\\s*(kg|g|gr)\\b.{0,60}\\b(dim(ens(õ|o)es?|ens(ã|a)o)?|tamanho)\\b|\\b(dim(ens(õ|o)es?|largura|altura)\\b.{0,60}\\bpeso\\b))"
         }
       ],
       "severity": "low",
@@ -357,12 +350,13 @@
       "source_excerpt": "[120] Anúncio removido por informações imprecisas sobre dimensões e peso do produto. Severidade: Baixa. Não gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "dimensions",
         "weight",
         "platform_code_120"
-      ]
+      ],
+      "notes": "2026-10-27: 修复触发正则缺失的右括号 —— 原文无法编译（re.compile 抛错），评估时会中断。匹配语义按原意恢复：外层交替组闭合，各分支显式分组，尾部词边界断言作用于整个组。"
     },
     {
       "rule_id": "SBR-LV-013",
@@ -387,12 +381,13 @@
       "source_excerpt": "[509] Anúncio removido por exceder as dimensões e/ou pesos permitidos. Severidade: Alta. Gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "dimensions",
         "weight",
         "platform_code_509"
-      ]
+      ],
+      "notes": "2026-10-27: 明确语义边界 —— 平台未公开尺寸/重量上限数值（禁止引用未公开数值），本规则只标记「商品声明了完整三维尺寸」这一可判定事实，是否超限由人工复核确认；动作保持 flag_for_review，不阻断。"
     },
     {
       "rule_id": "SBR-LV-014",

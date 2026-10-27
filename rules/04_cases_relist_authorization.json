@@ -86,11 +86,8 @@
       "trigger_conditions": [
         {
           "field": "history",
-          "operator": "contains_any",
-          "value": [
-            "missing",
-            "authorization_documents"
-          ]
+          "operator": "history_missing_nonempty",
+          "value": "missing"
         }
       ],
       "severity": "high",
@@ -107,13 +104,13 @@
       "source_excerpt": "O vendedor é responsável por garantir que os produtos anunciados estejam em conformidade com a legislação brasileira, com as normas dos órgãos reguladores aplicáveis e com as políticas da Shopee.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "authorization",
         "restricted",
         "evidence"
       ],
-      "notes": "The product's `history.authorization_documents` / `history.missing` fields carry the document inventory. This rule reads them as a text blob because the history object is flattened for rule matching."
+      "notes": "The product's `history.authorization_documents` / `history.missing` fields carry the document inventory. This rule reads them as a text blob because the history object is flattened for rule matching. | 2026-10-27: 修正触发条件 —— 原 `contains_any(['missing','authorization_documents'])` 匹配的是 history 的**键名**，只要存在 authorization_documents 键就命中，把「授权齐全」也判为违规（实测误报）。改为 `history_missing_nonempty`：仅当 missing 列表含具体缺口时命中。该算子需在规则算子枚举中登记。"
     },
     {
       "rule_id": "SBR-AC-001",
