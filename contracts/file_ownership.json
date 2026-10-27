@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
-  "ownership_version": "1.5.0",
+  "ownership_version": "1.6.0",
   "last_updated": "2026-10-27",
   "contract_version": "1.0.0",
-  "notes": "文件所有权的唯一权威来源。skills/*/SKILL.md 的「文件所有权」章节与 tasks/*.md 的 §2.1 白名单都必须与本文件一致。模块 Agent 不得修改本文件；需变更时提交契约变更建议。 | 2026-10-27: 补充 integrator 角色（集成 Agent），版本 1.1.0。 | 2026-10-27: 明确 lexicon/** 归 shopee-br-data-ingestion 所有（与 task_registry 的 allowed_paths 一致）；从 shared_assets 只读清单移除。",
+  "notes": "文件所有权的唯一权威来源。skills/*/SKILL.md 的「文件所有权」章节与 tasks/*.md 的 §2.1 白名单都必须与本文件一致。模块 Agent 不得修改本文件；需变更时提交契约变更建议。 | 2026-10-27: 补充 integrator 角色（集成 Agent），版本 1.1.0。 | 2026-10-27: 明确 lexicon/** 归 shopee-br-data-ingestion 所有（与 task_registry 的 allowed_paths 一致）；从 shared_assets 只读清单移除。 | 2026-10-27: policy-research 模块 owns tools/check_sources.py（来源清单一致性校验，属该模块职责）",
   "rules": [
     {
       "rule": "一个路径只能有一个 owner",
@@ -41,7 +41,8 @@
         "research/sources.json",
         "research/violation_codes.json",
         "research/edu_articles.json",
-        "research/raw/**"
+        "research/raw/**",
+        "tools/check_sources.py"
       ],
       "reads": [
         "contracts/**",

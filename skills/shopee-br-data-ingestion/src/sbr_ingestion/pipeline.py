@@ -187,7 +187,9 @@ def ingest_paths(paths, request_id: str, options=None, scope=None, target=None) 
         "evidence_refs": [],
         "confidence": "likely" if has_failures else "confirmed",
         "requires_human_review": requires_human_review,
-        "review_rationale": _build_review_rationale(errors) if requires_human_review else None,
+        "review_rationale": (_build_review_rationale(
+            errors, has_failures, len(products), len(provenance_inputs))
+            if requires_human_review else None),
         "rule_version": RULE_VERSION,
         "provenance": {
             "produced_at": produced_at,
@@ -366,10 +368,23 @@ def _build_reason(inputs: list[dict], products: list[dict], errors: list[dict]) 
     return "; ".join(parts) + "; source digests recorded in provenance.inputs"
 
 
-def _build_review_rationale(errors: list[dict]) -> str:
-    stages = sorted({e.get("stage", "unknown") for e in errors})
-    return ("manual review needed: parsing problems were recorded at stage(s) "
-            + ", ".join(stages) + "; check errors[] for the affected records")
+def _build_review_rationale(errors: list[dict], has_failures: bool = False,
+                           n_products: int = 0, n_inputs: int = 0) -> str:
+    """给出人可读的人工复核理由。
+
+    必须说明**真实的**触发原因。若 `errors[]` 为空但仍需复核
+    （例如：读到了输入却一条记录都没解析出来），不能指向空的
+    `errors[]` —— 那会让复核者去一个空列表里找问题。
+    """
+    if errors:
+        stages = sorted({e.get("stage", "unknown") for e in errors})
+        return ("manual review needed: parsing problems were recorded at stage(s) "
+                + ", ".join(stages) + "; check errors[] for the affected records")
+    if has_failures:
+        return (f"manual review needed: read {n_inputs} input file(s) but normalised "
+                f"0 product(s) — nothing could be audited, so no compliance "
+                f"conclusion can be drawn from this input")
+    return "manual review needed: flagged for review by the risk action matrix"
 
 
 def _build_unevaluated(failed: list[dict]) -> list[dict]:

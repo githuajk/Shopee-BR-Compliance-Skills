@@ -526,6 +526,27 @@ def test_formats(workdir: str) -> dict:
     check("json 失败路径：不产生 PASS", bundle["results"][0]["verdict"] != "PASS",
           bundle["results"][0]["verdict"])
 
+    # json 边界路径：语法合法但内容为空 —— 读到了输入，却一条记录都没有。
+    # 这不是「一切正常」，而是「什么都没读到」，必须升级为人工复核，
+    # 且复核理由要说清真实原因（errors[] 此时是空的）。
+    empty_json = write_text(os.path.join(workdir, "empty_array.json"), "[]")
+    bundle = ingest_paths([empty_json], request_id="REQ-JSON-003")
+    bundles["json_empty"] = bundle
+    check("json 边界路径：空数组不产生 PASS",
+          bundle["results"][0]["verdict"] != "PASS",
+          bundle["results"][0]["verdict"])
+    check("json 边界路径：空数组产出 0 条商品",
+          len(bundle["products"]) == 0, str(len(bundle["products"])))
+    check("json 边界路径：空数组需要人工复核",
+          bundle["results"][0]["requires_human_review"] is True,
+          str(bundle["results"][0]["requires_human_review"]))
+    rationale = bundle["results"][0].get("review_rationale") or ""
+    check("json 边界路径：复核理由不指向空的 errors[]",
+          not (not bundle["errors"] and "check errors[]" in rationale), rationale)
+    check("json 边界路径：复核理由说明「读到输入但 0 条商品」",
+          ("0 product" in rationale) or ("0 record" in rationale)
+          or ("normalised 0" in rationale), rationale)
+
     # ---------------- JSONL ----------------
     jsonl_path = write_text(os.path.join(workdir, "products.jsonl"),
                             '{"product_id":"L-1","internal_sku":"SKU-L1","shop_id":"SHOP8","title":"Chaleira Termica"}\n'
