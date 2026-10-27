@@ -1,0 +1,255 @@
+{
+  "schema_version": "1.0",
+  "document_id": "SBRCA-P0-004",
+  "title": "SBRCA 待确认事项与冲突登记表",
+  "status": "Draft",
+  "version": "1.0.0",
+  "updated": "2026-10-27",
+  "scope": "需要用户裁定或补充信息的事项。每条给出选项、影响、建议与默认处置（若未答复）。",
+  "conflicts": [
+    {
+      "conflict_id": "CONF-001",
+      "title": "决策取值命名与粒度冲突",
+      "charter_clause": "SRC-A §5.5 要求统一结果至少含 PASS / REVISE / REVIEW / BLOCK",
+      "current_implementation": "原型使用 6 值：allow / flag_for_review / require_evidence / block / freeze_relist / escalate_legal",
+      "analysis": "章程的 4 值是「最小集」要求（至少含），原型的 6 值是它的细化且增加了两个业务上真实存在的状态（冻结重发、转法务）。把 freeze_relist 与 escalate_legal 压进 PASS/REVISE/REVIEW/BLOCK 会丢失可执行性：冻结是独立于「改一改再上」的动作；转法务需要特定责任人。",
+      "options": [
+        {"option": "A", "desc": "保留 6 值，章程 4 值作为上层聚合标签（product_status 之上再给一个 disposition）"},
+        {"option": "B", "desc": "严格收敛为 4 值，冻结/转法务用附加字段表达"},
+        {"option": "C", "desc": "保留 6 值，不做聚合，报告中直接呈现"}
+      ],
+      "recommendation": "A",
+      "recommendation_reason": "满足章程「至少含」的字面要求，同时不损失执行细节。聚合标签让对外汇报简单，明细让执行有据。",
+      "default_if_no_answer": "A",
+      "impact": "影响 review_result.schema.json 的 decision 枚举、报告呈现、审批流分支。改动属数据兼容性变更，需迁移方案。",
+      "user_confirmation_required": true,
+      "phase": "Phase 1"
+    },
+    {
+      "conflict_id": "CONF-002",
+      "title": "词库规模目标冲突",
+      "charter_clause": "SRC-A §4.2 规模假设：规则及黑名单可能超过十万条",
+      "historical": "SRC-B 2026-09-15 合规审计线：阶段 1 交付 1,320 词，阶段 2 目标 12,500 词（5 个 subagent，状态「进行中」）。实测：词库数据文件已丢失，只剩 17 类词库文档。",
+      "analysis": "两个数字差 8 倍。12,500 是「按类目穷举」的可达规模；10 万级通常需要品牌/型号/变体等组合爆炸。关键问题不是数字，而是「规则」与「词」的建模是否分离：若 10 万条全是词，词库需重建到 10 万；若规则库支持组合条件（品牌 × 类目 × 场景），词库可以小得多。",
+      "options": [
+        {"option": "A", "desc": "先建最小可用词库（从现存 17 类文档重建，约 1,500–3,000 词），配合规则组合能力达标，10 万级用基准测试验证索引选型"},
+        {"option": "B", "desc": "直接按 10 万条重建词库"},
+        {"option": "C", "desc": "先做基准测试确定 Aho-Corasick 在 10 万词下的实测内存/耗时，再定规模"}
+      ],
+      "recommendation": "C 然后 A",
+      "recommendation_reason": "章程 §6.1 明确要求「算法选择必须基于准确性、性能、内存占用、更新成本和维护难度进行评估」且「不得未经测试宣称系统可以达到某个性能目标」。10 万条词的 Aho-Corasick 自动机内存占用与加载时间必须实测后再定。",
+      "default_if_no_answer": "C 然后 A",
+      "impact": "决定 Phase 2 的词库工作量与 Phase 3 的索引技术选型。",
+      "user_confirmation_required": true,
+      "phase": "Phase 2"
+    },
+    {
+      "conflict_id": "CONF-003",
+      "title": "是否引入 SQLite 作为派生索引",
+      "charter_clause": "SRC-A §2.2 内部正式数据源仅 JSON + Markdown",
+      "historical": "SRC-B 2026-09-15 线使用 risk_words_FINAL.db（SQLite + FTS5）存储 36,372 词",
+      "analysis": "章程禁止 SQLite 作为「内部正式数据源」，但派生索引（build artifact，可随时从 JSON 重新生成）是否属于「正式数据源」存在解释空间。SQLite FTS5 提供全文检索与前缀匹配，10 万词级的前缀/模糊查询用纯 JSON + 内存倒排索引也能做，但 SQLite 更省内存且有成熟的查询优化。",
+      "options": [
+        {"option": "A", "desc": "严格禁止 SQLite，索引全部在内存中构建（当前实现）"},
+        {"option": "B", "desc": "允许 SQLite 作为可再生的派生索引，JSON 始终是权威源"},
+        {"option": "C", "desc": "先做内存索引基准，达不到性能目标再引入 SQLite"}
+      ],
+      "recommendation": "B 并明确标注",
+      "recommendation_reason": "只要 JSON 是唯一权威源、SQLite 明确标注为「可删除可重建的派生索引」，就不违反章程的数据可追溯性要求，同时保留性能退路。但需要章程解释确认。",
+      "default_if_no_answer": "A（严格遵守章程明文，Phase 3 基准不达标时再申请变更）",
+      "impact": "影响 Phase 2/3 的存储与索引设计。",
+      "user_confirmation_required": true,
+      "phase": "Phase 2"
+    },
+    {
+      "conflict_id": "CONF-004",
+      "title": "依赖管理：是否允许第三方库",
+      "charter_clause": "SRC-A §8.2 不得未经论证确定整个项目只能使用某种语言或框架",
+      "current_implementation": "纯标准库实现（XLSX 读取、JSON Schema 校验器、CDP 客户端、Aho-Corasick 均自研）",
+      "analysis": "自研换来了「零安装即可运行」，代价是 4748 行中相当一部分是基础设施代码。第三方库（openpyxl / jsonschema / pytest）能显著降低维护成本，但当前运行环境是 PEP 668 托管环境，pip 安装不可保证。",
+      "options": [
+        {"option": "A", "desc": "继续纯标准库，所有基础设施自研"},
+        {"option": "B", "desc": "允许使用第三方库，但必须提供 requirements 文件 + 离线安装说明，核心逻辑仍自研"},
+        {"option": "C", "desc": "标准库为默认；仅在有实测性能/维护收益时引入单个库并记 ADR"}
+      ],
+      "recommendation": "C",
+      "recommendation_reason": "章程要求「不得未经论证锁定」也未禁止依赖。以 ADR 逐个论证，既保留零安装优势，也不放弃维护效率。",
+      "default_if_no_answer": "A",
+      "impact": "影响 Phase 2 起的技术选型与交付形态。",
+      "user_confirmation_required": true,
+      "phase": "Phase 1"
+    },
+    {
+      "conflict_id": "CONF-005",
+      "title": "既有文档与新治理文档的目录关系",
+      "charter_clause": "SRC-A §2.4 Markdown 文档规范、§2.5 命名规范",
+      "current_implementation": "既有 5 份 MD（README / ARCHITECTURE / RESEARCH_REPORT / SOP / agent_prompt）无元信息头；新治理文档采用 SBRCA-PX-NNN_名称.md 命名",
+      "analysis": "同一 docs/ 下出现两套命名风格会造成检索混乱；且既有 ARCHITECTURE.md 与新的架构设计文档职责重叠。章程 §2.1 禁止擅自重命名用户原有文件，但这些文件是本项目上一轮自动生成的（非用户手写），重命名风险低。",
+      "options": [
+        {"option": "A", "desc": "既有 5 份全部补元信息头；ARCHITECTURE.md 重命名为 implementation_notes.md；README 保留为快速上手"},
+        {"option": "B", "desc": "既有文档不动，新增文档用统一 SBRCA-PX-NNN 命名，靠索引文档串联"},
+        {"option": "C", "desc": "全部重命名为统一风格"}
+      ],
+      "recommendation": "A",
+      "recommendation_reason": "A 兼顾章程的元信息要求与命名一致性，且不丢失任何内容（重命名而非删除）。README 面向使用者，与治理文档面向评审者，职责不同应并存。",
+      "default_if_no_answer": "B（不改动既有文件，仅新增；冲突以索引文档说明）",
+      "impact": "文档链接需要同步更新。",
+      "user_confirmation_required": true,
+      "phase": "Phase 1"
+    }
+  ],
+  "open_questions": [
+    {
+      "question_id": "Q-A",
+      "title": "IP 投诉「品牌方撤诉才能解封」是否作为硬性解冻前置条件",
+      "source": "SRC-B 2026-09-15 合规审计线：article/21440 记录 —— 知识产权类账号冻结，只有投诉方（品牌方）撤销投诉才能重新激活；监管机构类必须由原机构书面同意。",
+      "why_it_matters": "当前 SBRCA 的解冻逻辑只要求「关联案件关闭 + 人工审批」。若品牌方未撤诉，店铺仍可能被冻结 —— 审批通过不等于解封成功。",
+      "analysis": "这是平台事实，不是我方策略。是否把它做成硬前置条件属于业务策略选择。",
+      "options": [
+        {"option": "A", "desc": "做成硬前置：IP 类案件的解除必须附带「品牌方已撤诉」的证据类型"},
+        {"option": "B", "desc": "做成软提示：审批时要求填写品牌方沟通状态，不强制阻断"},
+        {"option": "C", "desc": "不纳入（由人工在审批时自行判断）"}
+      ],
+      "recommendation": "A",
+      "recommendation_reason": "章程 §5.5 要求「历史删除、明确禁售或冻结商品必须执行相应的确定性控制」。品牌方未撤诉时店铺仍冻结，放开商品没有意义。做成硬前置能避免「审批通过但店铺还是冻结」的无效操作。",
+      "default_if_no_answer": "B（软提示，避免在未确认平台最新流程前做出硬阻断）",
+      "user_confirmation_required": true,
+      "phase": "Phase 5"
+    },
+    {
+      "question_id": "Q-B",
+      "title": "店主 10 条审阅原则的固化层级",
+      "source": "SRC-B 店主 2026-09-17 审阅反馈",
+      "analysis": "10 条原则（如「详情必须逐品独立编写」「未核实的功效不能直接承诺」）本质是人工审核标准。固化方式影响误报率：做成确定性规则会因无法判断「是否逐品独立」而产生大量误报；做成 AI 层提示更合适。",
+      "options": [
+        {"option": "A", "desc": "全部作为 AI 审核层提示词素材，不做确定性规则"},
+        {"option": "B", "desc": "部分可判定的做成规则（如「产地统一填 China」可检测），部分留给 AI"},
+        {"option": "C", "desc": "全部作为内部风控规则记录，仅提示不阻断"}
+      ],
+      "recommendation": "B",
+      "recommendation_reason": "「491 个详情完全相同」这类是可确定性检测的（跨商品详情相似度），而「材质是否空泛」是语义判断。分开处理能最大化可检出率而不制造误报。",
+      "default_if_no_answer": "A",
+      "user_confirmation_required": true,
+      "phase": "Phase 3/4"
+    },
+    {
+      "question_id": "Q-C",
+      "title": "需求 ID 体系是否采用章程示例的 5 类前缀",
+      "source": "SRC-A §3.1（示例为 REQ-BIZ / REQ-DATA / REQ-SEC / REQ-PERF / REQ-OPS）",
+      "analysis": "章程注明「编号只是示例，最终编号体系应统一规划」。当前登记使用 9 类前缀（增加了 REQ-ARCH / REQ-QUAL / REQ-GOV / REQ-LEG），覆盖面更完整但与示例不一致。",
+      "options": [
+        {"option": "A", "desc": "沿用章程示例 5 类（把 ARCH/QUAL/GOV/LEG 折入既有类别）"},
+        {"option": "B", "desc": "采用 9 类细分"}
+      ],
+      "recommendation": "B",
+      "recommendation_reason": "章程明确说编号只是示例。9 类能让治理/架构/质量/法务需求可独立追踪与统计，折叠会丢失可审计性。已在登记文件中同时记录章程示例的映射。",
+      "default_if_no_answer": "B",
+      "user_confirmation_required": true,
+      "phase": "Phase 1"
+    },
+    {
+      "question_id": "Q-D",
+      "title": "GitHub 预授权机制选型",
+      "source": "SRC-A §7.2",
+      "analysis": "章程要求研究 10 项机制但未定选型。候选：GitHub App（安装到单个仓库、可设路径白名单、有细粒度权限、事件驱动）、OAuth App（用户级授权、动作型）、Fine-grained PAT（细粒度但无 PR 审批流）。用户希望减少网页登录操作 —— 这倾向 App 安装（一次安装、后续无需登录）。",
+      "options": [
+        {"option": "A", "desc": "GitHub App + 仓库级安装 + 路径白名单 + 受保护主分支"},
+        {"option": "B", "desc": "Fine-grained PAT + 分支保护"},
+        {"option": "C", "desc": "先在测试仓库做两种方案的可行性验证再定"}
+      ],
+      "recommendation": "C 然后 A",
+      "recommendation_reason": "章程 §7.2 是「必须研究」，Phase 6 明确要求在测试仓库完成受控写入与回滚验证。先验证再定型符合章程的阶段门槛设计。",
+      "default_if_no_answer": "A",
+      "user_confirmation_required": true,
+      "phase": "Phase 6"
+    },
+    {
+      "question_id": "Q-E",
+      "title": "工作区既有目录是否纳入本项目版本管理",
+      "source": "SRC-A §2.1",
+      "analysis": "工作区含 _learning / _ad_analysis / ad_analysis / zzj-02_v27_output / zzj-03_output / chongyang1_output 等跨项目目录，其中 _learning 含本项目的重要历史来源。",
+      "options": [
+        {"option": "A", "desc": "只把 shopee-br-compliance-agent/ 纳入版本管理；历史资料只读引用，不纳入"},
+        {"option": "B", "desc": "把 _learning/ 也纳入（作为只读参考的子模块或文档库）"},
+        {"option": "C", "desc": "整个工作区一个仓库"}
+      ],
+      "recommendation": "A",
+      "recommendation_reason": "章程 §2.1 禁止未经允许移动用户原有资料；§7.2 提到「将敏感业务数据复制到公共目录」的风险。_learning 含店铺经营数据，不应进公开仓库。",
+      "default_if_no_answer": "A",
+      "user_confirmation_required": true,
+      "phase": "Phase 6"
+    },
+    {
+      "question_id": "Q-F",
+      "title": "项目目录是否改名",
+      "source": "SRC-A §2.5",
+      "analysis": "项目代号 SBRCA，目录现为 shopee-br-compliance-agent。章程要求英文小写下划线命名，现状已符合；改名会破坏既有链接与脚本路径。",
+      "options": [
+        {"option": "A", "desc": "保持 shopee-br-compliance-agent"},
+        {"option": "B", "desc": "改为 sbrca"}
+      ],
+      "recommendation": "A",
+      "recommendation_reason": "章程要求的是命名风格而非特定名称，现状已合规。改名会破坏 README 中所有路径引用与 tools/ 中的相对路径解析。",
+      "default_if_no_answer": "A",
+      "user_confirmation_required": false,
+      "phase": "Phase 1"
+    },
+    {
+      "question_id": "Q-G",
+      "title": "词库数据资产重建的来源",
+      "source": "SRC-B 词库数据文件已丢失",
+      "analysis": "现存的是 17 类词库的 Markdown 文档（约 1,320 词的清单，以表格形式），可作为重建起点但不是结构化数据。2026-09 的风险等级（high/medium/low）与分类划分是现成的分类学资产。",
+      "options": [
+        {"option": "A", "desc": "从现存 Markdown 文档抽取为 JSON 词库（约 1,300 词），作为 Phase 2 起点，后续按基准结果扩展"},
+        {"option": "B", "desc": "重新做一轮分类调研，直接产出更大规模词库"},
+        {"option": "C", "desc": "先做不依赖词库的规则层（禁售类目、IP 规则），词库延后"}
+      ],
+      "recommendation": "A 然后 C 并行",
+      "recommendation_reason": "A 成本低且能立刻复用现成的分类学与风险等级；C 的禁售/IP 规则不依赖大词库，可先行。A 与 C 无依赖冲突。",
+      "default_if_no_answer": "A",
+      "user_confirmation_required": true,
+      "phase": "Phase 2"
+    },
+    {
+      "question_id": "Q-H",
+      "title": "历史违规案件数据的导入格式",
+      "source": "SRC-A §4.1.4",
+      "analysis": "重发检测需要历史案件库。数据来源可能是：Seller Centre 违规记录页导出（需登录态，本项目无法自动获取）、平台通知邮件、运营手工整理。",
+      "options": [
+        {"option": "A", "desc": "定义 cases.json Schema，由运营按模板手工整理录入"},
+        {"option": "B", "desc": "开发 Seller Centre 违规页抓取工具（需用户提供登录态）"},
+        {"option": "C", "desc": "两者都要"}
+      ],
+      "recommendation": "A 先落地，B 待用户提供登录态后评估",
+      "recommendation_reason": "章程 §4.3 明确「自动发布/自动改线上/自动下架」等写能力需单独评估；抓取后台页面需要登录态凭证，属于敏感凭证处理问题，不宜在未确认凭证管理方案前实施。",
+      "default_if_no_answer": "A",
+      "user_confirmation_required": true,
+      "phase": "Phase 2"
+    },
+    {
+      "question_id": "Q-I",
+      "title": "性能验收的量化门槛",
+      "source": "SRC-A §6.1",
+      "analysis": "章程要求建立基准测试并测量 9 项指标，但未给出通过阈值。且章程 §6.1 明确「不得未经测试宣称系统可以达到某个性能目标」—— 阈值本身需要先有基线。",
+      "options": [
+        {"option": "A", "desc": "Phase 3 先产出基线数据，阈值由基线 + 业务体感共同确定后再定"},
+        {"option": "B", "desc": "现在就指定阈值（如规则加载 < 5s）"}
+      ],
+      "recommendation": "A",
+      "recommendation_reason": "章程 §6.1 禁止未经测试宣称目标，先测再定阈值是唯一自洽的路径。同时需要业务侧给出「可接受的最长审核等待时间」。",
+      "default_if_no_answer": "A",
+      "user_confirmation_required": true,
+      "phase": "Phase 3"
+    }
+  ],
+  "summary": {
+    "conflicts": 5,
+    "open_questions": 9,
+    "blocking_phase_1": ["CONF-001", "CONF-004", "Q-C"],
+    "blocking_phase_2": ["CONF-002", "CONF-003", "Q-G", "Q-H"],
+    "blocking_phase_3": ["Q-B", "Q-I"],
+    "blocking_phase_5": ["Q-A"],
+    "blocking_phase_6": ["Q-D", "Q-E"],
+    "note": "每条均给出 default_if_no_answer。若用户在审批时未逐条答复，按默认值执行并在报告中标注「按默认执行」。"
+  }
+}
