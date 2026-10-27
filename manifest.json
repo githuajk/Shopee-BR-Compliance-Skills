@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "manifest_version": "1.0.0",
+  "manifest_version": "1.1.0",
   "project": {
     "code": "SBRCA",
     "name": "Shopee Brazil Compliance Agent",
@@ -36,9 +36,18 @@
       "evidence_reference": "contracts/evidence_reference.schema.json",
       "risk_action_matrix_schema": "contracts/risk_action_matrix.schema.json",
       "risk_action_matrix": "contracts/risk_action_matrix.json",
-      "module_handoff": "contracts/module_handoff.schema.json"
+      "module_handoff": "contracts/module_handoff.schema.json",
+      "lexicon_rule_map": "contracts/lexicon_rule_map.json",
+      "file_ownership": "contracts/file_ownership.json"
     },
-    "hard_constraints": ["H1", "H2", "H3", "H4", "H5", "H6"]
+    "hard_constraints": [
+      "H1",
+      "H2",
+      "H3",
+      "H4",
+      "H5",
+      "H6"
+    ]
   },
   "skills": [
     {
@@ -63,7 +72,12 @@
       ],
       "rule_prefixes": [],
       "depends_on": [],
-      "blocks": ["TASK-LISTING-01", "TASK-IP-01", "TASK-DUP-01", "TASK-REPORT-01"],
+      "blocks": [
+        "TASK-LISTING-01",
+        "TASK-IP-01",
+        "TASK-DUP-01",
+        "TASK-REPORT-01"
+      ],
       "parallel_group": "G2"
     },
     {
@@ -86,9 +100,18 @@
         "skills/shopee-br-listing-audit/**",
         "tests/shopee-br-listing-audit/**"
       ],
-      "rule_prefixes": ["PI", "RI", "MED", "LV"],
-      "depends_on": ["TASK-POLICY-01"],
-      "blocks": ["TASK-MAIN-01"],
+      "rule_prefixes": [
+        "PI",
+        "RI",
+        "MED",
+        "LV"
+      ],
+      "depends_on": [
+        "TASK-POLICY-01"
+      ],
+      "blocks": [
+        "TASK-MAIN-01"
+      ],
       "parallel_group": "G3"
     },
     {
@@ -112,9 +135,18 @@
         "skills/shopee-br-duplicate-detection/**",
         "tests/shopee-br-duplicate-detection/**"
       ],
-      "rule_prefixes": ["DUP", "RL", "AU", "AC"],
-      "depends_on": ["TASK-POLICY-01"],
-      "blocks": ["TASK-MAIN-01"],
+      "rule_prefixes": [
+        "DUP",
+        "RL",
+        "AU",
+        "AC"
+      ],
+      "depends_on": [
+        "TASK-POLICY-01"
+      ],
+      "blocks": [
+        "TASK-MAIN-01"
+      ],
       "parallel_group": "G3"
     },
     {
@@ -137,9 +169,15 @@
         "skills/shopee-br-ip-review/**",
         "tests/shopee-br-ip-review/**"
       ],
-      "rule_prefixes": ["IP"],
-      "depends_on": ["TASK-POLICY-01"],
-      "blocks": ["TASK-MAIN-01"],
+      "rule_prefixes": [
+        "IP"
+      ],
+      "depends_on": [
+        "TASK-POLICY-01"
+      ],
+      "blocks": [
+        "TASK-MAIN-01"
+      ],
       "parallel_group": "G3"
     },
     {
@@ -166,7 +204,13 @@
       ],
       "rule_prefixes": [],
       "depends_on": [],
-      "blocks": ["TASK-LISTING-01", "TASK-IP-01", "TASK-DUP-01", "TASK-REPORT-01", "TASK-MAIN-01"],
+      "blocks": [
+        "TASK-LISTING-01",
+        "TASK-IP-01",
+        "TASK-DUP-01",
+        "TASK-REPORT-01",
+        "TASK-MAIN-01"
+      ],
       "parallel_group": "G2"
     },
     {
@@ -190,8 +234,12 @@
         "tests/shopee-br-reporting/**"
       ],
       "rule_prefixes": [],
-      "depends_on": ["TASK-POLICY-01"],
-      "blocks": ["TASK-MAIN-01"],
+      "depends_on": [
+        "TASK-POLICY-01"
+      ],
+      "blocks": [
+        "TASK-MAIN-01"
+      ],
       "parallel_group": "G3"
     },
     {
@@ -216,7 +264,12 @@
         "tests/shopee-br-compliance/**"
       ],
       "rule_prefixes": [],
-      "depends_on": ["TASK-LISTING-01", "TASK-IP-01", "TASK-DUP-01", "TASK-REPORT-01"],
+      "depends_on": [
+        "TASK-LISTING-01",
+        "TASK-IP-01",
+        "TASK-DUP-01",
+        "TASK-REPORT-01"
+      ],
       "blocks": [],
       "parallel_group": "G4"
     }
@@ -230,11 +283,51 @@
     "directory": "rules/",
     "current_rule_count": 50,
     "ownership": [
-      {"file": "rules/01_prohibited_restricted_items.json", "prefixes": ["PI", "RI"], "count": 17, "owner": "shopee-br-listing-audit"},
-      {"file": "rules/02_ip_trademark_copyright.json", "prefixes": ["IP"], "count": 8, "owner": "shopee-br-ip-review"},
-      {"file": "rules/03_listing_violations_duplicates.json", "prefixes": ["LV", "DUP"], "count": 17, "owner": "SPLIT_PENDING_INTEGRATION", "note": "混有两个模块前缀，集成阶段由集成 Agent 拆分"},
-      {"file": "rules/04_cases_relist_authorization.json", "prefixes": ["RL", "AU", "AC"], "count": 5, "owner": "shopee-br-duplicate-detection"},
-      {"file": "rules/05_medicines_health.json", "prefixes": ["MED"], "count": 3, "owner": "shopee-br-listing-audit"}
+      {
+        "file": "rules/01_prohibited_restricted_items.json",
+        "prefixes": [
+          "PI",
+          "RI"
+        ],
+        "count": 17,
+        "owner": "shopee-br-listing-audit"
+      },
+      {
+        "file": "rules/02_ip_trademark_copyright.json",
+        "prefixes": [
+          "IP"
+        ],
+        "count": 8,
+        "owner": "shopee-br-ip-review"
+      },
+      {
+        "file": "rules/03_listing_violations_duplicates.json",
+        "prefixes": [
+          "LV",
+          "DUP"
+        ],
+        "count": 17,
+        "owner": "SPLIT_PENDING_INTEGRATION",
+        "note": "混有两个模块前缀，集成阶段由集成 Agent 拆分"
+      },
+      {
+        "file": "rules/04_cases_relist_authorization.json",
+        "prefixes": [
+          "RL",
+          "AU",
+          "AC"
+        ],
+        "count": 5,
+        "owner": "shopee-br-duplicate-detection"
+      },
+      {
+        "file": "rules/05_medicines_health.json",
+        "prefixes": [
+          "MED"
+        ],
+        "count": 3,
+        "owner": "shopee-br-listing-audit"
+      }
     ]
   },
   "shared_assets": {
@@ -244,7 +337,19 @@
     "schemas_owner": "integrator",
     "reference_implementation": null,
     "reference_impl_note": "第一阶段原型 src/compliance_agent/ 已核实不存在（从未入库，见 .archive/README.md §2）。本项目不再依赖原型参考实现；模块行为以冻结契约为权威依据。",
-    "reference_impl_status": "missing_verified_2026-10-27"
+    "reference_impl_status": "missing_verified_2026-10-27",
+    "lexicon": {
+      "path": "lexicon/",
+      "purpose": "合并词库 —— 37 组 / 856 词（扫描）、改写映射、误报豁免、质量特征、无法规避品类、葡语变位表",
+      "owner": "shopee-br-listing-audit",
+      "built_from": "2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 原 25 组 179 词",
+      "coverage": "96.3% 逐词比对"
+    },
+    "unified_sop": {
+      "path": "docs/SOP_COMPLIANCE_REVIEW.md",
+      "purpose": "统一审核 SOP —— 合并 9 份历史文档、31 个实战坑、店主 491 商品审阅反馈",
+      "owner": "shopee-br-compliance"
+    }
   },
   "existing_state": {
     "git_repository": true,
@@ -256,7 +361,32 @@
     "no_production_connection": true,
     "no_service_deployment": true,
     "no_full_business_rules": "本轮只完成框架与规范，不实现完整业务规则",
-    "internal_data_formats": ["json", "md"],
-    "exempted_formats": ["yaml (SKILL.md frontmatter only)", "source code extensions", "binary fixtures", "external input files"]
-  }
+    "internal_data_formats": [
+      "json",
+      "md"
+    ],
+    "exempted_formats": [
+      "yaml (SKILL.md frontmatter only)",
+      "source code extensions",
+      "binary fixtures",
+      "external input files"
+    ]
+  },
+  "lexicon": {
+    "path": "lexicon/term_groups.json",
+    "groups": 37,
+    "terms": 856,
+    "risk_hints": {
+      "prohibited": 15,
+      "restricted": 12,
+      "ip_signal": 8,
+      "listing_violation": 4
+    },
+    "source_tiers": {
+      "platform_official": 25,
+      "internal_risk": 12
+    },
+    "validation": "env -u LD_LIBRARY_PATH python3 tools/validate_lexicon.py"
+  },
+  "last_updated": "2026-10-27"
 }

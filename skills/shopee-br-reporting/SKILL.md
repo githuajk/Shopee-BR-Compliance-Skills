@@ -158,9 +158,9 @@ verdict = max(所有结果的 verdict)   顺序: PASS < REVISE < REVIEW < BLOCK
 - **期待下游**：`shopee-br-compliance`（主 Skill）消费本模块的汇总结果
 - **对其他模块的影响**：本模块定义了报告的呈现结构，其他模块的 `matched_excerpt` 必须是人可读描述（不是内部 token）
 
-## 12. 文件所有权
+## 14. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.0.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.3.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 
@@ -185,14 +185,14 @@ skills/*/SKILL.md
 公共契约（`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、`manifest.json`、`tasks/**`、`tests/test_plan.md`、`tests/fixtures/**`、`docs/**`、`tools/**`、`scripts/**`、`.archive/**`）对所有模块 Agent **只读**。
 需要修改时提交契约变更建议，不要自行改动。
 
-## 13. 待填内容
+## 15. 待填内容
 
 - [ ] `references/report_structure.md` —— 报告六节结构与各节内容规范
 - [ ] `references/aggregation_rules.md` —— 聚合算法与边界情形
 - [ ] `references/evidence_citation.md` —— 证据引用与来源呈现规范
 - [ ] `tests/shopee-br-reporting/run_tests.py`
 
-## 14. 变更记录
+## 16. 变更记录
 
 | 版本 | 日期 | 变更 |
 |---|---|---|

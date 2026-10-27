@@ -320,6 +320,11 @@ def main():
     # 集成验收脚本 —— 由集成 Agent 在 TASK-INTEGRATE-01 中实现
     # （见 tests/test_plan.md §7.2）
     planned.add("tools/integration_check.py")
+    # 工作区外部资产（不在本仓库内）—— 文档中以「工作区外部」标注
+    for ext in ("_learning/SOP_BIBLE.md",
+                "_learning/SHOPEE_MASTER_SOP.md",
+                "_learning/02_risk_dictionary.md"):
+        planned.add(ext)
     # 第一阶段原型的测试入口 —— 从未入库（已核实，见 .archive/README.md §2.1）
     planned.add("tests/run_tests.py")
     # PROJECT_RULES §14 命名规范表里的**举例**，不是真实引用
@@ -365,6 +370,9 @@ def main():
             if "/" not in ref:
                 continue
             if ref.startswith(("http", "www")) or "*" in ref:
+                continue
+            # 含省略号的是「示意路径」而非真实路径（例：`_learning/.../x.md`）
+            if "..." in ref:
                 continue
             if is_planned(ref):
                 continue

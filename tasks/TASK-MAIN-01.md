@@ -39,6 +39,8 @@ data/schema/**
 rules/**
 skills/*/SKILL.md
 docs/parallel_execution_plan.md
+docs/SOP_COMPLIANCE_REVIEW.md
+lexicon/**
 ```
 
 全局只读（所有模块通用）：`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、

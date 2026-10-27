@@ -106,6 +106,7 @@ ingestion → { listing-audit , ip-review , duplicate-detection } → reporting 
 | 显式工作流 | `references/execution_workflow.md` | 逐步说明如何读模块说明、构造输入、取得并校验输出 |
 | 整合规则 | `references/integration_rules.md` | 聚合语义；**确定性动作只增不减** |
 | 降级行为 | `references/degradation.md` | 模块不可用时如何如实报告「未执行」 |
+| `docs/SOP_COMPLIANCE_REVIEW.md` | **统一审核 SOP**（合并历史全部方法） |
 
 **来源层级的传递**：主 Skill 在整合各模块结果时，**原样保留**每条 `rule_refs[].source_tier` 与 `source_url`。它**不得**替模块重新判定来源层级，也**不得**把 `internal_risk` 提升为 `platform_official`。
 
@@ -194,9 +195,9 @@ ingestion → { listing-audit , ip-review , duplicate-detection } → reporting 
 - **期待下游**：集成 Agent 做跨模块一致性验收
 - **对其他模块的影响**：本模块定义了整合顺序与降级行为 —— 各模块必须能在**没有其他模块产物**的情况下独立产出合规结果
 
-## 13. 文件所有权
+## 15. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.0.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.3.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 
@@ -213,6 +214,8 @@ data/schema/**
 rules/**
 skills/*/SKILL.md
 docs/parallel_execution_plan.md
+docs/SOP_COMPLIANCE_REVIEW.md
+lexicon/**
 ```
 
 **本模块拥有的规则前缀：** 无（本模块不定义审核规则）
@@ -222,7 +225,7 @@ docs/parallel_execution_plan.md
 公共契约（`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、`manifest.json`、`tasks/**`、`tests/test_plan.md`、`tests/fixtures/**`、`docs/**`、`tools/**`、`scripts/**`、`.archive/**`）对所有模块 Agent **只读**。
 需要修改时提交契约变更建议，不要自行改动。
 
-## 14. 待填内容
+## 16. 待填内容
 
 - [ ] `references/routing.md` —— 分流决策表与边界情形
 - [ ] `references/execution_workflow.md` —— 显式工作流的逐步说明
@@ -230,7 +233,7 @@ docs/parallel_execution_plan.md
 - [ ] `references/degradation.md` —— 模块缺失时的降级行为
 - [ ] `tests/shopee-br-compliance/run_tests.py`
 
-## 15. 变更记录
+## 17. 变更记录
 
 | 版本 | 日期 | 变更 |
 |---|---|---|

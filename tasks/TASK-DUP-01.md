@@ -39,6 +39,8 @@ contracts/**
 data/schema/**
 rules/03_listing_violations_duplicates.json
 research/**
+lexicon/term_groups.json
+lexicon/non_avoidable.json
 ```
 
 全局只读（所有模块通用）：`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、

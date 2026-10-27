@@ -112,9 +112,9 @@ env -u LD_LIBRARY_PATH python3 tools/verify_citations.py
 - **期待下游**：`listing-audit` / `ip-review` / `duplicate-detection` / `reporting` 使用本模块产出的来源与引文
 - **对其他模块的影响**：本模块的层级标注直接决定其他模块哪些规则能产生阻断类动作
 
-## 9. 文件所有权
+## 11. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.0.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.3.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 
@@ -153,7 +153,7 @@ tools/capture_api.py
 公共契约（`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、`manifest.json`、`tasks/**`、`tests/test_plan.md`、`tests/fixtures/**`、`docs/**`、`tools/**`、`scripts/**`、`.archive/**`）对所有模块 Agent **只读**。
 需要修改时提交契约变更建议，不要自行改动。
 
-## 10. 待填内容
+## 12. 待填内容
 
 - [ ] `references/source_registry.md` —— 来源清单与抓取状态说明
 - [ ] `references/violation_codes.md` —— 违规码目录结构与解读
@@ -161,7 +161,7 @@ tools/capture_api.py
 - [ ] `references/platform_policy_summary.md` —— 政策要点摘要（禁限售类目、处罚机制、IP 四类）
 - [ ] `tests/shopee-br-policy-research/run_tests.py`
 
-## 11. 变更记录
+## 13. 变更记录
 
 | 版本 | 日期 | 变更 |
 |---|---|---|

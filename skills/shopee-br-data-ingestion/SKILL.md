@@ -132,9 +132,9 @@ description: Use when you need to read Shopee product data from external files o
 - **期待下游**：全部审核模块使用本模块产出的 `products[]` 与 `provenance`
 - **对其他模块的影响**：本模块的字段映射决定了其他模块能拿到什么字段 —— 缺字段会导致它们**未评估**而非**通过**
 
-## 11. 文件所有权
+## 13. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.0.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.3.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 
@@ -160,7 +160,7 @@ tools/validate_fixtures.py
 公共契约（`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、`manifest.json`、`tasks/**`、`tests/test_plan.md`、`tests/fixtures/**`、`docs/**`、`tools/**`、`scripts/**`、`.archive/**`）对所有模块 Agent **只读**。
 需要修改时提交契约变更建议，不要自行改动。
 
-## 12. 待填内容
+## 14. 待填内容
 
 - [ ] `references/format_matrix.md` —— 格式支持矩阵与失败行为
 - [ ] `references/field_mapping.md` —— 三语字段别名表
@@ -168,7 +168,7 @@ tools/validate_fixtures.py
 - [ ] `references/lexicon_format.md` —— 词库结构与维护节奏
 - [ ] `tests/shopee-br-data-ingestion/run_tests.py`
 
-## 13. 变更记录
+## 15. 变更记录
 
 | 版本 | 日期 | 变更 |
 |---|---|---|

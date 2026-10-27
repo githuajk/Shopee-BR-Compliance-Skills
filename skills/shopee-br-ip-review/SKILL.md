@@ -167,9 +167,9 @@ description: Use when you need to screen a Shopee Brazil listing for intellectua
 - **期待下游**：`shopee-br-reporting` 消费本模块结果；主 Skill 整合时**不得降级**本模块的 `escalate_legal`
 - **对其他模块的影响**：`SBR-IP-006` 的兼容性上下文可被 listing-audit 复用（避免重复实现兼容性识别）
 
-## 11. 文件所有权
+## 12. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.0.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.3.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 
@@ -186,6 +186,8 @@ contracts/**
 data/schema/**
 research/**
 rules/04_cases_relist_authorization.json
+lexicon/term_groups.json
+lexicon/exemptions.json
 ```
 
 **本模块拥有的规则前缀：** `IP`
@@ -195,7 +197,7 @@ rules/04_cases_relist_authorization.json
 公共契约（`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、`manifest.json`、`tasks/**`、`tests/test_plan.md`、`tests/fixtures/**`、`docs/**`、`tools/**`、`scripts/**`、`.archive/**`）对所有模块 Agent **只读**。
 需要修改时提交契约变更建议，不要自行改动。
 
-## 12. 待填内容
+## 13. 待填内容
 
 - [ ] `references/ip_categories.md` —— IP 四类的定义、法律依据、平台码
 - [ ] `references/nominative_use.md` —— 指示性使用 vs 品牌宣称的判定表与更多例子
@@ -203,7 +205,7 @@ rules/04_cases_relist_authorization.json
 - [ ] `references/dissolution_flow.md` —— 品牌方撤诉解封流程说明
 - [ ] `tests/shopee-br-ip-review/run_tests.py`
 
-## 13. 变更记录
+## 14. 变更记录
 
 | 版本 | 日期 | 变更 |
 |---|---|---|

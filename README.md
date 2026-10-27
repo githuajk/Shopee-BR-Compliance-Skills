@@ -5,9 +5,10 @@
 | 字段 | 值 |
 |---|---|
 | 项目代号 | SBRCA |
-| 阶段 | 第一轮 — 公共契约、模块说明、任务包已就绪 |
+| 阶段 | 第二轮 — 统一 SOP 与合并词库已并入 |
 | 契约版本 | 1.0.0 |
-| 所有权版本 | 1.2.0 |
+| 所有权版本 | 1.3.0 |
+| manifest | 1.1.0 |
 | 最后更新 | 2026-10-27 |
 
 ---
@@ -44,6 +45,8 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 | `tasks/task_registry.json` | 任务注册表 |
 | `tasks/task_template.md` | 任务说明模板 |
 | `tests/test_plan.md` | 统一测试与集成验收标准 |
+| `contracts/lexicon_rule_map.json` | 词组 → 规则映射 |
+| `docs/SOP_COMPLIANCE_REVIEW.md` | ★ **统一审核 SOP**（合并历史全部方法） |
 
 ### ② 七个 Skill 的模块说明与文件所有权
 
@@ -81,6 +84,21 @@ frontmatter（name / description）
 | policy-research | `source_registry.md`、`violation_codes.md`、`citation_verification.md`、`platform_policy_summary.md` |
 | reporting | `report_structure.md`、`aggregation_rules.md`、`evidence_citation.md` |
 | compliance（主） | `routing.md`、`execution_workflow.md`、`integration_rules.md`、`degradation.md` |
+
+### ②b 合并词库（37 组 / 856 词）
+
+| 文件 | 用途 | 规模 |
+|---|---|---|
+| `lexicon/term_groups.json` | 词组（扫描用） | 37 组 / 856 词 |
+| `lexicon/rewrite_map.json` | 触线 → 中性替代（改写用） | 8 类映射 |
+| `lexicon/exemptions.json` | 误报豁免规则 | 7 条 |
+| `lexicon/quality_patterns.json` | 套模板/批量味检测 | 15 条特征 |
+| `lexicon/non_avoidable.json` | 无法文字规避的品类 | 6 类 |
+| `lexicon/verb_conjugations.json` | 葡语动词变位匹配表 | 7 个动词 |
+| `contracts/lexicon_rule_map.json` | 词组 → 规则映射 | 37 条 |
+
+**合并来源**：2026-09-15 合规审计线 7 类 1320 词词库 + `02_risk_dictionary` 触线词 + 原 25 组 179 词。
+**覆盖率 96.3%**（逐词比对；剩余为文档说明文字而非词条）。
 
 ### ③ 可直接分发的独立任务包
 
@@ -198,20 +216,22 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 
 | 步骤 | 检查 | 结果 |
 |---|---|---|
-| 0/6 | 框架自检（`tools/framework_check.py`） | **291 项全通过** |
-| 1/6 | 公共契约校验（`tools/validate_contracts.py`） | **18 项全通过** |
-| 2/6 | 规则库 + 词库 Schema 校验 | 0 错误 0 警告 |
-| 3/6 | 引文逐字核验 | **50/50 通过** |
-| 4/6 | 规则触发正则可编译性（`tools/check_rule_regex.py`） | **50 条规则 / 36 条正则全部可编译，无逻辑自指** |
-| 5/6 | 共享夹具校验（Schema） | 90 商品 / 10 案件 全通过 |
-| 5b/6 | 夹具与规则库一致性（`tools/verify_fixtures.py`） | **108 条夹具-规则断言全通过** |
-| 6/6 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **520 项全通过** |
+| 0/8 | 框架自检（`tools/framework_check.py`） | **297 项全通过** |
+| 1/8 | 公共契约校验（`tools/validate_contracts.py`） | **19 项全通过** |
+| 2/8 | 合并词库校验（`tools/validate_lexicon.py`） | **266 项全通过**（37 组 / 856 词 / 37 条映射 / 50 条规则） |
+| 3/8 | 规则库 + 词库 Schema 校验 | 0 错误 0 警告 |
+| 4/8 | 引文逐字核验 | **50/50 通过** |
+| 5/8 | 规则触发正则可编译性（`tools/check_rule_regex.py`） | **50 条规则 / 36 条正则全部可编译，无逻辑自指** |
+| 6/8 | 共享夹具校验（Schema） | 90 商品 / 10 案件 全通过 |
+| 7/8 | 夹具与规则库一致性（`tools/verify_fixtures.py`） | **108 条夹具-规则断言全通过** |
+| 8/8 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **540 项全通过** |
 
 ### 校验工具的分工
 
 | 工具 | 抓什么 |
 |---|---|
 | `verify_citations.py` | 引文是否逐字出现在 `research/raw/` 抓取件中（不编造来源） |
+| `validate_lexicon.py` | 合并词库的分组结构、变位覆盖、豁免与改写映射 |
 | `check_rule_regex.py` | 规则正则能否编译；`requires_input` 是否自指；数值算子是否作用于文本字段 |
 | `verify_fixtures.py` | 夹具声明的期望是否成立（正例真命中、反例真不命中、豁免真生效） |
 | `task_pack_check.py` | 任务包枚举是否与冻结契约一致；文档中 `verdict` 取值是否合法 |

@@ -23,6 +23,7 @@
 | `risk_action_matrix.json` | **风险×动作矩阵实例**（含硬约束 H1–H6） | 全部模块 + 集成 |
 | `module_handoff.schema.json` | 模块交接格式 | 集成 + 主 Skill |
 | `file_ownership.json` | **文件所有权登记**（唯一权威来源） | 全部模块 + 集成 |
+| `lexicon_rule_map.json` | **词组 → 规则映射** | listing-audit + ip-review + 集成 |
 
 ---
 
