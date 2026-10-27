@@ -1,9 +1,9 @@
-# 续做说明 —— G3 完成，G4/G5 待启动
+# 续做说明 —— G4 进行中，G5 待启动
 
 | 字段 | 值 |
 |---|---|
 | 日期 | 2026-10-27 |
-| 状态 | **G2 + G3 全部完成（7/10）**，下一步是 G4（主 Skill）与 G5（集成验收） |
+| 状态 | **G2 + G3 全部完成（8/10）**，TASK-MAIN-01 正在开发，TASK-INTEGRATE-01 待启动 |
 | 最近一次中断原因 | 子 Agent 因 Token Plan 用量上限（HTTP 429）中止 |
 | 已入库 | 见 `git log --oneline -10`；远端 `main` 与本地同步 |
 
@@ -21,11 +21,23 @@
 | TASK-DUP-01 | `shopee-br-duplicate-detection` | ✅ 完成 | 587 项通过 |
 | TASK-IP-01 | `shopee-br-ip-review` | ✅ 完成 | 228 项通过 |
 | TASK-REPORT-01 | `shopee-br-reporting` | ✅ 完成 | 210 项通过 |
-| **TASK-MAIN-01** | `shopee-br-compliance` | ⬜ **未开始（G4）** | — |
-| **TASK-INTEGRATE-01** | — | ⬜ **未开始（G5）** | — |
+| **TASK-MAIN-01** | `shopee-br-compliance` | 🔄 **开发中** | — |
+| **TASK-INTEGRATE-01** | — | ⬜ 待启动（G5） | — |
 
-注册表：`tasks/task_registry.json` → `summary: completed=7, pending=3`
-（含 FRAME-02 一项）
+注册表：`tasks/task_registry.json` → `summary: completed=8, pending=2`
+
+**7 个模块全部有真实可运行的 CLI 入口**（这是 G4/G5 的基础）：
+
+| 模块 | CLI 入口 |
+|---|---|
+| `shopee-br-data-ingestion` | `skills/shopee-br-data-ingestion/src/sbr_ingestion_cli.py` |
+| `shopee-br-listing-audit` | `skills/shopee-br-listing-audit/src/sbr_listing_audit_cli.py` |
+| `shopee-br-duplicate-detection` | `skills/shopee-br-duplicate-detection/src/sbr_duplicate_detection_cli.py` |
+| `shopee-br-ip-review` | `skills/shopee-br-ip-review/src/sbr_ip_review_cli.py` |
+| `shopee-br-reporting` | `skills/shopee-br-reporting/src/sbr_reporting_cli.py` |
+
+每个模块的 `SKILL.md` 都含「输入契约」与「输出契约」章节 —— 主 Skill
+必须按这些章节显式读取并驱动，**不得**假设自动调用能力。
 
 ---
 

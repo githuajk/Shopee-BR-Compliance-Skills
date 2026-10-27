@@ -315,7 +315,7 @@
       "group": "G3",
       "module": "shopee-br-ip-review",
       "parallel_group": "G3",
-      "status": "pending",
+      "status": "completed",
       "depends_on": [
         "TASK-POLICY-01",
         "TASK-INGEST-01"
@@ -349,9 +349,9 @@
       ],
       "objective": "建立知识产权与授权风险筛查能力：区分商标、版权、外观设计、专利四类风险，区分指示性使用与混淆性使用，核查品牌授权完整性。",
       "workspace": "/tmp/sbrca_work/TASK-IP-01/",
-      "note": "2026-10-27 核心实现完成（references 与 DELIVERY.md 由文档 Agent 补齐）。",
+      "note": "2026-10-27 实现完成（含 4 份 references 与 DELIVERY.md）。",
       "contract_version": "1.0.0",
-      "actual_result": "IP 筛查引擎（指示性使用豁免、授权完整性维度、H1/H2/H3 强制）、CLI、228 项测试全通过。交付说明见 skills/shopee-br-ip-review/DELIVERY.md。"
+      "actual_result": "IP 筛查引擎（指示性使用豁免、授权完整性维度、H1/H2/H3 强制）、CLI、4 份 references 填实、228 项测试全通过。交付说明见 skills/shopee-br-ip-review/DELIVERY.md。"
     },
     {
       "task_id": "TASK-REPORT-01",
@@ -473,8 +473,8 @@
   ],
   "summary": {
     "total": 10,
-    "completed": 7,
-    "pending": 3,
+    "completed": 8,
+    "pending": 2,
     "by_group": {
       "G0": 1,
       "G1": 1,
