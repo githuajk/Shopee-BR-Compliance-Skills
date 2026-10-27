@@ -107,9 +107,9 @@ frontmatter（name / description）
 ```
 TASK-POLICY-01      官方政策研究与来源核查        G2  ✅ 已完成 2026-10-27
 TASK-INGEST-01      多格式资料读取与标准化        G2  ✅ 已完成 2026-10-27
-TASK-LISTING-01     商品内容合规审核              G3  🔶 部分完成（产出已入库，待续做）
+TASK-LISTING-01     商品内容合规审核              G3  ✅ 已完成 2026-10-27
 TASK-DUP-01         重复刊登与违规重发检查         G3  ✅ 已完成 2026-10-27
-TASK-IP-01          知识产权与授权风险筛查         G3  🔶 部分完成（产出已入库，待续做）
+TASK-IP-01          知识产权与授权风险筛查         G3  ✅ 已完成 2026-10-27
 TASK-REPORT-01      审核结果汇总与报告生成         G3  ✅ 已完成 2026-10-27
 TASK-MAIN-01        主 Skill                      G4
 TASK-INTEGRATE-01   集成验收                      G5
@@ -237,7 +237,7 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 | 7/10 | 规则触发正则可编译性（`tools/check_rule_regex.py`） | **50 条规则 / 36 条正则全部可编译，无逻辑自指** |
 | 8/10 | 共享夹具校验（Schema） | 90 商品 / 10 案件 全通过 |
 | 9/10 | 夹具与规则库一致性（`tools/verify_fixtures.py`） | **108 条夹具-规则断言全通过** |
-| 10/10 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **502 项全通过** |
+| 10/10 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **352 项全通过** |
 
 ### 校验工具的分工
 
@@ -251,7 +251,7 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 | `verify_fixtures.py` | 夹具声明的期望是否成立（正例真命中、反例真不命中、豁免真生效） |
 | `task_pack_check.py` | 任务包枚举是否与冻结契约一致；文档中 `verdict` 取值是否合法 |
 | `framework_check.py` | 框架不变量；文档内部路径引用是否悬空 |
-| `tests/<module>/run_tests.py` | 各模块自有测试（当前：ingestion 201 项、policy-research 1467 项） |
+| `tests/<module>/run_tests.py` | 各模块自有测试（当前：ingestion 201、policy-research 1467、listing-audit 383、duplicate-detection 587、ip-review 228、reporting 210） |
 
 ---
 

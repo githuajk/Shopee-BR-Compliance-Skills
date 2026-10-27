@@ -215,7 +215,7 @@
       "group": "G3",
       "module": "shopee-br-listing-audit",
       "parallel_group": "G3",
-      "status": "pending",
+      "status": "completed",
       "depends_on": [
         "TASK-POLICY-01",
         "TASK-INGEST-01"
@@ -256,8 +256,9 @@
       "split_request": "rules/03_listing_violations_duplicates.json 含 LV（属本模块）与 DUP（属 duplicate-detection）两组前缀。本模块只提拆分建议，不直接改该文件。",
       "objective": "建立商品内容合规审核能力：检查标题、详情、属性、图片与宣传内容中的禁售、受限、刊登质量与药品健康类风险，产出可追溯的结论。",
       "workspace": "/tmp/sbrca_work/TASK-LISTING-01/",
-      "note": "2026-10-27 部分完成，子 Agent 因 token 用尽中止；已有产出已入库，作为续做起点。",
-      "contract_version": "1.0.0"
+      "note": "2026-10-27 实现完成。",
+      "contract_version": "1.0.0",
+      "actual_result": "规则引擎（条件求值、词库匹配、动作降级）、契约化产出、383 项测试全通过。H1 修复：IP 类规则结论恒为 signal。交付说明见 skills/shopee-br-listing-audit/DELIVERY.md。"
     },
     {
       "task_id": "TASK-DUP-01",
@@ -348,8 +349,9 @@
       ],
       "objective": "建立知识产权与授权风险筛查能力：区分商标、版权、外观设计、专利四类风险，区分指示性使用与混淆性使用，核查品牌授权完整性。",
       "workspace": "/tmp/sbrca_work/TASK-IP-01/",
-      "note": "2026-10-27 部分完成，子 Agent 因 token 用尽中止；已有产出已入库，作为续做起点。",
-      "contract_version": "1.0.0"
+      "note": "2026-10-27 核心实现完成（references 与 DELIVERY.md 由文档 Agent 补齐）。",
+      "contract_version": "1.0.0",
+      "actual_result": "IP 筛查引擎（指示性使用豁免、授权完整性维度、H1/H2/H3 强制）、CLI、228 项测试全通过。交付说明见 skills/shopee-br-ip-review/DELIVERY.md。"
     },
     {
       "task_id": "TASK-REPORT-01",
@@ -471,8 +473,8 @@
   ],
   "summary": {
     "total": 10,
-    "completed": 6,
-    "pending": 4,
+    "completed": 7,
+    "pending": 3,
     "by_group": {
       "G0": 1,
       "G1": 1,
