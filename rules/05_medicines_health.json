@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "library": "Shopee BR — medicines and health products",
+  "source_tier": "platform_official",
+  "source_url": "https://seller.br.shopee.cn/edu/article/7379",
+  "source_excerpt": "De acordo com a política da Shopee, anúncios que vendem medicamentos controlados (sem licenciamento apropriado), drogas ilícitas ou suplementos de saúde com informações falsas e enganosas serão excluídos.",
+  "last_verified": "2026-10-27",
+  "notes": "IMPORTANT — this library encodes a policy change dated 6 August 2026. Since then Shopee is Anvisa-authorised to sell over-the-counter medicines (MIPs), but ONLY by regularly licensed pharmacies and drugstores that follow the category's and the agency's regulations strictly, per Resolução-RE nº 3.056/2026. A seller that is not a licensed pharmacy/drugstore therefore still may not list medicines at all. Any rule written before 2026-08-06 that treats ALL medicines as prohibited is out of date; this library separates the two cases explicitly.",
+  "rules": [
+    {
+      "rule_id": "SBR-MED-001",
+      "title": "Prohibited medicine categories (human, veterinary, abortifacient, injectable, MMS)",
+      "category": "prohibited_item",
+      "description": "Shopee maintains a hard restriction on the kinds of medicine that may be sold at all. Not permitted: human-use medicines in general; veterinary medicines; medicines, products or services related to the performance of abortions; sodium chlorite, chlorine dioxide (CDS) or Miracle Mineral Solution (MMS) in any form or presentation; injectable or intravenous solutions for medical or cosmetic purposes; illicit drugs; veterinary medicines. Listing these means the announcement is removed, penalty points are incurred, and the account may be suspended or temporarily closed depending on severity.",
+      "trigger_conditions": [
+        {"field": "any_text", "operator": "regex", "value": "(?<![a-zA-Zà-ÿÀ-ß])(clorito\\s+de\\s+s[óo]dio|dióxido\\s+de\\s+cloro(\\s+(CDS|mms))?|solu[çc][ãa]o\\s+mineral\\s+milagrosa|medicamento\\s+abortivo|inje[çc][ãa]vel|intravenoso|medicamento\\s+veterin[aá]rio|droga\\s+il[íi]cita)(?![a-zA-Zà-ÿÀ-ß])"}
+      ],
+      "severity": "critical",
+      "decision": "block",
+      "evidence_required": ["product_photographs", "supplier_invoice", "anvisa_registration"],
+      "human_review_required": true,
+      "source_url": "https://seller.br.shopee.cn/edu/article/7379",
+      "source_tier": "platform_official",
+      "source_excerpt": "Medicamentos de uso humano em geral; Medicamentos de uso veterinário; Medicamentos, produtos ou serviços que estejam relacionados com a realização de abortos; Clorito de sódio, dióxido de cloro (CDS) ou soluções minerais milagrosas (MMS), em todas as suas formas e apresentações;",
+      "last_verified": "2026-10-27",
+      "status": "active",
+      "version": 1,
+      "tags": ["medicine", "prohibited", "critical", "anvisa"],
+      "notes": "This rule deliberately does NOT fire on the generic word 'medicamento' — see SBR-MED-002, which handles the licensing question. Firing on the generic word would block every supplement listing and would be wrong after the 6 Aug 2026 Anvisa authorisation."
+    },
+    {
+      "rule_id": "SBR-MED-002",
+      "title": "Medicine listed by a seller that is not a licensed pharmacy or drugstore",
+      "category": "restricted_item",
+      "description": "Since 6 August 2026 Shopee is Anvisa-authorised to sell over-the-counter medicines (medicamentos isentos de prescrição, MIPs), but ONLY by regularly licensed pharmacies and drugstores that follow the category's and the agency's regulations strictly, per Resolução-RE nº 3.056/2026. A seller without that authorisation may not list medicines at all, even when the medicine itself is an MIP. Announcements selling controlled medicines without appropriate licensing are removed and incur penalty points.",
+      "trigger_conditions": [
+        {"field": "any_text", "operator": "regex", "value": "(?<![a-zA-Zà-ÿÀ-ß])(medicamento\\s+(isento\\s+de\\s+prescri[çc][ãa]o|MIP)|remédio\\s+isento\\s+de\\s+prescri[çc][ãa]o|medicamento\\s+controlado|medicamento\\s+com\\s+tarja)(?![a-zA-Zà-ÿÀ-ß])"}
+      ],
+      "severity": "high",
+      "decision": "require_evidence",
+      "evidence_required": ["anvisa_registration", "pharmacy_license", "distribution_authorization", "supplier_invoice"],
+      "human_review_required": true,
+      "source_url": "https://seller.br.shopee.cn/edu/article/7379",
+      "source_tier": "platform_official",
+      "source_excerpt": "Desde 6 de agosto de 2026, a Shopee está autorizada pela Anvisa a comercializar medicamentos isentos de prescrição (MIPs), apenas por farmácias e drogarias regularmente licenciadas que sigam rigorosamente todas as regulamentações da categoria e da agência, conforme a Resolução-RE nº 3.056/2026.",
+      "last_verified": "2026-10-27",
+      "status": "active",
+      "version": 1,
+      "tags": ["medicine", "restricted", "anvisa", "license", "policy_change_2026_08_06"],
+      "notes": "The decision is require_evidence, not block: the medicine may be legitimate and the seller may be a licensed pharmacy. The evidence list is what separates the two cases. A seller that cannot produce the pharmacy/drugstore licence must not list the item."
+    },
+    {
+      "rule_id": "SBR-MED-003",
+      "title": "Health supplement with false or misleading information",
+      "category": "consumer_protection",
+      "description": "Announcements selling health supplements with false and misleading information are removed. Health supplements themselves (vitamins, herbs, natural products) are permitted, but the claims attached to them are what the platform enforces on.",
+      "trigger_conditions": [
+        {"field": "any_text", "operator": "regex", "value": "(?<![a-zA-Zà-ÿÀ-ß])(suplemento\\s+de\\s+sa[úu]de\\s+com\\s+informa[çc][õo]es?\\s+(falsas?|enganosas?)|cura\\s+garantida|100%\\s+eficaz|emagrece\\s+com\\s+garantia)(?![a-zA-Zà-ÿÀ-ß])"}
+      ],
+      "severity": "high",
+      "decision": "flag_for_review",
+      "evidence_required": ["manufacturer_claim_reference", "product_photographs"],
+      "human_review_required": true,
+      "source_url": "https://seller.br.shopee.cn/edu/article/7379",
+      "source_tier": "platform_official",
+      "source_excerpt": "anúncios que vendem medicamentos controlados (sem licenciamento apropriado), drogas ilícitas ou suplementos de saúde com informações falsas e enganosas serão excluídos.",
+      "last_verified": "2026-10-27",
+      "status": "active",
+      "version": 1,
+      "tags": ["supplement", "claims", "anvisa"]
+    }
+  ]
+}
