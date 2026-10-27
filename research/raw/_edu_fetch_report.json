@@ -1,0 +1,49 @@
+[
+  {
+    "slug": "shopee_br_violacoes_anuncio",
+    "status": "ok",
+    "chars": 4828,
+    "title": "Principais dúvidas sobre Violações de Anúncio | Centro de Educação do Vendedor Shopee BR"
+  },
+  {
+    "slug": "shopee_br_banimento_suspensao_anuncios",
+    "status": "ok",
+    "chars": 21381,
+    "title": "Principais Motivos de Banimento e Suspensão de Anúncios | Centro de Educação do Vendedor Shopee BR"
+  },
+  {
+    "slug": "shopee_br_politica_produtos_proibidos",
+    "status": "ok",
+    "chars": 35046,
+    "title": "Política de Produtos Proibidos e Restritos | Centro de Educação do Vendedor Shopee BR"
+  },
+  {
+    "slug": "shopee_br_produtos_restritos_liberacao",
+    "status": "ok",
+    "chars": 14426,
+    "title": "Informações sobre a venda de produtos e categorias restritas | Centro de Educação do Vendedor Shopee BR"
+  },
+  {
+    "slug": "shopee_br_pontos_de_penalidade",
+    "status": "ok",
+    "chars": 8962,
+    "title": "Principais dúvidas sobre o Sistema de Pontos de Penalidade do Vendedor | Centro de Educação do Vendedor Shopee BR"
+  },
+  {
+    "slug": "shopee_br_categorias_restrritas",
+    "status": "ok",
+    "chars": 4975,
+    "title": "O que acontece se eu colocar para venda um medicamento proibido? | Centro de Educação do Vendedor Shopee BR"
+  },
+  {
+    "slug": "shopee_br_ip_complaint",
+    "status": "ok",
+    "chars": 4433,
+    "title": "Como selecionar a categoria de anúncios correta? | Centro de Educação do Vendedor Shopee BR"
+  },
+  {
+    "slug": "shopee_br_mudanca_conta_cpf_cnpj",
+    "status": "error_TimeoutError",
+    "detail": "timed out"
+  }
+]
