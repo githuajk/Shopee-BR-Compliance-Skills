@@ -237,7 +237,7 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 | 7/10 | 规则触发正则可编译性（`tools/check_rule_regex.py`） | **50 条规则 / 36 条正则全部可编译，无逻辑自指** |
 | 8/10 | 共享夹具校验（Schema） | 90 商品 / 10 案件 全通过 |
 | 9/10 | 夹具与规则库一致性（`tools/verify_fixtures.py`） | **108 条夹具-规则断言全通过** |
-| 10/10 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **494 项全通过** |
+| 10/10 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **502 项全通过** |
 
 ### 校验工具的分工
 
@@ -251,7 +251,7 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 | `verify_fixtures.py` | 夹具声明的期望是否成立（正例真命中、反例真不命中、豁免真生效） |
 | `task_pack_check.py` | 任务包枚举是否与冻结契约一致；文档中 `verdict` 取值是否合法 |
 | `framework_check.py` | 框架不变量；文档内部路径引用是否悬空 |
-| `tests/<module>/run_tests.py` | 各模块自有测试（当前：ingestion 193 项、policy-research 1467 项） |
+| `tests/<module>/run_tests.py` | 各模块自有测试（当前：ingestion 201 项、policy-research 1467 项） |
 
 ---
 
