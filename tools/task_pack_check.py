@@ -350,6 +350,52 @@ def main():
                 i += 1
     check("文档中无契约外 verdict 取值", verdict_bad == 0, f"{verdict_bad} 处")
 
+    # --- 13 路径所有权三方一致 ---
+    # 同一路径的 owner 曾出现四处不同说法：task_registry.path_ownership、
+    # contracts/file_ownership.json、manifest.json、以及任务的 allowed_paths。
+    # contracts/file_ownership.json 是声明的唯一权威来源 —— 其余三方必须与它一致。
+    section("9. 路径所有权三方一致")
+    with open(os.path.join(ROOT, "manifest.json"), encoding="utf-8") as f:
+        man = json.load(f)
+    own_paths = {}
+    for mod, spec in mods.items():
+        for p in spec["owns"]:
+            own_paths[p] = mod
+
+    for path, owner in reg.get("path_ownership", {}).items():
+        declared = own_paths.get(path)
+        if declared is None:
+            # file_ownership 未声明该路径 —— 可能是它归 integrator 或不存在
+            continue
+        check(f"registry 与 ownership 对 {path} 的 owner 一致",
+              declared == owner, f"registry={owner} ownership={declared}")
+
+    # manifest 里登记了 owner 的共享资产，也必须与 ownership 一致
+    shared = man.get("shared_assets", {})
+    lex_owner = shared.get("lexicon", {}).get("owner")
+    if lex_owner:
+        check("manifest 的 lexicon owner 与 ownership 一致",
+              lex_owner == own_paths.get("lexicon/**"),
+              f"manifest={lex_owner} ownership={own_paths.get('lexicon/**')}")
+
+    # 任务的 allowed_paths 不得超出该模块在 ownership 里声明的可写路径
+    for t in reg["tasks"]:
+        mod = t["module"]
+        if mod not in mods:
+            continue
+        allowed = set(t.get("allowed_paths", []))
+        owned = set(mods[mod]["owns"])
+        for ap in allowed:
+            # 允许任务声明比模块 owns 更宽（任务级白名单），但必须是 owns 的
+            # 扩展或与之相容 —— 关键是不能与别的模块的 owns 冲突
+            owners_of = {m for m, spec in mods.items()
+                         for p in spec["owns"] if p == ap}
+            if owners_of and mod not in owners_of:
+                check(f"{t['task_id']} 的 {ap} 属于 {sorted(owners_of)}",
+                      False, f"任务归属 {mod} 与路径 owner 不符")
+            else:
+                check(f"{t['task_id']} 的 {ap} 归属一致", True, "")
+
     print(f"\n{'=' * 62}")
     print(f"PASSED: {len(PASSED)}   FAILED: {len(FAILED)}")
     if FAILED:

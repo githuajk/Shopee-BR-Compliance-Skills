@@ -27,6 +27,7 @@
 ```
 skills/shopee-br-data-ingestion/**
 tests/shopee-br-data-ingestion/**
+lexicon/**
 ```
 
 **越界即任务失败。** 若确需修改白名单外的路径 → 停止并在 §12.5 提交契约变更建议，**不要自行修改**。

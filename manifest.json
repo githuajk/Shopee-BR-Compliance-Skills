@@ -341,9 +341,10 @@
     "lexicon": {
       "path": "lexicon/",
       "purpose": "合并词库 —— 37 组 / 856 词（扫描）、改写映射、误报豁免、质量特征、无法规避品类、葡语变位表",
-      "owner": "shopee-br-listing-audit",
+      "owner": "shopee-br-data-ingestion",
       "built_from": "2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 原 25 组 179 词",
-      "coverage": "96.3% 逐词比对"
+      "coverage": "96.3% 逐词比对",
+      "owner_note": "词库由 shopee-br-data-ingestion 拥有（contracts/file_ownership.json 是唯一权威来源）。词库的**消费**方是 listing-audit —— 词库命中只是筛查信号，不构成违规判定。"
     },
     "unified_sop": {
       "path": "docs/SOP_COMPLIANCE_REVIEW.md",

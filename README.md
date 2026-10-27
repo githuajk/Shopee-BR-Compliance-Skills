@@ -216,7 +216,7 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 
 | 步骤 | 检查 | 结果 |
 |---|---|---|
-| 0/8 | 框架自检（`tools/framework_check.py`） | **297 项全通过** |
+| 0/8 | 框架自检（`tools/framework_check.py`） | **298 项全通过** |
 | 1/8 | 公共契约校验（`tools/validate_contracts.py`） | **19 项全通过** |
 | 2/8 | 合并词库校验（`tools/validate_lexicon.py`） | **266 项全通过**（37 组 / 856 词 / 37 条映射 / 50 条规则） |
 | 3/8 | 规则库 + 词库 Schema 校验 | 0 错误 0 警告 |
@@ -224,7 +224,7 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 | 5/8 | 规则触发正则可编译性（`tools/check_rule_regex.py`） | **50 条规则 / 36 条正则全部可编译，无逻辑自指** |
 | 6/8 | 共享夹具校验（Schema） | 90 商品 / 10 案件 全通过 |
 | 7/8 | 夹具与规则库一致性（`tools/verify_fixtures.py`） | **108 条夹具-规则断言全通过** |
-| 8/8 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **540 项全通过** |
+| 8/8 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **589 项全通过** |
 
 ### 校验工具的分工
 
