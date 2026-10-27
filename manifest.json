@@ -336,7 +336,7 @@
     "schemas": "data/schema/",
     "schemas_owner": "integrator",
     "reference_implementation": null,
-    "reference_impl_note": "第一阶段原型 src/compliance_agent/ 已核实不存在（从未入库，见 .archive/README.md §2）。本项目不再依赖原型参考实现；模块行为以冻结契约为权威依据。",
+    "reference_impl_note": "第一阶段原型 src/compliance_agent/ 已于 2026-10-27 归档入库于 .archive/phase0_prototype/（48 个文件，结论变更见 .archive/README.md §2.1），但不参与活跃校验。本项目不依赖原型参考实现；模块行为以冻结契约为权威依据。",
     "reference_impl_status": "missing_verified_2026-10-27",
     "lexicon": {
       "path": "lexicon/",

@@ -198,15 +198,24 @@ FRAME-01 → FRAME-02 → {POLICY-01, INGEST-01} → {LISTING-01, DUP-01, IP-01,
 
 ## 归档区
 
-第一阶段（Phase 0/1）的原型实现**已核实从未入库**（git 全历史无该路径，本机与同主机另一仓库
-共 30593 条目零匹配，6 项检查见 `.archive/README.md` §2.1）。归档目录当前为空，
-本项目**不依赖任何原型参考实现** —— 模块行为以冻结契约为唯一权威依据。
+第一阶段（Phase 0/1）的原型实现**已于 2026-10-27 归档入库**于
+`.archive/phase0_prototype/`（48 个文件：docs 18 / src 13 / tests 1 / prompts 1 /
+out 2 / 其它 13）。
+
+> **核实结论有变更**：v2.0.0 曾记录「从未入库」，依据是当时的 6 项检查
+> （git 全历史无该路径、本机与同主机另一仓库 30593 条目零匹配等）。
+> **该结论在当时成立**，但同日稍后原型文件重新出现在工作区并已提交入库 ——
+> 详见 `.archive/README.md` §2.1 的变更记录。
+
+归档内容**不参与活跃框架的路径引用校验**，也**不在活跃校验流程中**
+（它们的端到端校验不计入 `scripts/check_all.sh`）。本项目**不依赖原型参考实现** ——
+模块行为以冻结契约为唯一权威依据。
 
 ```bash
-cat .archive/README.md    # 核实记录 + 归档区使用约定
+cat .archive/README.md    # 核实记录（含结论变更）+ 归档区使用约定
 ```
 
-详见 `.archive/README.md` §2（缺失核实）与 §3（原型的替代实现路径）。
+详见 `.archive/README.md` §2（核实与结论变更）与 §3（原型的替代实现路径）。
 
 ---
 
@@ -218,16 +227,17 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 
 | 步骤 | 检查 | 结果 |
 |---|---|---|
-| 0/9 | 框架自检（`tools/framework_check.py`） | **271 项全通过** |
-| 1/9 | 公共契约校验（`tools/validate_contracts.py`） | **19 项全通过** |
-| 2/9 | 合并词库校验（`tools/validate_lexicon.py`） | **266 项全通过**（37 组 / 856 词 / 37 条映射 / 50 条规则） |
-| 3/9 | 规则库 + 词库 Schema 校验 | 0 错误 0 警告 |
-| 4/9 | 引文逐字核验 | **50/50 通过** |
-| 5/9 | 来源清单与抓取件一致（`tools/check_sources.py`） | 17 条来源 / 17 个抓取件一致 |
-| 6/9 | 规则触发正则可编译性（`tools/check_rule_regex.py`） | **50 条规则 / 36 条正则全部可编译，无逻辑自指** |
-| 7/9 | 共享夹具校验（Schema） | 90 商品 / 10 案件 全通过 |
-| 8/9 | 夹具与规则库一致性（`tools/verify_fixtures.py`） | **108 条夹具-规则断言全通过** |
-| 9/9 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **492 项全通过** |
+| 0/10 | 框架自检（`tools/framework_check.py`） | **272 项全通过** |
+| 1/10 | 公共契约校验（`tools/validate_contracts.py`） | **19 项全通过** |
+| 2/10 | 合并词库校验（`tools/validate_lexicon.py`） | **305 项全通过**（37 组 / 856 词 / 37 条映射 / 50 条规则） |
+| 3/10 | 词库扫描器自测（`tools/scan_lexicon.py --self-test`） | **12/12 通过** |
+| 4/10 | 规则库 + 词库 Schema 校验 | 0 错误 0 警告 |
+| 5/10 | 引文逐字核验 | **50/50 通过** |
+| 6/10 | 来源清单与抓取件一致（`tools/check_sources.py`） | 17 条来源 / 17 个抓取件一致 |
+| 7/10 | 规则触发正则可编译性（`tools/check_rule_regex.py`） | **50 条规则 / 36 条正则全部可编译，无逻辑自指** |
+| 8/10 | 共享夹具校验（Schema） | 90 商品 / 10 案件 全通过 |
+| 9/10 | 夹具与规则库一致性（`tools/verify_fixtures.py`） | **108 条夹具-规则断言全通过** |
+| 10/10 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **494 项全通过** |
 
 ### 校验工具的分工
 
@@ -235,6 +245,7 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 |---|---|
 | `verify_citations.py` | 引文是否逐字出现在 `research/raw/` 抓取件中（不编造来源） |
 | `check_sources.py` | 来源清单 ↔ 抓取件 ↔ 抓取报告 ↔ 规则引用 是否一致 |
+| `scan_lexicon.py` | 词库扫描器：归一化、组级边界策略、豁免、位置记录 |
 | `validate_lexicon.py` | 合并词库的分组结构、变位覆盖、豁免与改写映射 |
 | `check_rule_regex.py` | 规则正则能否编译；`requires_input` 是否自指；数值算子是否作用于文本字段 |
 | `verify_fixtures.py` | 夹具声明的期望是否成立（正例真命中、反例真不命中、豁免真生效） |

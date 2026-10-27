@@ -177,7 +177,8 @@ requires_human_review ← 矩阵 + 硬约束
 3. 结论按 `verdict_aggregation` 聚合，而非简单取最大值。
 
 > 早期版本此处引用第一阶段原型的 `evaluator.py` 作为行为对照。
-> 该原型**已核实从未入库**（6 项检查见 `.archive/README.md` §2.1），
+> 该原型**已于 2026-10-27 归档入库**于 `.archive/phase0_prototype/`
+> （结论变更见 `.archive/README.md` §2.1），但不参与活跃校验，
 > 因此改为以上述冻结契约为唯一权威依据。
 
 ---
