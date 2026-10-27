@@ -185,12 +185,13 @@ rules/03_listing_violations_duplicates.json
 
 ## 13. 待填内容
 
-- [ ] `references/audit_semantics.md` —— 各规则类别的审核语义与判定边界
-- [ ] `references/false_positive_control.md` —— 误报来源清单与上下文判定规则
-- [ ] `references/policy_currency.md` —— 政策时效性（含 2026-08-06 变更）
-- [ ] `references/evidence_checklist.md` —— 各受限类目的证据清单
-- [x] `references/lexicon_scanning.md` —— 合并词库的使用、匹配算法与误报控制（已建）
-- [ ] `tests/shopee-br-listing-audit/run_tests.py`
+- [x] `references/audit_semantics.md` —— 各规则类别的审核语义与判定边界
+- [x] `references/false_positive_control.md` —— 误报来源清单与上下文判定规则
+- [x] `references/policy_currency.md` —— 政策时效性（含 2026-08-06 变更）
+- [x] `references/evidence_checklist.md` —— 各受限类目的证据清单
+- [x] `references/lexicon_scanning.md` —— 合并词库的使用、匹配算法与误报控制
+- [x] `tests/shopee-br-listing-audit/run_tests.py` —— 383 项断言
+- [x] `DELIVERY.md` —— 交付说明
 
 ## 14. 变更记录
 
