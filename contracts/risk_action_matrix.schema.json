@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shopee-br-compliance-agent.local/contracts/risk_action_matrix.schema.json",
+  "title": "RiskActionMatrix",
+  "description": "风险等级与处理动作的映射。风险等级与处理动作正交 —— 矩阵定义二者如何共同决定结论与复核要求。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "risk_levels", "actions", "matrix", "verdict_aggregation", "hard_constraints"],
+  "properties": {
+    "contract_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "last_updated": {"type": "string", "format": "date"},
+    "notes": {"type": "string"},
+    "risk_levels": {
+      "type": "object",
+      "description": "风险等级定义。",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["label", "description"],
+        "properties": {
+          "label": {"type": "string"},
+          "description": {"type": "string"},
+          "example": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "actions": {
+      "type": "object",
+      "description": "处理动作定义。",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["label", "description", "verdict", "always_human_review"],
+        "properties": {
+          "label": {"type": "string"},
+          "description": {"type": "string"},
+          "verdict": {"type": "string", "enum": ["PASS", "REVISE", "REVIEW", "BLOCK"]},
+          "always_human_review": {"type": "boolean"},
+          "executable_by": {
+            "type": "string",
+            "enum": ["human", "automation", "human_only"],
+            "description": "human_only = 任何情况下都不得由自动化执行。"
+          }
+        }
+      }
+    },
+    "matrix": {
+      "type": "array",
+      "description": "风险等级 × 动作的组合约束。列出允许的组合及附加条件。",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["risk_level", "action", "allowed"],
+        "properties": {
+          "risk_level": {"type": "string"},
+          "action": {"type": "string"},
+          "allowed": {"type": "boolean"},
+          "note": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "verdict_aggregation": {
+      "type": "object",
+      "description": "多个结果聚合为一个结论时的规则。",
+      "additionalProperties": false,
+      "required": ["order", "rule"],
+      "properties": {
+        "order": {
+          "type": "array",
+          "items": {"type": "string", "enum": ["PASS", "REVISE", "REVIEW", "BLOCK"]},
+          "description": "从轻到重的顺序。"
+        },
+        "rule": {
+          "type": "string",
+          "enum": ["max", "max_with_action_detail"],
+          "description": "max = 取最重；max_with_action_detail = 取最重结论但保留最细粒度的 action。"
+        },
+        "note": {"type": ["string", "null"]}
+      }
+    },
+    "hard_constraints": {
+      "type": "array",
+      "description": "不可绕过的硬约束。与 PROJECT_RULES.md §6.1 一致。",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "rule"],
+        "properties": {
+          "id": {"type": "string"},
+          "rule": {"type": "string"},
+          "enforcement": {"type": ["string", "null"]}
+        }
+      }
+    }
+  }
+}
