@@ -105,16 +105,18 @@ frontmatter（name / description）
 `tasks/TASK-*.md` 共 9 份，每份 12 个章节，**自包含**（执行 Agent 不需要读历史对话）。
 
 ```
-TASK-POLICY-01      官方政策研究与来源核查        G2
-TASK-INGEST-01      多格式资料读取与标准化        G2
+TASK-POLICY-01      官方政策研究与来源核查        G2  ✅ 已完成 2026-10-27
+TASK-INGEST-01      多格式资料读取与标准化        G2  ✅ 已完成 2026-10-27
 TASK-LISTING-01     商品内容合规审核              G3
 TASK-DUP-01         重复刊登与违规重发检查         G3
 TASK-IP-01          知识产权与授权风险筛查         G3
 TASK-REPORT-01      审核结果汇总与报告生成         G3
 TASK-MAIN-01        主 Skill                      G4
 TASK-INTEGRATE-01   集成验收                      G5
-TASK-FRAME-02       测试与验收标准（第一轮已完成）
+TASK-FRAME-02       测试与验收标准               ✅ 已完成
 ```
+
+各任务的交付说明见对应模块的 `DELIVERY.md`。
 
 ---
 
@@ -216,26 +218,29 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 
 | 步骤 | 检查 | 结果 |
 |---|---|---|
-| 0/8 | 框架自检（`tools/framework_check.py`） | **298 项全通过** |
-| 1/8 | 公共契约校验（`tools/validate_contracts.py`） | **19 项全通过** |
-| 2/8 | 合并词库校验（`tools/validate_lexicon.py`） | **266 项全通过**（37 组 / 856 词 / 37 条映射 / 50 条规则） |
-| 3/8 | 规则库 + 词库 Schema 校验 | 0 错误 0 警告 |
-| 4/8 | 引文逐字核验 | **50/50 通过** |
-| 5/8 | 规则触发正则可编译性（`tools/check_rule_regex.py`） | **50 条规则 / 36 条正则全部可编译，无逻辑自指** |
-| 6/8 | 共享夹具校验（Schema） | 90 商品 / 10 案件 全通过 |
-| 7/8 | 夹具与规则库一致性（`tools/verify_fixtures.py`） | **108 条夹具-规则断言全通过** |
-| 8/8 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **589 项全通过** |
+| 0/9 | 框架自检（`tools/framework_check.py`） | **271 项全通过** |
+| 1/9 | 公共契约校验（`tools/validate_contracts.py`） | **19 项全通过** |
+| 2/9 | 合并词库校验（`tools/validate_lexicon.py`） | **266 项全通过**（37 组 / 856 词 / 37 条映射 / 50 条规则） |
+| 3/9 | 规则库 + 词库 Schema 校验 | 0 错误 0 警告 |
+| 4/9 | 引文逐字核验 | **50/50 通过** |
+| 5/9 | 来源清单与抓取件一致（`tools/check_sources.py`） | 17 条来源 / 17 个抓取件一致 |
+| 6/9 | 规则触发正则可编译性（`tools/check_rule_regex.py`） | **50 条规则 / 36 条正则全部可编译，无逻辑自指** |
+| 7/9 | 共享夹具校验（Schema） | 90 商品 / 10 案件 全通过 |
+| 8/9 | 夹具与规则库一致性（`tools/verify_fixtures.py`） | **108 条夹具-规则断言全通过** |
+| 9/9 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **492 项全通过** |
 
 ### 校验工具的分工
 
 | 工具 | 抓什么 |
 |---|---|
 | `verify_citations.py` | 引文是否逐字出现在 `research/raw/` 抓取件中（不编造来源） |
+| `check_sources.py` | 来源清单 ↔ 抓取件 ↔ 抓取报告 ↔ 规则引用 是否一致 |
 | `validate_lexicon.py` | 合并词库的分组结构、变位覆盖、豁免与改写映射 |
 | `check_rule_regex.py` | 规则正则能否编译；`requires_input` 是否自指；数值算子是否作用于文本字段 |
 | `verify_fixtures.py` | 夹具声明的期望是否成立（正例真命中、反例真不命中、豁免真生效） |
 | `task_pack_check.py` | 任务包枚举是否与冻结契约一致；文档中 `verdict` 取值是否合法 |
 | `framework_check.py` | 框架不变量；文档内部路径引用是否悬空 |
+| `tests/<module>/run_tests.py` | 各模块自有测试（当前：ingestion 193 项、policy-research 1467 项） |
 
 ---
 
@@ -247,6 +252,7 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 
 ## 下一阶段
 
-分发波次 2（`TASK-INGEST-01` 建议优先，产出是其余模块的输入）与 `TASK-POLICY-01`。
+分发波次 3（G3）：`TASK-LISTING-01`、`TASK-DUP-01`、`TASK-IP-01`、`TASK-REPORT-01`。
+这四个模块的输入（`skill_input.json` / `products.json`）已由 `TASK-INGEST-01` 提供。
 
 待裁定：`docs/SBRCA-P0-004_open_questions.json`（5 冲突 + 9 问题，每项带 `default_if_no_answer`），该文件**现存于 `docs/`**。
