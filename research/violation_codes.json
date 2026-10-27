@@ -1,0 +1,1070 @@
+{
+  "source_title": "Principais Motivos de Banimento e Suspensão de Anúncios",
+  "source_url": "https://seller.br.shopee.cn/edu/article/5139",
+  "source_tier": "platform_official",
+  "source_file": "research/raw/shopee_br_banimento_suspensao_anuncios.txt",
+  "note": "Severities and penalty-point behaviour are quoted from the platform page as fetched. Codes appearing multiple times with different severities are distinct entries (different underlying reasons).",
+  "code_count": 106,
+  "codes": [
+    {
+      "code": 100,
+      "description": "Item proibido ou restrito pelos órgãos reguladores.",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "regulator_prohibited",
+      "platform_code": "[100]"
+    },
+    {
+      "code": 101,
+      "description": "Mudança de políticas pelos órgãos reguladores",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "regulator_policy_change",
+      "platform_code": "[101]"
+    },
+    {
+      "code": 108,
+      "description": "Anúncio removido por violação de políticas de produtos restritos e proibidos",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[108]"
+    },
+    {
+      "code": 117,
+      "description": "Product becomes prohibited",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "regulator_policy_change",
+      "platform_code": "[117]"
+    },
+    {
+      "code": 118,
+      "description": "Este produto se tornou proibido",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "regulator_policy_change",
+      "platform_code": "[118]"
+    },
+    {
+      "code": 122,
+      "description": "Item proibido ou restrito pela Anatel",
+      "severity_pt": "Extrema",
+      "severity": "critical",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "regulator_prohibited",
+      "platform_code": "[122]"
+    },
+    {
+      "code": 123,
+      "description": "Item proibido ou restrito pela Anvisa",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "regulator_prohibited",
+      "platform_code": "[123]"
+    },
+    {
+      "code": 124,
+      "description": "Item proibido ou restrito pelo Ministério Público",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "regulator_prohibited",
+      "platform_code": "[124]"
+    },
+    {
+      "code": 125,
+      "description": "Item proibido ou restrito pelo Inmetro",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "regulator_prohibited",
+      "platform_code": "[125]"
+    },
+    {
+      "code": 126,
+      "description": "Item proibido ou restrito pelo MAPA",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "regulator_prohibited",
+      "platform_code": "[126]"
+    },
+    {
+      "code": 132,
+      "description": "Anúncio de componentes automotivos sem informação da homologação pelo órgãos reguladores",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "regulator_prohibited",
+      "platform_code": "[132]"
+    },
+    {
+      "code": 135,
+      "description": "Anúncio proibido de componentes automotivos sem registro, homologação ou certificado",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "regulator_prohibited",
+      "platform_code": "[135]"
+    },
+    {
+      "code": 311,
+      "description": "Anúncio proibido de acessórios diretamente relacionados ao consumo de produtos fumígenos, como refis, atomizadores, pods e carregadores",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[311]"
+    },
+    {
+      "code": 311,
+      "description": "Anúncio proibido de itens que promovem o ato de fumar ou que são acessórios complementares, como narguilés, piteiras, estojos e produtos com reposição de nicotina",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[311]"
+    },
+    {
+      "code": 311,
+      "description": "Anúncio proibido para tabaco, cigarros, charutos, cachimbos e vapes",
+      "severity_pt": "Extrema",
+      "severity": "critical",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[311]"
+    },
+    {
+      "code": 312,
+      "description": "Venda restrita - Itens de saúde",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[312]"
+    },
+    {
+      "code": 313,
+      "description": "Anúncio proibido de apologia ou equipamentos para consumo de substâncias ilícitas ou proibidas",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[313]"
+    },
+    {
+      "code": 313,
+      "description": "Anúncio proibido para medicamentos com tarja vermelha, remédios fitoterápicos, minoxidil, equipamentos médicos, clareador dental, emagrecedores e todos os outros medicamentos e/ou substâncias proibidas pela Anvisa",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[313]"
+    },
+    {
+      "code": 313,
+      "description": "Anúncio proibido para medicamentos com tarja preta, abortivos, injetáveis, estimulantes sexuais e antidepressivos",
+      "severity_pt": "Extrema",
+      "severity": "critical",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[313]"
+    },
+    {
+      "code": 315,
+      "description": "Venda Restrita - Armas de Airsoft, Paintball, Pressão, C02 e Equipamentos Táticos",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[315]"
+    },
+    {
+      "code": 316,
+      "description": "Anúncio proibido de armas brancas, airsoft, armas de fogo movidas a gás e suas peças.",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[316]"
+    },
+    {
+      "code": 317,
+      "description": "Anúncio proibido para armas de fogo, tasers, munições e coletes à prova de balas.",
+      "severity_pt": "Extrema",
+      "severity": "critical",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[317]"
+    },
+    {
+      "code": 318,
+      "description": "Anúncio Proibido de Armas de Brinquedo, Airsoft e Similares para Vendedores Cross Border (CB)",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[318]"
+    },
+    {
+      "code": 320,
+      "description": "Anúncio de natureza pornográfica proibida por lei",
+      "severity_pt": "Extrema",
+      "severity": "critical",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[320]"
+    },
+    {
+      "code": 323,
+      "description": "Anúncio proibido por conter ofensa de figura política e/ou expressões políticas ofensivas",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[323]"
+    },
+    {
+      "code": 323,
+      "description": "Anúncio proibido de discurso de ódio, crianças promovendo itens políticos, logos e símbolos nazistas e/ou livros que promovam o nazismo",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[323]"
+    },
+    {
+      "code": 324,
+      "description": "Anúncio proibido de Fauna, flora e derivados",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[324]"
+    },
+    {
+      "code": 325,
+      "description": "Venda restrita - Bebida alcoólica",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[325]"
+    },
+    {
+      "code": 326,
+      "description": "Anúncio proibido de cédulas/moedas em circulação, réplicas de dinheiro, maquininhas de cartão e outros produtos financeiros.",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[326]"
+    },
+    {
+      "code": 327,
+      "description": "Anúncio proibido de jogos, produtos e serviços digitais",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[327]"
+    },
+    {
+      "code": 328,
+      "description": "Anúncio proibido de defensivos agrícolas, pesticidas, herbicidas, fungicida, raticidas e venenos.",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[328]"
+    },
+    {
+      "code": 330,
+      "description": "Anúncio proibido de fraude e/ou golpe",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[330]"
+    },
+    {
+      "code": 331,
+      "description": "Venda Restrita – Alimentos Frescos e Congelados",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[331]"
+    },
+    {
+      "code": 332,
+      "description": "Anúncio proibido de itens domésticos químicos e inflamável (ex.: acetona, álcool 70), produtos oxidantes, tóxicos, corrosivos ou relacionados à transferência de gás, que possam representar risco ao consumidor.",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[332]"
+    },
+    {
+      "code": 332,
+      "description": "Anúncio proibido de produtos químicos brutos e industriais, explosivos e/ou produtos altamente inflamáveis como gasolina, diesel, etanol, nitrobenzeno, TNT, nitrato de potássio e outros.",
+      "severity_pt": "Extrema",
+      "severity": "critical",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[332]"
+    },
+    {
+      "code": 333,
+      "description": "Venda restrita - Pilhas e baterias",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[333]"
+    },
+    {
+      "code": 334,
+      "description": "Venda restrita - Medicamentos Pet",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[334]"
+    },
+    {
+      "code": 335,
+      "description": "Venda exclusiva de recargas, doações e gift card",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Venda exclusiva Shopee",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[335]"
+    },
+    {
+      "code": 336,
+      "description": "Anúncio proibido de prestação de serviço ou de serviços imobiliários",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[336]"
+    },
+    {
+      "code": 337,
+      "description": "Anúncio removido por conter promessas exageradas ou milagrosas",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[337]"
+    },
+    {
+      "code": 338,
+      "description": "Anúncio proibido de caixa misteriosa",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[338]"
+    },
+    {
+      "code": 338,
+      "description": "Anúncio proibido de venda de jogos de azar e loteria online.",
+      "severity_pt": "Extrema",
+      "severity": "critical",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[338]"
+    },
+    {
+      "code": 339,
+      "description": "Anúncio proibido para armadilhas para animais e venenos.",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[339]"
+    },
+    {
+      "code": 339,
+      "description": "Anúncio proibido para animais vivos, partes de animais selvagens e/ou espécies ameaçadas de extinção",
+      "severity_pt": "Extrema",
+      "severity": "critical",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[339]"
+    },
+    {
+      "code": 340,
+      "description": "Anúncio proibido de venda de ossos, órgãos e membros humanos",
+      "severity_pt": "Extrema",
+      "severity": "critical",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[340]"
+    },
+    {
+      "code": 341,
+      "description": "Anúncio proibido de venda de dados, jammers e documentos falsificados.",
+      "severity_pt": "Extrema",
+      "severity": "critical",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[341]"
+    },
+    {
+      "code": 342,
+      "description": "Anúncio proibido de bebida alcoólica caseira",
+      "severity_pt": "Extrema",
+      "severity": "critical",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[342]"
+    },
+    {
+      "code": 343,
+      "description": "Anúncio proibido de componentes automotivos usados, recondicionados ou relacionados à segurança.",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[343]"
+    },
+    {
+      "code": 344,
+      "description": "Venda restrita - Peças de automóveis",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[344]"
+    },
+    {
+      "code": 345,
+      "description": "Anúncios proibido de óleos automotivos sem registro, homologação e certificado",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[345]"
+    },
+    {
+      "code": 346,
+      "description": "Venda proibida de produto fracionado, reembalado ou em quantidade parcial da embalagem original",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[346]"
+    },
+    {
+      "code": 347,
+      "description": "Venda proibida de produto a granel, sem embalagem individual ou sem rotulagem obrigatória",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[347]"
+    },
+    {
+      "code": 348,
+      "description": "Proibida a venda de garrafas vazias de bebidas alcoólicas",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[348]"
+    },
+    {
+      "code": 349,
+      "description": "Proibida a venda de mochilas/bags com logo de aplicativos de entrega",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "ip_trademark",
+      "platform_code": "[349]"
+    },
+    {
+      "code": 508,
+      "description": "Anúncio removido por exceder as dimensões e/ou pesos permitidos.",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[508]"
+    },
+    {
+      "code": 509,
+      "description": "Anúncio removido por exceder as dimensões e/ou pesos permitidos.",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[509]"
+    },
+    {
+      "code": 512,
+      "description": "Anúncio removido por expiração do prazo de validade",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[512]"
+    },
+    {
+      "code": 516,
+      "description": "Anúncio proibido de itens de uso oficial governamental, como insígnias, brasões, uniformes e itens correlatos",
+      "severity_pt": "Extrema",
+      "severity": "critical",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "prohibited_restricted_policy",
+      "platform_code": "[516]"
+    },
+    {
+      "code": 517,
+      "description": "Anúncio removido por variações com informações imprecisas sobre dimensões e peso do produto",
+      "severity_pt": "Extrema",
+      "severity": "critical",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[517]"
+    },
+    {
+      "code": 611,
+      "description": "Anúncio removido por imagem inapropriada de menores de idade",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[611]"
+    },
+    {
+      "code": 110,
+      "description": "Anúncio removido por suspeita de irregularidades",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[110]"
+    },
+    {
+      "code": 130,
+      "description": "Anúncio removido por suspeita de irregularidades",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[130]"
+    },
+    {
+      "code": 133,
+      "description": "Anúncio removido por violação de direitos de marca registrada",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "ip_trademark",
+      "platform_code": "[133]"
+    },
+    {
+      "code": 138,
+      "description": "Anúncio removido por suspeita de irregularidades",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[138]"
+    },
+    {
+      "code": 205,
+      "description": "Anúncio removido por suspeita de inautenticidade",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "ip_trademark",
+      "platform_code": "[205]"
+    },
+    {
+      "code": 401,
+      "description": "Cópia de outro(s) anúncio(s)",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "duplicate_listing",
+      "platform_code": "[401]"
+    },
+    {
+      "code": 501,
+      "description": "Item de Distribuição Exclusiva",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[501]"
+    },
+    {
+      "code": 601,
+      "description": "Anúncio removido por violação de contrafação e/ou marca registrada (Trademark/Counterfeit)",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "ip_trademark",
+      "platform_code": "[601]"
+    },
+    {
+      "code": 602,
+      "description": "Anúncio removido por violação de direito autoral (Copyright)",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "ip_copyright",
+      "platform_code": "[602]"
+    },
+    {
+      "code": 603,
+      "description": "Anúncio removido por violação de desenho industrial (Industrial Design)",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "ip_design",
+      "platform_code": "[603]"
+    },
+    {
+      "code": 604,
+      "description": "Anúncio removido por violação de patente (Patent)",
+      "severity_pt": "Alta",
+      "severity": "high",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "ip_trademark",
+      "platform_code": "[604]"
+    },
+    {
+      "code": 103,
+      "description": "Não envio de produtos",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "fulfillment",
+      "platform_code": "[103]"
+    },
+    {
+      "code": 112,
+      "description": "Anúncio removido por conter informações não permitidas de direcionamento para fora da Shopee",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[112]"
+    },
+    {
+      "code": 115,
+      "description": "Inatividade de anúncio e/ou loja",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[115]"
+    },
+    {
+      "code": 136,
+      "description": "Anúncio removido por suspeita de manipulação de pedidos, avaliações e/ou curtidas fraudulentas",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[136]"
+    },
+    {
+      "code": 300,
+      "description": "Anúncio com manipulação de taxa de imposto",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[300]"
+    },
+    {
+      "code": 306,
+      "description": "Anúncio removido por práticas de \"Spam de Preço\" ou preço inapropriado",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[306]"
+    },
+    {
+      "code": 309,
+      "description": "Anúncio removido por uso inadequado de variações",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[309]"
+    },
+    {
+      "code": 403,
+      "description": "Anúncio removido por conteúdo adulto não permitido nas imagens e/ou vídeos",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade. Para mais informações, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[403]"
+    },
+    {
+      "code": 404,
+      "description": "Anúncio removido por uso inadequado de idioma",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[404]"
+    },
+    {
+      "code": 405,
+      "description": "Propaganda Enganosa",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[405]"
+    },
+    {
+      "code": 506,
+      "description": "Palavras-chave excessivas e/ou irrelevantes no título do anúncio",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[506]"
+    },
+    {
+      "code": 507,
+      "description": "Marcas excessivas e/ou irrelevantes no título do anúncio",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[507]"
+    },
+    {
+      "code": 511,
+      "description": "Anúncio sem movimentação recente",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade.",
+      "category": "listing_violation",
+      "platform_code": "[511]"
+    },
+    {
+      "code": 105,
+      "description": "Desconto enganoso",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[105]"
+    },
+    {
+      "code": 106,
+      "description": "Troca de Produto",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[106]"
+    },
+    {
+      "code": 109,
+      "description": "Categoria não permitida para pré-venda",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[109]"
+    },
+    {
+      "code": 113,
+      "description": "Item adulto cadastrado na categoria inapropriada",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[113]"
+    },
+    {
+      "code": 116,
+      "description": "Anúncio removido por promoção incorreta de alimentos e fórmulas infantis",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[116]"
+    },
+    {
+      "code": 120,
+      "description": "Anúncio removido por informações imprecisas sobre dimensões e peso do produto",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[120]"
+    },
+    {
+      "code": 121,
+      "description": "Anúncio com violação nas diretrizes de embalagem - Risco à segurança logística",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[121]"
+    },
+    {
+      "code": 301,
+      "description": "Anúncio removido por imprecisão na marca informada",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[301]"
+    },
+    {
+      "code": 302,
+      "description": "Anúncios duplicados",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "duplicate_listing",
+      "platform_code": "[302]"
+    },
+    {
+      "code": 307,
+      "description": "Atributo GTIN não preenchido",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[307]"
+    },
+    {
+      "code": 500,
+      "description": "Anúncio removido por invasão de conta - Fraude",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade.",
+      "category": "listing_violation",
+      "platform_code": "[500]"
+    },
+    {
+      "code": 503,
+      "description": "Anúncio sem informação de registro, homologação ou certificado",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "regulator_prohibited",
+      "platform_code": "[503]"
+    },
+    {
+      "code": 504,
+      "description": "Anúncio removido por ausência de informações obrigatórias de registro ou licença da ANATEL",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "regulator_prohibited",
+      "platform_code": "[504]"
+    },
+    {
+      "code": 505,
+      "description": "Anúncio removido por ausência de informações obrigatórias de registro ou licença do Inmetro",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "regulator_prohibited",
+      "platform_code": "[505]"
+    },
+    {
+      "code": 510,
+      "description": "A faixa etária do produto não corresponde à categoria selecionada e/ou título do anúncio.",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[510]"
+    },
+    {
+      "code": 515,
+      "description": "Anúncio removido por uso indevido de logo do Governo Federal",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "ip_trademark",
+      "platform_code": "[515]"
+    },
+    {
+      "code": 605,
+      "description": "Anúncio removido por conteúdo insuficiente, inadequado ou irrelevante na descrição do produto",
+      "severity_pt": "Média",
+      "severity": "medium",
+      "generates_penalty_point": true,
+      "penalty_note": "Gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[605]"
+    },
+    {
+      "code": 606,
+      "description": "Anúncio removido por imagem de baixa qualidade, inapropriada ou fora do contexto do produto anunciado",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[606]"
+    },
+    {
+      "code": 607,
+      "description": "Anúncio removido por imagem da descrição de baixa qualidade, inapropriada ou fora do contexto do produto anunciado",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[607]"
+    },
+    {
+      "code": 608,
+      "description": "Anúncio removido por uso de logotipo ou banner da Shopee sem autorização",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "ip_trademark",
+      "platform_code": "[608]"
+    },
+    {
+      "code": 612,
+      "description": "Categoria Incorreta - Itens Restritos",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[612]"
+    },
+    {
+      "code": 613,
+      "description": "Categoria incorreta",
+      "severity_pt": "Baixa",
+      "severity": "low",
+      "generates_penalty_point": false,
+      "penalty_note": "Não gera ponto de penalidade, clique aqui.",
+      "category": "listing_violation",
+      "platform_code": "[613]"
+    }
+  ]
+}
