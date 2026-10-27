@@ -1,0 +1,433 @@
+{
+  "run_id": "RUN-93001bf73b",
+  "generated_at": "2026-10-27T03:06:36.299266+00:00",
+  "scope": {
+    "sources": [
+      {
+        "path": "/config/dianshang/shopee-br-compliance-agent/data/samples/demo_mass_update.xlsx",
+        "shop_id": "SHOP1",
+        "format": "xlsx",
+        "products_parsed": 15,
+        "errors": 0,
+        "meta": {
+          "path": "/config/dianshang/shopee-br-compliance-agent/data/samples/demo_mass_update.xlsx",
+          "header_row": 7,
+          "columns_mapped": {
+            "product_id": "商品ID",
+            "internal_sku": "主商品货号",
+            "title": "商品名称",
+            "description": "商品描述"
+          },
+          "rows_parsed": 15,
+          "rows_skipped": 0,
+          "sheets": [
+            "mass_update"
+          ]
+        }
+      }
+    ],
+    "rules_dir": "/config/dianshang/shopee-br-compliance-agent/rules"
+  },
+  "summary": {
+    "products_reviewed": 15,
+    "products_flagged": 6,
+    "products_blocked": 2,
+    "products_awaiting_review": 4,
+    "findings_total": 8,
+    "by_category": {
+      "ip_trademark": 2,
+      "consumer_protection": 1,
+      "prohibited_item": 1,
+      "restricted_item": 2,
+      "duplicate_listing": 2
+    },
+    "by_severity": {
+      "critical": 2,
+      "low": 1,
+      "medium": 3,
+      "high": 2
+    },
+    "by_decision": {
+      "escalate_legal": 1,
+      "flag_for_review": 4,
+      "block": 1,
+      "require_evidence": 2
+    },
+    "rules_evaluated": 50,
+    "parse_errors": 3
+  },
+  "findings": [
+    {
+      "finding_id": "F-00001",
+      "product_id": "900001",
+      "rule_id": "SBR-IP-002",
+      "severity": "critical",
+      "decision": "escalate_legal",
+      "explanation": "Explicitly describing a product as a replica, counterfeit, fake or unlicensed copy is a direct violation signal. The platform policy prohibits 'réplicas, produtos falsificados, e cópias não-autorizadas de um produto ou item'. Matched on `any_text`. Excerpt: “Replica de”.",
+      "rule_title": "Counterfeit or unlicensed replica claims in listing text",
+      "category": "ip_trademark",
+      "shop_id": null,
+      "matched_field": "any_text",
+      "matched_excerpt": "Replica de",
+      "source_url": "https://seller.shopee.com.br/edu/article/3304/politica-de-produtos-proibidos-e-restritos",
+      "source_tier": "platform_official",
+      "human_review_required": true,
+      "evidence_required": [
+        "brand_authorization_letter",
+        "supplier_invoice"
+      ],
+      "confidence": "signal"
+    },
+    {
+      "finding_id": "F-00002",
+      "product_id": "900001",
+      "rule_id": "SBR-LV-002",
+      "severity": "low",
+      "decision": "flag_for_review",
+      "explanation": "Listings removed for misleading discounts or deceptive pricing practices. Codes [105] (Desconto enganoso) and [405] (Propaganda Enganosa) both carry severity Baixa and do not generate a penalty point, but the listing is removed. Matched on `any_text`. Excerpt: “50% de desconto”.",
+      "rule_title": "Misleading discount or deceptive pricing",
+      "category": "consumer_protection",
+      "shop_id": null,
+      "matched_field": "any_text",
+      "matched_excerpt": "50% de desconto",
+      "source_url": "https://seller.br.shopee.cn/edu/article/5139",
+      "source_tier": "platform_official",
+      "human_review_required": true,
+      "evidence_required": [
+        "price_history",
+        "promotion_terms"
+      ],
+      "confidence": "confirmed"
+    },
+    {
+      "finding_id": "F-00003",
+      "product_id": "900004",
+      "rule_id": "SBR-IP-003",
+      "severity": "medium",
+      "decision": "flag_for_review",
+      "explanation": "The sale of backpacks/bags carrying a delivery-application logo is prohibited. Code [349] carries severity Baixa and does not generate a penalty point, but the listing is removed. Matched on `any_text`. Excerpt: “Mochila”.",
+      "rule_title": "Delivery-app logo on bags (code [349])",
+      "category": "ip_trademark",
+      "shop_id": null,
+      "matched_field": "any_text",
+      "matched_excerpt": "Mochila",
+      "source_url": "https://seller.br.shopee.cn/edu/article/5139",
+      "source_tier": "platform_official",
+      "human_review_required": true,
+      "evidence_required": [
+        "product_photographs"
+      ],
+      "confidence": "signal"
+    },
+    {
+      "finding_id": "F-00004",
+      "product_id": "900006",
+      "rule_id": "SBR-PI-002",
+      "severity": "critical",
+      "decision": "block",
+      "explanation": "Listings for tobacco, cigarettes, cigars, pipes, vapes, and accessories that promote smoking (atomisers, pods, chargers, refills, narghiles) are prohibited. Enforcement code [311] reaches severity Extrema for vapes and tobacco itself. Matched on `any_text`. Excerpt: “Vape”.",
+      "rule_title": "Prohibited item category — tobacco, nicotine and e-cigarettes",
+      "category": "prohibited_item",
+      "shop_id": null,
+      "matched_field": "any_text",
+      "matched_excerpt": "Vape",
+      "source_url": "https://seller.br.shopee.cn/edu/article/5139",
+      "source_tier": "platform_official",
+      "human_review_required": true,
+      "evidence_required": [
+        "product_photographs",
+        "supplier_invoice"
+      ],
+      "confidence": "confirmed"
+    },
+    {
+      "finding_id": "F-00005",
+      "product_id": "900006",
+      "rule_id": "SBR-RI-004",
+      "severity": "high",
+      "decision": "require_evidence",
+      "explanation": "Automotive parts are a restricted category (code [344]). Automotive components used, reconditioned or related to safety are prohibited (code [343]). Automotive components require homologation information from the regulating body (code [132]); components without registration, homologation or certificate are prohibited (code [135], severity Alta). Automotive oils require registration (code [345], severity Alta). Matched on `any_text`. Excerpt: “Anatel”.",
+      "rule_title": "Restricted sale — automotive parts",
+      "category": "restricted_item",
+      "shop_id": null,
+      "matched_field": "any_text",
+      "matched_excerpt": "Anatel",
+      "source_url": "https://seller.br.shopee.cn/edu/article/5139",
+      "source_tier": "platform_official",
+      "human_review_required": true,
+      "evidence_required": [
+        "homologation_certificate",
+        "supplier_invoice"
+      ],
+      "confidence": "confirmed"
+    },
+    {
+      "finding_id": "F-00006",
+      "product_id": "900008",
+      "rule_id": "SBR-RI-002",
+      "severity": "high",
+      "decision": "require_evidence",
+      "explanation": "Health items are a restricted category (code [312], severity Alta). Health supplements and medical supplies — monitors, tests, injury supports — are additionally regulated and require registration. NOTE: the platform permits health supplements (vitamins, herbs, natural products) themselves; what it enforces on supplements is the truthfulness of their claims (see SBR-MED-003), and it requires regulator authorisation for the products that need it. Matched on `any_text`. Excerpt: “Vitamina”.",
+      "rule_title": "Restricted sale — health items and supplements",
+      "category": "restricted_item",
+      "shop_id": null,
+      "matched_field": "any_text",
+      "matched_excerpt": "Vitamina",
+      "source_url": "https://seller.br.shopee.cn/edu/article/5139",
+      "source_tier": "platform_official",
+      "human_review_required": true,
+      "evidence_required": [
+        "anvisa_registration",
+        "supplier_invoice"
+      ],
+      "confidence": "confirmed"
+    },
+    {
+      "finding_id": "F-00007",
+      "product_id": "900013",
+      "rule_id": "SBR-DUP-001",
+      "severity": "medium",
+      "decision": "flag_for_review",
+      "explanation": "Listings that copy another listing of the same seller are removed. Code [401] (Cópia de outro(s) anúncio(s)) carries severity Baixa and does not generate a penalty point. The platform treats listings of the same product without substantive differences in title, description, photos or variants as duplicates and deletes them. Matched on `any_text`. Excerpt: “cm. Ideal para organizacao de criados.  __DUPLICATE_SIGNAL__”.",
+      "rule_title": "Duplicate listing within the same store",
+      "category": "duplicate_listing",
+      "shop_id": null,
+      "matched_field": "duplicate_engine",
+      "matched_excerpt": "same store: 900013 ↔ 900014 (score 1.00, title similarity 1.00)",
+      "source_url": "https://seller.br.shopee.cn/edu/article/5139",
+      "source_tier": "platform_official",
+      "human_review_required": true,
+      "evidence_required": [
+        "canonical_listing_id",
+        "variant_rationale"
+      ],
+      "confidence": "confirmed"
+    },
+    {
+      "finding_id": "F-00008",
+      "product_id": "900014",
+      "rule_id": "SBR-DUP-001",
+      "severity": "medium",
+      "decision": "flag_for_review",
+      "explanation": "Listings that copy another listing of the same seller are removed. Code [401] (Cópia de outro(s) anúncio(s)) carries severity Baixa and does not generate a penalty point. The platform treats listings of the same product without substantive differences in title, description, photos or variants as duplicates and deletes them. Matched on `any_text`. Excerpt: “cm. Ideal para organizacao de criados.  __DUPLICATE_SIGNAL__”.",
+      "rule_title": "Duplicate listing within the same store",
+      "category": "duplicate_listing",
+      "shop_id": null,
+      "matched_field": "duplicate_engine",
+      "matched_excerpt": "same store: 900013 ↔ 900014 (score 1.00, title similarity 1.00)",
+      "source_url": "https://seller.br.shopee.cn/edu/article/5139",
+      "source_tier": "platform_official",
+      "human_review_required": true,
+      "evidence_required": [
+        "canonical_listing_id",
+        "variant_rationale"
+      ],
+      "confidence": "confirmed"
+    }
+  ],
+  "products": [
+    {
+      "product_id": "900001",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900001",
+      "title": "Replica de Tenis Esportivo Premium",
+      "status": "block",
+      "finding_ids": [
+        "F-00001",
+        "F-00002"
+      ],
+      "recommended_action": "Route to legal/IP review before any action (SBR-IP-002)",
+      "case_id": null
+    },
+    {
+      "product_id": "900002",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900002",
+      "title": "Tenis Esportivo Couro Sintetico Unissex",
+      "status": "pass",
+      "finding_ids": [],
+      "recommended_action": "no action",
+      "case_id": null
+    },
+    {
+      "product_id": "900003",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900003",
+      "title": "Capa de Banco Automotiva Impermeavel Compativel com Ford Focus 2015-2020",
+      "status": "pass",
+      "finding_ids": [],
+      "recommended_action": "no action",
+      "case_id": null
+    },
+    {
+      "product_id": "900004",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900004",
+      "title": "Mochila Executiva Compacta para Notebook 15,6 polegadas",
+      "status": "flag",
+      "finding_ids": [
+        "F-00003"
+      ],
+      "recommended_action": "Send to human review (SBR-IP-003)",
+      "case_id": null
+    },
+    {
+      "product_id": "900005",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900005",
+      "title": "Jogo de Copos de Vidro Temperado 350ml 6 Unidades",
+      "status": "pass",
+      "finding_ids": [],
+      "recommended_action": "no action",
+      "case_id": null
+    },
+    {
+      "product_id": "900006",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900006",
+      "title": "Vape Descartavel Sabor Frutas 3000 Puffs",
+      "status": "block",
+      "finding_ids": [
+        "F-00004",
+        "F-00005"
+      ],
+      "recommended_action": "Do not publish — block and remediate (SBR-PI-002)",
+      "case_id": null
+    },
+    {
+      "product_id": "900007",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900007",
+      "title": "Cafe Organico Torrado e Moido 500g",
+      "status": "pass",
+      "finding_ids": [],
+      "recommended_action": "no action",
+      "case_id": null
+    },
+    {
+      "product_id": "900008",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900008",
+      "title": "Suplemento Alimentar Vitamina D3 2000 UI 60 Comprimidos",
+      "status": "flag",
+      "finding_ids": [
+        "F-00006"
+      ],
+      "recommended_action": "Request the listed evidence, then re-review (SBR-RI-002)",
+      "case_id": null
+    },
+    {
+      "product_id": "900009",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900009",
+      "title": "Faca de Cozinha em Aco Inox 25cm",
+      "status": "pass",
+      "finding_ids": [],
+      "recommended_action": "no action",
+      "case_id": null
+    },
+    {
+      "product_id": "900010",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900010",
+      "title": "Brinquedo Infantil Bloco de Construcao 200 Pecas",
+      "status": "pass",
+      "finding_ids": [],
+      "recommended_action": "no action",
+      "case_id": null
+    },
+    {
+      "product_id": "900011",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900011",
+      "title": "Chaleira Termica Inox 1,5 Litros",
+      "status": "pass",
+      "finding_ids": [],
+      "recommended_action": "no action",
+      "case_id": null
+    },
+    {
+      "product_id": "900012",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900012",
+      "title": "Cadeira Gamer Reclinavel com Suporte de Monitor",
+      "status": "pass",
+      "finding_ids": [],
+      "recommended_action": "no action",
+      "case_id": null
+    },
+    {
+      "product_id": "900013",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900013",
+      "title": "Organizador de Gaveta Plastico Transparente com Tampa",
+      "status": "flag",
+      "finding_ids": [
+        "F-00007"
+      ],
+      "recommended_action": "Send to human review (SBR-DUP-001)",
+      "case_id": null
+    },
+    {
+      "product_id": "900014",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900014",
+      "title": "Organizador de Gaveta Plastico Transparente com Tampa",
+      "status": "flag",
+      "finding_ids": [
+        "F-00008"
+      ],
+      "recommended_action": "Send to human review (SBR-DUP-001)",
+      "case_id": null
+    },
+    {
+      "product_id": "900015",
+      "shop_id": "SHOP1",
+      "internal_sku": "SKU-900015",
+      "title": "Bateria Li-Ion 18650 3000mAh Recarregavel",
+      "status": "pass",
+      "finding_ids": [],
+      "recommended_action": "no action",
+      "case_id": null
+    }
+  ],
+  "errors": [
+    {
+      "stage": "rule_evaluation",
+      "message": "rule SBR-LV-007 was not evaluated: the input carried none of the required field(s) image",
+      "source": null,
+      "severity": "warning",
+      "context": {
+        "rule_id": "SBR-LV-007",
+        "required_fields": [
+          "image"
+        ]
+      }
+    },
+    {
+      "stage": "rule_evaluation",
+      "message": "rule SBR-LV-008 was not evaluated: the input carried none of the required field(s) category",
+      "source": null,
+      "severity": "warning",
+      "context": {
+        "rule_id": "SBR-LV-008",
+        "required_fields": [
+          "category"
+        ]
+      }
+    },
+    {
+      "stage": "rule_evaluation",
+      "message": "rule SBR-LV-011 was not evaluated: the input carried none of the required field(s) brand",
+      "source": null,
+      "severity": "warning",
+      "context": {
+        "rule_id": "SBR-LV-011",
+        "required_fields": [
+          "brand"
+        ]
+      }
+    }
+  ],
+  "report_path": null
+}

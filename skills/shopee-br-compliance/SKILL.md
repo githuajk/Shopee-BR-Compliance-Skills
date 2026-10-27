@@ -195,9 +195,9 @@ ingestion → { listing-audit , ip-review , duplicate-detection } → reporting 
 - **期待下游**：集成 Agent 做跨模块一致性验收
 - **对其他模块的影响**：本模块定义了整合顺序与降级行为 —— 各模块必须能在**没有其他模块产物**的情况下独立产出合规结果
 
-## 15. 文件所有权
+## 16. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.3.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.4.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 
@@ -225,7 +225,7 @@ lexicon/**
 公共契约（`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、`manifest.json`、`tasks/**`、`tests/test_plan.md`、`tests/fixtures/**`、`docs/**`、`tools/**`、`scripts/**`、`.archive/**`）对所有模块 Agent **只读**。
 需要修改时提交契约变更建议，不要自行改动。
 
-## 16. 待填内容
+## 17. 待填内容
 
 - [ ] `references/routing.md` —— 分流决策表与边界情形
 - [ ] `references/execution_workflow.md` —— 显式工作流的逐步说明
@@ -233,7 +233,7 @@ lexicon/**
 - [ ] `references/degradation.md` —— 模块缺失时的降级行为
 - [ ] `tests/shopee-br-compliance/run_tests.py`
 
-## 17. 变更记录
+## 18. 变更记录
 
 | 版本 | 日期 | 变更 |
 |---|---|---|

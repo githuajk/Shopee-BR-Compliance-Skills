@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "manifest_version": "1.1.0",
+  "manifest_version": "1.2.0",
   "project": {
     "code": "SBRCA",
     "name": "Shopee Brazil Compliance Agent",
@@ -350,6 +350,12 @@
       "path": "docs/SOP_COMPLIANCE_REVIEW.md",
       "purpose": "统一审核 SOP —— 合并 9 份历史文档、31 个实战坑、店主 491 商品审阅反馈",
       "owner": "shopee-br-compliance"
+    },
+    "scanner": {
+      "path": "tools/scan_lexicon.py",
+      "purpose": "词库扫描器 —— 确定性筛查（归一化、组级边界策略、豁免、位置记录）+ 12 条回归用例",
+      "owner": "shopee-br-listing-audit",
+      "self_test": "python3 tools/scan_lexicon.py --self-test"
     }
   },
   "existing_state": {

@@ -146,9 +146,9 @@ Python 的 `\b` 在葡语重音元音旁不可靠（`at[óo]xico\b` 会吞 `Ócu
 - **期待下游**：`shopee-br-reporting` 消费本模块的 `AuditResult[]`
 - **对其他模块的影响**：本模块产出 `PI/RI/MED/LV` 类结果；主 Skill 整合时与 IP、重复模块的结果合并
 
-## 11. 文件所有权
+## 12. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.3.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.4.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 
@@ -163,6 +163,7 @@ lexicon/exemptions.json
 lexicon/quality_patterns.json
 lexicon/non_avoidable.json
 lexicon/verb_conjugations.json
+tools/scan_lexicon.py
 ```
 
 **只读路径：**
@@ -182,7 +183,7 @@ rules/03_listing_violations_duplicates.json
 公共契约（`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、`manifest.json`、`tasks/**`、`tests/test_plan.md`、`tests/fixtures/**`、`docs/**`、`tools/**`、`scripts/**`、`.archive/**`）对所有模块 Agent **只读**。
 需要修改时提交契约变更建议，不要自行改动。
 
-## 12. 待填内容
+## 13. 待填内容
 
 - [ ] `references/audit_semantics.md` —— 各规则类别的审核语义与判定边界
 - [ ] `references/false_positive_control.md` —— 误报来源清单与上下文判定规则
@@ -191,7 +192,7 @@ rules/03_listing_violations_duplicates.json
 - [x] `references/lexicon_scanning.md` —— 合并词库的使用、匹配算法与误报控制（已建）
 - [ ] `tests/shopee-br-listing-audit/run_tests.py`
 
-## 13. 变更记录
+## 14. 变更记录
 
 | 版本 | 日期 | 变更 |
 |---|---|---|

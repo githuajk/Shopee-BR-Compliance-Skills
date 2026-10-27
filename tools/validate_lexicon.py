@@ -79,6 +79,16 @@ def main():
           lex["stats"]["term_count"] == actual_terms,
           f"{lex['stats']['term_count']} vs {actual_terms}")
 
+    # matching 策略：仿牌变体组必须是 loose
+    loose = {g for g, v in lex["group_meta"].items() if v.get("matching") == "loose"}
+    check("ip_variante_marca 用宽松匹配",
+          "ip_variante_marca" in loose, str(sorted(loose)))
+    for g, v in lex["group_meta"].items():
+        check(f"{g} 有 matching 策略", "matching" in v, "缺字段")
+    # 真品牌组不得用 loose（会误伤 "Nikex"）
+    bad_loose = [g for g in loose if g.startswith("ip_marca_") and g != "ip_variante_marca"]
+    check("真品牌组不用宽松匹配", not bad_loose, str(bad_loose))
+
     # 词条长度与重复
     bad_len = [(g, t) for g, ts in lex["groups"].items() for t in ts if len(t) < 2]
     check("所有词条长度 >= 2", not bad_len, str(bad_len[:3]))

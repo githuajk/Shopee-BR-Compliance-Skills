@@ -166,9 +166,9 @@ description: Use when you need to find duplicate or relisted Shopee Brazil listi
 - **期待下游**：`shopee-br-reporting` 消费本模块结果
 - **对其他模块的影响**：重发冻结需与其他模块结果合并后统一呈现（避免同一商品出现多条冻结建议）
 
-## 14. 文件所有权
+## 15. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.3.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.4.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 
@@ -196,7 +196,7 @@ lexicon/non_avoidable.json
 公共契约（`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、`manifest.json`、`tasks/**`、`tests/test_plan.md`、`tests/fixtures/**`、`docs/**`、`tools/**`、`scripts/**`、`.archive/**`）对所有模块 Agent **只读**。
 需要修改时提交契约变更建议，不要自行改动。
 
-## 15. 待填内容
+## 16. 待填内容
 
 - [ ] `references/duplicate_signals.md` —— 三信号与阈值参数
 - [ ] `references/relist_axes.md` —— 五轴匹配与案件状态机
@@ -204,7 +204,7 @@ lexicon/non_avoidable.json
 - [ ] `references/penalty_mechanics.md` —— 处罚点与申诉时限
 - [ ] `tests/shopee-br-duplicate-detection/run_tests.py`
 
-## 16. 变更记录
+## 17. 变更记录
 
 | 版本 | 日期 | 变更 |
 |---|---|---|

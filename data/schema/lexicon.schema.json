@@ -35,6 +35,11 @@
         "required": ["label", "risk_hint", "source_tier"],
         "properties": {
           "label": {"type": "string", "minLength": 1},
+          "matching": {
+            "type": "string",
+            "enum": ["strict", "loose"],
+            "description": "strict = 显式葡语边界；loose = 无边界（仿牌拼写变体专用）"
+          },
           "risk_hint": {
             "type": "string",
             "enum": ["prohibited", "restricted", "ip_signal", "listing_violation"]

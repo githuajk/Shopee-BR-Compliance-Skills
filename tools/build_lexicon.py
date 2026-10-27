@@ -31,12 +31,18 @@ OUT = os.path.join(ROOT, "lexicon")
 GROUPS: dict[str, dict] = {}
 
 
-def G(gid, label, risk, tier, terms, note=""):
+def G(gid, label, risk, tier, terms, note="", matching="strict"):
+    """matching: strict = 显式葡语边界；loose = 无边界（用于仿牌拼写变体）。
+
+    仿牌变体本身常与其它文字粘连（"Addidaspreto"），严格边界会漏掉
+    最典型的仿牌形态；真品牌名必须用严格边界（"Nikex" 不是 "Nike"）。
+    """
     GROUPS[gid] = {
         "group_id": gid,
         "label": label,
         "risk_hint": risk,
         "source_tier": tier,
+        "matching": matching,
         "terms": sorted({t.strip() for t in terms if t.strip()}),
         "note": note,
     }
@@ -262,7 +268,7 @@ G("ip_variante_marca", "IP — 品牌拼写变体（仿牌特征）", "ip_signal
     "Samsang", "D1sn3y", "Disnay", "Disneys",
     "Naiki", "Naike", "Na1ke", "Adidaz", "Adid4s", "Suprem", "Supremme",
     "Goyard falso",
-], "仿牌常用拼写变体，平台一律视为侵权")
+], "仿牌常用拼写变体，平台一律视为侵权。⚠️ 用宽松匹配（无边界）—— 这类词本身常与其它文字粘连（Addidaspreto）", matching="loose")
 
 G("ip_copyright", "IP — 版权声明", "ip_signal", "platform_official", [
     "todos os direitos reservados", "copyright", "marca registrada",
@@ -775,7 +781,8 @@ def main():
         "groups": {g["group_id"]: g["terms"] for g in groups},
         "group_meta": {g["group_id"]: {
             "label": g["label"], "risk_hint": g["risk_hint"],
-            "source_tier": g["source_tier"], "note": g["note"],
+            "source_tier": g["source_tier"], "matching": g["matching"],
+            "note": g["note"],
         } for g in groups},
         "stats": {"group_count": len(groups), "term_count": total},
     }

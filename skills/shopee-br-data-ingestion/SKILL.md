@@ -188,7 +188,7 @@ env -u LD_LIBRARY_PATH python3 tests/shopee-br-data-ingestion/run_tests.py
 
 ## 11. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.3.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.5.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 
@@ -227,5 +227,5 @@ tools/verify_fixtures.py
 
 | 版本 | 日期 | 变更 |
 |---|---|---|
-| 1.0.0 | 2026-10-27 | **实现完成**（`TASK-INGEST-01`）：多格式解析器、字段映射、溯源、契约化产出、189 项测试 |
+| 1.0.0 | 2026-10-27 | **实现完成**（`TASK-INGEST-01`）：多格式解析器、字段映射、溯源、契约化产出、193 项测试 |
 | 0.1.0 | 2026-10-27 | 骨架创建（待 TASK-INGEST-01 填充） |

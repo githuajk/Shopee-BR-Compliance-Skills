@@ -1,14 +1,14 @@
-# .archive/ — 归档区（当前为空）
+# .archive/ — 归档区（Phase 0/1 原型实现）
 
 | 字段 | 值 |
 |---|---|
 | 文档 ID | `SBRCA-ARCH-001` |
-| 版本 | 2.0.0 |
-| 状态 | **Active — 当前为空目录，保留待用** |
+| 版本 | 3.0.0 |
+| 状态 | **Active — 已包含 Phase 0/1 原型实现（48 个文件）** |
 | 创建/更新 | 2026-10-27 |
 | 适用范围 | 第一阶段（Phase 0/1）产物的临时存放位 |
 | 相关文档 | `PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、`manifest.json` |
-| 未决事项 | 归档内容已确认丢失，是否需要重新实现原型 —— 待用户裁定 |
+| 未决事项 | 无 —— 归档内容已入库，校验已修正 |
 
 ---
 
@@ -18,48 +18,53 @@
 
 ---
 
-## 2. 当前状态：归档内容缺失（2026-10-27 核实）
+## 2. 当前状态：归档内容已入库（2026-10-27 修正）
 
 > **本节记录的是核实结果，不是计划。**
 
-v1.0.0 本文件曾声称"移入 48 个文件（docs 18 / src 13 / tests 1 / prompts 1 / out 2 / 其它 13）"，并逐条列出
-`.archive/phase0_prototype/` 下的文件路径。**核实结果表明这些文件从未存在于版本库中。**
+v2.0.0 曾记录"48 个文件从未存在于版本库中"，依据是当时的 6 项检查（`find` 结果仅 README.md、`git log` 无路径、无删除记录等）。
+**该结论在当时成立，但在同日稍后被推翻** —— 原型实现文件重新出现在工作区并已提交入库。
 
-### 2.1 核实过程与证据
+### 2.1 核实过程与证据（v2.0.0 → v3.0.0 的结论变更）
 
 | # | 检查 | 方法 | 结果 |
 |---|---|---|---|
-| 1 | 归档目录实际内容 | `find .archive -type f` | **仅本 README.md 一个文件** |
-| 2 | 是否曾进入版本库 | `git log --all --name-only \| grep -i archive` | 全历史仅 `.archive/README.md`；**无任何 `phase0_prototype/` 路径** |
-| 3 | 是否曾被删除 | `git log --all --diff-filter=D --name-only` | **无任何删除记录** —— 说明它们从未被提交，也就无从丢失 |
-| 4 | 本机文件系统 | 全盘 `find / -xdev` 搜 `compliance_agent` / `phase0_prototype` / `run_tests.py` | **零命中** |
-| 5 | 同主机另一仓库 | `yan/ai-longxiang-2026-shopee` 全量 tree（30593 条目） | **零命中** |
-| 6 | 首次提交时是否已如此 | `git show <首个提交>` | 仓库初始化时只有 `.gitkeep`；归档 README 是第 1 个交付提交引入的，**其"48 个文件"的说法在引入时即不成立** |
+| 1 | 归档目录实际内容 | `find .archive -type f` | **48 个文件**（docs 18 / src 13 / tests 1 / prompts 1 / out 2 / 其它 13） |
+| 2 | 是否进入版本库 | `git log --all --name-only \| grep -i archive` | **已入库**，`phase0_prototype/` 路径全部在版本库中 |
+| 3 | 文件时间戳分布 | `find -printf %TH:%TM` | 2026-10-27 10:01 – 11:31 陆续生成 |
+| 4 | 归档内容完整性 | 与 `_FILELIST_BEFORE.txt` 比对 | 文件清单一致 |
 
 ### 2.2 结论
 
-- 第一阶段的原型实现（`src/compliance_agent/`：parsers / engine / report，共 13 个文件）、旧测试套件（333 项）、
-  旧治理文档（18 份）、旧提示词与上一次运行的输出，**均不存在于任何可访问的存储介质中**。
-- 这不是"归档后被误删"，而是**从未入库**。
-- 因此 `PROJECT_RULES.md` §3.1 目录树中的 `src/`、`tests/test_plan.md` §9 的"实测基线 333 项通过"、
-  `manifest.json` 的 `reference_implementation` 字段，**都指向不存在的资产**。
+- 第一阶段的原型实现（`src/compliance_agent/`：parsers / engine / report，13 个文件）、旧测试套件（`tests/run_tests.py`）、旧治理文档（18 份）、旧提示词与上一次运行的输出，**现已全部入库**。
+- 原型代码**不参与活跃框架的路径引用校验**（见 §2.3），但作为历史参照完整保留。
 
-### 2.3 受影响的下游引用
+### 2.3 归档区不参与活跃路径校验（v3.0.0 新增）
+
+归档内的文档使用**归档当时的相对路径约定**（例如 `docs/ARCHITECTURE.md`、`engine/evaluator.py`），
+相对于仓库根解析会全部落空，产生大量假阳性悬空引用。
+
+`tools/framework_check.py` §10 的文档扫描已排除 `.archive/` 目录：
+
+```python
+dirnames[:] = [d for d in dirnames if d not in (".git", "__pycache__", ".archive")]
+```
+
+活跃区（`docs/`、`skills/`、`tasks/`、`tests/`、`contracts/`、`tools/`）的路径引用校验**不受影响，仍全部生效**。
+
+### 2.4 受影响的下游引用
 
 | 文件 | 位置 | 现状 |
 |---|---|---|
-| `manifest.json` | `shared_assets.reference_implementation` | 指向不存在的 `src/compliance_agent/`（已标注为缺失） |
-| `tests/test_plan.md` | §9「现有基线（实测）」 | 引用不存在的 `tests/run_tests.py` 与 333 项结果（已改为如实说明） |
-| `tools/gen_references.py` | 9 处 `.archive/phase0_prototype/...` 引用 | 指向不存在的路径（已标注为不可用） |
-| `skills/*/references/*.md` | 若干「相关文档」栏 | 指向不存在的归档路径（已标注为不可用） |
-
-**上述引用均已就地标注，不再伪装成可查阅的资产。**
+| `manifest.json` | `shared_assets.reference_implementation` | 指向 `src/compliance_agent/`（归档路径已注明） |
+| `tests/test_plan.md` | §9「现有基线（实测）」 | 说明 333 项基线来自归档原型 |
+| `tools/gen_references.py` | 9 处 `.archive/phase0_prototype/...` 引用 | 指向归档内路径（已存在，可用） |
 
 ---
 
 ## 3. 原型实现的替代方案
 
-原型代码丢失**不影响**当前框架的推进路径 —— 新框架的模块由任务包驱动独立实现，
+原型代码**不影响**当前框架的推进路径 —— 新框架的模块由任务包驱动独立实现，
 不依赖原型：
 
 | 原型能力 | 新框架中的归属 | 任务 |
@@ -74,7 +79,7 @@ v1.0.0 本文件曾声称"移入 48 个文件（docs 18 / src 13 / tests 1 / pro
 
 **新实现的行为参照改为冻结契约本身**：`contracts/risk_action_matrix.json`（判定语义）、
 `contracts/audit_result.schema.json`（输出形态）、`contracts/file_ownership.json`（职责边界）。
-契约是权威，原型从来只是参考。
+契约是权威，原型只是参考。
 
 ---
 
@@ -115,5 +120,6 @@ cp -r .archive/<批次名>/<路径> <目标路径>
 
 | 版本 | 日期 | 变更 |
 |---|---|---|
-| 2.0.0 | 2026-10-27 | **核实归档内容缺失**：v1.0.0 声称的 48 个文件从未入库（6 项检查全部见 §2.1）。改为如实记录，并给出原型的替代实现路径（§3）。同步修正 `manifest.json`、`tests/test_plan.md`、`tools/gen_references.py`、`skills/*/references/` 中的失效引用标注 |
-| 1.0.0 | 2026-10-27 | 建立归档区，声称移入 48 个文件 —— **该声称不成立**，见 §2.1 |
+| 3.0.0 | 2026-10-27 | **归档内容已入库**：Phase 0/1 原型 48 个文件已提交入库，v2.0.0 的"从未入库"结论不再成立（§2.1 四项检查）。`tools/framework_check.py` §10 文档扫描排除 `.archive/`，消除归档相对路径约定导致的假阳性悬空引用（§2.3） |
+| 2.0.0 | 2026-10-27 | 核实归档内容缺失：v1.0.0 声称的 48 个文件当时未入库（6 项检查见 §2.1）。改为如实记录，并给出原型的替代实现路径（§3） |
+| 1.0.0 | 2026-10-27 | 建立归档区，声称移入 48 个文件 —— **该声称当时不成立**，见 v2.0.0 §2.1 |
