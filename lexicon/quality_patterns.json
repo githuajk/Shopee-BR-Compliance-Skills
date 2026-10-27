@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "name": "Shopee BR — 套模板/批量味检测特征",
+  "description": "检测详情页的模板化特征。任一命中即建议人工复核。",
+  "last_updated": "2026-10-27",
+  "source": "店主 2026-09-17 审阅 491 个商品 + 坑 26（245 商品共用 111 句首句）",
+  "reject_if_any": [
+    {
+      "id": "Q-CHECKMARK",
+      "pattern": "(?:✅\\s*){4,}",
+      "reason": "✅ 出现 4 次以上。"
+    },
+    {
+      "id": "Q-CHECKMARK-SP",
+      "pattern": "(?:\\n\\s*[-•]?\\s*✅[^\\n]*){4,}",
+      "reason": "卖点区连续 4 条以上 ✅。"
+    },
+    {
+      "id": "Q-TEMPLATE-OPENER",
+      "pattern": "\\bQuer\\s+\\w+\\s+mais\\s+(forte|bonito|bom|bonita)\\b",
+      "reason": "通用开场套语『Quer X mais forte』，同批出现 5+ 次即批量味。"
+    },
+    {
+      "id": "Q-DUPLICATE-DESC",
+      "pattern": "__DUP_CHECK__",
+      "reason": "占位：跨商品详情完全相同（491 商品实测全部相同）。需在批内比对。"
+    },
+    {
+      "id": "Q-EMPTY-CLAIM",
+      "pattern": "\\b(material premium|acabamento cuidadoso|confortavel|qualidade premium|produto de alta qualidade)\\b",
+      "reason": "空泛材质/品质宣称，无实物依据。"
+    },
+    {
+      "id": "Q-WRONG-TYPE",
+      "pattern": "\\bTipo:\\s*(Cosmético|Cosmetico)\\b",
+      "reason": "类别模板值，对首饰/工具类不适用。"
+    },
+    {
+      "id": "Q-ORIGIN-CHINA",
+      "pattern": "\\bOrigem:\\s*China\\b",
+      "reason": "产地统一填 China，缺逐品依据（常与 Coreano/Korea 冲突）。"
+    },
+    {
+      "id": "Q-UNIVERSAL-SUITABILITY",
+      "pattern": "\\b(todos os tipos de pele|para todos os tipos|qualquer tipo de pele)\\b",
+      "reason": "普适承诺，未经证明。"
+    },
+    {
+      "id": "Q-DERMA-TESTED",
+      "pattern": "\\bTestado dermatologicamente\\b|\\bDermatologicamente testado\\b",
+      "reason": "暗示已做皮肤测试，需证据。"
+    },
+    {
+      "id": "Q-CHINESE-LEFTOVER",
+      "pattern": "[\\u4e00-\\u9fff]",
+      "reason": "含中文字符（LLM 改写常见残留）。"
+    },
+    {
+      "id": "Q-FRENCH-LEFTOVER",
+      "pattern": "\\b(nécessaire|obligatoire|déjà|très bien|qualité)\\b",
+      "reason": "含法语碎片（LLM 改写常见残留）。"
+    },
+    {
+      "id": "Q-MULTI-FORM",
+      "pattern": "\\b(pomada|creme|gel|cream|loção|locao|spray|sérum|serum|máscara|mascara|pó|po|óleo|oleo)\\b",
+      "reason": "标题同时出现 3 个以上不同形态词 —— 形态矛盾，需核实实物。",
+      "min_count": 3
+    },
+    {
+      "id": "Q-MARKETING-CLICHÉ",
+      "pattern": "\\b(moderno|tendência|tendencia|atual|inovador)\\b",
+      "reason": "重复使用空洞营销词。"
+    },
+    {
+      "id": "Q-PUNCT-HOLE",
+      "pattern": "(,\\s*){3,}|\\s,\\s*[,;]\\s*",
+      "reason": "逗号空洞 —— 批量替换破坏并列结构（坑 25）。"
+    },
+    {
+      "id": "Q-DANGLING-WORD",
+      "pattern": "\\b(de|da|do|para|com|em|a|o|e|pa|vi|par|pro|co)$",
+      "reason": "末尾悬空词 —— 标题在 95 字符处被硬切（坑 27）。",
+      "scope": "title"
+    }
+  ],
+  "unique_first_sentence": {
+    "requirement": "首句唯一率 100%",
+    "reason": "『首句种类数』指标具有欺骗性 —— 111 种 vs 245 条商品，人工看仍是模板。验收必须用唯一率。",
+    "must_contain_product_noun": true,
+    "note": "规则拼句会出病句（'Kit com o dia a dia para o uso do dia a dia.'）→ 用 LLM 写，但必须后置清洗中文/法语碎片。"
+  }
+}
