@@ -39,7 +39,7 @@
 | `platform_notice` | 平台通知 | 通知原文路径 |
 | `external_registry` | 商标/专利注册查询 | 查询结果记录路径 |
 | `case_history` | 历史案件 | 案件 ID 引用 |
-| `missing` | **缺失的必需输入** | 空 —— 配合 `not_evaluated` |
+| `missing` | **缺失的必需输入** | 空 —— 记入 `unevaluated[]`，不产生 result |
 
 ## 3. 证据链要求
 
@@ -50,7 +50,7 @@
 3. 逐字可核验的 `source.excerpt`
 4. 规则 `status = active` 且 `source.tier ∈ {platform_official, law}`
 
-缺任何一项 → 降级为 `flag` + `requires_human_review = true`。
+缺任何一项 → 降级为 `flag_for_review` + `requires_human_review = true`（`verdict: REVIEW`）。
 
 ## 4. `provided` 字段的三态
 

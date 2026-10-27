@@ -29,7 +29,7 @@ FILES = [
     # ---------- policy-research ----------
     ("shopee-br-policy-research", "source_registry.md", "SBRCA-REF-PR-001", "TASK-POLICY-01",
      "官方来源的登记结构、抓取状态与核查日期管理",
-     "`contracts/evidence_reference.schema.json`、`.archive/phase0_prototype/research/sources.json`",
+     "`contracts/evidence_reference.schema.json`、`research/sources.json`",
      "来源分层级的具体归类规则待确定", """
 ## 1. 来源登记的三要素
 
@@ -89,7 +89,7 @@ env -u LD_LIBRARY_PATH python3 tools/fetch_edu_articles.py research/edu_articles
 """),
     ("shopee-br-policy-research", "violation_codes.md", "SBRCA-REF-PR-002", "TASK-POLICY-01",
      "平台违规码目录的结构、字段含义与解析流程",
-     "`research/violation_codes.json`、`.archive/phase0_prototype/tools/parse_violation_codes.py`",
+     "`research/violation_codes.json`、`tools/parse_violation_codes.py`",
      "违规码到规则前缀的映射关系待建立", """
 ## 1. 目录结构
 
@@ -139,7 +139,7 @@ env -u LD_LIBRARY_PATH python3 tools/parse_violation_codes.py
 """),
     ("shopee-br-policy-research", "citation_verification.md", "SBRCA-REF-PR-003", "TASK-POLICY-01",
      "引文逐字核验的流程、失败原因与处理",
-     "`.archive/phase0_prototype/tools/verify_citations.py`、`docs/adr/SBRCA-ADR-0005`（归档）",
+     "`tools/verify_citations.py`",
      "核验基准的失效判定与再抓取策略待确定", """
 ## 1. 为什么逐字核验
 
@@ -190,7 +190,7 @@ env -u LD_LIBRARY_PATH python3 tools/verify_citations.py
 """),
     ("shopee-br-policy-research", "platform_policy_summary.md", "SBRCA-REF-PR-004", "TASK-POLICY-01",
      "平台政策要点摘要：禁限售类目、处罚机制、IP 四类",
-     "`.archive/phase0_prototype/docs/RESEARCH_REPORT.md`（归档，可回迁查阅）",
+     "`research/raw/`（抓取件原文）",
      "摘要内容须以逐字核验通过的抓取件为准", """
 ## 1. 本文档的地位
 
@@ -309,7 +309,7 @@ env -u LD_LIBRARY_PATH python3 tools/verify_citations.py
 """),
     ("shopee-br-listing-audit", "false_positive_control.md", "SBRCA-REF-LA-003", "TASK-LISTING-01",
      "误判控制：反例机制、词边界、歧义消解",
-     "`references/audit_semantics.md`、`.archive/phase0_prototype/lexicon/term_groups.json`（归档）",
+     "`references/audit_semantics.md`、`lexicon/term_groups.json`",
      "各规则的完整反例集待确定", """
 ## 1. 误判比漏判更贵
 
@@ -372,7 +372,7 @@ re.sub(r"(?<![a-zA-Zà-ÿÀ-ß])at[óo]xico(?![a-zA-Zà-ÿÀ-ß])", " ", s)
 """),
     ("shopee-br-listing-audit", "policy_currency.md", "SBRCA-REF-LA-004", "TASK-LISTING-01",
      "政策时效性管理：规则过期、失效与重新核验",
-     "`references/audit_semantics.md` §3、`.archive/phase0_prototype/docs/adr/SBRCA-ADR-0006`（归档）",
+     "`references/audit_semantics.md` §3、`contracts/risk_action_matrix.json`",
      "过期规则的自动降级机制待实现", """
 ## 1. 规则的时效状态
 
@@ -427,7 +427,7 @@ re.sub(r"(?<![a-zA-Zà-ÿÀ-ß])at[óo]xico(?![a-zA-Zà-ÿÀ-ß])", " ", s)
     # ---------- duplicate-detection ----------
     ("shopee-br-duplicate-detection", "relist_axes.md", "SBRCA-REF-DUP-001", "TASK-DUP-01",
      "违规重发检查的判定维度与结论分级",
-     "`contracts/risk_action_matrix.json`、`.archive/phase0_prototype/src/compliance_agent/engine/relist.py`（归档）",
+     "`contracts/risk_action_matrix.json`、`references/relist_axes.md`",
      "各轴的组合结论矩阵待确定", """
 ## 1. 六个判定轴
 
@@ -588,7 +588,7 @@ open ──→ investigating ──→ actioned ──→ closed
 """),
     ("shopee-br-duplicate-detection", "penalty_mechanics.md", "SBRCA-REF-DUP-004", "TASK-DUP-01",
      "处罚点机制：归属、生效、限制时长与申诉",
-     "`.archive/phase0_prototype/docs/RESEARCH_REPORT.md`（归档）",
+     "`research/raw/`（抓取件原文）",
      "具体分值表平台未公开，需标注为待核实", """
 ## 1. 机制
 
@@ -624,7 +624,7 @@ open ──→ investigating ──→ actioned ──→ closed
     # ---------- ip-review ----------
     ("shopee-br-ip-review", "ip_categories.md", "SBRCA-REF-IP-001", "TASK-IP-01",
      "知识产权四类的区分与各自的检测路径",
-     "`contracts/risk_action_matrix.json`、`.archive/phase0_prototype/rules/02_ip_trademark_copyright.json`（归档）",
+     "`contracts/risk_action_matrix.json`、`rules/02_ip_trademark_copyright.json`",
      "外观设计与专利的检测路径待补充", """
 ## 1. 四类权利
 
@@ -785,7 +785,7 @@ Peça de reposição para <Marca> <Modelo>
 """),
     ("shopee-br-ip-review", "dissolution_flow.md", "SBRCA-REF-IP-004", "TASK-IP-01",
      "IP 类冻结的解除流程：只有品牌方撤诉才能解封",
-     "`data/schema/case.schema.json`、`.archive/phase0_prototype/docs/SBRCA-P0-002_requirements_recovery.md`（归档）",
+     "`data/schema/case.schema.json`、`docs/SBRCA-P0-003_requirement_register.json`",
      "撤诉流程的外部对接方式待确定", """
 ## 1. 核心事实
 

@@ -288,6 +288,97 @@ def main():
             t = open(sk, encoding="utf-8").read()
             check(f"{name} 引用硬约束", "H1" in t or "硬约束" in t, "")
 
+    # --- 12 内部路径引用有效 ---
+    # 文档里引用的仓库内路径必须真实存在。第一阶段原型从未入库，
+    # 却在 README / PROJECT_RULES / test_plan / 9 份 references 中被引用，
+    # 而所有既有检查都只比对路径"形状"、从不校验目标存在 —— 于是
+    # 悬空引用可以静默累积。这里做实际存在性校验。
+    section("10. 内部路径引用有效")
+    # 匹配两种写法：反引号包裹的 `a/b/c.md`，以及代码块 / 命令行里的裸路径
+    # （如 `cat .archive/phase0_prototype/docs/X.md`）。裸路径必须带目录
+    # 分隔符，避免把普通单词误判成路径。
+    path_re = re.compile(r"`([A-Za-z0-9_./-]+\.(?:md|json|py|sh|txt|xlsx|csv))`")
+    bare_re = re.compile(r"(?<![\w`/.-])((?:\.?[A-Za-z0-9_-]+/)+[A-Za-z0-9_.-]+\.(?:md|json|py|sh|txt|xlsx|csv))")
+
+    # 「计划中」的前缀：任务注册表声明的 allowed_paths 与交付物路径。
+    # 这些文件由对应任务负责创建，当前不存在是正常的 —— 不能算悬空。
+    planned = set()
+    for t in reg["tasks"]:
+        for p in t.get("allowed_paths", []):
+            planned.add(p.rstrip("/"))
+        for d in t.get("deliverables", []):
+            for m in re.findall(r"[A-Za-z0-9_./-]+\.(?:md|json|py)", d):
+                planned.add(m.rstrip("/"))
+    # 测试计划 §5.2 点名的共享夹具文件 —— 由集成 Agent 建立
+    for fx in ("normal_products.json", "violation_products.json", "edge_cases.json",
+               "missing_data_cases.json", "case_history.json", "ip_cases.json",
+               "injection_cases.json"):
+        planned.add(f"tests/fixtures/{fx}")
+    # 集成阶段才建立的集成测试套件
+    planned.add("tests/integrator/run_tests.py")
+    planned.add("tests/integration/run_tests.py")
+    # 集成验收脚本 —— 由集成 Agent 在 TASK-INTEGRATE-01 中实现
+    # （见 tests/test_plan.md §7.2）
+    planned.add("tools/integration_check.py")
+    # 第一阶段原型的测试入口 —— 从未入库（已核实，见 .archive/README.md §2.1）
+    planned.add("tests/run_tests.py")
+    # PROJECT_RULES §14 命名规范表里的**举例**，不是真实引用
+    planned.add("references/rule_sources.md")
+
+    def is_planned(ref):
+        for p in planned:
+            if ref == p or ref.startswith(p.rstrip("/") + "/"):
+                return True
+            # `skills/<mod>/**` 这类通配
+            if "*" in p and ref.startswith(p.split("**")[0]):
+                return True
+        return False
+
+    doc_files = []
+    for sub in ("", "docs", "skills", "tasks", "tests", "contracts", "tools"):
+        base = os.path.join(ROOT, sub) if sub else ROOT
+        if not os.path.isdir(base):
+            continue
+        for dirpath, dirnames, files in os.walk(base):
+            dirnames[:] = [d for d in dirnames if d not in (".git", "__pycache__")]
+            for fn in files:
+                if fn.endswith(".md"):
+                    doc_files.append(os.path.join(dirpath, fn))
+
+    dangling = {}
+    for fp in doc_files:
+        rel = os.path.relpath(fp, ROOT)
+        docdir = os.path.dirname(fp)
+        # 引用可能是仓库根相对、相对所在文档目录、或相对所属模块目录
+        # （references/xxx.md 之间互引时用模块相对写法）。
+        moddir = None
+        parts = rel.split(os.sep)
+        if len(parts) >= 3 and parts[0] == "skills":
+            moddir = os.path.join(ROOT, "skills", parts[1])
+        txt = open(fp, encoding="utf-8").read()
+        refs = [m.group(1) for m in path_re.finditer(txt)]
+        refs += [m.group(1) for m in bare_re.finditer(txt)]
+        for ref in refs:
+            ref = ref.rstrip("/")
+            # 裸文件名（无目录分隔符）指的是同目录或已知的上下文文件，
+            # 不是仓库内相对路径 —— 无法可靠判定存在性，跳过。
+            if "/" not in ref:
+                continue
+            if ref.startswith(("http", "www")) or "*" in ref:
+                continue
+            if is_planned(ref):
+                continue
+            candidates = [os.path.join(ROOT, ref), os.path.join(docdir, ref)]
+            if moddir:
+                candidates.append(os.path.join(moddir, ref))
+            if not any(os.path.exists(c) for c in candidates):
+                dangling.setdefault(rel, set()).add(ref)
+    for rel, refs in sorted(dangling.items()):
+        for ref in sorted(refs):
+            check(f"{rel} 引用的 {ref} 存在", False, "悬空引用")
+    check("无悬空内部路径引用", not dangling,
+          f"{len(dangling)} 个文件含悬空引用")
+
     # --- 汇总 ---
     print(f"\n{'=' * 62}")
     print(f"PASSED: {len(PASSED)}   FAILED: {len(FAILED)}")

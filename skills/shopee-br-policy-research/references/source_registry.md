@@ -6,7 +6,7 @@
 | 状态 | **Draft — 骨架，内容待 TASK-POLICY-01 填充** |
 | 创建/更新 | 2026-10-27 |
 | 适用范围 | 官方来源的登记结构、抓取状态与核查日期管理 |
-| 相关文档 | `contracts/evidence_reference.schema.json`、`.archive/phase0_prototype/research/sources.json` |
+| 相关文档 | `contracts/evidence_reference.schema.json`、`research/sources.json` |
 | 未决事项 | 来源分层级的具体归类规则待确定 |
 
 ---
@@ -30,8 +30,8 @@
 |---|---|---|
 | `platform_official` | Shopee 官方文档（Edu Hub、卖家中心） | `block` |
 | `law` | 巴西法律、ANVISA 法规 | `block` |
-| `internal_risk` | 内部风控建议 | `flag` |
-| `unverified` | 来源未核实 | `flag` |
+| `internal_risk` | 内部风控建议 | `flag_for_review` |
+| `unverified` | 来源未核实 | `flag_for_review` |
 
 **不得**把 `internal_risk` 标为 `platform_official`。这直接对应硬约束 **H2**。
 

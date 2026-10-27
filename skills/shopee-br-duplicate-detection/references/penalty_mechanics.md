@@ -6,7 +6,7 @@
 | 状态 | **Draft — 骨架，内容待 TASK-DUP-01 填充** |
 | 创建/更新 | 2026-10-27 |
 | 适用范围 | 处罚点机制：归属、生效、限制时长与申诉 |
-| 相关文档 | `.archive/phase0_prototype/docs/RESEARCH_REPORT.md`（归档） |
+| 相关文档 | `research/raw/`（抓取件原文） |
 | 未决事项 | 具体分值表平台未公开，需标注为待核实 |
 
 ---

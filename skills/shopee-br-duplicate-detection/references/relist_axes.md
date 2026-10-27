@@ -6,7 +6,7 @@
 | 状态 | **Draft — 骨架，内容待 TASK-DUP-01 填充** |
 | 创建/更新 | 2026-10-27 |
 | 适用范围 | 违规重发检查的判定维度与结论分级 |
-| 相关文档 | `contracts/risk_action_matrix.json`、`.archive/phase0_prototype/src/compliance_agent/engine/relist.py`（归档） |
+| 相关文档 | `contracts/risk_action_matrix.json`、`references/relist_axes.md` |
 | 未决事项 | 各轴的组合结论矩阵待确定 |
 
 ---
@@ -28,23 +28,23 @@
 
 | 平台处置 | 可否恢复 | 计入处罚点 | 重发结论 |
 |---|---|---|---|
-| 封禁 `banimento` | ✅ 问题解决后可恢复 | 视违规类型 | `flag` + 复核 |
+| 封禁 `banimento` | ✅ 问题解决后可恢复 | 视违规类型 | `flag_for_review` + 复核 |
 | 删除 `excluído` | ❌ **不可恢复** | ✅ | `block` |
-| 限制触达 `alcance limitado` | ✅ 整改后**自动恢复** | 视情况 | `flag` + 复核 |
+| 限制触达 `alcance limitado` | ✅ 整改后**自动恢复** | 视情况 | `flag_for_review` + 复核 |
 
 > **删除 vs 封禁的区分是本模块最关键的判定。** 误判会导致错误冻结或错误放行。
 
 ## 3. 结论分级
 
-| 条件 | `verdict` | `action` |
+| 条件 | `action` | 对应 `verdict` |
 |---|---|---|
-| 历史为删除（不可恢复） | `block` | `freeze_relist` |
-| 历史为封禁且问题未结 | `flag` | `require_evidence` |
-| 标题/SKU 变换后与历史违规商品匹配 | `flag` | `revise` |
-| 跨店同款且已有违规记录 | `flag` | `require_evidence` |
-| 授权缺失或不覆盖 | `flag` | `require_evidence` |
-| 处罚点已达限制阈值 | `flag` | `flag_for_review` |
-| 无任何命中 | `pass` | `allow` |
+| 历史为删除（不可恢复） | `freeze_relist` | `BLOCK` |
+| 历史为封禁且问题未结 | `require_evidence` | `REVIEW` |
+| 标题/SKU 变换后与历史违规商品匹配 | `revise` | `REVISE` |
+| 跨店同款且已有违规记录 | `require_evidence` | `REVIEW` |
+| 授权缺失或不覆盖 | `require_evidence` | `REVIEW` |
+| 处罚点已达限制阈值 | `flag_for_review` | `REVIEW` |
+| 无任何命中 | `allow` | `PASS` |
 
 `freeze_relist` 是 **human_only** 动作（硬约束 **H6**）—— 系统只建议，不自动冻结。
 

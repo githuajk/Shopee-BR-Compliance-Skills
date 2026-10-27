@@ -6,7 +6,7 @@
 | 状态 | **Draft — 骨架，内容待 TASK-POLICY-01 填充** |
 | 创建/更新 | 2026-10-27 |
 | 适用范围 | 引文逐字核验的流程、失败原因与处理 |
-| 相关文档 | `.archive/phase0_prototype/tools/verify_citations.py`、`docs/adr/SBRCA-ADR-0005`（归档） |
+| 相关文档 | `tools/verify_citations.py` |
 | 未决事项 | 核验基准的失效判定与再抓取策略待确定 |
 
 ---

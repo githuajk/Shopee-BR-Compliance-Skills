@@ -212,12 +212,30 @@ env -u LD_LIBRARY_PATH python3 tools/integration_check.py
 ## 9. 现有基线（实测）
 
 **执行日期**：2026-10-27
-**命令**：`env -u LD_LIBRARY_PATH python3 tests/run_tests.py`
+**命令**：`env -u LD_LIBRARY_PATH bash scripts/check_all.sh`
 **环境**：Python 3.14.4 / Linux 6.12.111 / Hermes 托管运行时
 
 ```
-PASSED: 333   FAILED: 0
-All tests passed.
+== 0/5  框架自检（并行开发框架不变量）==
+PASSED: 303   FAILED: 0
+
+== 1/5  公共契约校验（contracts/）==
+契约校验 — 通过 18，失败 0
+
+== 2/5  规则库 + 词库 Schema 校验 ==
+0 errors, 0 warnings
+0 errors, 0 warnings
+
+== 3/5  引文逐字核验（无编造引文）==
+50/50 excerpts verified verbatim, 0 failed
+
+== 4/5  共享夹具校验 ==
+validated 9 products, 3 cases across 8 scenarios
+
+== 5/5  任务包与所有权一致性 ==
+PASSED: 566   FAILED: 0
+
+ALL CHECKS PASSED
 ```
 
 **其他校验**：
@@ -230,7 +248,11 @@ All tests passed.
 | 契约自洽校验 | 6 份契约加载通过；`risk_action_matrix` 实例 PASS |
 | 规则 → `rule_envelope` 符合性 | 50/50 |
 
-> 上述基线来自第一阶段原型（`src/compliance_agent/`），**不是**本框架的模块测试。模块测试在各自任务中建立。
+> **上表是本框架的框架级校验，不是模块测试。**
+> 早期版本此处记录过第一阶段原型的 `tests/run_tests.py`（333 项）基线 ——
+> 该原型代码**已核实从未入库**（6 项检查见 `.archive/README.md` §2.1），
+> `tests/run_tests.py` 不存在，故本节不再引用该基线。
+> 模块级测试（L1–L4）在各自任务中建立，见 §2。
 
 ---
 

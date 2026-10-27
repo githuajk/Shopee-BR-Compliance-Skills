@@ -6,7 +6,7 @@
 | 状态 | **Draft — 骨架，内容待 TASK-POLICY-01 填充** |
 | 创建/更新 | 2026-10-27 |
 | 适用范围 | 平台违规码目录的结构、字段含义与解析流程 |
-| 相关文档 | `research/violation_codes.json`、`.archive/phase0_prototype/tools/parse_violation_codes.py` |
+| 相关文档 | `research/violation_codes.json`、`tools/parse_violation_codes.py` |
 | 未决事项 | 违规码到规则前缀的映射关系待建立 |
 
 ---
