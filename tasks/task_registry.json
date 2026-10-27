@@ -124,7 +124,7 @@
       "group": "G2",
       "module": "shopee-br-policy-research",
       "parallel_group": "G2",
-      "status": "pending",
+      "status": "completed",
       "depends_on": [
         "TASK-FRAME-01",
         "TASK-FRAME-02"
@@ -159,8 +159,9 @@
       ],
       "objective": "建立官方政策研究与来源核查能力：抓取、核验、维护来源清单与平台违规码目录，为所有模块提供可信的规则来源。",
       "workspace": "/tmp/sbrca_work/TASK-POLICY-01/",
-      "note": "本模块不拥有审核规则前缀；它为其他模块提供来源与引文核验能力。",
-      "contract_version": "1.0.0"
+      "note": "2026-10-27 实现完成。",
+      "contract_version": "1.0.0",
+      "actual_result": "来源清单核对工具 tools/check_sources.py、17 条来源登记、106 条违规码目录、4 份参考文档填实、1467 项测试全通过。交付说明见 skills/shopee-br-policy-research/DELIVERY.md。"
     },
     {
       "task_id": "TASK-INGEST-01",
@@ -168,7 +169,7 @@
       "group": "G2",
       "module": "shopee-br-data-ingestion",
       "parallel_group": "G2",
-      "status": "pending",
+      "status": "completed",
       "depends_on": [
         "TASK-FRAME-01",
         "TASK-FRAME-02"
@@ -204,8 +205,9 @@
       ],
       "objective": "建立多格式资料读取与标准化能力：把 Excel/CSV/JSON/JSONL/TXT/MD/DOCX/PDF/图片等外部输入统一转换为项目数据模型，并保留完整溯源。",
       "workspace": "/tmp/sbrca_work/TASK-INGEST-01/",
-      "note": "本模块不拥有规则前缀；规则层只消费其输出。",
-      "contract_version": "1.0.0"
+      "note": "2026-10-27 实现完成。",
+      "contract_version": "1.0.0",
+      "actual_result": "多格式解析器（XLSX/CSV/JSON/JSONL/TXT/MD/DOCX/PDF/图片，纯标准库）、字段映射（144 项别名表）、溯源（7 字段）、契约化产出、193 项测试全通过。交付说明见 skills/shopee-br-data-ingestion/DELIVERY.md。"
     },
     {
       "task_id": "TASK-LISTING-01",
@@ -465,8 +467,8 @@
   ],
   "summary": {
     "total": 10,
-    "completed": 2,
-    "pending": 8,
+    "completed": 4,
+    "pending": 6,
     "by_group": {
       "G0": 1,
       "G1": 1,

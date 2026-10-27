@@ -36,14 +36,18 @@
     "title": "O que acontece se eu colocar para venda um medicamento proibido? | Centro de Educação do Vendedor Shopee BR"
   },
   {
-    "slug": "shopee_br_ip_complaint",
+    "slug": "shopee_br_categoria_correta",
     "status": "ok",
     "chars": 4433,
-    "title": "Como selecionar a categoria de anúncios correta? | Centro de Educação do Vendedor Shopee BR"
+    "title": "Como selecionar a categoria de anúncios correta? | Centro de Educação do Vendedor Shopee BR",
+    "note": "原 slug 记为 shopee_br_ip_complaint；article 2820 实为类目选择文章，按事实修正"
   },
   {
     "slug": "shopee_br_mudanca_conta_cpf_cnpj",
-    "status": "error_TimeoutError",
-    "detail": "timed out"
+    "status": "ok",
+    "detail": "timed out",
+    "chars": 14558,
+    "title": "Como fazer a migração da sua conta CPF para CNPJ | Centro de Educação do Vendedor Shopee BR",
+    "note": "首轮抓取超时；重抓已成功，文件落盘。报告此前未更新。"
   }
 ]

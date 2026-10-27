@@ -101,7 +101,9 @@
     "publisher": "Anvisa /小店",
     "url": "https://bvsms.saude.gov.br/docs/bvsms/legislacao/rdc/2008/rdc_96_2008_28_03_2011.html",
     "tier": "law",
-    "scope": "Brazil - advertising rules for medicines and health products"
+    "scope": "Brazil - advertising rules for medicines and health products",
+    "capture_status": "failed_http_503",
+    "capture_note": "抓取失败（HTTP 503）—— bvsms.saude.gov.br 当时不可达。本项目未使用该来源支撑任何规则；相关规则改用其它已核验来源。"
   },
   {
     "slug": "br_anvisa_medicamentos_prescricao",
@@ -109,6 +111,32 @@
     "publisher": "Anvisa",
     "url": "https://bvsms.saude.gov.br/docs/bvsms/legislacao/rdc/2009/rdc_44_2009_10_06_2009.html",
     "tier": "law",
-    "scope": "Brazil - prescription-only medicine dispensing rules"
+    "scope": "Brazil - prescription-only medicine dispensing rules",
+    "capture_status": "failed_http_503",
+    "capture_note": "抓取失败（HTTP 503）—— bvsms.saude.gov.br 当时不可达。本项目未使用该来源支撑任何规则；相关规则改用其它已核验来源。"
+  },
+  {
+    "slug": "shopee_br_categoria_correta",
+    "title": "Como selecionar a categoria de anúncios correta?",
+    "publisher": "Shopee Brasil - Centro de Educação do Vendedor",
+    "url": "https://seller.shopee.com.br/edu/article/2820",
+    "tier": "platform_official",
+    "scope": "Classifying a listing under the correct platform category (rule SBR-LV-008)"
+  },
+  {
+    "slug": "shopee_br_categorias_restrritas",
+    "title": "O que acontece se eu colocar para venda um medicamento proibido?",
+    "publisher": "Shopee Brasil - Centro de Educação do Vendedor",
+    "url": "https://seller.shopee.com.br/edu/article/7379",
+    "tier": "platform_official",
+    "scope": "Consequences of listing a prohibited medicine (rule SBR-MED-001)"
+  },
+  {
+    "slug": "shopee_br_mudanca_conta_cpf_cnpj",
+    "title": "Como fazer a migração da sua conta CPF para CNPJ",
+    "publisher": "Shopee Brasil - Centro de Educação do Vendedor",
+    "url": "https://seller.shopee.com.br/edu/article/9216",
+    "tier": "platform_official",
+    "scope": "Migrating an individual seller account to a company account (CPF → CNPJ)"
   }
 ]
