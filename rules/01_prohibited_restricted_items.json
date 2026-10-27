@@ -142,7 +142,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(c[ée]dula(s)?\\s+(de\\s+)?(dinheiro|real|moeda)|r[ée]plica(s)?\\s+de\\s+(dinheiro|nota|c[ée}dula)|maquininha(s)?\\s+de\\s+cart[ãa]o|clonador(es)?\\s+de\\s+cart[ãa]o|jammer(s)?|documentos?\\s+falsificad(os?)|[óo]rg[ãa]os?\\s+humanos?)(?![a-zA-Zà-ÿÀ-ß])"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])((c[ée]dula(s)?\\s+(de\\s+)?(dinheiro|real|moeda))|(r[ée]plica(s)?\\s+de\\s+(dinheiro|nota|c[ée]dula))|(maquininha(s)?\\s+de\\s+cart[ãa]o)|(clonador(es)?\\s+de\\s+cart[ãa]o)|(jammer(s)?)|(documentos?\\s+falsificad(os?))|([óo]rg[ãa]os?\\s+humanos?))(?![a-zA-Zà-ÿÀ-ß])"
         }
       ],
       "severity": "critical",
@@ -156,12 +156,13 @@
       "source_excerpt": "[341] Anúncio proibido de venda de dados, jammers e documentos falsificados. Severidade: Extrema. Gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "financial",
         "critical",
         "platform_code_341"
-      ]
+      ],
+      "notes": "2026-10-27: 修复触发正则缺失的右括号 —— 原文无法编译（re.compile 抛错），评估时会中断。匹配语义按原意恢复：外层交替组闭合，各分支显式分组，尾部词边界断言作用于整个组。"
     },
     {
       "rule_id": "SBR-PI-006",
@@ -358,7 +359,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(bateria(s)?\\s+(de\\s+l[ií]tio|18650|21700|9v|ni-mh|alcalina)?|power\\s?bank|banco\\s+de\\s+energia\\s+port[aá]til)(?![a-zA-Zà-ÿÀ-ß])"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])((pilha(s)?(\\s+(de\\s+)?(l[ií]tio|alcalina|ni-mh|9v|18650|21700))?)|(bateria(s)?\\s+(de\\s+l[ií]tio|18650|21700|9v|ni-mh|alcalina|recarreg[aá]vel|de\\s+9v))|(power\\s?bank(s)?)|(banco\\s+de\\s+energia\\s+port[aá]til))(?![a-zA-Zà-ÿÀ-ß])"
         }
       ],
       "severity": "high",
@@ -373,12 +374,13 @@
       "source_excerpt": "[333] Venda restrita - Pilhas e baterias. Severidade: Alta. Gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "battery",
         "restricted",
         "platform_code_333"
-      ]
+      ],
+      "notes": "2026-10-27: 收敛触发条件 —— 原正则中 `bateria(s)?\\s+(...)?` 的 `?` 让「bateria」单独即可命中，会把普通工具（如电钻）判为电池类（实测误报）。改为电池词必须带类型限定词，或命中 power bank / banco de energia portátil。"
     },
     {
       "rule_id": "SBR-RI-004",

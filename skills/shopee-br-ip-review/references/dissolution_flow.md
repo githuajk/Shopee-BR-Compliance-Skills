@@ -6,7 +6,7 @@
 | 状态 | **Draft — 骨架，内容待 TASK-IP-01 填充** |
 | 创建/更新 | 2026-10-27 |
 | 适用范围 | IP 类冻结的解除流程：只有品牌方撤诉才能解封 |
-| 相关文档 | `data/schema/case.schema.json`、`.archive/phase0_prototype/docs/SBRCA-P0-002_requirements_recovery.md`（归档） |
+| 相关文档 | `data/schema/case.schema.json`、`docs/SBRCA-P0-003_requirement_register.json` |
 | 未决事项 | 撤诉流程的外部对接方式待确定 |
 
 ---

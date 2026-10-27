@@ -89,17 +89,44 @@ print(n)
 
 ### 5.2 夹具分类
 
-| 文件 | 内容 | 用途 |
-|---|---|---|
-| `normal_products.json` | 正常商品池 | 规则的**反例**来源 |
-| `violation_products.json` | 明确违规商品 | 规则的**正例**来源 |
-| `edge_cases.json` | 边界（兼容性描述、模板化详情、夸大宣称但合规的表述） | 防过宽 |
-| `missing_data_cases.json` | 资料缺失（缺图片/类目/品牌/授权） | H3 测试 |
-| `case_history.json` | 历史案件样本（已删除/暂停/整改中/已结案） | 重发与冻结测试 |
-| `ip_cases.json` | IP 场景（品牌宣称/指示性使用/图片 logo/授权缺失） | H1 测试 |
-| `injection_cases.json` | 提示注入样本 | 安全测试 |
+`tests/fixtures/` —— **集成 Agent 拥有**。模块只读，需要新夹具 → 提建议。
 
-### 5.3 构造原则
+| 文件 | 内容 | 用途 | 现状 |
+|---|---|---|---|
+| `normal_products.json` | 正常商品池 | 规则的**反例**来源 | 12 件 |
+| `violation_products.json` | 明确违规商品 | 规则的**正例**来源 | 39 件 |
+| `edge_cases.json` | 边界（兼容性描述、模板化详情、夸大宣称但合规的表述） | 防过宽 | 12 例 |
+| `missing_data_cases.json` | 资料缺失（缺图片/类目/品牌/授权） | H3 测试 | 6 例 |
+| `case_history.json` | 历史案件样本（已删除/暂停/整改中/已结案） | 重发与冻结测试 | 7 件 |
+| `ip_cases.json` | IP 场景（品牌宣称/指示性使用/图片 logo/授权缺失） | H1 测试 | 7 例 |
+| `injection_cases.json` | 提示注入样本 | 安全测试 | 5 例 |
+
+**全部为合成数据**，不含任何真实商品或店铺信息。
+
+### 5.3 夹具注解与机械校验
+
+夹具记录上可带三个**注解字段**（不是商品/案件契约的一部分，校验 Schema 前会剥离）：
+
+| 字段 | 出现在 | 含义 |
+|---|---|---|
+| `targets` | `normal_products.json` | 这些规则**必须不命中** |
+| `targets_exempted` | `normal_products.json` | 这些规则**允许命中** —— 用于豁免路径反例（如 IP-006 兼容性豁免必须与 IP-001 同时命中） |
+| `note` | 全部 | 该夹具针对哪条规则、期望什么结论 |
+
+用例级夹具（`edge_cases` / `ip_cases` / `injection_cases` / `missing_data_cases`）用
+`must_fire` / `must_not_fire` / `must_be_unevaluated` 声明期望。
+
+> **注解必须被机械校验，否则会随规则演进而静默失效。**
+> 校验命令：
+>
+> ```bash
+> env -u LD_LIBRARY_PATH python3 tools/verify_fixtures.py
+> ```
+>
+> 当前基线：**108 条夹具-规则断言**（58 应命中 / 50 应不命中）全部通过。
+> 规则一改，夹具没跟着改，这个工具立刻报错并点名具体夹具与规则。
+
+### 5.4 构造原则
 
 | 原则 | 说明 |
 |---|---|
@@ -108,7 +135,7 @@ print(n)
 | 正反成对 | 每个违规样本配一个「看起来像但合规」的对照 |
 | 可归因 | 每个夹具说明它针对哪条规则、期望什么结论 |
 
-### 5.4 高误报来源（必须作为反例）
+### 5.5 高误报来源（必须作为反例）
 
 来自历史经验，这四类是本项目最容易踩的坑：
 
@@ -212,12 +239,30 @@ env -u LD_LIBRARY_PATH python3 tools/integration_check.py
 ## 9. 现有基线（实测）
 
 **执行日期**：2026-10-27
-**命令**：`env -u LD_LIBRARY_PATH python3 tests/run_tests.py`
+**命令**：`env -u LD_LIBRARY_PATH bash scripts/check_all.sh`
 **环境**：Python 3.14.4 / Linux 6.12.111 / Hermes 托管运行时
 
 ```
-PASSED: 333   FAILED: 0
-All tests passed.
+== 0/5  框架自检（并行开发框架不变量）==
+PASSED: 303   FAILED: 0
+
+== 1/5  公共契约校验（contracts/）==
+契约校验 — 通过 18，失败 0
+
+== 2/5  规则库 + 词库 Schema 校验 ==
+0 errors, 0 warnings
+0 errors, 0 warnings
+
+== 3/5  引文逐字核验（无编造引文）==
+50/50 excerpts verified verbatim, 0 failed
+
+== 4/5  共享夹具校验 ==
+validated 9 products, 3 cases across 8 scenarios
+
+== 5/5  任务包与所有权一致性 ==
+PASSED: 566   FAILED: 0
+
+ALL CHECKS PASSED
 ```
 
 **其他校验**：
@@ -230,7 +275,11 @@ All tests passed.
 | 契约自洽校验 | 6 份契约加载通过；`risk_action_matrix` 实例 PASS |
 | 规则 → `rule_envelope` 符合性 | 50/50 |
 
-> 上述基线来自第一阶段原型（`src/compliance_agent/`），**不是**本框架的模块测试。模块测试在各自任务中建立。
+> **上表是本框架的框架级校验，不是模块测试。**
+> 早期版本此处记录过第一阶段原型的 `tests/run_tests.py`（333 项）基线 ——
+> 该原型代码**已核实从未入库**（6 项检查见 `.archive/README.md` §2.1），
+> `tests/run_tests.py` 不存在，故本节不再引用该基线。
+> 模块级测试（L1–L4）在各自任务中建立，见 §2。
 
 ---
 

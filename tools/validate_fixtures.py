@@ -63,8 +63,58 @@ def main():
             if req not in exp:
                 errors.append(f"{cid}: missing expect key {req!r}")
 
+    # --- 共享夹具（tests/fixtures/）——
+    # 这些文件由集成 Agent 拥有，供各模块只读消费（tests/test_plan.md §5.1）。
+    # 商品记录必须符合 product.schema.json；案件记录必须符合 case.schema.json。
+    #
+    # 夹具文件里的 `targets` / `targets_exempted` / `note` 是**夹具注解**，
+    # 供 tools/verify_fixtures.py 消费，不是商品/案件契约的一部分。
+    # Schema 是 additionalProperties=false —— 校验前剥离注解，注解本身的
+    # 正确性由 verify_fixtures.py 负责。
+    ANNOTATIONS = {"targets", "targets_exempted", "note"}
+
+    def strip_annotations(rec):
+        return {k: v for k, v in rec.items() if k not in ANNOTATIONS}
+
+    fix_dir = os.path.join(ROOT, "tests", "fixtures")
+    if os.path.isdir(fix_dir):
+        for fn in sorted(os.listdir(fix_dir)):
+            if not fn.endswith(".json"):
+                continue
+            fp = os.path.join(fix_dir, fn)
+            with open(fp, encoding="utf-8") as f:
+                fdoc = json.load(f)
+            # 商品数组（normal / violation）
+            for p in fdoc.get("products", []):
+                n_products += 1
+                rec = strip_annotations(dict(p))
+                rec.setdefault("source", {"kind": "manual"})
+                errs = pv.validate(rec)
+                if errs:
+                    errors.append(f"{fn} product {rec.get('product_id')}: "
+                                  + "; ".join(errs))
+            # 用例数组（edge / ip / injection / missing_data）
+            for c in fdoc.get("cases", []):
+                cid = c.get("case_id", "?")
+                p = c.get("product")
+                if p is not None:
+                    n_products += 1
+                    rec = strip_annotations(dict(p))
+                    rec.setdefault("source", {"kind": "manual"})
+                    errs = pv.validate(rec)
+                    if errs:
+                        errors.append(f"{fn} {cid} product: " + "; ".join(errs))
+            # 案件文件：顶层 cases 数组本身就是案件记录
+            if fn == "case_history.json":
+                for case_rec in fdoc.get("cases", []):
+                    n_cases += 1
+                    errs = cv.validate(strip_annotations(case_rec))
+                    if errs:
+                        errors.append(f"{fn} case {case_rec.get('case_id')}: "
+                                      + "; ".join(errs))
+
     print(f"validated {n_products} products, {n_cases} cases across "
-          f"{len(doc.get('cases', []))} scenarios")
+          f"{len(doc.get('cases', []))} scenarios + shared fixtures")
     if errors:
         print(f"\n{len(errors)} errors:")
         for e in errors:

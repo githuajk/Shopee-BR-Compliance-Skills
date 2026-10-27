@@ -216,6 +216,140 @@ def main():
                 check(f"{mod} 提及 references/{f}",
                       f"references/{f}" in txt, "未提及")
 
+    # --- 11 任务包枚举与冻结契约一致 ---
+    # 任务包若写死与契约不同的 verdict/confidence/action 枚举，执行 Agent
+    # 会照抄，产出的 AuditResult 直接通不过 audit_result 校验。路径类断言
+    # 抓不到这种"值"的漂移，必须单独比对。
+    section("7. 任务包枚举与冻结契约一致")
+    with open(os.path.join(ROOT, "contracts", "audit_result.schema.json"), encoding="utf-8") as f:
+        props = json.load(f)["properties"]
+    contract_vals = {k: set(props[k]["enum"]) for k in ("verdict", "risk_level", "action", "confidence")}
+
+    # 契约之外出现的常见误写（历史模板遗留）
+    stale = {
+        "verdict": {"pass", "flag", "not_evaluated", "signal"},
+        "confidence": {"low", "medium", "high"},
+        "action": {"flag"},
+    }
+
+    for t in reg["tasks"]:
+        if t["status"] == "completed":
+            continue
+        p = os.path.join(ROOT, "tasks", f"{t['task_id']}.md")
+        if not os.path.exists(p):
+            continue
+        txt = open(p, encoding="utf-8").read()
+        for field in ("verdict", "risk_level", "action", "confidence"):
+            # 抽取形如 | `verdict` | `a` / `b` / `c` | 的声明行
+            m = re.search(rf"^\|\s*`{field}`\s*\|\s*(.+?)\s*\|\s*$", txt, re.M)
+            check(f"{t['task_id']} 声明 {field} 取值", m is not None, "缺少取值行")
+            if not m:
+                continue
+            # 只把形如标识符的记号当作枚举候选；行内散文里引用的文件路径
+            # （如 `contracts/risk_action_matrix.json`）不是取值。
+            declared = {t for t in re.findall(r"`([^`]+)`", m.group(1))
+                        if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", t)}
+            bad = declared & stale.get(field, set())
+            check(f"{t['task_id']} 的 {field} 无契约外取值",
+                  not bad, f"混入 {sorted(bad)}")
+            unknown = declared - contract_vals[field]
+            check(f"{t['task_id']} 的 {field} 取值全在契约 enum 内",
+                  not unknown, f"未知 {sorted(unknown)}")
+        # tier → action 上限表不得出现契约外的 action
+        for tier, allowed in (("platform_official", "block"), ("law", "block"),
+                               ("internal_risk", "flag_for_review"),
+                               ("unverified", "flag_for_review"),
+                               ("ai_inference", "flag_for_review")):
+            m = re.search(rf"^\|\s*`{tier}`\s*\|\s*`([^`]+)`\s*\|\s*$", txt, re.M)
+            check(f"{t['task_id']} 声明 tier {tier} 上限", m is not None, "缺少 tier 行")
+            if m:
+                check(f"{t['task_id']} 的 tier {tier} 上限合法",
+                      m.group(1) in contract_vals["action"],
+                      f"未知 action {m.group(1)}")
+
+    # --- 12 全项目文档的 verdict 用值合法 ---
+    # references/ 与 SKILL.md 里若把 pass / flag / not_evaluated / signal
+    # 写进 verdict 的位置，执行 Agent 会照抄并产出通不过校验的结果。
+    # 同样的问题曾出现在 14 份 references 中 —— 这里做全量扫描。
+    section("8. 文档中 verdict 取值合法")
+    verdict_bad = 0
+
+    def _cell_tokens(text):
+        """取单元格里的标识符记号（去反引号）。"""
+        return {t.strip().strip("`") for t in re.findall(r"`([^`]+)`", text)}
+
+    def _scan_table(lines, rel, start):
+        """扫描一张 markdown 表：找出名为 verdict 的列，校验该列每行的取值。
+
+        返回 (命中数, 下一张表的起始行)。表头与取值分处不同行 —— 只用
+        单行正则匹配是抓不到的。
+        """
+        # 定位表头行的分隔行（|---|---|），确定表格范围
+        sep_idx = None
+        for i in range(start, min(start + 5, len(lines))):
+            if re.match(r"^\s*\|[\s:|-]+\|\s*$", lines[i]) and "-" in lines[i]:
+                sep_idx = i
+                break
+        if sep_idx is None:
+            return 0, start + 1
+        header = lines[sep_idx - 1] if sep_idx > 0 else ""
+        cols = [c.strip() for c in header.strip().strip("|").split("|")]
+        # verdict 列的下标（列名可能就是 `verdict`）
+        vcols = [i for i, c in enumerate(cols)
+                 if c.strip().strip("`").lower() == "verdict"]
+        if not vcols:
+            return 0, sep_idx + 1
+        bad = 0
+        i = sep_idx + 1
+        while i < len(lines) and lines[i].strip().startswith("|"):
+            cells = [c.strip() for c in lines[i].strip().strip("|").split("|")]
+            for vi in vcols:
+                if vi >= len(cells):
+                    continue
+                toks = _cell_tokens(cells[vi])
+                for t in toks:
+                    if t in ("pass", "flag", "not_evaluated", "signal"):
+                        bad += 1
+                        check(f"{rel}:{i + 1} verdict 列取值合法", False,
+                              f"出现契约外取值 {t}")
+            i += 1
+        return bad, i
+
+    doc_scan = []
+    for sub in ("", "skills", "docs", "tasks", "tests", "contracts"):
+        base = os.path.join(ROOT, sub) if sub else ROOT
+        if not os.path.isdir(base):
+            continue
+        for dirpath, dirnames, files in os.walk(base):
+            dirnames[:] = [d for d in dirnames if d not in (".git", "__pycache__")]
+            for fn in files:
+                if fn.endswith(".md"):
+                    doc_scan.append(os.path.join(dirpath, fn))
+
+    for fp in doc_scan:
+        rel = os.path.relpath(fp, ROOT)
+        lines = open(fp, encoding="utf-8").read().splitlines()
+        # (a) 行内赋值形式：verdict = pass / `flag` / not_evaluated / signal
+        for i, line in enumerate(lines, 1):
+            if "不是契约取值" in line:
+                continue  # 明确写出"这不是契约取值"的警示行本身合法
+            m = re.search(r"verdict\s*=\s*`?(pass|flag|not_evaluated|signal)`?",
+                          line)
+            if m:
+                verdict_bad += 1
+                check(f"{rel}:{i} verdict 赋值合法", False,
+                      f"出现契约外取值 {m.group(1)}")
+        # (b) 表格形式：verdict 列的取值
+        i = 0
+        while i < len(lines):
+            if lines[i].strip().startswith("|"):
+                bad, nxt = _scan_table(lines, rel, i)
+                verdict_bad += bad
+                i = nxt
+            else:
+                i += 1
+    check("文档中无契约外 verdict 取值", verdict_bad == 0, f"{verdict_bad} 处")
+
     print(f"\n{'=' * 62}")
     print(f"PASSED: {len(PASSED)}   FAILED: {len(FAILED)}")
     if FAILED:

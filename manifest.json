@@ -242,16 +242,14 @@
     "fixtures_owner": "integrator",
     "schemas": "data/schema/",
     "schemas_owner": "integrator",
-    "reference_implementation": "src/compliance_agent/",
-    "reference_impl_note": "第一阶段原型，作为行为参考，非生产代码。模块可读不可改。"
+    "reference_implementation": null,
+    "reference_impl_note": "第一阶段原型 src/compliance_agent/ 已核实不存在（从未入库，见 .archive/README.md §2）。本项目不再依赖原型参考实现；模块行为以冻结契约为权威依据。",
+    "reference_impl_status": "missing_verified_2026-10-27"
   },
   "existing_state": {
-    "git_repository": false,
-    "note": "工作区无 Git 仓库。各 Agent 需用独立工作目录（/tmp/sbrca_work/<TASK_ID>/）或自行初始化分支。",
-    "legacy_assets_outside_project": [
-      "/config/dianshang/_learning/compliance_audit/ — 2026-09-15 合规审计线文档（只读参考）",
-      "/config/dianshang/_learning/SHOPEE_MASTER_SOP.md — 主 SOP（只读参考）"
-    ]
+    "git_repository": true,
+    "git_note": "仓库建于 2026-10-27（远端 yan/Shopee-BR-Compliance-Skills，私有访问凭据另行保管）。",
+    "note": "第一阶段原型资产已核实丢失，详见 .archive/README.md §2。"
   },
   "constraints": {
     "no_remote_push": true,

@@ -17,6 +17,41 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OWN = os.path.join(ROOT, "contracts", "file_ownership.json")
 REG = os.path.join(ROOT, "tasks", "task_registry.json")
+AUDIT = os.path.join(ROOT, "contracts", "audit_result.schema.json")
+
+# Enumerations belong to the frozen contract. Task packs must READ them from
+# there and never hard-code them: a divergence makes every downstream module
+# emit output that fails audit_result validation, and no existing check
+# catches it (task_pack_check.py compares paths, not values).
+TIER_MAX_ACTION = {
+    "platform_official": "block",
+    "law": "block",
+    "technical": "flag_for_review",
+    "internal_risk": "flag_for_review",
+    "unverified": "flag_for_review",
+    "ai_inference": "flag_for_review",
+}
+
+
+def contract_enums():
+    """Enumerate the frozen audit_result enum values, read from the contract."""
+    with open(AUDIT, encoding="utf-8") as f:
+        props = json.load(f)["properties"]
+    return {k: props[k]["enum"] for k in ("verdict", "risk_level", "action", "confidence")}
+
+
+def dep_status(dep_id, reg_tasks):
+    """Show a dependency's REAL registry status.
+
+    The previous template hard-coded 'TASK-FRAME-01' as the only completed
+    task, so every other dependency always read 'pending' even after it was
+    finished. Read the registry instead.
+    """
+    t = reg_tasks.get(dep_id)
+    if t is None:
+        return "unknown"
+    status = t.get("status", "pending")
+    return "✅ 已完成" if status == "completed" else status
 
 
 def meta(t):
@@ -49,8 +84,17 @@ def build(t, own, reg_task):
     blocks = t.get("blocks", [])
     acc = t.get("acceptance", [])
 
+    enums = contract_enums()
+
+    def enum_md(key):
+        return " / ".join(f"`{v}`" for v in enums[key])
+
+    tier_rows = "\n".join(
+        f"| `{tier}` | `{action}` |" for tier, action in TIER_MAX_ACTION.items()
+    )
+
     dep_rows = "\n".join(
-        f"| `{d}` | {('✅ 已完成' if d == 'TASK-FRAME-01' else 'pending')} | {reg_task.get(d, {}).get('depends_on_note', '见 tasks/task_registry.json')} |"
+        f"| `{d}` | {dep_status(d, reg_task)} | {reg_task.get(d, {}).get('depends_on_note', '见 tasks/task_registry.json')} |"
         for d in deps) or "| — | — | 无前置依赖 |"
 
     pre = f"""
@@ -121,16 +165,20 @@ def build(t, own, reg_task):
 | 字段 | 本模块的取值 |
 |---|---|
 | `module` | 固定为 `{mod}` |
-| `verdict` | `pass` / `flag` / `block` / `signal` / `not_evaluated` |
-| `risk_level` | `info` / `low` / `medium` / `high` / `critical` |
+| `verdict` | {enum_md('verdict')} |
+| `risk_level` | {enum_md('risk_level')} |
 | `action` | 由 `contracts/risk_action_matrix.json` 查表决定，**不得自行决定** |
 | `reason` | 一句话说明**为什么**，须能回溯到具体规则与证据 |
 | `rule_refs[]` | 命中的规则；每条含 `rule_id` + `source`（tier/url/excerpt/last_verified） |
 | `evidence_refs[]` | 证据引用；**只存路径，不存内容**（硬约束 H5） |
-| `confidence` | `low` / `medium` / `high` |
+| `confidence` | {enum_md('confidence')} |
 | `requires_human_review` | 由矩阵与硬约束决定 |
 | `unevaluated[]` | 因输入缺失而未评估的项（硬约束 H3） |
 | `provenance` | 原样传递输入的溯源信息 |
+
+> **枚举权威来源**：`contracts/audit_result.schema.json`（冻结）。
+> 上述取值即该 Schema 的 `enum` 值，**不得**自造其它拼写。
+> `verdict` 是对外汇报的聚合标签（4 值）；`action` 是执行动作（7 值）。两者正交，**不是**一一映射。
 
 同时产出 `contracts/module_handoff.schema.json` 格式的交接记录：
 `assumptions` 与 `known_gaps` **必须填写**（无则填空数组，但需在 `notes` 说明）。
@@ -148,13 +196,13 @@ def build(t, own, reg_task):
 
 | `source.tier` | 允许的最高动作 |
 |---|---|
-| `platform_official` | `block` |
-| `law` | `block` |
-| `internal_risk` | `flag` |
-| `unverified` | `flag` |
+{tier_rows}
 
 **不得**把 `internal_risk` 标为 `platform_official`。硬约束 **H2**：阻断类动作只能来自
 `platform_official` / `law` 的 `active` 规则。
+
+> 上表来自 `contracts/risk_action_matrix.json` 的 H2 条款，取值与冻结契约一致，**不得**自造。
+> `technical` / `internal_risk` / `unverified` / `ai_inference` 四档最高只能到 `flag_for_review`。
 
 ### 6.3 引文必须逐字可核验
 
@@ -174,7 +222,7 @@ env -u LD_LIBRARY_PATH python3 tools/verify_citations.py
 
 | ID | 约束 | 本任务如何满足 |
 |---|---|---|
-| H1 | IP 类结论恒为 `signal` + 强制人工复核 | {('**本模块涉及** —— 见 references/ip_categories.md' if mod == 'shopee-br-ip-review' else '本模块不产生 IP 类结论（如产生则适用）')} |
+| H1 | IP 类结论恒为 `signal` + 强制人工复核 | {('**本模块涉及** —— 见 `skills/shopee-br-ip-review/references/ip_categories.md`' if mod == 'shopee-br-ip-review' else '本模块不产生 IP 类结论（如产生则适用）')} |
 | H2 | `block`/`freeze_relist`/`escalate_legal` 只来自 `platform_official`/`law` 的 `active` 规则；确定性结论不可被降级 | 查 `contracts/risk_action_matrix.json` 决定动作，不自行判断 |
 | H3 | 输入缺失 → 该规则不评估 + 必须上报 `unevaluated`；**不得当作通过** | 实现 `requires_input` 检查，缺失字段记入 `unevaluated[]` |
 | H4 | `source.excerpt` 必须逐字出现在 `research/raw/` 抓取件中 | 跑 `tools/verify_citations.py` 并贴出输出 |
@@ -187,7 +235,7 @@ env -u LD_LIBRARY_PATH python3 tools/verify_citations.py
 |---|---|---|
 | 输入文件不可读 | 记 error，**不中断整批** | `errors[]` |
 | 必需字段缺失 | 该规则标记未评估 | `unevaluated[]` + `errors[]` |
-| 规则引文核验失败 | 规则改 `unverified`，只产出 `flag` | 规则 `status` 变更 |
+| 规则引文核验失败 | 规则改 `unverified`，只产出 `flag_for_review` | 规则 `status` 变更 |
 | 依赖模块不可用 | 标记该维度未评估 | `assumptions` / `known_gaps` |
 | 无法判定 | **不猜测** | 标记需人工复核 |
 | 规则文件缺失或不可解析 | 记 error 并停止该模块 | `errors[]` + 交接 `known_gaps` |
@@ -201,12 +249,12 @@ env -u LD_LIBRARY_PATH python3 tools/verify_citations.py
 | 类别 | 用例 | 断言 | 状态 |
 |---|---|---|---|
 | 契约 | 正常输入 | 输出通过 `audit_result.schema.json` 校验 | |
-| 契约 | 缺失必需字段 | `unevaluated[]` 非空，**不产生** `pass` | |
+| 契约 | 缺失必需字段 | `unevaluated[]` 非空，**不产生** `PASS` | |
 | 正例 | 典型命中 | `verdict` 与 `action` 符合矩阵 | |
-| **反例** | 正常商品 | **不命中**，`verdict = pass` | |
+| **反例** | 正常商品 | **不命中**，`verdict = PASS` | |
 | 边界 | 字段存在但为空 | 等同缺失 → 未评估 | |
 | 失败路径 | 输入不可读 | 记 error，不中断整批 | |
-| 硬约束 | H2 尝试用 `internal_risk` 产生 `block` | 被拒，降为 `flag` | |
+| 硬约束 | H2 尝试用 `internal_risk` 产生 `block` | 被拒，降为 `flag_for_review` | |
 | 硬约束 | H3 缺字段 | 报 `unevaluated`，不计为通过 | |
 
 **每条规则必须有正例与反例。** 反例缺失的规则不得标记 `active`。

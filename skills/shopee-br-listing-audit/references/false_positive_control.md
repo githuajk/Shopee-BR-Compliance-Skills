@@ -6,7 +6,7 @@
 | 状态 | **Draft — 骨架，内容待 TASK-LISTING-01 填充** |
 | 创建/更新 | 2026-10-27 |
 | 适用范围 | 误判控制：反例机制、词边界、歧义消解 |
-| 相关文档 | `references/audit_semantics.md`、`.archive/phase0_prototype/lexicon/term_groups.json`（归档） |
+| 相关文档 | `references/audit_semantics.md`、`lexicon/term_groups.json` |
 | 未决事项 | 各规则的完整反例集待确定 |
 
 ---
@@ -14,7 +14,7 @@
 ## 1. 误判比漏判更贵
 
 > 平台漏判会下架商品，误判会浪费人工复核工时并让正常商品无法上架。
-> **默认策略偏保守**：宁可 `flag` 交给人，不轻易 `block`。
+> **默认策略偏保守**：宁可 `flag_for_review` 交给人，不轻易 `block`。
 
 ## 2. 反例是强制项
 
@@ -22,8 +22,8 @@
 
 | 用例 | 断言 |
 |---|---|
-| 正例 | 命中，`verdict = flag` 或 `block` |
-| **反例** | **不命中**，`verdict = pass` |
+| 正例 | 命中，`action` 按规则与矩阵查表（可到 `block`） |
+| **反例** | **不命中**，不产生 result |
 
 反例缺失的规则**不得**标记 `active`。
 
@@ -50,7 +50,7 @@ re.sub(r"(?<![a-zA-Zà-ÿÀ-ß])at[óo]xico(?![a-zA-Zà-ÿÀ-ß])", " ", s)
 | 品牌词出现在描述中 | "compatível com <Marca>" | 兼容性描述 ≠ 侵权（见 IP 模块） |
 | 主观宣传用语 | "melhor do mercado" | 不属平台禁止的绝对化用语 |
 | 商品名含地名/店名 | "Loja São Paulo" | 不触发品牌规则 |
-| OCR 误识别 | 图片上的模糊字 | 降低置信度 → `flag` |
+| OCR 误识别 | 图片上的模糊字 | 降低置信度 → `flag_for_review` |
 
 ## 5. 词库规范化的顺序
 

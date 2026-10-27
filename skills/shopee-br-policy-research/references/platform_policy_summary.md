@@ -6,7 +6,7 @@
 | 状态 | **Draft — 骨架，内容待 TASK-POLICY-01 填充** |
 | 创建/更新 | 2026-10-27 |
 | 适用范围 | 平台政策要点摘要：禁限售类目、处罚机制、IP 四类 |
-| 相关文档 | `.archive/phase0_prototype/docs/RESEARCH_REPORT.md`（归档，可回迁查阅） |
+| 相关文档 | `research/raw/`（抓取件原文） |
 | 未决事项 | 摘要内容须以逐字核验通过的抓取件为准 |
 
 ---

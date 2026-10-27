@@ -16,7 +16,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(nike|adidas|puma|samsung|apple|xiaomi|sony|dyson|lululemon|supreme|rolex|nike)\\b"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(nike|adidas|puma|samsung|apple|xiaomi|sony|dyson|lululemon|supreme|rolex|ford|toyota|volkswagen|chevrolet|fiat|huawei|xiaomi|amazon)\\b"
         }
       ],
       "severity": "high",
@@ -33,13 +33,13 @@
       "source_excerpt": "[601] Anúncio removido por violação de contrafação e/ou marca registrada (Trademark/Counterfeit). Severidade: Alta. Gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "trademark",
         "counterfeit",
         "signal_only"
       ],
-      "notes": "The keyword list is a SCREENING trigger, not a determination. 'Apple Watch' in a listing for a watch-shaped accessory may be a legitimate compatibility statement (see SBR-IP-006). Human review must check whether the mark is used nominatively (compatibility) or as a brand claim."
+      "notes": "The keyword list is a SCREENING trigger, not a determination. 'Apple Watch' in a listing for a watch-shaped accessory may be a legitimate compatibility statement (see SBR-IP-006). Human review must check whether the mark is used nominatively (compatibility) or as a brand claim. | 2026-10-27: 品牌表补充汽车与家电品牌（Ford / Toyota / Volkswagen / Chevrolet / Fiat / Huawei / Amazon）—— 原表无 Ford，导致 SBR-IP-006 兼容性豁免规则对真实误报案例（Ford Focus 兼容性描述，见 tests/test_plan.md §5.5）根本不会触发，豁免路径未被检验。"
     },
     {
       "rule_id": "SBR-IP-002",
@@ -80,7 +80,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(mochila(s)?|bolsa(s)?\\s+de\\s+[êe]?(costas|m[ãa]o)|bag(s)?\\s+(com|de)\\s+logo)(?![a-zA-Zà-ÿÀ-ß])"
+          "value": "(?i)(?<!\\w)((mochila(s)?|bolsa(s)?\\s+de\\s+[êe]?(costas|m[ãa]o)|bag(s)?).{0,80}(logo|logotipo|iFood|Rappi|99Food|delivery)|(?<!\\w)(logo|logotipo|iFood|Rappi|99Food|delivery).{0,80}(mochila(s)?|bolsa(s)?|bag(s)?))(?!\\w)"
         }
       ],
       "severity": "medium",
@@ -94,12 +94,13 @@
       "source_excerpt": "[349] Proibida a venda de mochilas/bags com logo de aplicativos de entrega. Severidade: Baixa. Não gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "trademark",
         "logo",
         "platform_code_349"
-      ]
+      ],
+      "notes": "2026-10-27: 收敛触发条件 —— 原正则只要出现 'mochila'/'bolsa' 即命中，与平台原文「mochilas/bags **com logo** de aplicativos de entrega」不符，会把普通背包判为违规（实测误报）。改为包类词与 logo/送餐平台线索必须同现。"
     },
     {
       "rule_id": "SBR-IP-004",
@@ -180,7 +181,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(nike|adidas|puma|samsung|apple|xiaomi|sony|dyson|lululemon|rolex)\\b"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(nike|adidas|puma|samsung|apple|xiaomi|sony|dyson|lululemon|rolex|ford|toyota|volkswagen|chevrolet|fiat|huawei|amazon)\\b"
         }
       ],
       "severity": "info",
@@ -192,13 +193,13 @@
       "source_excerpt": "Art. 132. O titular da marca não poderá: - impedir que comerciantes ou distribuidores utilizem sinais distintivos que lhes são próprios, juntamente com a marca do produto, na sua promoção e comercialização; II - impedir que fabricantes de acessórios utilizem a marca para indicar a destinação do produto, desde que obedecidas as práticas leais de concorrência;",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "false_positive_guard",
         "nominative_use",
         "compatibility"
       ],
-      "notes": "Counter-rule to SBR-IP-001. When this rule fires alongside an IP brand rule, the finding confidence is downgraded and the case routed to human review with the compatibility explanation attached — it is NOT a pass on its own, because the surrounding text may still contain a brand claim."
+      "notes": "Counter-rule to SBR-IP-001. When this rule fires alongside an IP brand rule, the finding confidence is downgraded and the case routed to human review with the compatibility explanation attached — it is NOT a pass on its own, because the surrounding text may still contain a brand claim. | 2026-10-27: 品牌表与 SBR-IP-001 同步补充汽车品牌，使兼容性豁免规则覆盖真实误报案例（Ford Focus）。"
     },
     {
       "rule_id": "SBR-IP-007",

@@ -87,7 +87,7 @@
       "group": "G1",
       "module": "integrator",
       "parallel_group": "G1",
-      "status": "pending",
+      "status": "completed",
       "depends_on": [
         "TASK-FRAME-01"
       ],
@@ -112,10 +112,11 @@
         "依赖图中无环",
         "并行组内任务之间无路径重叠"
       ],
-      "note": "本轮已部分完成：模块目录、任务说明与并行计划已生成于同一轮（见各 TASK_*.md）",
+      "note": "2026-10-27 复核：声明的 4 项交付物此前仅 3 项实际存在，tests/fixtures/ 缺失；已补齐并通过 Schema 与夹具一致性校验。",
       "objective": "建立统一测试与集成验收标准，并让框架自检可执行。",
       "workspace": "/tmp/sbrca_work/TASK-FRAME-02/",
-      "contract_version": "1.0.0"
+      "contract_version": "1.0.0",
+      "actual_result": "7 个模块目录骨架 + 9 份任务说明 + 并行执行计划 + tests/fixtures/ 共享夹具（7 个文件）全部就位。2026-10-27 复核补齐了缺失的 tests/fixtures/。"
     },
     {
       "task_id": "TASK-POLICY-01",
@@ -464,8 +465,8 @@
   ],
   "summary": {
     "total": 10,
-    "completed": 1,
-    "pending": 9,
+    "completed": 2,
+    "pending": 8,
     "by_group": {
       "G0": 1,
       "G1": 1,

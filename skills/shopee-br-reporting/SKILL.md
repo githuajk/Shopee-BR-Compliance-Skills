@@ -143,7 +143,7 @@ verdict = max(所有结果的 verdict)   顺序: PASS < REVISE < REVIEW < BLOCK
 
 | 类别 | 用例 | 断言 |
 |---|---|---|
-| 聚合 | `flag` + `require_evidence` | verdict=REVIEW，action=`require_evidence` |
+| 聚合 | `flag_for_review` + `require_evidence` | verdict=REVIEW，action=`require_evidence` |
 | 聚合 | `require_evidence` + `block` | verdict=BLOCK，action=`block` |
 | 聚合 | `allow` + `revise` | verdict=REVISE，action=`revise` |
 | 不降级 | `block` + `allow` | action 仍为 `block` |

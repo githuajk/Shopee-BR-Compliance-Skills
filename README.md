@@ -178,14 +178,15 @@ FRAME-01 → FRAME-02 → {POLICY-01, INGEST-01} → {LISTING-01, DUP-01, IP-01,
 
 ## 归档区
 
-第一阶段（Phase 0/1）产物与原型实现已移入 `.archive/phase0_prototype/`，**保留不删**，需要时可查阅或回迁。
+第一阶段（Phase 0/1）的原型实现**已核实从未入库**（git 全历史无该路径，本机与同主机另一仓库
+共 30593 条目零匹配，6 项检查见 `.archive/README.md` §2.1）。归档目录当前为空，
+本项目**不依赖任何原型参考实现** —— 模块行为以冻结契约为唯一权威依据。
 
 ```bash
-cat .archive/phase0_prototype/docs/RESEARCH_REPORT.md    # 官方政策调研报告
-cp  .archive/phase0_prototype/docs/RESEARCH_REPORT.md docs/   # 单文件回迁
+cat .archive/README.md    # 核实记录 + 归档区使用约定
 ```
 
-详见 `.archive/README.md`。
+详见 `.archive/README.md` §2（缺失核实）与 §3（原型的替代实现路径）。
 
 ---
 
@@ -197,12 +198,24 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 
 | 步骤 | 检查 | 结果 |
 |---|---|---|
-| 0/5 | 框架自检（`tools/framework_check.py`） | **303 项全通过** |
-| 1/5 | 公共契约校验（`tools/validate_contracts.py`） | **18 项全通过** |
-| 2/5 | 规则库 + 词库 Schema 校验 | 0 错误 0 警告 |
-| 3/5 | 引文逐字核验 | **50/50 通过** |
-| 4/5 | 共享夹具校验 | 9 商品 / 3 案件 / 8 场景全通过 |
-| 5/5 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **368 项全通过** |
+| 0/6 | 框架自检（`tools/framework_check.py`） | **291 项全通过** |
+| 1/6 | 公共契约校验（`tools/validate_contracts.py`） | **18 项全通过** |
+| 2/6 | 规则库 + 词库 Schema 校验 | 0 错误 0 警告 |
+| 3/6 | 引文逐字核验 | **50/50 通过** |
+| 4/6 | 规则触发正则可编译性（`tools/check_rule_regex.py`） | **50 条规则 / 36 条正则全部可编译，无逻辑自指** |
+| 5/6 | 共享夹具校验（Schema） | 90 商品 / 10 案件 全通过 |
+| 5b/6 | 夹具与规则库一致性（`tools/verify_fixtures.py`） | **108 条夹具-规则断言全通过** |
+| 6/6 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **520 项全通过** |
+
+### 校验工具的分工
+
+| 工具 | 抓什么 |
+|---|---|
+| `verify_citations.py` | 引文是否逐字出现在 `research/raw/` 抓取件中（不编造来源） |
+| `check_rule_regex.py` | 规则正则能否编译；`requires_input` 是否自指；数值算子是否作用于文本字段 |
+| `verify_fixtures.py` | 夹具声明的期望是否成立（正例真命中、反例真不命中、豁免真生效） |
+| `task_pack_check.py` | 任务包枚举是否与冻结契约一致；文档中 `verdict` 取值是否合法 |
+| `framework_check.py` | 框架不变量；文档内部路径引用是否悬空 |
 
 ---
 
@@ -216,4 +229,4 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 
 分发波次 2（`TASK-INGEST-01` 建议优先，产出是其余模块的输入）与 `TASK-POLICY-01`。
 
-待裁定：`docs/SBRCA-P0-004_open_questions.json`（5 冲突 + 9 问题，每项带 `default_if_no_answer`），已随第一阶段归档 —— 查阅 `.archive/phase0_prototype/docs/SBRCA-P0-004_open_questions.json`。
+待裁定：`docs/SBRCA-P0-004_open_questions.json`（5 冲突 + 9 问题，每项带 `default_if_no_answer`），该文件**现存于 `docs/`**。

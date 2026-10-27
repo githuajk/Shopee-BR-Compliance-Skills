@@ -6,7 +6,7 @@
 | 状态 | **Draft — 骨架，内容待 TASK-LISTING-01 填充** |
 | 创建/更新 | 2026-10-27 |
 | 适用范围 | 政策时效性管理：规则过期、失效与重新核验 |
-| 相关文档 | `references/audit_semantics.md` §3、`.archive/phase0_prototype/docs/adr/SBRCA-ADR-0006`（归档） |
+| 相关文档 | `references/audit_semantics.md` §3、`contracts/risk_action_matrix.json` |
 | 未决事项 | 过期规则的自动降级机制待实现 |
 
 ---
@@ -16,8 +16,8 @@
 | `status` | 含义 | 是否产出结论 |
 |---|---|---|
 | `active` | 已核验且在有效期内 | ✅ |
-| `stale` | 超过核查有效期 | ⚠️ 只产出 `flag`，不产出 `block` |
-| `unverified` | 引文未核验通过 | ⚠️ 只产出 `flag` |
+| `stale` | 超过核查有效期 | ⚠️ 只产出 `flag_for_review`，不产出 `block` |
+| `unverified` | 引文未核验通过 | ⚠️ 只产出 `flag_for_review` |
 | `deprecated` | 已被政策取代 | ❌ 不产出结论 |
 | `draft` | 编写中 | ❌ 不产出结论 |
 

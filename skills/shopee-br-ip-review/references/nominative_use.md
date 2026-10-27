@@ -45,8 +45,8 @@ Peça de reposição para <Marca> <Modelo>
   ↓
 判断上下文：是「兼容性/用途」还是「品质/来源」？
   ↓
-用途 → 指示性使用 → verdict = pass（或 info + 提示需标注"非授权"）
-来源/品质 → 混淆性使用 → verdict = signal + 人工复核
+用途 → 指示性使用 → `verdict = PASS`（或 info 风险 + 提示需标注"非授权"）
+来源/品质 → 混淆性使用 → `confidence = signal` + 人工复核
 ```
 
 ## 5. 特别注意

@@ -94,10 +94,13 @@ shopee-br-compliance-agent/
 ├── rules/                        规则库（按模块 owner 划分）
 ├── lexicon/                      词库
 ├── data/schema/                  Schema（公共，冻结）
-├── src/                          参考实现
 ├── research/                     调研材料
 └── docs/                         项目文档
 ```
+
+> **第一阶段原型（`src/compliance_agent/`）已核实从未入库**（见 `.archive/README.md` §2.1），
+> 本项目不依赖原型参考实现 —— 模块行为以 `contracts/**` 为唯一权威依据。
+> `src/` 目录当前不存在，也不预留。
 
 ### 3.2 文件所有权矩阵
 
@@ -116,7 +119,8 @@ shopee-br-compliance-agent/
 | `data/schema/**` | 集成 Agent | 只读（需改则提建议） |
 | `research/**` | `shopee-br-policy-research` | 只读（其他可提交抓取请求） |
 | `tests/fixtures/**` | 集成 Agent | 只读（需改则提建议） |
-| `src/**` | 集成 Agent | 只读（原型参考，非生产代码） |
+
+> 第一阶段原型的 `src/**` 已核实不存在（`.archive/README.md` §2.1），故不在所有权矩阵中预留。
 
 ### 3.3 规则文件归属
 

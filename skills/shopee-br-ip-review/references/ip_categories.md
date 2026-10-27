@@ -6,7 +6,7 @@
 | 状态 | **Draft — 骨架，内容待 TASK-IP-01 填充** |
 | 创建/更新 | 2026-10-27 |
 | 适用范围 | 知识产权四类的区分与各自的检测路径 |
-| 相关文档 | `contracts/risk_action_matrix.json`、`.archive/phase0_prototype/rules/02_ip_trademark_copyright.json`（归档） |
+| 相关文档 | `contracts/risk_action_matrix.json`、`rules/02_ip_trademark_copyright.json` |
 | 未决事项 | 外观设计与专利的检测路径待补充 |
 
 ---
@@ -27,7 +27,7 @@
 理由：把"疑似侵权"直接认定为"侵权"，既缺乏法律依据，也可能造成错误下架与商誉损害。
 
 ```
-IP 命中 → verdict = signal
+IP 命中 → `confidence = signal`（硬约束 H1）
        → action = require_evidence 或 escalate_legal
        → requires_human_review = true
        → 永远不产生 block
