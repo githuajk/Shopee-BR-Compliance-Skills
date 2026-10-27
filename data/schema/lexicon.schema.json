@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shopee-br-compliance-agent.local/schema/lexicon.schema.json",
+  "title": "Lexicon",
+  "description": "A keyword-group lexicon. Groups are screening buckets; a hit is a signal, never a finding on its own.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["groups", "group_meta", "stats"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "name": {"type": "string"},
+    "description": {"type": "string"},
+    "last_updated": {"type": "string", "format": "date"},
+    "last_verified": {"type": "string", "format": "date"},
+    "usage": {"type": "string"},
+    "matching_notes": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "groups": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "items": {"type": "string", "minLength": 2}
+      }
+    },
+    "group_meta": {
+      "type": "object",
+      "description": "每组元信息：标签、风险提示、来源层级、备注。键必须与 groups 的键一一对应。",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "risk_hint", "source_tier"],
+        "properties": {
+          "label": {"type": "string", "minLength": 1},
+          "risk_hint": {
+            "type": "string",
+            "enum": ["prohibited", "restricted", "ip_signal", "listing_violation"]
+          },
+          "source_tier": {
+            "type": "string",
+            "enum": ["platform_official", "law", "internal_risk", "unverified"]
+          },
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["group_count", "term_count"],
+      "properties": {
+        "group_count": {"type": "integer", "minimum": 1},
+        "term_count": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}
