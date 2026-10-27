@@ -27,6 +27,15 @@ IP_CATEGORIES = frozenset({"ip_trademark", "ip_copyright", "ip_design", "ip_pate
 #: 默认规则文件（仓库根相对）
 DEFAULT_RULE_FILE = os.path.join("rules", "02_ip_trademark_copyright.json")
 
+#: 只读引用的规则文件 —— 归属 `shopee-br-duplicate-detection`，
+#: 但**授权完整性**是 IP 判定的必要维度（品牌商品是否有品牌方授权）。
+#: `contracts/file_ownership.json` 已声明本模块对该文件**只读**。
+#: 本模块只从中取 `SBR-AU-001`（授权缺口），不修改该文件。
+READONLY_RULE_FILE = os.path.join("rules", "04_cases_relist_authorization.json")
+
+#: 从只读文件里取用的规则 ID
+READONLY_RULE_IDS = ("SBR-AU-001",)
+
 
 class RuleView:
     """归一化后的规则视图。"""
@@ -195,6 +204,11 @@ def load_rules(rules=None, root: str | None = None):
             continue
         views.append(_view_from_flat(raw))
 
+    # --- 只读引用的授权规则 ---
+    # 授权完整性是 IP 判定的必要维度（品牌商品是否有品牌方书面授权），
+    # 该规则归属 `shopee-br-duplicate-detection`，本模块**只读**引用。
+    views.extend(_load_readonly_authorization(root, errors))
+
     if not views:
         errors.append({
             "stage": "rule_loading",
@@ -210,3 +224,46 @@ def rule_version(views: list[RuleView]) -> str:
     versions = [v.version for v in views if isinstance(v.version, int)]
     highest = max(versions) if versions else 0
     return f"sbr-ip-rules/{DEFAULT_RULE_FILE.split('/')[-1]}@{highest}"
+
+
+def _load_readonly_authorization(root: str | None, errors: list[dict]) -> list[RuleView]:
+    """从只读引用的规则文件里取授权规则。
+
+    该文件归属 `shopee-br-duplicate-detection`；本模块只**读**它，
+    不修改（`contracts/file_ownership.json` 已声明此只读权限）。
+    读不到时如实记 warning —— 不因为只读文件缺失就判定无风险。
+    """
+    path = os.path.join(root or repo_root(), READONLY_RULE_FILE)
+    try:
+        with open(path, encoding="utf-8") as handle:
+            document = json.load(handle)
+    except (OSError, ValueError) as exc:
+        errors.append({
+            "stage": "rule_loading",
+            "severity": "warning",
+            "message": (f"read-only authorisation rule file could not be read "
+                        f"or parsed: {exc}; the authorisation dimension could "
+                        f"not be evaluated"),
+            "context": {"path": path},
+        })
+        return []
+
+    wanted = set(READONLY_RULE_IDS)
+    views: list[RuleView] = []
+    for raw in document.get("rules") or []:
+        if not isinstance(raw, dict):
+            continue
+        if raw.get("rule_id") not in wanted:
+            continue
+        views.append(_view_from_flat(raw))
+    missing = wanted - {view.rule_id for view in views}
+    if missing:
+        errors.append({
+            "stage": "rule_loading",
+            "severity": "warning",
+            "message": (f"authorisation rule(s) {sorted(missing)} were not found "
+                        f"in the read-only file; the authorisation dimension "
+                        f"could not be evaluated"),
+            "context": {"path": path},
+        })
+    return views

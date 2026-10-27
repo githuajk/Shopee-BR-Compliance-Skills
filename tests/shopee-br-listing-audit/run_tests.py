@@ -610,7 +610,13 @@ def test_h1_ip_never_deterministic() -> None:
         "trigger_conditions": [{"field": "title", "operator": "regex",
                                 "value": "copos"}],
     })
-    ip_engine = ListingAuditEngine(root=ROOT, options={"rules": [ip_injected]})
+    # `IP` 前缀不在本模块的 OWNED_PREFIXES 里（IP 属 ip-review 模块），
+    # 所以要显式放开前缀过滤，否则注入的规则根本不会被加载 ——
+    # 那样断言就成了空转，永远「通过」。
+    ip_engine = ListingAuditEngine(root=ROOT, options={
+        "rules": [ip_injected],
+        "rule_prefixes": tuple(OWNED_PREFIXES) + ("IP",),
+    })
     ip_product = {
         "product_id": "H1-IP-1",
         "internal_sku": "H1-IP-1",
@@ -633,8 +639,10 @@ def test_h1_ip_never_deterministic() -> None:
           ip_result["requires_human_review"] is True)
 
     # 本模块**不产生** IP 类结论 —— 全量结果里不得出现 IP 规则引用
+    # `violation_products.json` 的 `products[]` 直接就是商品对象
+    # （夹具没有 `product` 包装层）。
     all_results = audit_listing(make_skill_input(
-        [c["product"] for c in load_shared("violation_products.json")["products"]]
+        load_shared("violation_products.json")["products"]
     ), root=ROOT)["results"]
     ip_refs = [ref["rule_id"] for r in all_results for ref in r["rule_refs"]
                if ref["rule_id"].startswith("SBR-IP-")]
@@ -663,6 +671,9 @@ def test_h2_blocking_requires_authoritative_active_rule() -> None:
         "trigger_conditions": [{"field": "title", "operator": "regex",
                                 "value": "copos"}],
     }
+    # 必须把注入规则真正传给引擎 —— 否则下面关于「降级」的断言
+    # 根本不会执行到那条规则，测试就成了空转。
+    engine = ListingAuditEngine(root=ROOT, options={"rules": [injected]})
     product = {
         "product_id": "H2-INJECT-1",
         "internal_sku": "H2-INJECT-1",
@@ -680,10 +691,14 @@ def test_h2_blocking_requires_authoritative_active_rule() -> None:
           str(sorted(fired)))
     if "SBR-PI-900" in fired:
         action = fired["SBR-PI-900"]["action"]
+        # H2 的要求是「不得产出阻断类动作」，不是「必须降级成某一个
+        # 特定动作」。引擎择优取的是矩阵允许的最强非阻断动作 ——
+        # critical 风险下是 `require_evidence`（比 flag_for_review 更强，
+        # 仍然不是阻断）。所以断言应检查「不是阻断类」且「在允许集合内」。
         check("internal_risk 规则的阻断动作被降级", action not in BLOCKING_ACTIONS,
               action)
-        check("internal_risk 规则降级为 flag_for_review",
-              action == "flag_for_review", action)
+        check("internal_risk 规则降级为非阻断的复核类动作",
+              action in ("require_evidence", "flag_for_review"), action)
         check("降级原因被记录",
               bool(fired["SBR-PI-900"].get("downgrade_reason")))
 
@@ -1008,9 +1023,82 @@ def test_injection_safety() -> None:
                 continue
             check(f"注入样本 {case['case_id']} 不命中 {rule_id}",
                   rule_id not in fired, f"fired={sorted(fired)}")
-        # 注入文本不得改变动作上限
-        check(f"注入样本 {case['case_id']} 未产生阻断类动作",
-              result["action"] not in BLOCKING_ACTIONS, result["action"])
+
+    # 注入文本不得改变判定结论。
+    #
+    # **不能**断言「注入样本不产生阻断类动作」—— 夹具 INJ-01 的商品
+    # 本身就是「防弹衣 + 训练弹药」，SBR-PI-001 命中并 block 是**正确**
+    # 行为（夹具 note 明写「注入文本不得让禁售规则失效」）。
+    #
+    # 正确的测法是**对照实验**：把注入载荷替换成**等长的中性填充**，
+    # 再跑一次。两次的命中规则集与动作必须完全一致 —— 只有载荷的
+    # **内容**变了，长度、其它字段全部不变。
+    #
+    # 为什么必须等长：有些规则按字段长度触发（如 SBR-LV-006
+    # `description length_lt 120`）。若直接删掉载荷，描述变短会让
+    # 该规则**多命中** —— 差异来自长度而非注入内容，测的就不是
+    # 「注入是否影响判定」了。
+    for case in cases:
+        case_id = case["case_id"]
+        payload = case.get("payload")
+        if not payload:
+            continue
+        product = case["product"]
+        baseline = _neutralise_payload(product, payload)
+        if baseline is None:
+            continue
+        with_payload = audit_listing(make_skill_input([product]), root=ROOT)
+        without = audit_listing(make_skill_input([baseline]), root=ROOT)
+        r_with = with_payload["results"][0]
+        r_without = without["results"][0]
+        fired_with = {ref["rule_id"] for ref in r_with["rule_refs"]}
+        fired_without = {ref["rule_id"] for ref in r_without["rule_refs"]}
+        check(f"注入样本 {case_id} 载荷换成中性文本后命中规则集不变",
+              fired_with == fired_without,
+              f"带载荷={sorted(fired_with)} 中性={sorted(fired_without)}")
+        check(f"注入样本 {case_id} 载荷换成中性文本后动作不变",
+              r_with["action"] == r_without["action"],
+              f"带载荷={r_with['action']} 中性={r_without['action']}")
+        check(f"注入样本 {case_id} 载荷换成中性文本后 verdict 不变",
+              r_with["verdict"] == r_without["verdict"],
+              f"带载荷={r_with['verdict']} 中性={r_without['verdict']}")
+        # 对照组必须真的只差载荷内容 —— 否则上面三条断言是空转
+        check(f"注入样本 {case_id} 对照实验有效（载荷在输入里）",
+              payload in json.dumps(product, ensure_ascii=False),
+              "载荷未出现在商品数据中")
+
+
+def _neutralise_payload(product: dict, payload: str) -> dict | None:
+    """把注入载荷替换成**等长**的中性填充文本，返回对照商品。
+
+    等长是关键：按长度触发的规则（如 `description length_lt 120`）
+    在两组输入下必须给出相同结论，否则差异来自长度而非载荷内容。
+
+    返回 None 表示载荷不在商品数据里 —— 无法构造对照。
+    """
+    filler = "x" * len(payload)
+    clone = json.loads(json.dumps(product, ensure_ascii=False))
+    replaced = False
+
+    def walk(node):
+        nonlocal replaced
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if isinstance(value, str) and payload in value:
+                    node[key] = value.replace(payload, filler)
+                    replaced = True
+                else:
+                    walk(value)
+        elif isinstance(node, list):
+            for index, value in enumerate(node):
+                if isinstance(value, str) and payload in value:
+                    node[index] = value.replace(payload, filler)
+                    replaced = True
+                else:
+                    walk(value)
+
+    walk(clone)
+    return clone if replaced else None
 
 
 # ---------------------------------------------------------------------------

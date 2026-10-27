@@ -385,8 +385,15 @@ class ListingAuditEngine:
         * `confirmed` —— 结构性字段事实 + 权威来源 + `active` 规则。
         * `likely` —— 权威来源的文案正则命中。
         * `signal` —— 非权威来源 / 非 `active` 规则 / 仅词库信号。
+
+        **硬约束 H1：IP 四类的结论恒为 `signal`。**
+        IP 类是「筛查信号」，不是已确立的侵权判定 —— 只有权利人投诉、
+        书面授权或平台投诉通知才能确立侵权。关键词或 logo 命中只够
+        触发人工复核，不够得出 `likely` / `confirmed`。
         """
         tier = (rule.get("source") or {}).get("tier")
+        if rules_mod.is_ip_rule(rule):
+            return "signal"
         if rule.get("status") != "active" or tier not in AUTHORITATIVE_TIERS:
             return "signal"
         operators = {item.get("operator") for item in details}

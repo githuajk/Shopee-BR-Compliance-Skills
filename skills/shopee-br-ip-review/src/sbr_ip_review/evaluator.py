@@ -191,6 +191,11 @@ def evaluate_rule(product: dict, rule: dict):
         matched, condition_unevaluable, detail = condition_matches(product, condition)
         if condition_unevaluable:
             unevaluable = True
+            # 记录**条件自己依赖的字段** —— 否则复核者只看到
+            # 「missing: unknown field」，不知道到底缺什么。
+            field = condition.get("field")
+            if field and field not in missing_fields:
+                missing_fields.append(field)
             continue
         if not matched:
             return False, unevaluable, details, missing_fields
