@@ -63,8 +63,8 @@ lexicon/**
 |---|---|---|
 | `TASK-LISTING-01` | pending | 见 tasks/task_registry.json |
 | `TASK-IP-01` | pending | 见 tasks/task_registry.json |
-| `TASK-DUP-01` | pending | 见 tasks/task_registry.json |
-| `TASK-REPORT-01` | pending | 见 tasks/task_registry.json |
+| `TASK-DUP-01` | ✅ 已完成 | 见 tasks/task_registry.json |
+| `TASK-REPORT-01` | ✅ 已完成 | 见 tasks/task_registry.json |
 | `TASK-INGEST-01` | ✅ 已完成 | 见 tasks/task_registry.json |
 
 **开工前确认所有依赖已完成。** 未完成则等待，不要基于假设开工。

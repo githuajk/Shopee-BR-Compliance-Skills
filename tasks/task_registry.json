@@ -256,7 +256,7 @@
       "split_request": "rules/03_listing_violations_duplicates.json 含 LV（属本模块）与 DUP（属 duplicate-detection）两组前缀。本模块只提拆分建议，不直接改该文件。",
       "objective": "建立商品内容合规审核能力：检查标题、详情、属性、图片与宣传内容中的禁售、受限、刊登质量与药品健康类风险，产出可追溯的结论。",
       "workspace": "/tmp/sbrca_work/TASK-LISTING-01/",
-      "note": "rules/03 中 LV 前缀归本模块，DUP 前缀归 duplicate-detection —— 两者都只提拆分建议，不并发改写该文件。",
+      "note": "2026-10-27 部分完成，子 Agent 因 token 用尽中止；已有产出已入库，作为续做起点。",
       "contract_version": "1.0.0"
     },
     {
@@ -265,7 +265,7 @@
       "group": "G3",
       "module": "shopee-br-duplicate-detection",
       "parallel_group": "G3",
-      "status": "pending",
+      "status": "completed",
       "depends_on": [
         "TASK-POLICY-01",
         "TASK-INGEST-01"
@@ -304,8 +304,9 @@
       "split_request": "同 TASK-LISTING-01：rules/03 的 DUP 前缀部分归本模块，需集成阶段拆分。",
       "objective": "建立重复刊登与违规重发检查能力：识别同店重复、跨店同款，核查历史违规案件、处罚点与授权状态，判定重发是否应被冻结。",
       "workspace": "/tmp/sbrca_work/TASK-DUP-01/",
-      "note": "rules/03 中 DUP 前缀归本模块，LV 前缀归 listing-audit —— 两者都只提拆分建议，不并发改写该文件。",
-      "contract_version": "1.0.0"
+      "note": "2026-10-27 实现完成。",
+      "contract_version": "1.0.0",
+      "actual_result": "重复刊登轴判定 + 违规重发/冻结重发 + 账户处罚点，587 项测试全通过。交付说明见 skills/shopee-br-duplicate-detection/DELIVERY.md。"
     },
     {
       "task_id": "TASK-IP-01",
@@ -347,7 +348,7 @@
       ],
       "objective": "建立知识产权与授权风险筛查能力：区分商标、版权、外观设计、专利四类风险，区分指示性使用与混淆性使用，核查品牌授权完整性。",
       "workspace": "/tmp/sbrca_work/TASK-IP-01/",
-      "note": "rules/04 中 AU 前缀归 duplicate-detection，本模块只读引用，不改写。",
+      "note": "2026-10-27 部分完成，子 Agent 因 token 用尽中止；已有产出已入库，作为续做起点。",
       "contract_version": "1.0.0"
     },
     {
@@ -356,7 +357,7 @@
       "group": "G3",
       "module": "shopee-br-reporting",
       "parallel_group": "G3",
-      "status": "pending",
+      "status": "completed",
       "depends_on": [
         "TASK-POLICY-01"
       ],
@@ -385,7 +386,9 @@
       ],
       "objective": "建立审核结果汇总与报告生成能力：把多模块结果按契约聚合，生成证据可追溯的 Markdown 报告。",
       "workspace": "/tmp/sbrca_work/TASK-REPORT-01/",
-      "contract_version": "1.0.0"
+      "contract_version": "1.0.0",
+      "actual_result": "聚合引擎（verdict_aggregation、模块交接、报告渲染）、契约矩阵只读视图、210 项测试全通过。交付说明见 skills/shopee-br-reporting/DELIVERY.md。",
+      "note": "2026-10-27 实现完成。"
     },
     {
       "task_id": "TASK-MAIN-01",
@@ -468,8 +471,8 @@
   ],
   "summary": {
     "total": 10,
-    "completed": 4,
-    "pending": 6,
+    "completed": 6,
+    "pending": 4,
     "by_group": {
       "G0": 1,
       "G1": 1,

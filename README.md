@@ -107,10 +107,10 @@ frontmatter（name / description）
 ```
 TASK-POLICY-01      官方政策研究与来源核查        G2  ✅ 已完成 2026-10-27
 TASK-INGEST-01      多格式资料读取与标准化        G2  ✅ 已完成 2026-10-27
-TASK-LISTING-01     商品内容合规审核              G3
-TASK-DUP-01         重复刊登与违规重发检查         G3
-TASK-IP-01          知识产权与授权风险筛查         G3
-TASK-REPORT-01      审核结果汇总与报告生成         G3
+TASK-LISTING-01     商品内容合规审核              G3  🔶 部分完成（产出已入库，待续做）
+TASK-DUP-01         重复刊登与违规重发检查         G3  ✅ 已完成 2026-10-27
+TASK-IP-01          知识产权与授权风险筛查         G3  🔶 部分完成（产出已入库，待续做）
+TASK-REPORT-01      审核结果汇总与报告生成         G3  ✅ 已完成 2026-10-27
 TASK-MAIN-01        主 Skill                      G4
 TASK-INTEGRATE-01   集成验收                      G5
 TASK-FRAME-02       测试与验收标准               ✅ 已完成
