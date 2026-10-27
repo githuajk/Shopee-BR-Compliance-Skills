@@ -1,16 +1,15 @@
-# 续做说明 —— G3 两项未完成模块
+# 续做说明 —— G3 完成，G4/G5 待启动
 
 | 字段 | 值 |
 |---|---|
 | 日期 | 2026-10-27 |
-| 状态 | **TASK-LISTING-01 与 TASK-IP-01 部分完成，待续做** |
-| 原因 | 子 Agent 因 Token Plan 用量上限（HTTP 429）中止 |
-| 已入库 | commit `2f156c6`（部分产出）、`b6fd3a9`（注册表与 README 同步） |
-| 续做方式 | 从磁盘现状接着做，**不要重写已有文件** |
+| 状态 | **G2 + G3 全部完成（7/10）**，下一步是 G4（主 Skill）与 G5（集成验收） |
+| 最近一次中断原因 | 子 Agent 因 Token Plan 用量上限（HTTP 429）中止 |
+| 已入库 | 见 `git log --oneline -10`；远端 `main` 与本地同步 |
 
 ---
 
-## 1. 当前进度一览
+## 1. 当前进度
 
 | 任务 | 模块 | 状态 | 自有测试 |
 |---|---|---|---|
@@ -18,133 +17,67 @@
 | TASK-FRAME-02 | — | ✅ 完成 | — |
 | TASK-POLICY-01 | `shopee-br-policy-research` | ✅ 完成 | 1467 项通过 |
 | TASK-INGEST-01 | `shopee-br-data-ingestion` | ✅ 完成 | 201 项通过 |
+| TASK-LISTING-01 | `shopee-br-listing-audit` | ✅ 完成 | 383 项通过 |
 | TASK-DUP-01 | `shopee-br-duplicate-detection` | ✅ 完成 | 587 项通过 |
+| TASK-IP-01 | `shopee-br-ip-review` | ✅ 完成 | 228 项通过 |
 | TASK-REPORT-01 | `shopee-br-reporting` | ✅ 完成 | 210 项通过 |
-| **TASK-LISTING-01** | `shopee-br-listing-audit` | 🔶 **部分完成** | ❌ 失败（`KeyError: 'product'`） |
-| **TASK-IP-01** | `shopee-br-ip-review` | 🔶 **部分完成** | ❌ 未开始（无测试文件） |
-| TASK-MAIN-01 | `shopee-br-compliance` | ⬜ 未开始 | — |
-| TASK-INTEGRATE-01 | — | ⬜ 未开始 | — |
+| **TASK-MAIN-01** | `shopee-br-compliance` | ⬜ **未开始（G4）** | — |
+| **TASK-INTEGRATE-01** | — | ⬜ **未开始（G5）** | — |
 
-注册表：`tasks/task_registry.json` → `summary: completed=6, pending=4`
-
----
-
-## 2. TASK-LISTING-01 —— 商品内容合规审核
-
-### 已有产出（勿重写）
-
-```
-skills/shopee-br-listing-audit/SKILL.md
-skills/shopee-br-listing-audit/references/audit_semantics.md
-skills/shopee-br-listing-audit/src/sbr_listing_audit/__init__.py
-skills/shopee-br-listing-audit/src/sbr_listing_audit/conditions.py
-skills/shopee-br-listing-audit/src/sbr_listing_audit/engine.py
-skills/shopee-br-listing-audit/src/sbr_listing_audit/fields.py
-skills/shopee-br-listing-audit/src/sbr_listing_audit/lexicon.py
-skills/shopee-br-listing-audit/src/sbr_listing_audit/matrix.py
-skills/shopee-br-listing-audit/src/sbr_listing_audit/pipeline.py
-skills/shopee-br-listing-audit/src/sbr_listing_audit/rules.py
-skills/shopee-br-listing-audit/src/sbr_listing_audit_cli.py
-tests/shopee-br-listing-audit/fixtures/listing_audit_rule_cases.json
-tests/shopee-br-listing-audit/run_tests.py
-```
-
-各文件职责：
-
-| 文件 | 职责 |
-|---|---|
-| `conditions.py` | 条件求值 |
-| `engine.py` | 规则引擎 |
-| `fields.py` | 字段提取 |
-| `lexicon.py` | 词库匹配（对接 `tools/scan_lexicon.py`） |
-| `matrix.py` | 契约矩阵只读视图 |
-| `pipeline.py` | 编排 |
-| `rules.py` | 规则装载 |
-
-### 当前阻塞点
-
-```bash
-$ env -u LD_LIBRARY_PATH python3 tests/shopee-br-listing-audit/run_tests.py
-KeyError: 'product'
-...
-- 注入的 internal_risk 规则被加载: ['SBR-LV-007']
-- 注入样本 INJ-01 未产生阻断类动作: block
-EXIT: 1
-```
-
-两个症状：
-
-1. **`KeyError: 'product'`** —— 规则条件或夹具期望的字段名与引擎实际产出的字段名不一致。
-   先确认 `rules/03_listing_violations_duplicates.json` 里 `LV-*` 规则的
-   `trigger` 引用了哪个字段，再对齐 `fields.py` 的产出。
-2. **INJ-01 产生了 `block`** —— 注入样本（`tests/fixtures/injection_cases.json`）
-   本应是**筛查信号**，却产出了阻断类动作。违反硬约束 H1（IP 类恒为
-   `signal` + 人工复核）与 H2（只有 `platform_official` / `law` 的
-   `active` 规则能 `block`）。`SBR-LV-007` 是 `internal_risk` 层级 ——
-   按矩阵它**不该**能产出 `block`。查 `matrix.py` 的 tier→action 上限。
-
-### 续做步骤
-
-1. 跑测试定位 `KeyError` 的具体位置（栈回溯指到 `conditions.py` 还是 `engine.py`）
-2. 修字段名对齐
-3. 修 `internal_risk` 层级产出 `block` 的问题（查 `matrix.py`）
-4. 补 `DELIVERY.md`（文件清单 / 测试真实输出 / 未解决问题 / 依赖说明 / 契约变更建议 / 自我约束核查）
-5. 确认 `SKILL.md` 的「待填内容」全部勾选、`references/` 无 TODO 占位
+注册表：`tasks/task_registry.json` → `summary: completed=7, pending=3`
+（含 FRAME-02 一项）
 
 ---
 
-## 3. TASK-IP-01 —— 知识产权与授权风险筛查
+## 2. 下一步：G4 —— TASK-MAIN-01（主 Skill）
 
-### 已有产出（勿重写）
+主 Skill **不实现新的判定逻辑** —— 它是编排层，显式读取各模块的
+`SKILL.md` 工作流并串联它们。
 
-```
-skills/shopee-br-ip-review/SKILL.md
-skills/shopee-br-ip-review/src/sbr_ip_review/__init__.py
-skills/shopee-br-ip-review/src/sbr_ip_review/evaluator.py
-skills/shopee-br-ip-review/src/sbr_ip_review/matrix.py
-skills/shopee-br-ip-review/src/sbr_ip_review/rules.py
-```
+关键约束（来自 `AGENT_COLLABORATION.md` 与 `PROJECT_RULES.md`）：
 
-**还缺**（对照 `tasks/TASK-IP-01.md` §11 交付物）：
-
-| 交付物 | 状态 |
+| # | 约束 |
 |---|---|
-| `skills/shopee-br-ip-review/src/sbr_ip_review/` 完整实现 | 🔶 4 / 约 8 文件 |
-| `skills/shopee-br-ip-review/src/sbr_ip_review_cli.py` | ❌ 缺 |
-| `tests/shopee-br-ip-review/run_tests.py` | ❌ 缺 |
-| `tests/shopee-br-ip-review/fixtures/` | ❌ 缺 |
-| `skills/shopee-br-ip-review/references/` 4 份填实 | ❌ 缺（骨架还在，状态是 Draft） |
-| `skills/shopee-br-ip-review/DELIVERY.md` | ❌ 缺 |
+| 1 | **不假设 Skill 之间存在自动调用能力** —— 主 Skill 必须显式读取 `skills/<module>/SKILL.md` 的工作流 |
+| 2 | 不得自行发明规则语义、枚举、引用 |
+| 3 | 不得执行任何线上处置（发布/删除/冻结/申诉）—— 只输出建议 |
+| 4 | 降级策略：模块不可用时必须显式记录 `known_gaps`，不能静默跳过 |
 
-### IP 模块的特殊约束（最容易违反）
+参考实现：`skills/shopee-br-compliance/` 已有骨架
+（`skills/shopee-br-compliance/SKILL.md` +
+`skills/shopee-br-compliance/references/routing.md`、
+`skills/shopee-br-compliance/references/execution_workflow.md`、
+`skills/shopee-br-compliance/references/integration_rules.md`、
+`skills/shopee-br-compliance/references/degradation.md`），references 多数仍是骨架，
+需要按真实模块实现填实。
 
-| 约束 | 内容 |
-|---|---|
-| **H1** | IP 类结论**恒为** `confidence: signal` + 强制人工复核。关键词/logo 命中只是筛查信号。仅权利人投诉、书面授权、平台投诉通知可确立侵权 |
-| **H2** | 只有 `platform_official` / `law` 的 `active` 规则能产出 `block` |
-| **H3** | 缺失必需输入必须记入 `unevaluated[]`，不得判通过 |
-| **H4** | `source.excerpt` 必须是 `research/raw/` 抓取件里的**逐字原文**（`tools/verify_citations.py` 核验） |
-
-**指示性使用豁免**（Lei 9.279/1996 art. 132 II）—— `SBR-IP-006`
-（`severity: info` / `decision: allow`）命中时应**覆盖** `SBR-IP-001` 的
-品牌词命中。「Compatível com Ford Focus 2015-2020」是指示性使用，
-不是侵权；平台针对的是把商标当商品品牌宣称。
-
-### 参考资产
-
-| 路径 | 内容 |
-|---|---|
-| `rules/02_ip_trademark_copyright.json` | IP 规则（`IP` 前缀），含 `SBR-IP-001/003/006` |
-| `tests/fixtures/ip_cases.json` | IP 场景夹具（最重要的输入） |
-| `tests/fixtures/injection_cases.json` | 提示注入夹具（IP 关键词常被用于注入） |
-| `research/raw/br_lei_propriedade_industrial_9279.txt` | 工业财产法（113KB） |
-| `research/raw/br_lei_direitos_autorais_9610.txt` | 著作权法（76KB） |
-| `research/raw/br_inpi_legislacao_marcas.txt` | INPI 商标立法（40KB） |
-| `research/violation_codes.json` | 平台 IP 违规码：商标 `[133]`、版权 `[602]`、外观设计 `[603]` |
+**待确认**：`TASK-MAIN-01` 的任务包在 `tasks/TASK-MAIN-01.md`
+（12 章节，自包含）。
 
 ---
 
-## 4. 续做时的通用约束
+## 3. 下一步：G5 —— TASK-INTEGRATE-01（集成验收）
+
+集成阶段要跨模块验证真实串联。已有可用的真实接口：
+
+| 模块 | CLI 入口 | 产出 |
+|---|---|---|
+| `shopee-br-data-ingestion` | `skills/shopee-br-data-ingestion/src/sbr_ingestion_cli.py` | `skill_input.json` / `products.json` / `audit_result.json` / `module_handoff.json` |
+| `shopee-br-listing-audit` | `skills/shopee-br-listing-audit/src/sbr_listing_audit_cli.py` | 同上 |
+| `shopee-br-duplicate-detection` | `skills/shopee-br-duplicate-detection/src/sbr_duplicate_detection_cli.py` | 同上 |
+| `shopee-br-ip-review` | `skills/shopee-br-ip-review/src/sbr_ip_review_cli.py` | 同上 |
+| `shopee-br-reporting` | `skills/shopee-br-reporting/src/sbr_reporting_cli.py` | 同上 |
+
+集成测试应当做**真实串联**（不是模拟）：ingestion 产出 → listing-audit /
+duplicate-detection / ip-review 消费 → reporting 汇总。
+
+`shopee-br-reporting` 已在交付时做过一次真实集成
+（39 条真实违规结果 → 39 目标聚合，0 错误，33 条去重规则），
+该用例已固化进它的测试 —— 可作为集成阶段的起点。
+
+---
+
+## 4. 通用约束（续做时必读）
 
 ### 环境
 
@@ -153,15 +86,15 @@ skills/shopee-br-ip-review/src/sbr_ip_review/rules.py
 env -u LD_LIBRARY_PATH python3 <script>
 ```
 
-纯标准库实现，不要引入第三方依赖。可用：`zipfile`（XLSX）、`csv`、
-`json`、`re`、`hashlib`、`pathlib`。
+纯标准库实现。可用：`zipfile`（XLSX）、`csv`、`json`、`re`、`hashlib`、
+`pathlib`。
 
 ### 路径白名单（越界即任务失败）
 
 | 任务 | 可写 |
 |---|---|
-| TASK-LISTING-01 | `skills/shopee-br-listing-audit/**`、`tests/shopee-br-listing-audit/**` |
-| TASK-IP-01 | `skills/shopee-br-ip-review/**`、`tests/shopee-br-ip-review/**` |
+| TASK-MAIN-01 | `skills/shopee-br-compliance/**`、`tests/shopee-br-compliance/**` |
+| TASK-INTEGRATE-01 | 见 `tasks/task_registry.json` 的 `allowed_paths` |
 
 **不要改**：`contracts/`、`rules/`、`lexicon/`、`tasks/`、`tools/`、
 `scripts/`、`docs/`、`manifest.json`、`README.md`。
@@ -171,10 +104,27 @@ env -u LD_LIBRARY_PATH python3 <script>
 - `contracts/audit_result.schema.json` —— `verdict` 只能
   `PASS` / `REVISE` / `REVIEW` / `BLOCK`；`confidence` 只能
   `signal` / `likely` / `confirmed`
-- `contracts/risk_action_matrix.json` —— `action` 查表决定，不得自造
-- **不得**把 `pass` / `flag` / `not_evaluated` / `signal` 当作契约 `verdict`
+- `contracts/risk_action_matrix.json` —— `action` 查表决定
+- `contracts/module_handoff.schema.json` —— 必需字段是
+  `handoff_id` / `from_module` / `to_module` / `request_id` /
+  `contract_version` / `produced_at` / `assumptions` / `known_gaps`。
+  **自造字段（如 `summary` / `notes`）会让校验失败** ——
+  该 Schema 是 `additionalProperties: false`。
 
-### 仓库协作
+### 硬约束
+
+| # | 内容 |
+|---|---|
+| **H1** | IP 类结论恒为 `confidence="signal"` + 强制人工复核。关键词/logo 命中只是筛查信号 |
+| **H2** | 只有 `platform_official` / `law` 的 `active` 规则能产出阻断类动作 |
+| **H3** | 缺失必需输入必须记入 `unevaluated[]`，动作升级为人工复核，**不得**判通过 |
+| **H4** | `source.excerpt` 必须是 `research/raw/` 抓取件里的**逐字原文**（`tools/verify_citations.py` 核验） |
+| **H5** | `evidence_refs` 只存路径，不存凭证内容 |
+| **N10** | 不得引用平台未公开的数值（如处罚点分值） |
+
+---
+
+## 5. 仓库协作
 
 **远端有另一个 Agent 在同仓库推 `main`。** 必须：
 
@@ -185,7 +135,9 @@ git merge origin/main --no-ff    # 绝不 force-push
 
 合并后**重跑完整校验** —— 合并两个分支可能让单独通过过的检查失败。
 
-### 每阶段收尾（必做）
+---
+
+## 6. 每阶段收尾（必做）
 
 ```bash
 cd /config/dianshang/Shopee-BR-Compliance-Skills
@@ -197,14 +149,29 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh             # 全库 10 步
 
 ---
 
-## 5. 每次提交前的自我核查
+## 7. 已踩过的坑（续做时注意）
+
+| # | 坑 | 正确做法 |
+|---|---|---|
+| 1 | 子 Agent 自报「测试通过」不可信 | 必须自己实跑每个模块的 `run_tests.py` |
+| 2 | 注入测试写成「不得产生阻断动作」 | 与夹具本意矛盾。正确测法是**对照实验**：把载荷换成**等长**中性填充再跑一次，比对命中规则集与动作 |
+| 3 | 删除注入载荷会让长度型规则多命中 | `description length_lt 120` 这类规则 —— 必须等长替换，不能删除 |
+| 4 | 注入的规则没被加载，断言空转 | 检查规则前缀过滤；用 `options={"rule_prefixes": (...)}` 放开 |
+| 5 | `module_handoff` 自造 `summary`/`notes` 字段 | Schema 是 `additionalProperties: false`，只能用契约里的字段 |
+| 6 | 未评估维度被判 PASS | H3：动作必须升级为 `flag_for_review`，risk_level 升为 `low` |
+| 7 | 未知算子时只报「missing: unknown field」 | 记录条件自己依赖的字段，复核者才知道缺什么 |
+| 8 | 指示性使用豁免没覆盖品牌宣称规则 | `NOMINATIVE_USE_EXEMPTED` 显式列出被覆盖的规则；豁免原因要写进 `reason` 可审计 |
+
+---
+
+## 8. 提交前自我核查
 
 - [ ] 模块测试实际跑过，**输出里的数字是真的**（不编造）
 - [ ] `SKILL.md` 七要素齐全，「待填内容」全部勾选
 - [ ] `references/` 无 TODO / 占位符
 - [ ] `source.excerpt` 逐字来自 `research/raw/` 抓取件
-- [ ] `source.last_verified` 填了核查日期
-- [ ] H1–H4 逐条自查（IP 模块重点查 H1）
+- [ ] H1–H5 + N10 逐条自查
 - [ ] 只改了白名单内的路径
 - [ ] `DELIVERY.md` 写明未解决问题与依赖
 - [ ] `scripts/check_all.sh` 全绿
+- [ ] 产出通过 `tools/validate_json.py` 对**真实**契约 Schema 的校验
