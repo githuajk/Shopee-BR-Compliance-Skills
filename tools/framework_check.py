@@ -345,7 +345,12 @@ def main():
         if not os.path.isdir(base):
             continue
         for dirpath, dirnames, files in os.walk(base):
-            dirnames[:] = [d for d in dirnames if d not in (".git", "__pycache__")]
+            # .archive/ 是历史归档区：其中的文档使用归档当时的相对路径约定
+            # （如 `docs/ARCHITECTURE.md`），与当前仓库根相对的解析方式不兼容。
+            # 归档内容保留但不参与活跃路径引用校验。
+            dirnames[:] = [
+                d for d in dirnames if d not in (".git", "__pycache__", ".archive")
+            ]
             for fn in files:
                 if fn.endswith(".md"):
                     doc_files.append(os.path.join(dirpath, fn))
