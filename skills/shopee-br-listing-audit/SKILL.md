@@ -148,7 +148,7 @@ Python 的 `\b` 在葡语重音元音旁不可靠（`at[óo]xico\b` 会吞 `Ócu
 
 ## 12. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.4.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.6.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 

@@ -160,7 +160,7 @@ verdict = max(所有结果的 verdict)   顺序: PASS < REVISE < REVIEW < BLOCK
 
 ## 15. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.4.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.6.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 

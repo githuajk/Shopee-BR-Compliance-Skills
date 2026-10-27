@@ -195,6 +195,14 @@ def main():
             check(f"{mod} SKILL.md 声明拥有 {p}", p in txt, "未声明")
         for p in spec["rule_prefixes"]:
             check(f"{mod} SKILL.md 声明前缀 {p}", p in txt, "未声明")
+        # 引用的 ownership_version 必须与契约文件里的当前值一致。
+        # 版本漂移会让读者以为自己读的是当前的所有权规则 ——
+        # 所有权变了（旧版本里的 owns 列表已失效）却看不出来。
+        m = re.search(r"ownership_version`\s*([\d.]+)", txt)
+        if m:
+            check(f"{mod} SKILL.md 的 ownership_version 与契约一致",
+                  m.group(1) == own.get("ownership_version"),
+                  f"SKILL.md 写 {m.group(1)}，契约是 {own.get('ownership_version')}")
 
     # --- 10 references 存在 ---
     section("6. references 文件存在")
