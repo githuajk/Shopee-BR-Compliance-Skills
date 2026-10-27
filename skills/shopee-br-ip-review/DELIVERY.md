@@ -193,7 +193,7 @@ ALL 44 Latin quote blocks (of 77 blocks) verified verbatim
 | # | 问题 | 影响 | 建议 |
 |---|---|---|---|
 | 1 | **专利维度是盲区**：`rules/02_ip_trademark_copyright.json` 无 `ip_patent` 规则，但平台有 `[604]`（Alta，扣分）、法律有 Lei 9.279/1996 Art. 183 | 专利类商品**完全不会被筛查**，也不会记入 `unevaluated[]` —— 复核者容易把「没命中」误读成「已排查」 | 已在 `ip_categories.md` §6 如实写明。要补齐需引入**权利要求比对**能力（关键词/logo 匹配对专利无意义），属能力建设非文档问题 |
-| 2 | `SBR-IP-006` 的品牌词表比 `SBR-IP-001` **少 `supreme`** | `Compatível com Supreme X` 不触发豁免 → `escalate_legal` / `BLOCK`（实测 5/90 组） | 在 `rules/02_ip_trademark_copyright.json` 里让两条规则共用同一份品牌词表 |
+| 2 | ~~`SBR-IP-006` 的品牌词表比 `SBR-IP-001` **少 `supreme`**~~ **已修复 2026-10-27** | 修复前：`Compatível com Supreme X` 不触发豁免 → `escalate_legal` / `BLOCK` | 已把 IP-006 的品牌词表对齐为 IP-001 的同一份，并新增回归断言（词表一致性 + 18 个品牌在指示性使用语境下均不阻断） |
 | 3 | 指示性使用豁免**不检查**被豁免规则命中的具体内容 | `brand` 字段填了 `Nike` + 描述有兼容性措辞 → 仍判 `allow` / `PASS` | 豁免逻辑应在抑制前检查 `SBR-IP-001` 的命中片段是否落在兼容性上下文内；本次已写进 `nominative_use.md` §8 作为复核必看项 |
 | 4 | `SBR-IP-008`（外观设计）与 `SBR-IP-005`（图片 logo）触发条件**完全相同** | 外观设计维度没有独立检测能力；两者必然同时命中或同时不命中 | 需要真正的外观设计相似度比对才能拆开 |
 | 5 | 品牌词表只有 18 个 | `Bosch` / `Philco` / `Electrolux` / `Brastemp` / `Consul` 等家电品牌完全不触发 | 扩充词表或改为外部维护的品牌清单 |

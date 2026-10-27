@@ -158,6 +158,53 @@ def test_nominative_use_exemption() -> None:
           f"fired={sorted(fired2)}")
 
 
+def test_brand_lists_aligned() -> None:
+    section("L3b 品牌词表一致性（SBR-IP-001 与 SBR-IP-006）")
+
+    # 两条规则必须共用**同一份**品牌词表。
+    # 否则「Compatível com <品牌>」这类指示性使用，对某些品牌能触发豁免、
+    # 对另一些不能 —— 同样的措辞因品牌不同而得出相反结论（误报）。
+    import re as _re
+    rules = load("rules/02_ip_trademark_copyright.json")["rules"]
+    by_id = {r["rule_id"]: r for r in rules}
+
+    def brand_set(rule_id: str) -> set:
+        for condition in by_id[rule_id]["trigger_conditions"]:
+            value = condition.get("value")
+            if isinstance(value, str) and "(?<![" in value:
+                match = _re.search(r"\((nike\|.*?)\)\\b", value)
+                if match:
+                    return set(match.group(1).split("|"))
+        return set()
+
+    b1 = brand_set("SBR-IP-001")
+    b6 = brand_set("SBR-IP-006")
+    check("两条规则的 brand 词表都解析到了", bool(b1) and bool(b6),
+          f"IP-001={len(b1)} IP-006={len(b6)}")
+    check("SBR-IP-001 与 SBR-IP-006 的品牌词表完全一致",
+          b1 == b6, f"仅 IP-001 有: {sorted(b1 - b6)}；仅 IP-006 有: {sorted(b6 - b1)}")
+
+    # 行为验证：同一措辞换品牌，结论不得相反
+    outcomes = {}
+    for brand in sorted(b1):
+        product = {
+            "product_id": f"BRAND-{brand}", "internal_sku": "BRAND",
+            "shop_id": "IP-SHOP",
+            "title": f"Capa de banco compatível com {brand} Focus 2015-2020",
+            "description": (f"Capa para banco de carro. Compatível com o modelo "
+                            f"{brand}. Não acompanha o veículo."),
+            "category": "Acessórios", "brand": "Sem Marca", "images": [],
+            "source": {"kind": "manual", "path": None,
+                       "imported_at": "2026-10-27T00:00:00Z"},
+        }
+        result = review([product], request_id="REQ-BRAND")["results"][0]
+        blocking = result["action"] in ("block", "freeze_relist", "escalate_legal")
+        outcomes[brand] = blocking
+    blocking_brands = sorted(b for b, is_block in outcomes.items() if is_block)
+    check("所有品牌在指示性使用语境下都不产生阻断类动作",
+          not blocking_brands, f"仍阻断的品牌: {blocking_brands}")
+
+
 def test_h2_blocking_requires_authoritative_rule() -> None:
     section("L4 硬约束 H2 —— 阻断类动作只来自权威 active 规则")
 
@@ -432,6 +479,7 @@ def main() -> int:
     test_fixture_cases()
     test_h1_never_deterministic()
     test_nominative_use_exemption()
+    test_brand_lists_aligned()
     test_h2_blocking_requires_authoritative_rule()
     test_h3_missing_input()
     test_authorization_dimension()

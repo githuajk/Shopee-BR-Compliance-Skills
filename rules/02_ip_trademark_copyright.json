@@ -181,7 +181,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(nike|adidas|puma|samsung|apple|xiaomi|sony|dyson|lululemon|rolex|ford|toyota|volkswagen|chevrolet|fiat|huawei|amazon)\\b"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(nike|adidas|puma|samsung|apple|xiaomi|sony|dyson|lululemon|supreme|rolex|ford|toyota|volkswagen|chevrolet|fiat|huawei|xiaomi|amazon)\\b"
         }
       ],
       "severity": "info",
@@ -193,13 +193,13 @@
       "source_excerpt": "Art. 132. O titular da marca não poderá: - impedir que comerciantes ou distribuidores utilizem sinais distintivos que lhes são próprios, juntamente com a marca do produto, na sua promoção e comercialização; II - impedir que fabricantes de acessórios utilizem a marca para indicar a destinação do produto, desde que obedecidas as práticas leais de concorrência;",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 2,
+      "version": 3,
       "tags": [
         "false_positive_guard",
         "nominative_use",
         "compatibility"
       ],
-      "notes": "Counter-rule to SBR-IP-001. When this rule fires alongside an IP brand rule, the finding confidence is downgraded and the case routed to human review with the compatibility explanation attached — it is NOT a pass on its own, because the surrounding text may still contain a brand claim. | 2026-10-27: 品牌表与 SBR-IP-001 同步补充汽车品牌，使兼容性豁免规则覆盖真实误报案例（Ford Focus）。"
+      "notes": "Counter-rule to SBR-IP-001. When this rule fires alongside an IP brand rule, the finding confidence is downgraded and the case routed to human review with the compatibility explanation attached — it is NOT a pass on its own, because the surrounding text may still contain a brand claim. | 2026-10-27: 品牌表与 SBR-IP-001 同步补充汽车品牌，使兼容性豁免规则覆盖真实误报案例（Ford Focus）。 | 2026-10-27: 品牌词表与 SBR-IP-001 对齐 —— 原词表漏了 'supreme'，导致 'Compatível com Supreme X' 这类指示性使用无法触发豁免，被误判为 escalate_legal/BLOCK（误报）。两条规则必须共用同一份品牌词表。"
     },
     {
       "rule_id": "SBR-IP-007",
