@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shopee-br-compliance-agent.local/contracts/audit_result.schema.json",
+  "title": "AuditResult",
+  "description": "所有 Skill 的统一输出格式。每条结果必须可追溯到规则、证据与输入。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "result_id", "request_id", "module", "target_ref",
+    "verdict", "risk_level", "action", "reason",
+    "rule_refs", "evidence_refs", "confidence",
+    "requires_human_review", "rule_version", "provenance"
+  ],
+  "properties": {
+    "result_id": {"type": "string", "minLength": 4},
+    "request_id": {"type": "string", "minLength": 4},
+    "module": {
+      "type": "string",
+      "enum": [
+        "shopee-br-policy-research",
+        "shopee-br-listing-audit",
+        "shopee-br-duplicate-detection",
+        "shopee-br-ip-review",
+        "shopee-br-data-ingestion",
+        "shopee-br-reporting",
+        "shopee-br-compliance"
+      ]
+    },
+    "target_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "目标对象 ID（商品 / 规则 / 案件 / 数据源）。"
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["PASS", "REVISE", "REVIEW", "BLOCK"],
+      "description": "对外汇报的聚合结论。"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": ["info", "low", "medium", "high", "critical"],
+      "description": "风险等级。与 action 正交，不构成映射函数。"
+    },
+    "action": {
+      "type": "string",
+      "enum": ["allow", "flag_for_review", "require_evidence", "revise", "block", "freeze_relist", "escalate_legal"],
+      "description": "处理动作。"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 5,
+      "description": "人类可读理由。必须说明命中了什么、依据是什么。"
+    },
+    "rule_refs": {
+      "type": "array",
+      "description": "命中规则引用。",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["rule_id"],
+        "properties": {
+          "rule_id": {"type": "string", "pattern": "^SBR-[A-Z]{2,4}-[0-9]{3,4}$"},
+          "title": {"type": ["string", "null"]},
+          "matched_field": {"type": ["string", "null"]},
+          "matched_excerpt": {"type": ["string", "null"]},
+          "source_tier": {
+            "type": ["string", "null"],
+            "enum": ["platform_official", "law", "internal_risk", "unverified", "ai_inference", "technical", null]
+          },
+          "source_url": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {"$ref": "evidence_reference.schema.json"}
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["signal", "likely", "confirmed"],
+      "description": "IP 类结论恒为 signal；never 用 confirmed 表达仅有关键词/logo 命中的侵权。"
+    },
+    "requires_human_review": {"type": "boolean"},
+    "review_rationale": {
+      "type": ["string", "null"],
+      "description": "requires_human_review 为 true 时，说明需要人判断什么。"
+    },
+    "rule_version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "本次判定所依据的规则集版本。"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["produced_at", "producer"],
+      "properties": {
+        "produced_at": {"type": "string", "format": "date-time"},
+        "producer": {"type": "string", "minLength": 1, "description": "模块名 + 版本。"},
+        "source_refs": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": ["string", "null"]}
+      }
+    },
+    "errors": {
+      "type": "array",
+      "default": [],
+      "description": "本模块产生的错误记录。未评估规则必须以 stage=rule_evaluation 的 warning 上报。",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["error_id", "stage", "severity", "message"],
+        "properties": {
+          "error_id": {"type": "string", "minLength": 4},
+          "stage": {"type": "string", "minLength": 1},
+          "severity": {"type": "string", "enum": ["warning", "error", "fatal"]},
+          "message": {"type": "string", "minLength": 1},
+          "context": {"type": ["object", "null"], "additionalProperties": true}
+        }
+      }
+    },
+    "unevaluated": {
+      "type": "array",
+      "default": [],
+      "description": "未能评估的规则及原因。契约 H3：缺失输入不等于合规。",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["rule_id", "reason"],
+        "properties": {
+          "rule_id": {"type": "string"},
+          "reason": {"type": "string", "minLength": 1},
+          "missing_fields": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}
