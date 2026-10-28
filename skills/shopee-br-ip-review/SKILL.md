@@ -200,12 +200,11 @@ tools/scan_lexicon.py
 
 ## 14. 待填内容
 
-- [x] `references/ip_categories.md` —— IP 四类的定义、法律依据、平台码
-- [x] `references/nominative_use.md` —— 指示性使用 vs 品牌宣称的判定表与更多例子
-- [x] `references/authorization_checklist.md` —— 授权材料清单与 INPI 核验方法
-- [x] `references/dissolution_flow.md` —— 品牌方撤诉解封流程说明
-- [x] `tests/shopee-br-ip-review/run_tests.py` —— 228 项断言
-- [x] `DELIVERY.md` —— 交付说明
+- [ ] `references/ip_categories.md` —— IP 四类的定义、法律依据、平台码
+- [ ] `references/nominative_use.md` —— 指示性使用 vs 品牌宣称的判定表与更多例子
+- [ ] `references/authorization_checklist.md` —— 授权材料清单与 INPI 核验方法
+- [ ] `references/dissolution_flow.md` —— 品牌方撤诉解封流程说明
+- [ ] `tests/shopee-br-ip-review/run_tests.py`
 
 ## 15. 变更记录
 

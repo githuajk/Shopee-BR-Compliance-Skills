@@ -265,66 +265,65 @@ Schema 里是**注解**而非**断言**（`minLength` 才是约束）。这 4 �
 均在示例集合内**或已扩充该 Schema**」。扩充 `contracts/` 超出本任务白名单，
 故按契约变更建议流程提出（见 §6）。
 
-### 4.3 集成缺陷台账（DEFECT LEDGER）
+### 4.3 集成缺陷台账（DEFECT LEDGER）—— 3 个缺陷已全部修复
 
-集成阶段发现 **3 个跨模块缺陷**。它们归属于其他模块，本任务**不能修改**
-（白名单之外），因此在验收脚本中以**特征检测**（characterization）方式登记：
-断言缺陷**当前仍然存在**，逐条打印在结尾的台账里。缺陷**不计入** `FAILED`。
+集成阶段发现 **3 个跨模块缺陷**。它们当时归属于其他模块，本任务**不能修改**
+（白名单之外），因此最初以**特征检测**（characterization）方式登记：断言缺陷
+**当前仍然存在**，逐条打印在结尾的台账里。缺陷**不计入** `FAILED`。
 
-| # | 缺陷 | 归属 | 影响 | 实测证据 |
-|---|---|---|---|---|
-| **D1** | 主 Skill 的 `--result-file`（仅整合）路径崩溃 | `shopee-br-compliance` | 「拿既有结果做整合」这一入口完全不可用 | `AttributeError: '_Decision' object has no attribute 'skipped'`（`pipeline.py:566`） |
-| **D1b** | 同上路径的默认 root 推导上溯 4 级，找不到契约矩阵 | `shopee-br-compliance` | 同上（即使修好 D1 仍会失败） | `MatrixUnavailable: risk action matrix not found: /config/dianshang/contracts/risk_action_matrix.json` |
-| **D2** | ip-review 的 `target_ref` 取**来源路径**而非商品 id | `shopee-br-ip-review` | 15 件商品的 IP 结论**塌缩成 1 个数据源级目标** —— 商品级归因丢失；IP 结论挂不到具体商品上 | 15 条结果 → **1 个** `target_ref`（值 = `…/demo_mass_update.xlsx`） |
-| **D3** | 主 Skill 的 `--input` 路径未产出任何商品 | `shopee-br-compliance` + `shopee-br-data-ingestion` | 「给一个 xlsx 就出结论」这一入口只产出 1 条数据源级结论，三个专业维度**全部未执行** | ingestion 产出 **0** 件商品、**30** 条 error；`executed=['shopee-br-data-ingestion','shopee-br-reporting']` |
+> **2026-10-28：3 个缺陷已全部修复**（含根因修复 + 回归断言）。
+> 断言方向随之**翻转** —— 从「缺陷仍在」改为断言**修复后的正确行为**。
+> 原因：若保留原方向，缺陷被修好反而会让验收脚本失败，等于把修复当成回归。
+> 修复后集成验收 **226 项断言全过**，台账清空。
 
-**D1 / D1b 的根因**：`sbr_compliance_cli.py` 的 `_integrate_only()` 构造了一个
-伪 `_Decision` 类，只实现了 `to_dict()` / `note()` / `explicit`，
-而 `_build_handoff()` 需要 `decision.skipped`；同时 `_default_root()` 从
-`skills/shopee-br-compliance/src/` 上溯**四级**，落到仓库的**上一级**。
+| # | 缺陷 | 归属 | 影响 | 根因 | 修复 |
+|---|---|---|---|---|---|
+| **D1** | 主 Skill 的 `--result-file`（仅整合）路径崩溃 | `shopee-br-compliance` | 「拿既有结果做整合」这一入口完全不可用 | `_integrate_only()` 构造伪 `_Decision` 类，只实现 `to_dict()`/`note()`/`explicit`，而 `_build_handoff()` 需要 `decision.skipped` 属性 | 改用真正的 `RoutingDecision`（`sbr_compliance_cli.py`） |
+| **D1b** | 同上路径的默认 root 推导上溯 4 级，找不到契约矩阵 | `shopee-br-compliance` | 同上（即使修好 D1 仍会失败） | `_default_root()` 从 `skills/shopee-br-compliance/src/` 上溯**四级**，落到仓库的**上一级** | 改用 `matrix.find_repo_root()`（向上查找含契约矩阵的目录） |
+| **D2** | ip-review 的 `target_ref` 取**来源路径**而非商品 id | `shopee-br-ip-review` | 15 件商品的 IP 结论**塌缩成 1 个数据源级目标** —— 商品级归因丢失 | `_target_ref()` 优先取 `product["source"]["path"]`；ingestion 产出的每件商品都带同一个 `source.path` | `target_ref` 改为商品级 `product_id`；溯源引用拆到独立的 `source_refs` |
+| **D3** | 主 Skill 的 `--input` 路径未产出任何商品 | `shopee-br-data-ingestion` | 「给一个 xlsx 就出结论」这一入口只产出 1 条数据源级结论，三个专业维度**全部未执行** | `demo_mass_update.xlsx` 的 banner 是 `["Loja:", "Loja Demo SP", ...]` —— 标签与店名在**相邻两个单元格**；`BANNER_SHOP` 正则要求二者**同格**，故 `shop_id` 无法推导 | `scan_banner()` 新增 `BANNER_SHOP_KEY`/`BANNER_DATE_KEY`，同时支持**分格**与**同行**两种布局 |
 
-**D2 的根因**：`skills/shopee-br-ip-review/src/sbr_ip_review/engine.py` 的
-`_target_ref()` 优先取
-`product["source"]["path"]`，回退到 `product_id`。ingestion 产出的每件商品
-都带同一个 `source.path`，于是 15 件商品共用一个 `target_ref`。
-对比：`listing-audit` 与 `duplicate-detection` 都用 `product_id` 作
-`target_ref` —— 三者口径不一致，这正是「接口不一致」的表现。
+**D1 / D1b 的补充**：修复时另发现矩阵读不到时 CLI 会退化成「无风险」而非报错 ——
+已改为显式失败并返回退出码 2（退化成「无风险」比报错危险得多）。
 
-> **注意 D2 的严重性**：它不违反任何硬约束（H1–H6 全部成立），但它使
+**D2 的补充**：`target_ref` 与 `source_refs` 语义本就不同 —— 前者是「这条结论
+**关于**哪个商品」，后者是「这条结论**来自**哪里」。15 件商品来自同一文件时
+`source_refs` 相同是**正确**的，而 `target_ref` 必须各不相同。修复后两个模块
+口径一致（均为商品级 `product_id`）。
+
+> **注意 D2 原缺陷的严重性**：它不违反任何硬约束（H1–H6 全部成立），但它使
 > **IP 维度的商品级结论无法归因**。若一条商品同时命中 IP 规则与内容违规，
 > 集成层会把 IP 结论记在数据源上而非该商品上，人工复核时无法定位。
 > 契约 `audit_result.schema.json` 的 `target_ref` 描述是「目标对象 ID
 > （商品 / 规则 / 案件 / 数据源）」—— 用数据源作 `target_ref` **并未违反契约**，
 > 但与另外两个模块的口径不一致。
 
-**D3 的根因**：`demo_mass_update.xlsx` 的 banner 是
-`["Loja:", "Loja Demo SP", ...]` —— 标签与店名在**相邻两个单元格**。
-`BANNER_SHOP` 正则要求「`Loja:` 与店名在**同一单元格**」，因此
-`scan_banner()` 解析不出 `shop_name`；xlsx 又没有 `shop_id` 列，
-`shop_id` 无法推导。ingestion 随即把 15 条记录**全部**记为错误
-（`missing required field(s): shop_id, product_id`）并产出 0 件商品。
+**D3 的根因与修复**：xlsx 既没有 `shop_id` 列，店铺名又只能从 banner 解析 ——
+而 banner 是**分格布局**。修复后 `scan_banner()` 支持两种布局：
 
-**D3 的正面结论**：缺口**没有被吞掉** —— ingestion 如实报了 **30 条 error**
-（15 条 `field_mapping` 的「missing required field(s): shop_id, product_id」
-+ 15 条「record at mass_update!row N could not be normalised」），
-产出 **15 条 `unevaluated`**，结论为 **REVIEW / flag_for_review**（**不是 PASS**），
-主 Skill 的 `known_gaps` 也写明了未执行的维度。**H3 在这条路径上成立。**
+| 布局 | 单元格 | 解析方式 |
+|---|---|---|
+| 同行 | `["Loja: Minha Loja", ...]` | `BANNER_SHOP` 直接匹配 |
+| **分格** | `["Loja:", "Minha Loja", ...]` | `BANNER_SHOP_KEY` 匹配标签，取**下一个非空格**为值 |
 
-> **对照**：同一条 `--input` 路径加上 `--default-shop-id SHOP1` 后，
-> ingestion 正常产出 **15 件商品**（15 条 error 降级为「标识符由确定性规则推导」
-> 的 warning，verdict `PASS / allow`），三个专业维度全部执行。
-> 也就是说 D3 的**唯一触发条件**是「xlsx 既无 `shop_id` 列、店铺名又无法从
-> banner 解析」—— 这正是真实 Shopee 导出文件最常见的形态。
+> **这个修复的实际意义**：分格布局是真实 Shopee 导出文件**最常见**的形态。
+> 修复前，用户必须显式传 `--default-shop-id` 才能跑通；修复后「给一个 xlsx
+> 就出结论」这个入口真正可用了。
+> CSV 解析器走同一个 `scan_banner()`，**同样受此修复覆盖**。
 
-**规避方式**（供下游使用者参考，非缺陷修复）：
+**修复后的实测数字**（`--input` 路径，无需 `--default-shop-id`）：
 
-```bash
-# D3 的规避：显式给 default-shop-id
-python3 skills/shopee-br-data-ingestion/src/sbr_ingestion_cli.py \
-    --request-id REQ-001 --out-dir out/ing \
-    --default-shop-id SHOP1 data/samples/demo_mass_update.xlsx
-# → 15 件商品，链路完整
-```
+| 项 | 修复前 | 修复后 |
+|---|---|---|
+| ingestion 产出商品 | **0** 件 | **15** 件 |
+| ingestion error | 30 条 | 15 条（降级为「标识符由确定性规则推导」的 warning） |
+| ingestion verdict | REVIEW / flag_for_review | PASS / allow |
+| `executed_modules` | ingestion + reporting（**仅 2 个**） | ingestion + listing-audit + ip-review + duplicate-detection + reporting（**5 个**） |
+| ip-review `target_ref` | 1 个（= 来源文件路径） | **15 个**（= 商品级 id） |
+
+**门槛未放松**：15 件商品必须**全部**产出；派生的标识仍如实登记为 error
+（不得静默丢弃）；缺口仍必须在报告中可见（不得当作通过）。这三条现在是
+**正向断言**（`check`），不再是缺陷特征检测。
 
 ---
 
@@ -440,9 +439,11 @@ ip 15 + duplicate 15 + reporting 17 + 主 Skill 17）逐条断言：
 `AuditResult[]` 出来；跨模块不变量在全链路上成立；缺口在链路末端仍然可见；
 一个商品的最终结论可由各模块结论按冻结契约精确重算。
 
-**遗留**：3 个跨模块缺陷（§4.3）已如实登记并留有特征检测断言，其中 D2
-（IP 结论塌缩）建议优先修复 —— 它不影响硬约束，但影响人工复核的定位能力。
-`rules/03` 的拆分（C5）因白名单限制未执行，建议在下一轮处理。
+**遗留**：§4.3 的 3 个跨模块缺陷**已于 2026-10-28 全部修复**（含根因修复 +
+回归断言），台账清空，集成验收 226 项断言全过。其中 D2（IP 结论塌缩）
+曾是最值得优先修的 —— 它不影响硬约束，但影响人工复核的定位能力。
+`rules/03` 的拆分（C5）与 `evidence_type` 扩充（C6）因白名单限制未执行，
+建议在下一轮处理（见 §6 契约变更建议）。
 
 ---
 
@@ -451,3 +452,4 @@ ip 15 + duplicate 15 + reporting 17 + 主 Skill 17）逐条断言：
 | 版本 | 日期 | 变更 | 作者 |
 |---|---|---|---|
 | 1.0.0 | 2026-10-28 | 初版 —— 集成验收报告（C1–C6 / I1–I6 / V1–V6 / A1–A5）、全链路实测数字、3 项已登记缺陷台账 | 集成 Agent（TASK-INTEGRATE-01） |
+| 1.1.0 | 2026-10-28 | 3 个跨模块缺陷（D1/D1b/D2/D2b/D3/D3b/D3c）全部修复；台账清空；断言方向由「缺陷仍在」翻转为「修复后正确行为」；集成验收 226 项全过 | 集成 Agent（TASK-INTEGRATE-01） |

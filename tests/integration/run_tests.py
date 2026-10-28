@@ -44,13 +44,27 @@ XLSX ──▶ shopee-br-data-ingestion ──▶ skill_input.json / products.js
 ## 已知缺陷台账（DEFECT LEDGER）
 
 集成验收阶段发现了 3 个**跨模块**缺陷（D1–D3，见 `docs/integration_report.md`）。
-它们归属于其他模块，本任务**不能修改**（白名单之外），因此：
+它们当时归属于其他模块，本任务**不能修改**（白名单之外），因此：
 
 * 每条缺陷有一个**特征检测**（characterization）断言 —— 断言缺陷**当前仍然
   存在**。这既记录了现状，也保证缺陷不会被悄悄「修好」而无人知晓；
 * 缺陷**不计入** `FAILED` —— 它们是已登记的既知问题，不是本任务引入的回归；
 * 缺陷**逐条打印**在结尾的「已知缺陷台账」里，并写进集成报告与交付说明；
 * 若上游修好缺陷，对应断言会失败 —— 那时应当**更新台账**，而不是忽略。
+
+> **2026-10-28 更新：D1–D3 三个缺陷已全部修复。**
+> 断言方向随之**翻转** —— 从「缺陷仍在」（特征检测）改为断言**修复后的
+> 正确行为**。原因：若保留原方向，缺陷被修好反而会让本脚本失败，等于
+> 把修复当成回归。
+>
+> | 缺陷 | 修复位置 | 现在的断言 |
+> |---|---|---|
+> | D1 / D1b | `sbr_compliance_cli.py` | `--result-file`（仅整合）路径正常退出并产出结果；默认 root 能找到契约矩阵 |
+> | D2 / D2b | `sbr_ip_review/engine.py` | ip-review 每件商品一个 `target_ref`，且不是来源文件路径 |
+> | D3 / D3b / D3c | `sbr_ingestion/parsers/tabular.py` | `--input` 路径产出全部 15 件商品；派生标识如实登记为 error；三个专业维度全部执行 |
+>
+> **门槛不变**：15 件商品必须全部产出、缺口必须可见（不得当作通过）、
+> 不得静默丢弃记录。
 
 ## 运行
 
@@ -1436,52 +1450,58 @@ def test_known_defects() -> None:
             "data/samples/demo_mass_update.xlsx", shop_id="SHOP1")
 
         # --- D1：主 Skill 的 `--result-file` 整合路径崩溃 ------------------
-        # `_integrate_only` 构造的伪 decision 对象缺 `skipped` 属性；
-        # 且默认 root 推导上溯了 4 级（到仓库的上一级），契约矩阵读不到。
+        # 已修复（2026-10-28）：改用真正的 `RoutingDecision`（此前伪造的
+        # `_Decision` 类只实现 `to_dict()`，下游读的是 `.stages`/`.skipped`
+        # 属性）；默认 root 改用 `matrix.find_repo_root()`。
+        # 断言方向翻转：现在断言**该路径可用**。
         proc = run_cli("shopee-br-compliance", [
             "--request-id", "REQ-INT-DEFECT-001",
             "--out-dir", os.path.join(workdir, "integrate-only"),
             "--root", ROOT,
             "--result-file", os.path.join(workdir, "listing", "audit_results.json")])
-        stderr = proc.stderr or ""
-        defect("D1",
-               "主 Skill 的 --result-file（仅整合）路径崩溃：伪 decision 对象缺 skipped 属性",
-               proc.returncode != 0 and "'_Decision' object has no attribute 'skipped'" in stderr,
-               stderr.strip()[-200:] if proc.returncode != 0 else "本次运行未复现")
+        check("D1 已修复：--result-file（仅整合）路径正常退出",
+              proc.returncode == 0,
+              (proc.stderr or "").strip()[-200:] if proc.returncode != 0
+              else "退出码 0")
+        check("D1 已修复：--result-file 路径产出整合结果",
+              os.path.exists(os.path.join(workdir, "integrate-only",
+                                          "audit_results.json")),
+              "audit_results.json 未产出")
 
-        # 不带 --root 时，默认根推导上溯了 4 级 → 契约矩阵读不到
+        # 不带 --root 时，默认根推导必须能找到契约矩阵
         proc2 = run_cli("shopee-br-compliance", [
             "--request-id", "REQ-INT-DEFECT-001",
             "--out-dir", os.path.join(workdir, "integrate-only-noroot"),
             "--result-file", os.path.join(workdir, "listing", "audit_results.json")])
         stderr2 = proc2.stderr or ""
-        defect("D1b",
-               "主 Skill 的 --result-file 路径默认 root 推导上溯 4 级，"
-               "找不到 contracts/risk_action_matrix.json",
-               proc2.returncode != 0 and "risk action matrix not found" in stderr2,
-               stderr2.strip()[-200:] if proc2.returncode != 0 else "本次运行未复现")
+        check("D1b 已修复：--result-file 路径的默认 root 能找到契约矩阵",
+              proc2.returncode == 0 and "risk action matrix not found" not in stderr2,
+              stderr2.strip()[-200:] if proc2.returncode != 0 else "退出码 0")
 
         # --- D2：ip-review 的 target_ref 用来源路径而非商品 id ------------
-        # 后果：整批商品的 IP 结论被折叠成一个目标，商品级归因丢失。
+        # 已修复（2026-10-28）：`target_ref` 改为商品级标识，溯源引用
+        # 拆到独立的 `source_refs`。后果：整批商品的 IP 结论不再被
+        # 折叠成一个目标，商品级归因不再丢失。
         ip_results = chain.results("ip")
         ip_targets = {str(r.get("target_ref")) for r in ip_results}
-        defect("D2",
-               "ip-review 的 target_ref 取来源路径而非商品 id："
-               "15 条商品级结论塌缩为 1 个数据源级目标",
-               len(ip_results) == 15 and len(ip_targets) < len(ip_results),
-               f"{len(ip_targets)} 个 target_ref / {len(ip_results)} 条结果")
+        check("D2 已修复：ip-review 每件商品一个 target_ref（无塌缩）",
+              len(ip_results) == 15 and len(ip_targets) == len(ip_results),
+              f"{len(ip_targets)} 个 target_ref / {len(ip_results)} 条结果"
+              f"（期望 15 / 15）")
 
-        # D2 的后果：IP 结论挂到了数据源上，而不是商品上。
+        # D2 的后果已消除：IP 结论挂到商品上，而不是数据源上。
         if ip_targets:
             sample = next(iter(ip_targets))
-            defect("D2b",
-                   "塌缩后的 target_ref 是来源文件路径（商品级归因丢失）",
-                   "/" in sample or sample.endswith(".xlsx"), sample)
+            check("D2b 已修复：target_ref 是商品级标识（不是来源文件路径）",
+                  "/" not in sample and not sample.endswith(".xlsx"), sample)
 
         # --- D3：主 Skill 的 `--input` 路径丢失店铺身份 --------------------
-        # demo_mass_update.xlsx 没有 shop_id 列，且 banner 的店铺名不被解析
-        # （BANNER_SHOP 要求 `Loja:` 与店名在同一单元格）。
-        # 结果：ingestion 产出 0 件商品，整条链路只剩 1 个数据源级结论。
+        # 缺陷已修复（2026-10-28）：`scan_banner` 现在支持**分格布局**
+        # （`A="Loja:"` + `B="Loja Demo SP"`），shop_id 能从 banner 推出。
+        #
+        # 断言方向随之翻转：原来是「缺陷仍在」（特征检测），现在断言
+        # **修复后的正确行为** —— 否则缺陷被修好反而会让本脚本失败。
+        # 保持不变的是**门槛**：15 件商品必须全部产出，且不得有静默丢弃。
         out_dir = os.path.join(workdir, "input-path")
         proc = run_cli("shopee-br-compliance", [
             "--request-id", "REQ-INT-DEFECT-001",
@@ -1491,36 +1511,37 @@ def test_known_defects() -> None:
         products = []
         if os.path.exists(os.path.join(ing_dir, "products.json")):
             products = load_json(os.path.join(ing_dir, "products.json"))
-        defect("D3",
-               "主 Skill 的 --input 路径未产出任何商品："
-               "xlsx 的店铺名在 banner 单元格内、BANNER_SHOP 正则要求同行，"
-               "shop_id 无法推导",
-               len(products) == 0,
-               f"产出 {len(products)} 件商品（期望 0 = 当前行为）")
+        check("D3 已修复：--input 路径产出全部 15 件商品（shop_id 可从 banner 推出）",
+              len(products) == 15,
+              f"产出 {len(products)} 件商品（期望 15）")
 
-        # D3 不得被吞掉 —— ingestion 必须如实报出错误，且不得判通过。
+        # 修复后仍不得静默丢弃：派生的标识必须如实登记为 warning 级 error，
+        # 而不是被悄悄接受。缺口仍需可见。
         ing_results = results_of(ing_dir)
         error_count = sum(len(r.get("errors") or []) for r in ing_results)
-        defect("D3b",
-               "ingestion 对 15 条无法规范化的记录如实报 error（未静默丢弃）",
-               bool(ing_results) and error_count >= 15,
-               f"{error_count} 条 error")
+        check("D3b 已修复：ingestion 仍如实报出派生的标识（未静默丢弃）",
+              bool(ing_results) and error_count >= 15,
+              f"{error_count} 条 error（期望 >= 15）")
 
+        # 缺口不得当作通过：即便商品全部产出，若仍有未评估项，
+        # ingestion 的结论就不能是 PASS。
+        unresolved = sum(len(r.get("unevaluated") or []) for r in ing_results)
         check("D3：ingestion 的结论不是 PASS（缺口不得当作通过）",
-              ing_results and ing_results[0].get("verdict") != "PASS",
-              str(ing_results[0].get("verdict")) if ing_results else "")
+              ing_results and (ing_results[0].get("verdict") != "PASS"
+                                or unresolved == 0),
+              f"verdict={ing_results[0].get('verdict') if ing_results else ''}"
+              f" unevaluated={unresolved}")
 
-        # D3 的后果：主 Skill 在 --input 路径上跳过了全部专业维度。
+        # D3 的后果已消除：--input 路径上三个专业维度都必须执行。
         summary_path = os.path.join(out_dir, "audit_summary.json")
         if os.path.exists(summary_path):
             summary = load_json(summary_path)
             executed = summary.get("executed_modules") or []
-            defect("D3c",
-                   "--input 路径上三个专业维度全部未执行（只剩汇总）",
-                   not any(m in executed for m in ("shopee-br-listing-audit",
-                                                  "shopee-br-ip-review",
-                                                  "shopee-br-duplicate-detection")),
-                   f"executed={executed}")
+            check("D3c 已修复：--input 路径上三个专业维度全部执行",
+                  all(m in executed for m in ("shopee-br-listing-audit",
+                                              "shopee-br-ip-review",
+                                              "shopee-br-duplicate-detection")),
+                  f"executed={executed}")
     finally:
         shutil.rmtree(workdir, ignore_errors=True)
 

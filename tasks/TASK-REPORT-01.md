@@ -58,7 +58,7 @@ skills/*/SKILL.md
 
 | 依赖任务 | 状态 | 依赖它什么 |
 |---|---|---|
-| `TASK-POLICY-01` | ✅ 已完成 | 见 tasks/task_registry.json |
+| `TASK-POLICY-01` | pending | 见 tasks/task_registry.json |
 
 **开工前确认所有依赖已完成。** 未完成则等待，不要基于假设开工。
 

@@ -112,7 +112,7 @@
 **职责**：跨模块冲突/重复/接口一致性检查、`rules/03` 拆分、契约变更、集成验收报告。
 
 **执行结果（2026-10-28）**：C1–C4、I1–I6、V1–V6、A1–A5 全部通过
-（集成验收脚本 `tests/integration/run_tests.py`，218 项断言全过）。
+（集成验收脚本 `tests/integration/run_tests.py`，**226 项断言全过**）。
 两项**未达成**并已如实登记在 `docs/integration_report.md`：
 
 | 项 | 状态 | 原因 |
@@ -120,10 +120,18 @@
 | C5（`rules/03` 拆分） | ⬜ 未执行 | 任务包 §2.1 的白名单不含 `rules/**`；拆分还需改两个模块自有的规则文件常量，均在白名单外 |
 | C6（证据类型词表） | ⬜ 未扩充 | 4 个 `evidence_type`（`image` / `listing_field` / `price_history` / `promotion_terms`）不在 Schema 示例集内；扩充 `contracts/` 在白名单外 |
 
-另登记 **3 个跨模块缺陷**（D1–D3，见 `docs/integration_report.md` §4.3）：
-主 Skill 的 `--result-file` 整合路径崩溃（D1/D1b）、ip-review 的 `target_ref`
-塌缩致商品级归因丢失（D2）、主 Skill 的 `--input` 路径未产出商品（D3）。
-三者均以特征检测断言登记在集成脚本中，逐次打印，不静默。
+另登记 **3 个跨模块缺陷**（D1–D3，见 `docs/integration_report.md` §4.3）——
+**已于 2026-10-28 全部修复**（含根因修复 + 回归断言），台账清空：
+
+| 缺陷 | 归属 | 修复 |
+|---|---|---|
+| D1 / D1b | `shopee-br-compliance` | `--result-file`（仅整合）路径改用真正的 `RoutingDecision`；默认 root 改用 `matrix.find_repo_root()` |
+| D2 / D2b | `shopee-br-ip-review` | `target_ref` 改为商品级 `product_id`；溯源引用拆到独立的 `source_refs` |
+| D3 / D3b / D3c | `shopee-br-data-ingestion` | `scan_banner()` 支持**分格**与**同行**两种 banner 布局（真实 Shopee 导出最常见的是分格） |
+
+修复后 `--input` 路径的实测变化：ingestion 产出 **0 → 15** 件商品，
+`executed_modules` 由 2 个变为 5 个（三个专业维度全部执行），
+ip-review `target_ref` 由 1 个变为 15 个。
 
 ---
 

@@ -277,9 +277,8 @@ ALL CHECKS PASSED
 
 > **上表是本框架的框架级校验，不是模块测试。**
 > 早期版本此处记录过第一阶段原型的 `tests/run_tests.py`（333 项）基线 ——
-> 该原型代码**已于 2026-10-27 归档入库**于 `.archive/phase0_prototype/`
-> （结论变更见 `.archive/README.md` §2.1），其 `tests/run_tests.py` 不在活跃校验
-> 流程中，故本节不再引用该基线。
+> 该原型代码**已核实从未入库**（6 项检查见 `.archive/README.md` §2.1），
+> `tests/run_tests.py` 不存在，故本节不再引用该基线。
 > 模块级测试（L1–L4）在各自任务中建立，见 §2。
 
 ---

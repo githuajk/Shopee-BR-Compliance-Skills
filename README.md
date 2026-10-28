@@ -105,18 +105,19 @@ frontmatter（name / description）
 `tasks/TASK-*.md` 共 9 份，每份 12 个章节，**自包含**（执行 Agent 不需要读历史对话）。
 
 ```
-TASK-POLICY-01      官方政策研究与来源核查        G2  ✅ 已完成 2026-10-27
-TASK-INGEST-01      多格式资料读取与标准化        G2  ✅ 已完成 2026-10-27
-TASK-LISTING-01     商品内容合规审核              G3  ✅ 已完成 2026-10-27
-TASK-DUP-01         重复刊登与违规重发检查         G3  ✅ 已完成 2026-10-27
-TASK-IP-01          知识产权与授权风险筛查         G3  ✅ 已完成 2026-10-27
-TASK-REPORT-01      审核结果汇总与报告生成         G3  ✅ 已完成 2026-10-27
-TASK-MAIN-01        主 Skill（编排层）            G4  ✅ 已完成 2026-10-27
-TASK-INTEGRATE-01   集成验收                      G5
+TASK-POLICY-01      官方政策研究与来源核查        G2  ✅ 已完成
+TASK-INGEST-01      多格式资料读取与标准化        G2  ✅ 已完成
+TASK-LISTING-01     商品内容合规审核              G3  ✅ 已完成
+TASK-DUP-01         重复刊登与违规重发检查         G3  ✅ 已完成
+TASK-IP-01          知识产权与授权风险筛查         G3  ✅ 已完成
+TASK-REPORT-01      审核结果汇总与报告生成         G3  ✅ 已完成
+TASK-MAIN-01        主 Skill（编排层）            G4  ✅ 已完成
+TASK-INTEGRATE-01   集成验收                      G5  ✅ 已完成 2026-10-28
 TASK-FRAME-02       测试与验收标准               ✅ 已完成
 ```
 
-各任务的交付说明见对应模块的 `DELIVERY.md`。
+**10/10 任务全部完成。** 集成验收报告见 `docs/integration_report.md`，
+集成验收脚本见 `tests/integration/run_tests.py`（226 项断言全过）。
 
 ---
 
@@ -239,6 +240,20 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 | 9/10 | 夹具与规则库一致性（`tools/verify_fixtures.py`） | **108 条夹具-规则断言全通过** |
 | 10/10 | 任务包与所有权一致性（`tools/task_pack_check.py`） | **256 项全通过** |
 
+### 各模块自有测试
+
+```bash
+env -u LD_LIBRARY_PATH python3 tests/<module>/run_tests.py
+env -u LD_LIBRARY_PATH python3 tests/integration/run_tests.py   # 集成验收
+```
+
+| 模块 | 断言数 | 模块 | 断言数 |
+|---|---|---|---|
+| `shopee-br-policy-research` | 1467 | `shopee-br-reporting` | 210 |
+| `shopee-br-duplicate-detection` | 587 | `shopee-br-listing-audit` | 383 |
+| `shopee-br-ip-review` | 236 | `shopee-br-data-ingestion` | 211 |
+| `shopee-br-compliance` | 110 | **集成验收** | **226** |
+
 ### 校验工具的分工
 
 | 工具 | 抓什么 |
@@ -249,9 +264,8 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 | `validate_lexicon.py` | 合并词库的分组结构、变位覆盖、豁免与改写映射 |
 | `check_rule_regex.py` | 规则正则能否编译；`requires_input` 是否自指；数值算子是否作用于文本字段 |
 | `verify_fixtures.py` | 夹具声明的期望是否成立（正例真命中、反例真不命中、豁免真生效） |
-| `task_pack_check.py` | 任务包枚举是否与冻结契约一致；文档中 `verdict` 取值是否合法 |
+| `task_pack_check.py` | 任务包枚举是否与冻结契约一致；文档中 `verdict` 取值是否合法；`ownership_version` 是否漂移 |
 | `framework_check.py` | 框架不变量；文档内部路径引用是否悬空 |
-| `tests/<module>/run_tests.py` | 各模块自有测试（当前：ingestion 201、policy-research 1467、listing-audit 383、duplicate-detection 587、ip-review 231、reporting 210、compliance 107） |
 
 ---
 
@@ -263,7 +277,15 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 
 ## 下一阶段
 
-分发波次 3（G3）：`TASK-LISTING-01`、`TASK-DUP-01`、`TASK-IP-01`、`TASK-REPORT-01`。
-这四个模块的输入（`skill_input.json` / `products.json`）已由 `TASK-INGEST-01` 提供。
+**10/10 任务已全部完成。** 剩余工作不再是开发，而是以下三项**待裁定**事项：
 
-待裁定：`docs/SBRCA-P0-004_open_questions.json`（5 冲突 + 9 问题，每项带 `default_if_no_answer`），该文件**现存于 `docs/`**。
+| # | 事项 | 归属 | 阻塞性 |
+|---|---|---|---|
+| 1 | `docs/SBRCA-P0-004_open_questions.json`（14 项待裁定：5 冲突 + 9 问题，每项带 `default_if_no_answer`） | 用户 | 否 —— 可按默认值执行 |
+| 2 | **C5**：`rules/03_listing_violations_duplicates.json` 拆分（LV → listing-audit，DUP → duplicate-detection） | 集成 Agent，需扩白名单 | 否 |
+| 3 | **C6**：`audit_result.schema.json` 的 4 个 `evidence_type`（`image` / `listing_field` / `price_history` / `promotion_terms`）超出示例集 | 集成 Agent，需扩白名单 | 否 |
+
+另有一项**已知范围外**的缺口：`shopee-br-policy-research` 无 `src/` 实现
+（目录级：references + 测试），当前可接受。
+
+集成验收报告见 `docs/integration_report.md`，集成脚本见 `tests/integration/run_tests.py`。

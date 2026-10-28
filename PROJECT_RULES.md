@@ -98,10 +98,9 @@ shopee-br-compliance-agent/
 └── docs/                         项目文档
 ```
 
-> **第一阶段原型（`src/compliance_agent/`）已于 2026-10-27 归档入库**于
-> `.archive/phase0_prototype/`（见 `.archive/README.md` §2.1 的结论变更记录），
+> **第一阶段原型（`src/compliance_agent/`）已核实从未入库**（见 `.archive/README.md` §2.1），
 > 本项目不依赖原型参考实现 —— 模块行为以 `contracts/**` 为唯一权威依据。
-> 活跃工作区不设 `src/` 目录，也不预留。
+> `src/` 目录当前不存在，也不预留。
 
 ### 3.2 文件所有权矩阵
 

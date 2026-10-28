@@ -3,7 +3,7 @@
 | 任务 ID | `TASK-INTEGRATE-01` |
 | 归属模块 | `integrator` |
 | 并行组 | `G5` |
-| 状态 | pending |
+| 状态 | in_progress |
 | 契约版本 | 1.0.0 |
 | 负责 Agent | <你的标识> |
 | 工作区 | `/tmp/sbrca_work/TASK-INTEGRATE-01/` |
