@@ -150,7 +150,7 @@ L2 校验失败（1512/1513）。已按 `sources.json` 登记值补上标记头�
 | 1 | `tools/scan_lexicon.py` 6 项已复现缺陷（D1 豁免作用域、D2/D6 finditer、D3 归一化 offset、D4 裸 `\b`、D5 贪婪正则） | 高 | listing-audit（建议另开任务） | 已如实登记（DELIVERY_lexicon_expansion §3.1）；现行行为可解释 |
 | 2 | 词库 21 万词 → Scanner 索引构建 37–70s/次，批量场景需常驻进程 | 中 | 后续优化 | 已登记（性能依赖） |
 | 3 | `br_anvisa_medicamentos_prescricao` 抓取 http_503，RDC 44/2009 官方引文暂缺 | 低 | 集成 Agent / policy-research 重抓 | 校验器已识别放行，该来源不得支撑规则 |
-| 4 | C 类目录词（21 万）对商品标题判别力低，现行以 37 条 `EX-CATALOG-*` 豁免降级缓解 | 中 | 契约建议 `scan_fields` 分字段开关 | 已登记（DELIVERY §3.3 / §5.2） |
+| 4 | C 类目录词（21 万）对商品标题判别力低，现行以 `EX-CATALOG-*` 豁免降级缓解 | 中 | 契约建议 `scan_fields` 分字段开关 | **E2E 验收轮（batch001）已部分处置**：删 10 条高特异性组（活性成分/疫苗/农药）blanket 豁免保留 `require_evidence` 安全网，余 27 条对通用组降噪；引擎对「仅由全豁免候选触发」的规则封顶 `flag_for_review`+`signal`（`lexicon_candidates_all_exempt`）。干净商品不再被目录通用词过度取证，特异性药名保持强取证。分字段开关仍为后续契约建议 |
 | 5 | P0-004 的 14 项待裁定（Q-A 风险最高） | — | **用户** | 按 `default_if_no_answer` 执行 |
 
 ---

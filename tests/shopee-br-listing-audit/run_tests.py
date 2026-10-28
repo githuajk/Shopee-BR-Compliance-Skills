@@ -488,6 +488,55 @@ def test_l3_own_rule_cases() -> None:
           str(missing_negative))
 
 
+def test_med004_all_exempt_capped() -> None:
+    """MED-004 全豁免封顶：目录通用词（棉等）不得驱动 require_evidence，
+    特异性药名（amoxicilina，已取消 blanket 豁免）保持 require_evidence。
+
+    回归背景：E2E 真实商品批次暴露「干净棉 T 恤被 catalog 组内通用词
+    algodão/Algodao 触发 MED-004 require_evidence」噪声。修复＝
+    (a) exemptions.json 删 10 条高特异性组 blanket EX-CATALOG（活性成分/
+    疫苗/农药），(b) 引擎对『仅由全豁免候选触发』的规则封顶
+    flag_for_review + signal。本测试锁定该行为。
+    """
+    section("MED-004 全豁免封顶（目录通用词噪声回归）")
+    engine = ListingAuditEngine(root=ROOT)
+
+    def med004(product):
+        ev = engine.evaluate_product(product)
+        fired = {i["rule"]["rule_id"]: i for i in ev["fired"]}
+        return fired.get("SBR-MED-004")
+
+    # 通用词：棉（algodão）只落在保留 blanket 豁免的 health 目录组
+    cotton = {
+        "title": "Camiseta Básica Algodão Unissex",
+        "description": "Camiseta de algodão 100% algodão, tamanhos P a GG",
+        "brand": "",
+        "category": "Vestuário > Camisetas",
+    }
+    r = med004(cotton)
+    check("LA-MED004-CAP 棉 T 恤仍命中 MED-004（目录信号保留）",
+          r is not None, "未 fired")
+    if r is not None:
+        check("LA-MED004-CAP 全豁免 → 动作封顶 flag_for_review",
+              r["action"] == "flag_for_review", f"action={r['action']}")
+        check("LA-MED004-CAP 置信度降为 signal",
+              r["confidence"] == "signal", f"conf={r['confidence']}")
+
+    # 特异性药名：amoxicilina 落在已取消 blanket 豁免的活性成分组
+    amox = {
+        "title": "Amoxicilina 500mg 20 Cápsulas",
+        "description": "Antibiótico Amoxicilina 500mg. Embalagem com 20 cápsulas.",
+        "brand": "",
+        "category": "Saúde > Medicamentos",
+    }
+    r2 = med004(amox)
+    check("LA-MED004-KEEP 药名仍命中 MED-004（安全网保留）",
+          r2 is not None, "未 fired")
+    if r2 is not None:
+        check("LA-MED004-KEEP 非全豁免 → 保持 require_evidence",
+              r2["action"] == "require_evidence", f"action={r2['action']}")
+
+
 def test_l3_shared_fixtures() -> None:
     section("L3 共享夹具一致性（只读）")
 
@@ -1119,6 +1168,7 @@ def main() -> int:
         test_l2_contract,
         test_l2_matrix_consistency,
         test_l3_own_rule_cases,
+        test_med004_all_exempt_capped,
         test_l3_shared_fixtures,
         test_l3_shared_fixtures_untouched,
         test_h1_ip_never_deterministic,

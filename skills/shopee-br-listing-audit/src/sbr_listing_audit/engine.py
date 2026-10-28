@@ -277,6 +277,8 @@ class ListingAuditEngine:
                     groups = sorted({str(c.get("group_id"))
                                      for c in cands})[:4]
                     result["status"] = MATCH
+                    result["lexicon_candidates_all_exempt"] = bool(
+                        cands) and all(bool(c.get("exempt")) for c in cands)
                     result["matched"] = (
                         f"lexicon candidate hit: {', '.join(terms)} "
                         f"(groups: {', '.join(groups)})")
@@ -322,6 +324,21 @@ class ListingAuditEngine:
         declared = str(rule.get("action") or "flag_for_review")
         action, downgrade_reason = self._resolve_action(rule, risk_level, declared)
         confidence = self._confidence(rule, details)
+
+        # 当规则仅由「全被豁免降级的词库候选」触发时（如 EX-CATALOG 目录通用词），
+        # 不得驱动 require_evidence 取证 —— 封顶 flag_for_review + signal，
+        # 保留人工复核路径，不让干净商品过度取证。
+        all_exempt = bool(details) and all(
+            d.get("lexicon_candidates_all_exempt", False) for d in details)
+        if all_exempt and action in ("require_evidence", "block",
+                                     "freeze_relist", "escalate_legal"):
+            action = self._best_allowed(risk_level, ("flag_for_review",))
+            confidence = "signal"
+            if not downgrade_reason:
+                downgrade_reason = ("all lexicon candidates are exempted "
+                                    "(generic catalog match); action capped "
+                                    "at flag_for_review, confidence lowered to "
+                                    "signal")
 
         return {
             "status": "fired",

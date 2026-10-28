@@ -54,34 +54,6 @@
       "reason": "品牌名可能是产品通用词。默认仍按侵权命中，需上下文判断。"
     },
     {
-      "id": "EX-CATALOG-01",
-      "group_id": "catalog_anvisa_agrotoxico_active_ingredients__multi",
-      "pattern": "[\\s\\S]*",
-      "action": "exempt",
-      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
-    },
-    {
-      "id": "EX-CATALOG-02",
-      "group_id": "catalog_anvisa_agrotoxico_active_ingredients__single",
-      "pattern": "[\\s\\S]*",
-      "action": "exempt",
-      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
-    },
-    {
-      "id": "EX-CATALOG-03",
-      "group_id": "catalog_anvisa_agrotoxico_substances__multi",
-      "pattern": "[\\s\\S]*",
-      "action": "exempt",
-      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
-    },
-    {
-      "id": "EX-CATALOG-04",
-      "group_id": "catalog_anvisa_agrotoxico_substances__single",
-      "pattern": "[\\s\\S]*",
-      "action": "exempt",
-      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
-    },
-    {
       "id": "EX-CATALOG-05",
       "group_id": "catalog_anvisa_food_company_names__multi",
       "pattern": "[\\s\\S]*",
@@ -194,34 +166,6 @@
       "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
     },
     {
-      "id": "EX-CATALOG-21",
-      "group_id": "catalog_anvisa_ifa_active_ingredients__multi",
-      "pattern": "[\\s\\S]*",
-      "action": "exempt",
-      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
-    },
-    {
-      "id": "EX-CATALOG-22",
-      "group_id": "catalog_anvisa_ifa_active_ingredients__single",
-      "pattern": "[\\s\\S]*",
-      "action": "exempt",
-      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
-    },
-    {
-      "id": "EX-CATALOG-23",
-      "group_id": "catalog_anvisa_medicine_active_ingredients__multi",
-      "pattern": "[\\s\\S]*",
-      "action": "exempt",
-      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
-    },
-    {
-      "id": "EX-CATALOG-24",
-      "group_id": "catalog_anvisa_medicine_active_ingredients__single",
-      "pattern": "[\\s\\S]*",
-      "action": "exempt",
-      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
-    },
-    {
       "id": "EX-CATALOG-25",
       "group_id": "catalog_anvisa_medicine_holders__multi",
       "pattern": "[\\s\\S]*",
@@ -252,20 +196,6 @@
     {
       "id": "EX-CATALOG-29",
       "group_id": "catalog_anvisa_medicine_therapeutic_classes__single",
-      "pattern": "[\\s\\S]*",
-      "action": "exempt",
-      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
-    },
-    {
-      "id": "EX-CATALOG-30",
-      "group_id": "catalog_anvisa_restricted_medicine_active_ingredients__multi",
-      "pattern": "[\\s\\S]*",
-      "action": "exempt",
-      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
-    },
-    {
-      "id": "EX-CATALOG-31",
-      "group_id": "catalog_anvisa_restricted_medicine_active_ingredients__single",
       "pattern": "[\\s\\S]*",
       "action": "exempt",
       "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"

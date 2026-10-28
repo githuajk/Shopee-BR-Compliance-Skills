@@ -19,7 +19,7 @@
 |---|---|---|
 | `lexicon/term_groups.json` | 词组（扫描用） | **102 组 / 210,992 词**（2026-10-28 集成扩充后；原 37 组 / 856 词） |
 | `lexicon/rewrite_map.json` | 触线 → 中性替代（改写用） | 8 类映射 |
-| `lexicon/exemptions.json` | 误报豁免规则 | 61 条 |
+| `lexicon/exemptions.json` | 误报豁免规则 | **51 条**（2026-10-28 集成时 61 条；E2E 验收轮删 10 条高特异性活性成分/疫苗/农药组 blanket EX-CATALOG，保留 27 条对低判别力通用目录降噪）|
 | `lexicon/quality_patterns.json` | 套模板/批量味检测 | 15 条特征 |
 | `lexicon/non_avoidable.json` | 无法文字规避的品类 | 6 类 |
 | `lexicon/verb_conjugations.json` | 葡语动词变位匹配表 | 7 个动词 |
@@ -142,7 +142,7 @@ for pre, entries in by_pre.items():
 
 ### 4.1 豁免规则
 
-`lexicon/exemptions.json` 定义 61 条豁免（2026-10-28 集成后：原 7 条 + 37 条 `EX-CATALOG-*` 目录降级 + 17 条 `EX-D6-*` 批次；交付时点的 44 条为 D6 批次并入前）：
+`lexicon/exemptions.json` 定义 51 条豁免（2026-10-28 集成后：原 7 条 + 37 条 `EX-CATALOG-*` 目录降级 + 17 条 `EX-D6-*` 批次；交付时点的 44 条为 D6 批次并入前；**E2E 验收轮（batch001）进一步删 10 条高特异性活性成分/疫苗/农药组的 blanket EX-CATALOG**，保留 27 条对低判别力通用目录组降噪）：
 
 | ID | 场景 | 动作 |
 |---|---|---|
@@ -153,7 +153,7 @@ for pre, entries in by_pre.items():
 | `EX-DESCONFORTO` | "em caso de desconforto, suspenda o uso" | `exempt` |
 | `EX-SEGURO-FUNCIONAL` | "fechamento seguro" | `exempt` |
 | `EX-BRAND-GENERIC` | 品牌名可能是产品通用词 | `require_review` |
-| `EX-CATALOG-*` ×37 | ANVISA/CTI/MAPA 监管目录全组降级 | `exempt` |
+| `EX-CATALOG-*` ×**27** | ANVISA/CTI/MAPA 监管目录中低判别力通用组降级 | `exempt` |
 | `EX-D6-*` ×17 | 2026-10-28 批次登记的误报场景 | `flag_low` / `require_review` |
 
 > ⚠️ **豁免 ≠ 放行。** 命中仍要记录，只是降低置信度或转为需复核。
@@ -162,8 +162,15 @@ for pre, entries in by_pre.items():
 
 1. **区间重叠才豁免（D1）** —— 豁免正则的某个匹配区间必须与该命中的区间
    `[offset, offset+len]` 重叠，命中才标记豁免。同一字段里与工具词无关的
-   武器命中不会被 `EX-TOOLS` 连带降级。`EX-CATALOG-*` 的全文 pattern
-   （`[\s\S]*`）区间覆盖全文，目录组全组降级是既定行为，保持不变。
+   武器命中不会被 `EX-TOOLS` 连带降级。保留的 `EX-CATALOG-*`（×27）全文
+   pattern（`[\s\S]*`）区间覆盖全文，对应目录组全组降级是既定降噪行为。
+   E2E 验收轮已对 10 个高特异性组（活性成分/疫苗/农药，目录组中判别力核心）
+   **取消** blanket 豁免，使特异性药名仍驱动 `SBR-MED-004` 的
+   `require_evidence` 取证（安全网）。
+   **引擎配套（batch001）**：当某规则仅由「全被豁免候选」触发时（`detail`
+   里 `lexicon_candidates_all_exempt=true`），其动作封顶 `flag_for_review`、
+   置信度降为 `signal` —— 目录通用词（棉等）不再对干净商品要求全套注册
+   证据；只要有一项非豁免候选（如活性成分组命中）即维持原动作。
 2. **重音折叠后匹配（D4）** —— 豁免正则作用于归一化文本（小写 + NFD 去重音）。
    归一化文本是纯 ASCII 形态，其中 pattern 里的 `\b` 等价于显式词边界，
    不会再吞相邻重音字母（SOP §4.2 的葡语 `\b` 铁律在原文层仍然成立）。

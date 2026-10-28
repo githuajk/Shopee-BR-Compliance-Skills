@@ -475,6 +475,22 @@ B 分支新增的 `SBR-MED-004`（监管目录命中 → `require_evidence`）�
 NO_MATCH）。夹具回归 `LA-MED004-POS`（amoxicilina，实测 fired 且
 `action=require_evidence` 不阻断）/ `LA-MED004-NEG`（普通商品，0 命中不触发）。
 
+**E2E 验收轮（batch001）SBR-MED-004 目录通用词噪声处置**：
+真实商品批次暴露干净棉 T 恤被目录组内通用词（`algodão`/`Algodao`，健康
+商业/技术名组）触发 `require_evidence`。处置（数据层 + 引擎层，非改写历史
+计数——行 461 的 100 组/44 豁免为合并轮时点）：
+- `lexicon/exemptions.json` 删 10 条高特异性组 blanket EX-CATALOG（活性
+  成分/疫苗/农药：`medicine_active_ingredients`、`restricted_medicine_*`、
+  `ifa_active_ingredients`、`agrotoxico_*`），保留 27 条对低判别力通用
+  目录组降噪；豁免 61 → 51 条。
+- 引擎 `engine.py`：当某规则仅由「全被豁免候选」触发
+  （`lexicon_candidates_all_exempt=true`）时，动作封顶 `flag_for_review`、
+  置信度降 `signal`。效果：棉 T 恤 → `flag_for_review`（不再过度取证），
+  amoxicilina（落活性成分组、非全豁免）→ 保持 `require_evidence`（安全网）。
+- 回归测试 `test_med004_all_exempt_capped`（`tests/shopee-br-listing-audit/`）
+  锁定双行为（棉 T 恤封顶 / 药名保持）。listing 411/411、集成 232/232、
+  E2E 批次 12 目标判定全部正确。
+
 **验收**：合并后全量校验与模块测试重跑结果见 `docs/PROGRESS_REPORT.md` v2.1.0
 （集成测试断言数在 C5 拆分断言加入后为 **232 项，全过**；上文 §7–§9 的
 「226 项」为 G5 验收时点的历史记录）。
