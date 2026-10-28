@@ -1,0 +1,399 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.2.0",
+  "project": {
+    "code": "SBRCA",
+    "name": "Shopee Brazil Compliance Agent",
+    "positioning": "一套可供不同 Agent、不同模型使用的 Skills 集合。不是需要立即部署的完整软件服务。",
+    "market": "巴西 Shopee",
+    "language": "中文（文档）/ 葡萄牙语（源材料与规则引文）/ 英语（代码标识符）",
+    "status": "Phase 1 — 公共契约已冻结，等待并行模块开发",
+    "last_updated": "2026-10-27"
+  },
+  "governance": {
+    "project_rules": "PROJECT_RULES.md",
+    "agent_collaboration_doc": "AGENT_COLLABORATION.md",
+    "agent_collaboration_note": "章程要求建立 AGENTS.md；该文件名被宿主平台保留用于其自身的 Agent 指令注入，写入被系统拦截。协作规范因此落在 AGENT_COLLABORATION.md，内容与职责等同于章程所指的 AGENTS.md。",
+    "frozen_documents": [
+      "PROJECT_RULES.md",
+      "AGENT_COLLABORATION.md",
+      "contracts/**",
+      "manifest.json",
+      "tasks/task_registry.json",
+      "tasks/task_template.md",
+      "tests/test_plan.md"
+    ],
+    "frozen_contract_version": "1.0.0"
+  },
+  "contracts": {
+    "directory": "contracts/",
+    "index": "contracts/README.md",
+    "version": "1.0.0",
+    "files": {
+      "skill_input": "contracts/skill_input.schema.json",
+      "audit_result": "contracts/audit_result.schema.json",
+      "rule_envelope": "contracts/rule_envelope.schema.json",
+      "evidence_reference": "contracts/evidence_reference.schema.json",
+      "risk_action_matrix_schema": "contracts/risk_action_matrix.schema.json",
+      "risk_action_matrix": "contracts/risk_action_matrix.json",
+      "module_handoff": "contracts/module_handoff.schema.json",
+      "lexicon_rule_map": "contracts/lexicon_rule_map.json",
+      "file_ownership": "contracts/file_ownership.json"
+    },
+    "hard_constraints": [
+      "H1",
+      "H2",
+      "H3",
+      "H4",
+      "H5",
+      "H6"
+    ]
+  },
+  "skills": [
+    {
+      "name": "shopee-br-policy-research",
+      "role": "specialist",
+      "path": "skills/shopee-br-policy-research/",
+      "title": "Shopee BR 官方政策研究与规则来源核查",
+      "description": "抓取并核验 Shopee 巴西站官方政策页面，产出带来源引文与核查日期的规则素材。",
+      "responsibilities": [
+        "抓取/刷新官方来源并保留原始抓取件",
+        "核验规则引文逐字可核验",
+        "维护来源清单与违规码目录"
+      ],
+      "non_responsibilities": [
+        "不对具体商品做审核判定",
+        "不定义审核结果格式"
+      ],
+      "owned_paths": [
+        "skills/shopee-br-policy-research/**",
+        "tests/shopee-br-policy-research/**",
+        "research/**"
+      ],
+      "rule_prefixes": [],
+      "depends_on": [],
+      "blocks": [
+        "TASK-LISTING-01",
+        "TASK-IP-01",
+        "TASK-DUP-01",
+        "TASK-REPORT-01"
+      ],
+      "parallel_group": "G2"
+    },
+    {
+      "name": "shopee-br-listing-audit",
+      "role": "specialist",
+      "path": "skills/shopee-br-listing-audit/",
+      "title": "Shopee BR 商品内容合规审核",
+      "description": "对商品标题、详情、属性与宣传内容做禁售、受限与 listing 质量检查，产出可解释的审核结果。",
+      "responsibilities": [
+        "禁售/受限类目检查",
+        "listing 质量违规检查（夸大宣称、站外引流、类目错误等）",
+        "药品与保健品专项（2026-08-06 Anvisa 新规）"
+      ],
+      "non_responsibilities": [
+        "不做 IP 侵权判定",
+        "不做重复刊登/跨店关联",
+        "不解析原始文件"
+      ],
+      "owned_paths": [
+        "skills/shopee-br-listing-audit/**",
+        "tests/shopee-br-listing-audit/**"
+      ],
+      "rule_prefixes": [
+        "PI",
+        "RI",
+        "MED",
+        "LV"
+      ],
+      "depends_on": [
+        "TASK-POLICY-01"
+      ],
+      "blocks": [
+        "TASK-MAIN-01"
+      ],
+      "parallel_group": "G3"
+    },
+    {
+      "name": "shopee-br-duplicate-detection",
+      "role": "specialist",
+      "path": "skills/shopee-br-duplicate-detection/",
+      "title": "Shopee BR 重复刊登与违规重发检查",
+      "description": "识别同店重复刊登、跨店铺同款关联，并检查已删除/暂停商品是否被违规重发。",
+      "responsibilities": [
+        "同店重复刊登检测",
+        "跨店铺同款关联",
+        "历史违规重发检测与冻结建议",
+        "授权资料完整性与处罚点/申诉时限检查"
+      ],
+      "non_responsibilities": [
+        "不做 IP 侵权判定",
+        "不做商品内容合规判定",
+        "不解析原始文件"
+      ],
+      "owned_paths": [
+        "skills/shopee-br-duplicate-detection/**",
+        "tests/shopee-br-duplicate-detection/**"
+      ],
+      "rule_prefixes": [
+        "DUP",
+        "RL",
+        "AU",
+        "AC"
+      ],
+      "depends_on": [
+        "TASK-POLICY-01"
+      ],
+      "blocks": [
+        "TASK-MAIN-01"
+      ],
+      "parallel_group": "G3"
+    },
+    {
+      "name": "shopee-br-ip-review",
+      "role": "specialist",
+      "path": "skills/shopee-br-ip-review/",
+      "title": "Shopee BR 知识产权与授权风险筛查",
+      "description": "筛查商标、版权、外观设计与专利风险，区分指示性使用与侵权主张，识别授权材料缺口。",
+      "responsibilities": [
+        "商标/版权/外观设计/专利风险信号筛查",
+        "指示性使用（兼容性描述）与侵权主张的区分",
+        "授权材料缺口识别"
+      ],
+      "non_responsibilities": [
+        "不作最终侵权认定（需投诉/授权/平台通知）",
+        "不做重复刊登检测",
+        "不做商品内容合规判定"
+      ],
+      "owned_paths": [
+        "skills/shopee-br-ip-review/**",
+        "tests/shopee-br-ip-review/**"
+      ],
+      "rule_prefixes": [
+        "IP"
+      ],
+      "depends_on": [
+        "TASK-POLICY-01"
+      ],
+      "blocks": [
+        "TASK-MAIN-01"
+      ],
+      "parallel_group": "G3"
+    },
+    {
+      "name": "shopee-br-data-ingestion",
+      "role": "specialist",
+      "path": "skills/shopee-br-data-ingestion/",
+      "title": "Shopee BR 多格式资料读取与标准化",
+      "description": "读取 Excel、CSV、JSON、PDF、Word、图片等外部资料，映射字段并转换为统一数据模型。",
+      "responsibilities": [
+        "格式识别与安全解析",
+        "字段映射与数据清洗",
+        "统一模型转换与溯源记录",
+        "解析错误显式上报"
+      ],
+      "non_responsibilities": [
+        "不做任何合规判定",
+        "不改写或覆盖原始输入",
+        "不解释商品内容"
+      ],
+      "owned_paths": [
+        "skills/shopee-br-data-ingestion/**",
+        "tests/shopee-br-data-ingestion/**",
+        "lexicon/**"
+      ],
+      "rule_prefixes": [],
+      "depends_on": [],
+      "blocks": [
+        "TASK-LISTING-01",
+        "TASK-IP-01",
+        "TASK-DUP-01",
+        "TASK-REPORT-01",
+        "TASK-MAIN-01"
+      ],
+      "parallel_group": "G2"
+    },
+    {
+      "name": "shopee-br-reporting",
+      "role": "specialist",
+      "path": "skills/shopee-br-reporting/",
+      "title": "Shopee BR 审核结果汇总与报告生成",
+      "description": "汇总多模块审核结果，引用证据并生成人读报告与结构化汇总。",
+      "responsibilities": [
+        "多模块结果聚合（按 risk_action_matrix）",
+        "证据引用与报告生成",
+        "未评估项与缺口的显式呈现"
+      ],
+      "non_responsibilities": [
+        "不产生新的审核结论",
+        "不修改规则",
+        "不做合规判定"
+      ],
+      "owned_paths": [
+        "skills/shopee-br-reporting/**",
+        "tests/shopee-br-reporting/**"
+      ],
+      "rule_prefixes": [],
+      "depends_on": [
+        "TASK-POLICY-01"
+      ],
+      "blocks": [
+        "TASK-MAIN-01"
+      ],
+      "parallel_group": "G3"
+    },
+    {
+      "name": "shopee-br-compliance",
+      "role": "orchestrator",
+      "path": "skills/shopee-br-compliance/",
+      "title": "Shopee BR 合规审核主 Skill",
+      "description": "负责任务分流、调用适用模块并整合结果，产出最终审核结论。",
+      "responsibilities": [
+        "按目标与选项决定适用模块",
+        "显式读取各模块 SKILL.md 并按契约驱动执行",
+        "整合结果并按 risk_action_matrix 聚合",
+        "输出最终结论与待办"
+      ],
+      "non_responsibilities": [
+        "不自己实现业务规则",
+        "不假设 Skill 间存在自动调用能力",
+        "不做任何写平台操作"
+      ],
+      "owned_paths": [
+        "skills/shopee-br-compliance/**",
+        "tests/shopee-br-compliance/**"
+      ],
+      "rule_prefixes": [],
+      "depends_on": [
+        "TASK-LISTING-01",
+        "TASK-IP-01",
+        "TASK-DUP-01",
+        "TASK-REPORT-01"
+      ],
+      "blocks": [],
+      "parallel_group": "G4"
+    }
+  ],
+  "call_semantics": {
+    "automatic_invocation": false,
+    "note": "目标平台不保证 Skill 之间存在自动调用能力。主 Skill 必须设计为显式读取 skills/<module>/SKILL.md 的工作流。",
+    "workflow": "shopee-br-compliance 读取各模块 SKILL.md → 依契约构造输入 → 依契约读取/请求输出 → 依 risk_action_matrix 整合"
+  },
+  "rule_library": {
+    "directory": "rules/",
+    "current_rule_count": 50,
+    "ownership": [
+      {
+        "file": "rules/01_prohibited_restricted_items.json",
+        "prefixes": [
+          "PI",
+          "RI"
+        ],
+        "count": 17,
+        "owner": "shopee-br-listing-audit"
+      },
+      {
+        "file": "rules/02_ip_trademark_copyright.json",
+        "prefixes": [
+          "IP"
+        ],
+        "count": 8,
+        "owner": "shopee-br-ip-review"
+      },
+      {
+        "file": "rules/03_listing_violations_duplicates.json",
+        "prefixes": [
+          "LV",
+          "DUP"
+        ],
+        "count": 17,
+        "owner": "SPLIT_PENDING_INTEGRATION",
+        "note": "混有两个模块前缀，集成阶段由集成 Agent 拆分"
+      },
+      {
+        "file": "rules/04_cases_relist_authorization.json",
+        "prefixes": [
+          "RL",
+          "AU",
+          "AC"
+        ],
+        "count": 5,
+        "owner": "shopee-br-duplicate-detection"
+      },
+      {
+        "file": "rules/05_medicines_health.json",
+        "prefixes": [
+          "MED"
+        ],
+        "count": 3,
+        "owner": "shopee-br-listing-audit"
+      }
+    ]
+  },
+  "shared_assets": {
+    "shared_fixtures": "tests/fixtures/",
+    "fixtures_owner": "integrator",
+    "schemas": "data/schema/",
+    "schemas_owner": "integrator",
+    "reference_implementation": null,
+    "reference_impl_note": "第一阶段原型 src/compliance_agent/ 已核实不存在（从未入库，见 .archive/README.md §2）。本项目不再依赖原型参考实现；模块行为以冻结契约为权威依据。",
+    "reference_impl_status": "missing_verified_2026-10-27",
+    "lexicon": {
+      "path": "lexicon/",
+      "purpose": "合并词库 —— 37 组 / 856 词（扫描）、改写映射、误报豁免、质量特征、无法规避品类、葡语变位表",
+      "owner": "shopee-br-data-ingestion",
+      "built_from": "2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 原 25 组 179 词",
+      "coverage": "96.3% 逐词比对",
+      "owner_note": "词库由 shopee-br-data-ingestion 拥有（contracts/file_ownership.json 是唯一权威来源）。词库的**消费**方是 listing-audit —— 词库命中只是筛查信号，不构成违规判定。"
+    },
+    "unified_sop": {
+      "path": "docs/SOP_COMPLIANCE_REVIEW.md",
+      "purpose": "统一审核 SOP —— 合并 9 份历史文档、31 个实战坑、店主 491 商品审阅反馈",
+      "owner": "shopee-br-compliance"
+    },
+    "scanner": {
+      "path": "tools/scan_lexicon.py",
+      "purpose": "词库扫描器 —— 确定性筛查（归一化、组级边界策略、豁免、位置记录）+ 12 条回归用例",
+      "owner": "shopee-br-listing-audit",
+      "self_test": "python3 tools/scan_lexicon.py --self-test"
+    }
+  },
+  "existing_state": {
+    "git_repository": true,
+    "git_note": "仓库建于 2026-10-27（远端 yan/Shopee-BR-Compliance-Skills，私有访问凭据另行保管）。",
+    "note": "第一阶段原型资产已核实丢失，详见 .archive/README.md §2。"
+  },
+  "constraints": {
+    "no_remote_push": true,
+    "no_production_connection": true,
+    "no_service_deployment": true,
+    "no_full_business_rules": "本轮只完成框架与规范，不实现完整业务规则",
+    "internal_data_formats": [
+      "json",
+      "md"
+    ],
+    "exempted_formats": [
+      "yaml (SKILL.md frontmatter only)",
+      "source code extensions",
+      "binary fixtures",
+      "external input files"
+    ]
+  },
+  "lexicon": {
+    "path": "lexicon/term_groups.json",
+    "groups": 37,
+    "terms": 856,
+    "risk_hints": {
+      "prohibited": 15,
+      "restricted": 12,
+      "ip_signal": 8,
+      "listing_violation": 4
+    },
+    "source_tiers": {
+      "platform_official": 25,
+      "internal_risk": 12
+    },
+    "validation": "env -u LD_LIBRARY_PATH python3 tools/validate_lexicon.py"
+  },
+  "last_updated": "2026-10-27"
+}
