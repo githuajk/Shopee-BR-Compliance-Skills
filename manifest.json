@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "manifest_version": "1.6.0",
+  "manifest_version": "1.7.0",
   "project": {
     "code": "SBRCA",
     "name": "Shopee Brazil Compliance Agent",
@@ -382,6 +382,17 @@
       "steps": "0 定位 / 1 读入 / 2 字段完整性 / 3 定类目 / 4 标题 / 5 详情 / 6 图片 / 7 属性 / 8 合并总表 / 9 判定 / 10 收口 / 11 改写 / 12 复检 / 13 豁免 / 14 工单 / 15 交付",
       "owner": "integrator",
       "created": "2026-10-28"
+    },
+    "compliance_sop": {
+      "path": "docs/合规审核SOP.md",
+      "purpose": "★ 主作业手册（按《跨境发货SOP》格式）—— 文件说明/流程概况/基础逻辑/操作部分/判定与处置/特殊场景/审核报告/边界红线/附录A-B，含全部可填写字段模板",
+      "owner": "integrator",
+      "audience": "全员（店主/运营/审核员）",
+      "status": "Draft — 待用户审批",
+      "version": "1.0.0",
+      "created": "2026-10-28",
+      "format": "参照 docs/跨境发货SOP.md —— 一级章节 + N.N 二级 + N.N.N 三级 + 附录 A/B + 空白待填字段",
+      "fillable_fields": "源文件登记表/未评估项清单/类目卡/四张问题清单/商品问题总表/建议下架清单/改写记录表/豁免记录表/工单清单/待确认清单/批次汇总表/报告六节"
     }
   },
   "existing_state": {
