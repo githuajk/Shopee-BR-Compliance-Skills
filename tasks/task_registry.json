@@ -398,7 +398,7 @@
       "group": "G4",
       "module": "shopee-br-compliance",
       "parallel_group": "G4",
-      "status": "pending",
+      "status": "completed",
       "depends_on": [
         "TASK-LISTING-01",
         "TASK-IP-01",
@@ -432,7 +432,9 @@
       ],
       "objective": "建立主 Skill：负责任务分流、显式读取并执行适用模块、整合结果并保证确定性动作不被降级。",
       "workspace": "/tmp/sbrca_work/TASK-MAIN-01/",
-      "contract_version": "1.0.0"
+      "contract_version": "1.0.0",
+      "actual_result": "显式编排层（读各模块 SKILL.md 并驱动其 CLI）、整合层强制 H1/H2/H3、4 份 references 填实、107 项测试全通过。修复 2 个静默失败：CLI 参数约定套错导致 2 个模块未执行、整合层不强制 H1。交付说明见 skills/shopee-br-compliance/DELIVERY.md。",
+      "note": "2026-10-27 实现完成。"
     },
     {
       "task_id": "TASK-INTEGRATE-01",
@@ -473,8 +475,8 @@
   ],
   "summary": {
     "total": 10,
-    "completed": 8,
-    "pending": 2,
+    "completed": 9,
+    "pending": 1,
     "by_group": {
       "G0": 1,
       "G1": 1,

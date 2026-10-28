@@ -5,7 +5,7 @@ description: Use when you need a complete Shopee Brazil product compliance revie
 
 # Shopee BR 合规审核主 Skill
 
-> 状态：**骨架 — 待 `TASK-MAIN-01` 填充**
+> 状态：**Active — 已实现**（`TASK-MAIN-01`）
 > 契约版本：1.0.0
 > 归属：`skills/shopee-br-compliance/**`、`tests/shopee-br-compliance/**`
 
@@ -76,23 +76,34 @@ description: Use when you need a complete Shopee Brazil product compliance revie
 
 ### 5.1 分流决策表
 
+**实际判据见 `references/routing.md` §3**（以实现为准）。摘要：
+
 | 输入情形 | 调用链 |
 |---|---|
-| 单个商品 + 文件 | ingestion → listing-audit → ip-review → reporting |
-| 单个商品 + 已规范化 JSON | listing-audit → ip-review → reporting |
-| 多商品同店 | ingestion → listing-audit → ip-review → **duplicate-detection** → reporting |
-| 多商品多店 | ingestion → listing-audit → ip-review → **duplicate-detection（同一次请求内）** → reporting |
-| 只需重复/重发检查 | ingestion → duplicate-detection → reporting |
+| 有商品 + 外部文件 | ingestion → listing-audit → ip-review → duplicate-detection → reporting |
+| 有商品 + 已规范化 JSON | listing-audit → ip-review → duplicate-detection → reporting |
+| 只有外部文件 | ingestion → reporting |
+| 无商品 | reporting |
 | 需要新规则或核验引文 | policy-research（独立） |
-| 只需汇总既有结果 | reporting（独立） |
+| 只需汇总既有结果 | reporting（独立，`--result-file`） |
+
+**要点**：只要有商品，**三个专业维度都执行**。
+
+- `ip-review`：缺品牌/图片时相关规则记 `unevaluated[]` —— 那正是
+  「未评估」的信息，必须出现在结果里
+- `duplicate-detection`：单店时跨店比对维度记缺口 —— 同店重复与重发
+  仍然要查
+
+跳过某个维度 = 该维度的结论**从结果里消失**，不是「默认没问题」。
 
 ### 5.2 执行顺序（固定）
 
 ```
-ingestion → { listing-audit , ip-review , duplicate-detection } → reporting → 整合
+ingestion → content_audit → ip → duplicate → reporting
 ```
 
-**中间三个可并行**（互不依赖，路径不重叠）。`duplicate-detection` 需要 `ingestion` 的结果与 `cases[]`。
+阶段顺序由 `registry.STAGE_ORDER` 定义，分流结果按它重排 —— 无论
+分流函数以什么顺序返回。
 
 ---
 
@@ -143,19 +154,24 @@ ingestion → { listing-audit , ip-review , duplicate-detection } → reporting 
 
 | 规则 | 说明 |
 |---|---|
-| 动作只增不减 | `block`/`freeze_relist`/`escalate_legal` 不被任何模块降级（硬约束 H2） |
-| verdict 取最重 | 按 `risk_action_matrix.verdict_aggregation` |
-| action 保留最细粒度 | 同上 |
+| **H2 优先于聚合** | 阻断类动作必须能追溯到 `platform_official` / `law` 的来源；否则**在聚合之前**降级为 `flag_for_review` 并记录原因 |
+| verdict 取最重 | 按 `risk_action_matrix.verdict_aggregation`，且**基于清洗后**的 action |
+| action 保留最细粒度 | 在达成该 verdict 的动作里选粒度最细的一条（取自矩阵 `actions` 段声明顺序） |
 | 缺口不得消失 | 任一模块的 `unevaluated` 必须出现在最终结果中 |
 | IP 结论保持 signal | 不得因合并而升为 `confirmed`（硬约束 H1） |
+
+> **「动作只增不减」是错的**（旧版文档的说法，已更正）。H2 的要求是
+> 「阻断类动作只能来自权威来源的 active 规则」—— 整合层**必须**有权
+> 把不合规的阻断动作降下来。若整合层只增不减，一条 `internal_risk`
+> 规则自报 `block` 就能直接变成最终结论，H2 就形同虚设。
 
 ## 9. 硬约束
 
 | ID | 本 Skill 如何满足 |
 |---|---|
-| H1 | 合并时保留 `confidence="signal"` |
-| **H2** | 整合单向：确定性动作只增不减 |
-| H3 | 合并 `unevaluated[]`，不丢弃任何模块的缺口 |
+| H1 | 引用 `SBR-IP-*` 规则的结果，`confidence` 强制压回 `signal`、`requires_human_review` 强制为 `true` |
+| **H2** | 清洗阶段按 `rule_refs[].source_tier` 校验；非权威来源的阻断动作降级为 `flag_for_review`，**降级原因写入 `errors[]`** |
+| H3 | 合并 `unevaluated[]`；有未评估项时目标与批次的 verdict **不得**是 `PASS` |
 | H4 | 规则来源与核查日期原样透传 |
 | H5 | 证据只引用，不内嵌内容 |
 | H6 | 不提供任何执行 `freeze_relist`/`escalate_legal` 的入口 —— 只生成建议 |
@@ -176,18 +192,29 @@ ingestion → { listing-audit , ip-review , duplicate-detection } → reporting 
 
 ## 11. 测试案例与验收标准
 
+`tests/shopee-br-compliance/run_tests.py`（107 项断言，L1–L9）：
+
 | 类别 | 用例 | 断言 |
 |---|---|---|
-| 端到端 | 单商品 xlsx → 最终结论 | 全流程通过，产出 JSON + Markdown |
-| 端到端 | 多店 xlsx → 跨店同款被识别 | 跨店比对在同一次请求内完成 |
-| 分流 | 只有 `products[]`（无文件） | 跳过 ingestion |
-| 分流 | 只有既有 `AuditResult[]` | 只调 reporting |
-| 降级 | listing-audit 不可用 | 明确标注未执行，**不判通过** |
-| 不降级 | `block` + `flag_for_review` | 最终 action 仍为 `block` |
-| 缺口 | 某模块报 `unevaluated` | 最终结果含该 `unevaluated` |
-| H1 | IP 结论 | 合并后仍为 `signal` |
-| 契约 | 正常流程 | 输出通过 `audit_result` 校验 |
-| 表述 | 全文 | 无「自动调用子 Skill」式表述 |
+| 登记 | 5 个模块全部登记、CLI 存在、阶段顺序固定 | L1 |
+| **CLI 约定** | 逐个核对 5 个模块的 `--help` 参数 | L2（防再次套错参数） |
+| 分流 | 有商品 → 三个专业维度都执行；ingestion 跳过 | L3 |
+| 分流 | 显式 `options.modules` 只跑指定模块；未知模块记为跳过 | L3 |
+| 显式读取 | 5 个模块的 `SKILL.md` 可读且含契约章节 | L4 |
+| **H2** | `internal_risk` 的 `block` 被降级并记录原因 | L5 |
+| **H1** | IP 结论被压回 `signal`，调整被记录 | L5 |
+| **真实串联** | 39 商品走完 4 阶段，各模块结果数与商品数一致 | L6 |
+| 契约 | 每条结果 + handoff + SkillInput 通过真实 Schema 校验 | L6 |
+| **H3** | 缺 `cases[]` 时 unevaluated 被上报，verdict 不是 PASS | L7 |
+| 端到端 | CLI 退出码 0，产出 7 个文件 | L8 |
+| 边界 | 不 import 网络库、不含线上处置动作 | L9 |
+
+**故障注入验证**（两处都确认能抓到）：
+
+| 注入 | 结果 |
+|---|---|
+| ip-review 参数改回 `--skill-input` | exit 1，报「unrecognized arguments: --skill-input」 |
+| 去掉整合层的 H1 压回 | exit 1，报「H1：IP 结论被压回 signal: confirmed」 |
 
 ## 12. 依赖
 
@@ -227,14 +254,16 @@ lexicon/**
 
 ## 17. 待填内容
 
-- [ ] `references/routing.md` —— 分流决策表与边界情形
-- [ ] `references/execution_workflow.md` —— 显式工作流的逐步说明
-- [ ] `references/integration_rules.md` —— 整合与冲突处理
-- [ ] `references/degradation.md` —— 模块缺失时的降级行为
-- [ ] `tests/shopee-br-compliance/run_tests.py`
+- [x] `references/routing.md` —— 分流决策表与边界情形
+- [x] `references/execution_workflow.md` —— 显式工作流的逐步说明
+- [x] `references/integration_rules.md` —— 整合与冲突处理
+- [x] `references/degradation.md` —— 模块缺失时的降级行为
+- [x] `tests/shopee-br-compliance/run_tests.py` —— 107 项断言
+- [x] `DELIVERY.md` —— 交付说明
 
 ## 18. 变更记录
 
 | 版本 | 日期 | 变更 |
 |---|---|---|
+| 1.0.0 | 2026-10-27 | **实现完成**（`TASK-MAIN-01`）：显式编排层、整合层硬约束强制、107 项测试 |
 | 0.1.0 | 2026-10-27 | 骨架创建（待 TASK-MAIN-01 填充） |
