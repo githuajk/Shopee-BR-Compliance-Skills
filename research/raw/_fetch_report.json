@@ -85,7 +85,8 @@
   },
   {
     "slug": "br_anvisa_medicamentos_prescricao",
-    "status": "http_503",
-    "url": "https://bvsms.saude.gov.br/docs/bvsms/legislacao/rdc/2009/rdc_44_2009_10_06_2009.html"
+    "status": "http_404",
+    "url": "https://bvsms.saude.gov.br/docs/bvsms/legislacao/rdc/2009/rdc_44_2009_10_06_2009.html",
+    "note": "重试 2026-10-28T15:42Z：首次抓取为 HTTP 503（站点不可达）；重试时站点根可达（/ 返回 200），但来源 URL 与 /docs/bvsms/legislacao/rdc/2009/ 目录及 BVSMS 备选路径均返回 HTTP 404（页面已迁移/下线），重抓未成功。该来源维持 unverified，不得支撑任何规则。"
   }
 ]

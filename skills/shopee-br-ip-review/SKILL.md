@@ -5,7 +5,7 @@ description: Use when you need to screen a Shopee Brazil listing for intellectua
 
 # Shopee BR 知识产权与授权风险筛查
 
-> 状态：**骨架 — 待 `TASK-IP-01` 填充**
+> 状态：**已实现**（`TASK-IP-01`）
 > 契约版本：1.0.0
 > 规则前缀：`IP`
 > 归属：`skills/shopee-br-ip-review/**`、`tests/shopee-br-ip-review/**`
@@ -211,3 +211,4 @@ tools/scan_lexicon.py
 | 版本 | 日期 | 变更 |
 |---|---|---|
 | 0.1.0 | 2026-10-27 | 骨架创建（待 TASK-IP-01 填充） |
+| 1.0.0 | 2026-10-28 | `TASK-IP-01` 实现：`src/sbr_ip_review/` 模块 + CLI，236/236 测试全绿；状态行由骨架同步为已实现 |
