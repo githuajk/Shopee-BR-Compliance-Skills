@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "manifest_version": "1.3.0",
+  "manifest_version": "1.8.0",
   "project": {
     "code": "SBRCA",
     "name": "Shopee Brazil Compliance Agent",
@@ -8,7 +8,7 @@
     "market": "巴西 Shopee",
     "language": "中文（文档）/ 葡萄牙语（源材料与规则引文）/ 英语（代码标识符）",
     "status": "Phase 1 — 公共契约已冻结，等待并行模块开发",
-    "last_updated": "2026-10-27"
+    "last_updated": "2026-10-28"
   },
   "governance": {
     "project_rules": "PROJECT_RULES.md",
@@ -364,6 +364,43 @@
       "purpose": "词库扫描器 —— 确定性筛查（归一化、组级边界策略、豁免、位置记录）+ 12 条回归用例",
       "owner": "shopee-br-listing-audit",
       "self_test": "python3 tools/scan_lexicon.py --self-test"
+    },
+    "compliance_sop": {
+      "path": "docs/合规审核SOP.md",
+      "purpose": "★ 主作业手册（按《跨境发货SOP》格式）—— 文件说明/流程概况/基础逻辑/操作部分/判定与处置/特殊场景/审核报告/边界红线/附录A-B，含全部可填写字段模板",
+      "owner": "integrator",
+      "audience": "全员（店主/运营/审核员）",
+      "status": "Draft — 待用户审批",
+      "version": "1.0.0",
+      "created": "2026-10-28",
+      "format": "参照 docs/跨境发货SOP.md —— 一级章节 + N.N 二级 + N.N.N 三级 + 附录 A/B + 空白待填字段",
+      "fillable_fields": "源文件登记表/未评估项清单/类目卡/四张问题清单/商品问题总表/建议下架清单/改写记录表/豁免记录表/工单清单/待确认清单/批次汇总表/报告六节"
+    },
+    "manual_review": {
+      "path": "docs/MANUAL_REVIEW.md",
+      "purpose": "人工审核操作手册 —— 纯手工无代码（步骤 3-15 共用编号）；含四张检查清单、46 个处罚码关键词判定表、收口决策树、复检 12 项、9 条豁免、审核员自查",
+      "owner": "integrator",
+      "audience": "人工审核员",
+      "status": "Draft — 待用户审批",
+      "version": "2.0.0",
+      "created": "2026-10-28",
+      "derived_from": "rules/*.json (50 条) + research/violation_codes.json (106 码) + lexicon/exemptions.json (7 条) + lexicon/non_avoidable.json (6 类) + lexicon/quality_patterns.json (15 条)"
+    },
+    "shared_step_numbering": {
+      "path": "docs/USER_SOP.md + docs/MANUAL_REVIEW.md",
+      "purpose": "两份文档共用步骤 0-15 编号；分工是「谁做这一步」—— USER_SOP 管流程/工具/铁律，MANUAL_REVIEW 管清单/词表/动作",
+      "steps": "0 定位 / 1 读入 / 2 字段完整性 / 3 定类目 / 4 标题 / 5 详情 / 6 图片 / 7 属性 / 8 合并总表 / 9 判定 / 10 收口 / 11 改写 / 12 复检 / 13 豁免 / 14 工单 / 15 交付",
+      "owner": "integrator",
+      "created": "2026-10-28"
+    },
+    "user_sop": {
+      "path": "docs/USER_SOP.md",
+      "purpose": "使用者操作规程 —— 流程框架与工具铁律（步骤 0-15 共用编号）；含源文件定位、标准化、字段完整性、xlsx 8 条铁律、扫描工具、硬约束、改写铁律、交付清单",
+      "owner": "integrator",
+      "audience": "使用者（非开发 Agent）",
+      "status": "Draft — 待用户审批",
+      "version": "2.0.0",
+      "created": "2026-10-28"
     }
   },
   "existing_state": {
