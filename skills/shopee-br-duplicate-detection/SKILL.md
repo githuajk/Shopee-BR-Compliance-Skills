@@ -5,7 +5,7 @@ description: Use when you need to find duplicate or relisted Shopee Brazil listi
 
 # Shopee BR 重复刊登与违规重发检查
 
-> 状态：**骨架 — 待 `TASK-DUP-01` 填充**
+> 状态：**已实现**（`TASK-DUP-01`）
 > 契约版本：1.0.0
 > 规则前缀：`DUP` `RL` `AU` `AC`
 > 归属：`skills/shopee-br-duplicate-detection/**`、`tests/shopee-br-duplicate-detection/**`
@@ -210,3 +210,4 @@ lexicon/non_avoidable.json
 | 版本 | 日期 | 变更 |
 |---|---|---|
 | 0.1.0 | 2026-10-27 | 骨架创建（待 TASK-DUP-01 填充） |
+| 1.0.0 | 2026-10-28 | `TASK-DUP-01` 实现：`src/sbr_duplicate_detection/` 模块 + CLI，587/587 测试全绿（含 rules/06 新加载器）；状态行由骨架同步为已实现 |

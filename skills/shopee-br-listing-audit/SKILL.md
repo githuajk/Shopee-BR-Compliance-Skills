@@ -5,7 +5,7 @@ description: Use when you need to check a Shopee Brazil product listing for proh
 
 # Shopee BR 商品内容合规审核
 
-> 状态：**骨架 — 待 `TASK-LISTING-01` 填充**
+> 状态：**已实现**（`TASK-LISTING-01`）
 > 契约版本：1.0.0
 > 规则前缀：`PI` `RI` `MED` `LV`
 > 归属：`skills/shopee-br-listing-audit/**`、`tests/shopee-br-listing-audit/**`
@@ -195,3 +195,4 @@ research/**
 | 版本 | 日期 | 变更 |
 |---|---|---|
 | 0.1.0 | 2026-10-27 | 骨架创建（待 TASK-LISTING-01 填充） |
+| 1.0.0 | 2026-10-28 | `TASK-LISTING-01` 实现：`src/sbr_listing_audit/` 模块 + CLI，406/406 测试全绿（最终词库 210,984 全量复跑）；状态行由骨架同步为已实现 |

@@ -102,8 +102,8 @@
     "url": "https://bvsms.saude.gov.br/docs/bvsms/legislacao/rdc/2009/rdc_44_2009_10_06_2009.html",
     "tier": "law",
     "scope": "Brazil - prescription-only medicine dispensing rules",
-    "capture_status": "failed_http_503",
-    "capture_note": "抓取失败（HTTP 503）—— bvsms.saude.gov.br 当时不可达。本项目未使用该来源支撑任何规则；相关规则改用其它已核验来源。"
+    "capture_status": "failed_http_404_20261028_retry",
+    "capture_note": "首抓失败（HTTP 503，站点不可达）；2026-10-28 重试：站点根可达（200）但来源 URL 返回 HTTP 404（页面迁移/下线，重抓未成功）。来源维持 unverified，不得支撑任何规则；tier/scope 未改动。"
   },
   {
     "slug": "shopee_br_categoria_correta",
