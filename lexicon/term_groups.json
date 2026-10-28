@@ -32,7 +32,25 @@
       "revólver",
       "rifle",
       "submetralhadora",
-      "taser"
+      "taser",
+      "acessórios para aprimorar a experiência de tiro",
+      "manutenção e o armazenamento da arma",
+      "armas brancas que podem causar traumas contundentes",
+      "armas de festim",
+      "armas de festim e suas partes",
+      "munição para arma de festim",
+      "armas não letais de autodefesa",
+      "maiores que 30 centímetros (12 polegadas)",
+      "retráteis/dobradas ou facilmente ocultadas",
+      "facas e lâminas cujo área de corte tenha mais que 30 centímetros",
+      "soco inglês",
+      "bestas",
+      "arcos e flechas profissionais",
+      "armas brancas que não sejam destinadas exclusivamente à prática esportiva",
+      "armas de brinquedos",
+      "se assemelham a armas reais",
+      "confundidas com armamento de fogo",
+      "munições não seguras para crianças"
     ],
     "proibido_tabaco": [
       "atomizador de vape",
@@ -67,7 +85,17 @@
       "narcótico",
       "substância controlada",
       "trata tarja preta",
-      "trata tarja vermelha"
+      "trata tarja vermelha",
+      "drogas ilícitas",
+      "substâncias psicotrópicas",
+      "equipamentos para produção e utilização de drogas",
+      "plantas e sementes psicoativas",
+      "publicações que promovam o uso de drogas",
+      "medicamentos que necessitam de prescrição médica",
+      "embalagens que imitam medicamentos",
+      "imitam medicamentos ou tentem se passar por medicamentos",
+      "medicamentos de venda livre para uso humano",
+      "fitoterápicos"
     ],
     "proibido_quimicos": [
       "diesel bruto",
@@ -119,7 +147,9 @@
       "insignia governamental",
       "insígnia governamental",
       "uniforme militar",
-      "uniforme policial"
+      "uniforme policial",
+      "uniformes, insígnias, medalhas",
+      "força pública"
     ],
     "proibido_wildlife": [
       "animal vivo",
@@ -151,7 +181,14 @@
     "proibido_dairy": [
       "iogurte de leite cru",
       "leite cru",
-      "queijo de leite cru"
+      "queijo de leite cru",
+      "laticínios não pasteurizados",
+      "queijos feitos de leite cru",
+      "laticínios caseiros",
+      "à granel",
+      "sem selagem industrial e rastreabilidade",
+      "manteiga artesanal",
+      "queijo artesanal"
     ],
     "restrito_bebida": [
       "aguardente",
@@ -169,7 +206,10 @@
       "vinho",
       "vodka",
       "whisky",
-      "álcool"
+      "álcool",
+      "garrafas vazias",
+      "certificações de bebidas alcóolicas",
+      "bebidas caseiras"
     ],
     "restrito_saude": [
       "colageno",
@@ -183,7 +223,33 @@
       "suplemento alimentar",
       "suplemento alimenticio",
       "vitamina",
-      "whey protein"
+      "whey protein",
+      "cosméticos que contenham substâncias tóxicas",
+      "agulhas sem número de certificação da anvisa",
+      "produtos cosméticos e perfumes usados",
+      "amostras, testers, similares, fracionados",
+      "produtos para tratamento de beleza invasivos",
+      "concentração de formaldeído maior que 5%",
+      "estimulam o desmame",
+      "abaixo de 12 meses",
+      "clareadores dentais",
+      "peróxido de carbamida",
+      "mais de 3% de peróxido de carbamida",
+      "procedimentos odontológicos que exijam supervisão profissional",
+      "uso exclusivo de profissionais de saúde",
+      "qualquer tipo de modificação corporal",
+      "aparelhos auditivos",
+      "suportes para lesões e incapacidades",
+      "testes que necessitem de acompanhamento médico",
+      "hormônios e esteroides anabolizantes",
+      "suplementos para emagrecimento",
+      "suplementos à base de plantas com potencial tóxico",
+      "potencial tóxico ou não regulamentados",
+      "vitaminas e suplementos para bebês",
+      "suplementos e vitaminas para grávidas",
+      "venda sob prescrição",
+      "retenção de receita",
+      "notificação de receita"
     ],
     "restrito_bateria": [
       "bateria 18650",
@@ -192,7 +258,13 @@
       "bateria de lítio",
       "bateria lipo",
       "carregador turbo",
-      "power bank"
+      "power bank",
+      "baterias com fios soltos",
+      "sem isolamento",
+      "baterias sem embalagem adequada",
+      "pilhas e baterias avulsas",
+      "pilhas alcalinas",
+      "baterias de carro e moto"
     ],
     "restrito_auto": [
       "componente automotivo",
@@ -208,7 +280,10 @@
       "embalagem refrigerada",
       "fruta fresca",
       "legume fresco",
-      "produto perecível"
+      "produto perecível",
+      "alimentos frescos",
+      "produtos caseiros",
+      "riscos à saúde humana"
     ],
     "restrito_pet": [
       "antiparasitario",
@@ -218,7 +293,10 @@
       "medicamento veterinário",
       "petisco medicinal",
       "vermifugo",
-      "vermífugo"
+      "vermífugo",
+      "produtos de tortura animal",
+      "captura de espécies proibidas animais",
+      "medicamentos veterinários que exijam prescrição"
     ],
     "restrito_airsoft": [
       "airsoft",
@@ -226,7 +304,9 @@
       "arma de pressão",
       "municao de airsoft",
       "munição de airsoft",
-      "paintball"
+      "paintball",
+      "calibre maior que 6.35 milímetros",
+      "equipamentos táticos"
     ],
     "ip_marca_global": [
       "3CE",
@@ -731,7 +811,16 @@
       "REACH",
       "RoHS",
       "UL Listed",
-      "USDA Organic"
+      "USDA Organic",
+      "fertilizantes ou adubos caseiros",
+      "certificação do mapa",
+      "compostos e produtos vegetais que possam conter",
+      "inseticidas e outros produtos químicos nocivos",
+      "plantas vivas ou mortas",
+      "partes de plantas como mudas",
+      "plantas ou sementes indicadas na lista oficial da flora ameaçada",
+      "extintores de incêndio",
+      "extintores de incêndio de qualquer tipo"
     ],
     "claim_saude": [
       "analgésico",
@@ -756,7 +845,8 @@
       "trata",
       "trata-se",
       "tratamento de",
-      "vacina"
+      "vacina",
+      "promessas exageradas ou milagrosas"
     ],
     "claim_beleza": [
       "anti-celulite",
@@ -981,7 +1071,12 @@
       "brinquedo sexual com demonstração",
       "boneca de caráter erótico infantil",
       "anúncios de sexo ilegal",
-      "trabalho sexual"
+      "trabalho sexual",
+      "preservativos sem embalagem",
+      "estimulantes sexuais ingeríveis",
+      "brinquedos sexuais com demonstração sensível",
+      "exploração sexual infantil",
+      "bonecas de caráter erótico infantis"
     ],
     "conteudo_extremista": [
       "partido nazista",
@@ -1001,7 +1096,12 @@
       "seita apocalíptica",
       "culto destrutivo",
       "nazismo",
-      "hitlerismo"
+      "hitlerismo",
+      "espalhe ódio ou medo",
+      "promova violência",
+      "referência a um regime militar",
+      "propaganda e/ou promova discurso de ódio",
+      "símbolos ligados ao nazimos ou suástica"
     ],
     "conteudo_desinformacao": [
       "vacina causa",
@@ -1068,7 +1168,41 @@
       "roubo",
       "senhas de contas bancárias",
       "tráfico humano",
-      "tráfico sexual"
+      "tráfico sexual",
+      "fornecimento de informações privadas",
+      "vigilância de áudio/vídeo",
+      "localização pessoal",
+      "identificações pessoais",
+      "números de cartões",
+      "documentos de identificação",
+      "selos de registro, homologação",
+      "documentos autorizados",
+      "câmeras com finalidade de espionagem",
+      "softwares distribuídos digitalmente",
+      "versões piratas",
+      "programas de invasão ou fraude",
+      "dispositivos de armazenamento com conteúdo não autorizado",
+      "cardsharing",
+      "internet key sharing",
+      "satellite key sharing",
+      "bloqueadores de sinal",
+      "keylogger",
+      "key ghost",
+      "key shark",
+      "acesso a canais pagos de forma gratuita",
+      "pré-carregados com conteúdo pago",
+      "livros em formato digital",
+      "audiobooks",
+      "e-book",
+      "mobi",
+      "kindle",
+      "ereader",
+      "azw3",
+      "valor histórico, cultural ou arqueológico protegido",
+      "bens naturais de origem restrita",
+      "recargas para celulares pré-pagos",
+      "gift cards",
+      "jogos e lojas de aplicativo"
     ],
     "platform_sexual_nudity": [
       "abuso sexual de menores",
@@ -1135,7 +1269,9 @@
       "phishing",
       "pôquer",
       "serviços de jogo",
-      "software e aplicativos associados a jogos de azar"
+      "software e aplicativos associados a jogos de azar",
+      "produtos relacionados a apostas",
+      "colocar dinheiro ou algo de valor em um evento com um resultado incerto"
     ],
     "platform_automotive_restricted": [
       "alterar a quilometragem",
@@ -1145,7 +1281,20 @@
       "furto de carros",
       "interferência no sinal de alarmes",
       "itens automotivos protegidos por patente",
-      "veículos e partes de veículos automotores com ordem de busca e apreensão"
+      "veículos e partes de veículos automotores com ordem de busca e apreensão",
+      "itens “usados” voltados à segurança do automóvel",
+      "sistema de freios",
+      "sistema de controle de estabilidade",
+      "peças de suspensão",
+      "sistema de airbags",
+      "cintos de segurança",
+      "sistema de direção",
+      "vidros de segurança",
+      "alterar a quilometragem registrada",
+      "itens que dificultem a identificação ou alterem a placa",
+      "pneus usados",
+      "pneus remoldados",
+      "emuladores utilizados para simular as emissões de gases"
     ],
     "platform_food_animal_restricted": [
       "acessórios para briga de animais",
@@ -1181,7 +1330,12 @@
       "notas ou moedas falsas",
       "restos mortais",
       "suástica",
-      "órgãos humanos reais"
+      "órgãos humanos reais",
+      "moedas de brinquedo realistas",
+      "ferramentas de produção que possam ser usadas para imprimir notas ou moedas falsas",
+      "ações listadas em bolsas de valores",
+      "metais preciosos",
+      "dinheiro vigente"
     ],
     "platform_chemicals_explosives_toxic": [
       "bombas em geral",
@@ -1191,7 +1345,20 @@
       "produtos ou dispositivos cujo fim seja a montagem de explosivos",
       "substâncias e artigos explosivos",
       "substâncias químicas inflamáveis",
-      "substâncias tóxicas"
+      "substâncias tóxicas",
+      "montagem de explosivos",
+      "contenham pólvora",
+      "dispositivo para iniciar fogo",
+      "acendedores de churrasco",
+      "produtos químicos nocivos à saúde",
+      "podem intoxicar ou causar danos à humanos",
+      "querosene automotivo",
+      "gnv",
+      "gás natural veicular",
+      "tintas sprays cuja dimensão unitária seja maior que 500 gramas",
+      "maçaricos com gás",
+      "materiais cortantes como cerol",
+      "cerol (linha chilena)"
     ],
     "platform_services_restricted": [
       "agência de adoção",
@@ -1212,7 +1379,9 @@
       "cigarros",
       "cigarros eletrônicos",
       "produtos para preparar cigarros",
-      "vapers"
+      "vapers",
+      "piteira",
+      "seda, papel etc"
     ],
     "platform_out_of_commerce": [
       "embalagem ou formato não aprovado para varejo",
@@ -1222,7 +1391,16 @@
       "recolhidas",
       "registro cancelado",
       "sem registro",
-      "uso interno de uma empresa"
+      "uso interno de uma empresa",
+      "produtos fora do comércio",
+      "sem registro ou com registro cancelado",
+      "foram interditadas ou recolhidas",
+      "garrafas vazias",
+      "selos",
+      "rótulos",
+      "lacres",
+      "peças de celulares e computadores usados",
+      "número de homologação do produto"
     ],
     "platform_ip_explicit": [
       "afiliação oficial",
@@ -211724,6 +211902,6 @@
   },
   "stats": {
     "group_count": 100,
-    "term_count": 210807
+    "term_count": 210985
   }
 }
