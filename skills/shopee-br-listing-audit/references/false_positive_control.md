@@ -391,7 +391,7 @@ for hit in hits:
 |---|---|---|---|
 | 1 | 命中的是**文案措辞**，不是结构事实 | `confidence: likely`（非结构算子） | `regex` 只能证明「这句话写了」，证明不了「商品是这件东西」 |
 | 2 | `confidence == "signal"` | 非权威来源 / 非 `active` / IP 类 | 同上，且更弱 |
-| 3 | 规则本身要求人工复核 | `requires_human_review: true`（本模块 34 条里 29 条） | 规则作者显式声明「这需要人判断」 |
+| 3 | 规则本身要求人工复核 | `requires_human_review: true`（本模块 41 条里 36 条；规则文件字段名 `human_review_required`） | 规则作者显式声明「这需要人判断」 |
 | 4 | 命中被降级过 | `downgrade_reason` 非空 | 降级说明「本来想做的结论做不成」，必须有人补位 |
 | 5 | 存在 `unevaluated[]` 条目 | `requires_human_review: true` | 有维度根本没跑，不能当合规 |
 | 6 | 词库筛查没跑成 | `lexicon_state == "unevaluated"` | 少了一层信号 |

@@ -53,9 +53,9 @@
 2. `engine.py` 的 `_resolve_action()` —— 即使规则非 `active`（理论上不会走到，
    因为 `_evaluate_rule` 已经拦掉了），也会走降级分支。
 
-> 本仓库当前 50 条规则的状态分布：`active` 49 条、`draft` 1 条
+> 本仓库当前 57 条规则的状态分布：`active` 56 条、`draft` 1 条
 > （`SBR-LV-014`，变体使用不当）。
-> 本模块的 34 条里同样只有 `SBR-LV-014` 是 `draft`。
+> 本模块的 41 条里同样只有 `SBR-LV-014` 是 `draft`。
 
 ---
 
@@ -121,7 +121,7 @@
 当前状态（实测）：
 
 ```
-50/50 excerpts verified verbatim, 0 failed
+57/57 excerpts verified verbatim, 0 failed
 来源清单与抓取件一致。
   抓取失败（已登记，不得用于支撑规则）：2 条
     - br_anvisa_publicidade_medicamentos
@@ -422,7 +422,7 @@ return f"sbr-listing-rules/{self.module_version()}+{digest}"
 
 每次复核规则库时逐条过：
 
-- [ ] `env -u LD_LIBRARY_PATH python3 tools/verify_citations.py` → `50/50 excerpts verified verbatim, 0 failed`
+- [ ] `env -u LD_LIBRARY_PATH python3 tools/verify_citations.py` → `57/57 excerpts verified verbatim, 0 failed`
 - [ ] `env -u LD_LIBRARY_PATH python3 tools/check_sources.py` → 来源清单与抓取件一致（允许 2 条已登记的抓取失败）
 - [ ] `env -u LD_LIBRARY_PATH python3 tools/check_rule_regex.py` → 全部规则的正则可编译，且无逻辑自指缺陷
 - [ ] 每条 `active` 规则的 `source.url` 指向的页面，其「Última atualização」日期不晚于该规则的 `last_verified`

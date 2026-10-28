@@ -512,9 +512,9 @@ LV 类的触发条件有 5 种算子，语义各不相同。**读 `reason` 里�
 | **H1** | IP 类结论恒为 `signal` + 强制人工复核 | `_confidence()` 首行判 `is_ip_rule`；`_review_requirements()` 对 IP 规则追加理由。本模块不加载 `IP` 前缀规则，`candidate_rules()` 也按前缀过滤掉 IP 词组 | `engine.py` |
 | **H2** | `block` / `freeze_relist` / `escalate_legal` 只来自 `platform_official` / `law` 的 `active` 规则 | `rules.py` 的 `blocking_allowed()` + `TIER_MAX_ACTION`；`engine.py` 的 `_resolve_action()` 降级 | `rules.py`、`engine.py` |
 | **H3** | 输入缺失 → 不评估 + 上报 `unevaluated[]` + warning 错误 | `conditions.py` 返回 `UNEVALUATED`；`engine.py` 记 `unevaluated[]` 与 `errors[]`（`stage: "rule_evaluation"`, `severity: "warning"`） | `conditions.py`、`engine.py` |
-| **H4** | `source.excerpt` 必须逐字出现在 `research/raw/` 抓取件中 | 全部 `active` 规则的引文逐字取自抓取件；核验命令 `tools/verify_citations.py`（当前 `50/50 excerpts verified verbatim, 0 failed`） | `rules/**`、`tools/verify_citations.py` |
+| **H4** | `source.excerpt` 必须逐字出现在 `research/raw/` 抓取件中 | 全部 `active` 规则的引文逐字取自抓取件；核验命令 `tools/verify_citations.py`（当前 `57/57 excerpts verified verbatim, 0 failed`，2026-10-28 规则库 57 条后） | `rules/**`、`tools/verify_citations.py` |
 | **H5** | `evidence_refs.artifact_ref` 只存引用，不内嵌凭证内容 | 观测证据的 `artifact_ref` 恒为 `products/<product_id>/<field>`；待补证据恒为 `null` | `engine.py` 的 `_build_evidence_refs()` |
-| **H6** | `freeze_relist` / `escalate_legal` 为 `human_only` | 本模块 34 条规则无一声明这两个动作（`decision` 分布：`flag_for_review` 14 / `block` 11 / `require_evidence` 8 / `allow` 1），且源码不含任何线上处置入口 | `rules/**`、`skills/shopee-br-listing-audit/src/sbr_listing_audit_cli.py` |
+| **H6** | `freeze_relist` / `escalate_legal` 为 `human_only` | 本模块 41 条规则无一声明这两个动作（`decision` 分布：`flag_for_review` 20 / `block` 11 / `require_evidence` 9 / `allow` 1，2026-10-28 规则库 57 条后实测），且源码不含任何线上处置入口 | `rules/**`、`skills/shopee-br-listing-audit/src/sbr_listing_audit_cli.py` |
 
 ---
 

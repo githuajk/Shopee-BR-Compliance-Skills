@@ -36,7 +36,7 @@
 | `rewrite_map.json` | 触线词 → 中性表述映射 | 按宣称类型分组 |
 | `verb_conjugations.json` | 葡语动词变位表 | 变位规则 + 条目 |
 
-配套：`contracts/lexicon_rule_map.json` —— 词库组 → 规则的映射（37 条映射 / 50 条规则）。
+配套：`contracts/lexicon_rule_map.json` —— 词库组 → 规则的映射（100 条映射 / 57 条规则，2026-10-28 集成扩充后；原 37 条 / 50 条）。
 
 ## 3. 分组结构
 
@@ -143,7 +143,7 @@
 env -u LD_LIBRARY_PATH python3 tools/validate_lexicon.py
 ```
 
-当前基线：**266 项断言全部通过**（37 组 / 856 词 / 37 条映射 / 50 条规则）。
+当前基线：**`tools/validate_lexicon.py` 889 项断言全部通过**（100 组 / 210,984 词 / 100 条映射 / 57 条规则，2026-10-28 实测；原基线 266 项 / 37 组 / 856 词已随词库扩充过期）。
 
 ## 10. 与规则库的关系
 
