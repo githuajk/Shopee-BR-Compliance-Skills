@@ -33,7 +33,7 @@
 | `TASK-FRAME-01` / `TASK-FRAME-02` | — | ✅ 完成 | — |
 | `TASK-POLICY-01` | policy-research | ✅ 完成 | **1513/1513 ✅**（v2.0.0 时的 17 项来源登记失败已修复；B 分支新增断言后 1467 → 1513） |
 | `TASK-INGEST-01` | data-ingestion | ✅ 完成 | **211/211 ✅**（词库扩展新增断言 201 → 211） |
-| `TASK-LISTING-01` | listing-audit | ✅ 完成 | **405/405 ✅**（D4 修复 + MED-004 正/反例夹具；套件断言数随词库命中数据浮动，本轮全绿 405；含 21 万词词库扫描，全跑约 39 分钟） |
+| `TASK-LISTING-01` | listing-audit | ✅ 完成 | **406/406 ✅**（D4 修复 + MED-004 正/反例夹具 + 最终词库 210,984 全量复跑；含 21 万词词库扫描，全跑约 39 分钟） |
 | `TASK-DUP-01` | duplicate-detection | ✅ 完成 | **587/587 ✅**（含 rules/06 新加载器） |
 | `TASK-IP-01` | ip-review | ✅ 完成 | **236/236 ✅**（v2.0.0 时的 2 项 `supreme` 词表失败已修复） |
 | `TASK-REPORT-01` | reporting | ✅ 完成 | **210/210 ✅** |
@@ -88,7 +88,7 @@ listing / ip / duplicate 三专业模块 → reporting → 主 Skill 汇总，
    两例：`LA-MED004-POS`（`amoxicilina`，ANVISA 目录组真实词条 → 必须 fired，
    实测 `action=require_evidence`，不阻断）与 `LA-MED004-NEG`（普通商品，0 命中 → 不 fired）。
 
-**特征检测断言**：listing 套件（exit=0，405/405 全绿，各节全部完成） + 上述两例即回归防线。
+**特征检测断言**：listing 套件（最终词库 210,984 全量复跑 exit=0，406/406 全绿，各节全部完成） + 上述两例即回归防线。
 
 ### 4.5 分支越界修改（已裁定并入）
 
@@ -134,11 +134,10 @@ L2 校验失败（1512/1513）。已按 `sources.json` 登记值补上标记头�
 | 引文逐字核验 `tools/verify_citations.py` | 实际执行 | ✅ 57/57 excerpts |
 | 来源清单一致性 `tools/check_sources.py` | 实际执行 | ✅ 19 来源 / 20 抓取件一致 |
 | 集成测试（真实串联，232 断言） | 实际执行 | ✅ 232/232，0 已知缺陷 |
-| 7 个模块自有测试 | 实际执行 | ✅ 见 §2（policy 1513 / dup 587 / ip 236 / listing 405* / ingest 211 / report 210 / main 110） |
+| 7 个模块自有测试 | 实际执行 | ✅ 见 §2（policy 1513 / dup 587 / ip 236 / listing 406* / ingest 211 / report 210 / main 110） |
 
-\* listing 套件全绿 405/405（D4 修复 + MED-004 正/反例夹具后的终验；套件含 21 万词
-词库扫描，断言数随词库命中数据浮动，单次全跑约 39 分钟；终验记录 `exit=0`，
-「模块测试全部通过」）。
+\* listing 406/406 为最终词库（210,984 词，含 Marca 剔除）全量复跑结果；套件含 21 万词
+词库扫描，单次全跑约 39 分钟；终验记录 `exit=0`，「模块测试全部通过」。
 
 ---
 
