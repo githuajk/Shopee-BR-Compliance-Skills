@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0",
+  "name": "Shopee BR — 无法靠文字规避的品类",
+  "description": "合规性由商品本体决定，改文案无效。这类商品进人工工单，不进批量改写。",
+  "last_updated": "2026-10-27",
+  "categories": [
+    {
+      "id": "NA-COSMETIC",
+      "label": "化妆品（ANVISA 强制注册）",
+      "regulator": "ANVISA",
+      "keywords": [
+        "cosmético",
+        "batom",
+        "base",
+        "sérum",
+        "hidratante",
+        "desodorante",
+        "pó facial",
+        "protetor solar",
+        "sabonete facial"
+      ],
+      "requirement": "ANVISA 注册号 + 责任主体",
+      "note": "无号就不能卖，改成『辅助』也不行。"
+    },
+    {
+      "id": "NA-DEVICE",
+      "label": "器械 / 矫形",
+      "regulator": "ANVISA",
+      "keywords": [
+        "joelheira",
+        "cotoveleira",
+        "compressa",
+        "cinta abdominal",
+        "tala",
+        "aparelho de pressão",
+        "massageador",
+        "furo auricular"
+      ],
+      "requirement": "器械注册与资质",
+      "note": "监管属性由品类决定。"
+    },
+    {
+      "id": "NA-PET-ORAL",
+      "label": "宠物口腔护理",
+      "regulator": "MAPA /兽药监管",
+      "keywords": [
+        "escova dental pet",
+        "spray bucal pet",
+        "espuma dental pet",
+        "dedo de escova pet",
+        "tártaro pet",
+        "halitose pet"
+      ],
+      "requirement": "兽药资质或改为纯清洁宣称",
+      "note": "宣称去牙结石/除口臭即触及兽药。"
+    },
+    {
+      "id": "NA-CHEMICAL",
+      "label": "化学制剂",
+      "regulator": "ANVISA",
+      "keywords": [
+        "cola",
+        "epoxy",
+        "resina",
+        "primer",
+        "selante",
+        "cera automotiva",
+        "solução de limpeza",
+        "vedante",
+        "espuma expansiva",
+        "desengraxante"
+      ],
+      "requirement": "包装含成分/警示/批号/有效期",
+      "note": "缺任一项即违规，文字补不了。"
+    },
+    {
+      "id": "NA-SUNGLASS",
+      "label": "太阳镜",
+      "regulator": "INMETRO",
+      "keywords": [
+        "óculos de sol",
+        "oculos de sol",
+        "lente escura",
+        "protecção solar",
+        "protetor solar óculos"
+      ],
+      "requirement": "UV 实测报告 + 认证",
+      "note": "去掉 UV400 数字宣称后，文字层面已合规，但实质合规需报告。"
+    },
+    {
+      "id": "NA-CHILD-SAFETY",
+      "label": "儿童安全用品",
+      "regulator": "INMETRO",
+      "keywords": [
+        "trava de segurança infantil",
+        "protetor de canto",
+        "bloqueador de roda",
+        "cesto de bebê",
+        "cadeira de bebê",
+        "portaBabá"
+      ],
+      "requirement": "INMETRO 认证",
+      "note": "需认证；文字侧可加『uso com supervisão de um adulto』。"
+    }
+  ],
+  "workflow": {
+    "scan_hit": "扫描命中 → 判断是否属于本表的品类",
+    "yes": "生成工单（PID + 缺什么资质 + 建议）→ 不进批量改写",
+    "no": "进入改写流水线 → 改写后复扫 → 抽样人工读"
+  }
+}
