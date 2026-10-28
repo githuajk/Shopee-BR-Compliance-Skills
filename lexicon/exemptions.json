@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "name": "Shopee BR — 误报豁免规则",
+  "description": "词库命中后需要人工判定的场景。豁免不等于放行 —— 命中仍要记录，只是降低置信度或转为需复核。",
+  "last_updated": "2026-10-27",
+  "rules": [
+    {
+      "id": "EX-TOOLS",
+      "group_id": "proibido_armas",
+      "pattern": "\\b(faca|facas|tesoura|tesouras|chave de fenda|chave phillips|alicate|estilhaco|multiplasca|canivete)\\b",
+      "action": "exempt",
+      "reason": "工具类（菜刀/剪刀/螺丝刀/美工刀）不属武器。来源：合规扫描 SOP 错误案例 1。"
+    },
+    {
+      "id": "EX-CE-FACT",
+      "group_id": "certificacao_marca",
+      "pattern": "\\b(produto|item|artigo)\\s+(impresso|com|possui|apresenta)\\s+(o\\s+)?(selo\\s+)?CE\\b",
+      "action": "flag_low",
+      "reason": "事实陈述『产品印有 CE 标志』不构成违规宣传，记录但不拦截。"
+    },
+    {
+      "id": "EX-HERMES-CARRIER",
+      "group_id": "ip_marca_global",
+      "pattern": "\\b(entrega|transportadora|expresso|frete|logistica|transportes)\\b.*\\bHermes\\b|\\bHermes\\b.*\\b(entrega|transportadora|expresso|frete)\\b",
+      "action": "require_review",
+      "reason": "Hermes 作为快递/物流商名出现。默认按侵权命中，需人工复核上下文。"
+    },
+    {
+      "id": "EX-REDUZIR",
+      "group_id": "proibido_garantia",
+      "pattern": "\\breduzir\\b",
+      "action": "exempt",
+      "reason": "功能描述（reduzir a entrada de água / reduzir escorregões），非承诺。"
+    },
+    {
+      "id": "EX-DESCONFORTO",
+      "group_id": "proibido_garantia",
+      "pattern": "\\b(em caso de\\s+)?desconforto\\b",
+      "action": "exempt",
+      "reason": "安全提示语（em caso de desconforto, suspenda o uso）。"
+    },
+    {
+      "id": "EX-SEGURO-FUNCIONAL",
+      "group_id": "proibido_garantia",
+      "pattern": "\\b(fechamento|encaixe|trava|suporte|fixacao)\\s+seguro\\w*",
+      "action": "exempt",
+      "reason": "功能描述『安全闭合』，非安全承诺。"
+    },
+    {
+      "id": "EX-BRAND-GENERIC",
+      "group_id": "ip_marca_global",
+      "pattern": "^(.*)\\b(vidro|vidros|maleta|case|bolsa|cabide|suporte|organizador|abertura|fechadura)\\b(.*)$",
+      "action": "require_review",
+      "reason": "品牌名可能是产品通用词。默认仍按侵权命中，需上下文判断。"
+    }
+  ]
+}
