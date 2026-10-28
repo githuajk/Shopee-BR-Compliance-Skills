@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "manifest_version": "1.5.0",
+  "manifest_version": "1.6.0",
   "project": {
     "code": "SBRCA",
     "name": "Shopee Brazil Compliance Agent",
@@ -359,22 +359,29 @@
     },
     "user_sop": {
       "path": "docs/USER_SOP.md",
-      "purpose": "使用者操作规程 —— 把现有流程做成八步框架（定位→标准化→完整性→扫描→上下文判定→分流→改写复扫→交付留痕），面向店主/运营/审核执行人",
+      "purpose": "使用者操作规程 —— 流程框架与工具铁律（步骤 0-15 共用编号）；含源文件定位、标准化、字段完整性、xlsx 8 条铁律、扫描工具、硬约束、改写铁律、交付清单",
       "owner": "integrator",
       "audience": "使用者（非开发 Agent）",
       "status": "Draft — 待用户审批",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "created": "2026-10-28"
     },
     "manual_review": {
       "path": "docs/MANUAL_REVIEW.md",
-      "purpose": "人工审核操作手册 —— 纯手工，无代码；九步带交接流程（定类目→标题→详情→图片→属性→合并总表→收口→改写→复检→报告），含 46 个平台处罚码的关键词判定表、收口决策树、复检 12 项清单、9 条豁免",
+      "purpose": "人工审核操作手册 —— 纯手工无代码（步骤 3-15 共用编号）；含四张检查清单、46 个处罚码关键词判定表、收口决策树、复检 12 项、9 条豁免、审核员自查",
       "owner": "integrator",
       "audience": "人工审核员",
       "status": "Draft — 待用户审批",
-      "version": "1.1.0",
+      "version": "2.0.0",
       "created": "2026-10-28",
       "derived_from": "rules/*.json (50 条) + research/violation_codes.json (106 码) + lexicon/exemptions.json (7 条) + lexicon/non_avoidable.json (6 类) + lexicon/quality_patterns.json (15 条)"
+    },
+    "shared_step_numbering": {
+      "path": "docs/USER_SOP.md + docs/MANUAL_REVIEW.md",
+      "purpose": "两份文档共用步骤 0-15 编号；分工是「谁做这一步」—— USER_SOP 管流程/工具/铁律，MANUAL_REVIEW 管清单/词表/动作",
+      "steps": "0 定位 / 1 读入 / 2 字段完整性 / 3 定类目 / 4 标题 / 5 详情 / 6 图片 / 7 属性 / 8 合并总表 / 9 判定 / 10 收口 / 11 改写 / 12 复检 / 13 豁免 / 14 工单 / 15 交付",
+      "owner": "integrator",
+      "created": "2026-10-28"
     }
   },
   "existing_state": {
