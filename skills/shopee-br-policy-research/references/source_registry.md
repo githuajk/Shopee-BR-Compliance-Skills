@@ -6,8 +6,8 @@
 | 状态 | **Active** |
 | 创建/更新 | 2026-10-27 |
 | 适用范围 | 来源清单结构、抓取状态与域名变体处理 |
-| 相关文档 | `research/sources.json`、`research/raw/`、`tools/check_sources.py` |
-| 未决事项 | 2 条 Anvisa 来源抓取失败（HTTP 503），需重抓 |
+| 相关文档 | `research/sources.json`、`research/raw/`、`tools/check_sources.py`、`src/sbr_policy_research/dispositions.py` |
+| 未决事项 | 1 条 Anvisa 来源（`br_anvisa_medicamentos_prescricao`，RDC 44/2009）抓取失败（HTTP 503），处置 `SBR-DISP-PR-001` 已正式登记（quarantined，不得支撑规则；依赖规则已再锚定）；待 bvsms.saude.gov.br 可达时重抓 |
 
 ---
 
@@ -37,7 +37,7 @@
 | `capture_status` | | 抓取失败时标 `failed_<原因>` |
 | `capture_note` | | 抓取失败的说明 |
 
-**当前规模**：17 条来源，17 个抓取件。
+**当前规模**：19 条来源，18 个抓取件（1 条抓取失败已登记并隔离：`br_anvisa_medicamentos_prescricao`）。
 
 ## 2. 抓取件
 
@@ -53,13 +53,13 @@
 
 | `source.tier` | 条数 | 允许的最高动作 |
 |---|---|---|
-| `platform_official` | 11 | `block` |
+| `platform_official` | 13 | `block` |
 | `law` | 6 | `block` |
 | `internal_risk` / `unverified` / `ai_inference` / `technical` | 0（当前未使用） | `flag_for_review` |
 
 **只有 `platform_official` 与 `law` 能产生 `block`**（硬约束 H2）。
 
-### 3.1 platform_official（11 条）
+### 3.1 platform_official（13 条）
 
 | slug | 覆盖 |
 |---|---|
@@ -74,6 +74,8 @@
 | `shopee_br_pontos_de_penalidade` | 处罚点制度 |
 | `shopee_br_categoria_correta` | 如何选择正确类目（`SBR-LV-008`） |
 | `shopee_br_mudanca_conta_cpf_cnpj` | 店铺由 CPF 迁移到 CNPJ |
+| `shopee_br_video_diretrizes_comunidade_ip` | 视频/评论/链接中的 IP 侵权信号 |
+| `shopee_br_video_politica_produtos_proibidos` | 视频内容中的禁售与受限商品 |
 
 ### 3.2 law（6 条）
 
@@ -83,14 +85,17 @@
 | `br_lei_direitos_autorais_9610` | 著作权法（版权类规则依据） |
 | `br_inpi_legislacao_marcas` | INPI 商标立法与查询 |
 | `br_consumidor_cdc_publicidade` | 消费者保护法与广告法（夸大宣称类规则依据） |
-| `br_anvisa_publicidade_medicamentos` | ⚠️ **抓取失败（HTTP 503）** |
-| `br_anvisa_medicamentos_prescricao` | ⚠️ **抓取失败（HTTP 503）** |
+| `br_anvisa_rdc96_publicidade` | RDC 96/2008 —— 药品与保健品广告规范（已抓取） |
+| `br_anvisa_medicamentos_prescricao` | ⚠️ **抓取失败（HTTP 503），正式隔离**（处置 `SBR-DISP-PR-001`） |
 
-> **两条 Anvisa 来源当前不可用**。抓取时 `bvsms.saude.gov.br` 返回 503。
-> 它们**没有**支撑任何规则 —— `tools/check_sources.py` 会强制这一点：
+> **一条 Anvisa 来源当前不可用**（`br_anvisa_medicamentos_prescricao`，
+> RDC 44/2009）。抓取时 `bvsms.saude.gov.br` 返回 503，已在
+> `sources.json` 做正式处置（`disposition` 块：状态 `quarantined`、重抓方案、
+> 依赖规则再锚定），由 `src/sbr_policy_research/dispositions.py` 校验。
+> 它**没有**支撑任何规则 —— `tools/check_sources.py` 会强制这一点：
 > 引用抓取失败的来源会被直接报错。
 > 药品健康类规则（`SBR-MED-001/002/003`）改用
-> `shopee_br_categorias_restrritas` 与 `shopee_br_politica_produtos_proibidos` 支撑。
+> `shopee_br_categorias_restrritas`（article 7379）支撑。
 
 ## 4. 域名变体（重要）
 
@@ -113,7 +118,7 @@ seller.shopee.com.br/edu/article/5139
 
 | 文件 | 覆盖 |
 |---|---|
-| `research/raw/_fetch_report.json` | 平台帮助中心 + 巴西法律（12 条） |
+| `research/raw/_fetch_report.json` | 平台帮助中心 + 巴西法律（13 条，含 1 条 `http_503` 失败记录） |
 | `research/raw/_edu_fetch_report.json` | 平台教育中心文章（8 条） |
 
 每条记录 `slug` / `status` / `text_chars`（或 `chars`）/ `title`。
@@ -138,7 +143,7 @@ env -u LD_LIBRARY_PATH python3 tools/check_sources.py
 | 6 | 抓取失败的来源**不支撑任何规则** |
 | 7 | 规则的 `source_url` 已登记（按 article id 匹配） |
 
-当前：**17 条来源全部一致，2 条抓取失败已登记且不被任何规则引用。**
+当前：**19 条来源全部一致，1 条抓取失败（HTTP 503）已登记、正式隔离且不被任何规则引用。**
 
 ## 7. 维护流程
 

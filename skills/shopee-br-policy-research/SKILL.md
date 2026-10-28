@@ -5,7 +5,7 @@ description: Use when you need to establish the authoritative basis for a Shopee
 
 # Shopee BR 官方政策研究与来源核查
 
-> 状态：**已实现**（`TASK-POLICY-01`）
+> 状态：**已实现**（`TASK-POLICY-01`；实现层 `src/sbr_policy_research` 见 §5.4）
 > 契约版本：1.0.0
 > 归属：`skills/shopee-br-policy-research/**`、`tests/shopee-br-policy-research/**`、`research/**`
 
@@ -96,11 +96,36 @@ env -u LD_LIBRARY_PATH python3 tools/verify_citations.py
 > **关于处罚点**：平台页面明文写了「是否产生处罚点」与严重度（Alta/Média/Baixa），
 > 这些**可以**引用；但具体的点数分值不可引用 —— 平台未公开。
 
+### 5.4 src 实现层与 CLI
+
+实现层位于 `src/sbr_policy_research/`（纯标准库，无第三方依赖），与其余 6 个
+模块形态一致（src/ 包 + CLI 入口 + 自有测试）：
+
+| 文件 | 职责 |
+|---|---|
+| `src/sbr_policy_research/assets.py` | 来源清单 / 抓取件 / 抓取报告 / 规则引用的结构核对 |
+| `src/sbr_policy_research/citations.py` | 逐字引文核验（H4，`tools/verify_citations.py` 同语义） |
+| `src/sbr_policy_research/dispositions.py` | 抓取失败来源的正式处置（503 缺口，`sources.json` 的 `disposition` 字段） |
+| `src/sbr_policy_research/contracts.py` | `SkillInput` / `AuditResult` / `ModuleHandoff` 构造器与模块常量 |
+| `src/sbr_policy_research/engine.py` | 一次 `SkillInput(task_type=policy_research)` → 来源核查 `AuditResult[]` + handoff |
+| `src/sbr_policy_research_cli.py` | CLI 入口（只读输入，三份契约产物写 `--out-dir`） |
+
+```bash
+env -u LD_LIBRARY_PATH python3 \
+    skills/shopee-br-policy-research/src/sbr_policy_research_cli.py \
+    --out-dir /tmp/pr-audit
+```
+
+`AuditResult` 的 `target_ref` 是来源 slug（或引文失败时的规则 ID），
+`verdict` 为 PASS（抓取件正常）/ REVIEW（隔离来源，`flag_for_review`）/
+REVISE（抓取件缺失、占位或引文核验不过）。
+
 ## 6. 失败处理
 
 | 情形 | 行为 | 产出 |
 |---|---|---|
 | 页面抓取失败（HTTP 5xx / 超时） | 如实登记 `capture_status: failed` | `sources.json` 标注 + 抓取报告记录 |
+| 抓取失败的来源（如 503） | 做**正式处置**：`sources.json` 该条的 `disposition` 块（状态 `quarantined`、重抓方案、依赖规则再锚定） | `src/sbr_policy_research/dispositions.py` 校验 + `module_handoff.known_gaps` 披露 |
 | 抓取到的内容过短（占位） | 报「疑似占位或抓取失败」 | `check_sources.py` 报错 |
 | 引文在抓取件中找不到 | 规则改 `unverified` | `verify_citations.py` 报错 |
 | 规则引用了抓取失败的来源 | **报错** —— 引文无法核验 | `check_sources.py` 报错 |
@@ -122,8 +147,9 @@ env -u LD_LIBRARY_PATH python3 tests/shopee-br-policy-research/run_tests.py
 | 引用完整性 | 规则的 `source_url` 已登记（按 article id 匹配，容忍域名变体） |
 | 失败来源 | 抓取失败的来源**不支撑任何规则** |
 | 违规码 | 106 条码有 code / description / severity / penalty 标记 |
-| 引文 | 全库 50/50 逐字核验通过 |
+| 引文 | 全库 57/57 逐字核验通过（数量随规则库扩充） |
 | 禁用数值 | 规则与词库中无平台未公开的处罚点分值 |
+| src 实现层 | L9 断言：包常量 / 503 正式处置（disposition 结构 + 依赖规则再锚定）/ 引文核验模块 / 引擎全量运行 + Schema 校验 + 错误路径 + CLI 冒烟 |
 
 ## 8. 依赖
 
@@ -184,10 +210,13 @@ tools/check_sources.py
 - [x] `references/citation_verification.md` —— 引文核验流程与常见失败原因
 - [x] `references/platform_policy_summary.md` —— 政策要点摘要
 - [x] `tests/shopee-br-policy-research/run_tests.py`
+- [x] `src/sbr_policy_research/` —— 实现层（assets / citations / dispositions / contracts / engine + CLI）
+- [x] `research/sources.json` 的 503 来源正式处置（`disposition` 块，`SBR-DISP-PR-001`）
 
 ## 12. 变更记录
 
 | 版本 | 日期 | 变更 |
 |---|---|---|
+| 1.1.0 | 2026-10-28 | 补齐 `src/` 实现层（`sbr_policy_research` 包 + CLI 入口 + L9 自有测试），与其余 6 模块形态一致；`br_anvisa_medicamentos_prescricao`（RDC 44/2009，HTTP 503）缺口做正式处置：`sources.json` 新增 `disposition` 块（quarantined + 重抓方案 + 依赖规则再锚定），`dispositions.py` 校验并写入 `module_handoff.known_gaps`；§7 引文断言数更新为 57/57 |
 | 1.0.0 | 2026-10-27 | **实现完成**（`TASK-POLICY-01`）：来源清单核对工具、17 条来源登记、106 条违规码目录、4 份参考文档填实 |
 | 0.1.0 | 2026-10-27 | 骨架创建（待 TASK-POLICY-01 填充） |

@@ -103,7 +103,26 @@
     "tier": "law",
     "scope": "Brazil - prescription-only medicine dispensing rules",
     "capture_status": "failed_http_503",
-    "capture_note": "抓取失败（HTTP 503）—— bvsms.saude.gov.br 当时不可达。本项目未使用该来源支撑任何规则；相关规则改用其它已核验来源。"
+    "capture_note": "抓取失败（HTTP 503）—— bvsms.saude.gov.br 当时不可达。本项目未使用该来源支撑任何规则；相关规则改用其它已核验来源。",
+    "disposition": {
+      "disposition_id": "SBR-DISP-PR-001",
+      "status": "quarantined",
+      "reason": "fetch_failed_http_503",
+      "detail": "bvsms.saude.gov.br returned HTTP 503 at fetch time; the RDC 44/2009 text (prescription-only medicine dispensing) is unavailable, so no rule may cite it verbatim (hard constraint H4).",
+      "first_registered": "2026-10-27",
+      "last_reviewed": "2026-10-28",
+      "blocked_for_rules": true,
+      "dependent_rules_rebased": [
+        "SBR-MED-001",
+        "SBR-MED-002",
+        "SBR-MED-003"
+      ],
+      "rebased_to": [
+        "shopee_br_categorias_restrritas",
+        "shopee_br_politica_produtos_proibidos"
+      ],
+      "remediation": "Re-fetch https://bvsms.saude.gov.br/docs/bvsms/legislacao/rdc/2009/rdc_44_2009_10_06_2009.html once the host is reachable; write the capture to research/raw/br_anvisa_medicamentos_prescricao.txt and update the fetch report; re-run tools/check_sources.py and tools/verify_citations.py; then set disposition.status to 'cleared' and clear blocked_for_rules."
+    }
   },
   {
     "slug": "shopee_br_categoria_correta",
