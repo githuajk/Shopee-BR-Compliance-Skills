@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "manifest_version": "1.4.0",
+  "manifest_version": "1.5.0",
   "project": {
     "code": "SBRCA",
     "name": "Shopee Brazil Compliance Agent",
@@ -368,11 +368,11 @@
     },
     "manual_review": {
       "path": "docs/MANUAL_REVIEW.md",
-      "purpose": "人工审核操作手册 —— 纯手工，无代码；含标题/详情/图片/属性四张检查清单、46 个平台处罚码的关键词判定表、处置决策、改写标准、9 条豁免清单、审核员自查表",
+      "purpose": "人工审核操作手册 —— 纯手工，无代码；九步带交接流程（定类目→标题→详情→图片→属性→合并总表→收口→改写→复检→报告），含 46 个平台处罚码的关键词判定表、收口决策树、复检 12 项清单、9 条豁免",
       "owner": "integrator",
       "audience": "人工审核员",
       "status": "Draft — 待用户审批",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "created": "2026-10-28",
       "derived_from": "rules/*.json (50 条) + research/violation_codes.json (106 码) + lexicon/exemptions.json (7 条) + lexicon/non_avoidable.json (6 类) + lexicon/quality_patterns.json (15 条)"
     }
