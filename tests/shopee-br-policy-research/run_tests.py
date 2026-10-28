@@ -348,8 +348,11 @@ def test_src_implementation() -> None:
     qslug, qdisp = failed[0]["slug"], disps.get(failed[0]["slug"], {})
     check(f"{qslug}: disposition 状态为 quarantined",
           qdisp.get("status") == "quarantined", str(qdisp.get("status")))
-    check(f"{qslug}: disposition 原因含 503",
-          "503" in str(qdisp.get("reason", "")), str(qdisp.get("reason")))
+    # 原因必须是「抓取失败」语义（HTTP 状态码可随重试推进，如 503→404，
+    # 不钉死单一状态码 —— 只要求 quarantined 原因可追溯到一次抓取失败）。
+    check(f"{qslug}: disposition 原因为 HTTP 抓取失败",
+          bool(re.search(r"fetch_failed_http_\d+", str(qdisp.get("reason", "")))),
+          str(qdisp.get("reason")))
     check(f"{qslug}: disposition 有重抓方案",
           bool(qdisp.get("remediation")), "缺失")
     check(f"{qslug}: disposition 必填字段齐全",
