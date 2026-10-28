@@ -1,0 +1,812 @@
+{
+  "schema_version": "1.0",
+  "fixture_set": "violation_products",
+  "description": "明确违规商品 —— 每条规则的**正例**来源。全部为合成数据。每个商品刻意只触发一条规则，便于归因（tests/test_plan.md §5.3「可归因」）。",
+  "construction_note": "由 tools/verify_fixtures.py 逐条机械校验：每个商品必须触发其 targets 中声明的规则。校验不过 = 夹具失效。",
+  "products": [
+    {
+      "product_id": "FX-VIOL-PI001",
+      "internal_sku": "V-PI001",
+      "shop_id": "FXSHOP1",
+      "title": "Kit de Colete a Prova de Balas e Munição de Treinamento",
+      "description": "Colete à prova de balas para uso esportivo, com munição de treinamento inclusa. Fabricado em material resistente.",
+      "category": "Esportes > Treino",
+      "brand": "Sem Marca",
+      "price": 199.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-PI-001"
+      ],
+      "note": "禁售类目：枪械与弹药。severity=critical → action=block。"
+    },
+    {
+      "product_id": "FX-VIOL-PI002",
+      "internal_sku": "V-PI002",
+      "shop_id": "FXSHOP1",
+      "title": "Vape Descartável Sabor Frutas 4000 Puffs",
+      "description": "Vape descartável com 4000 puffs, juice de nicotina included. Atomizador de vapor com bateria interna.",
+      "category": "Eletrônicos > Vapes",
+      "brand": "Sem Marca",
+      "price": 89.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-PI-002"
+      ],
+      "note": "禁售类目：烟草与电子烟。"
+    },
+    {
+      "product_id": "FX-VIOL-PI003",
+      "internal_sku": "V-PI003",
+      "shop_id": "FXSHOP1",
+      "title": "Estimulante Sexual em Comprimidos 10 Unidades",
+      "description": "Estimulante sexual de uso adulto. Não é medicamento controlado, mas contém composto de liberação lenta.",
+      "category": "Saúde > Bem-estar",
+      "brand": "Sem Marca",
+      "price": 79.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-PI-003"
+      ],
+      "note": "禁售类目：受管制药物/兴奋剂类。"
+    },
+    {
+      "product_id": "FX-VIOL-PI004",
+      "internal_sku": "V-PI004",
+      "shop_id": "FXSHOP1",
+      "title": "Solvente Acetona 5 Litros para Limpeza Industrial",
+      "description": "Acetona pura para limpeza de equipamentos. Produto tóxico e corrosivo, exige EPI para manuseio.",
+      "category": "Industria > Químicos",
+      "brand": "Sem Marca",
+      "price": 149.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-PI-004"
+      ],
+      "note": "禁售类目：易燃/腐蚀性化学品。"
+    },
+    {
+      "product_id": "FX-VIOL-PI005",
+      "internal_sku": "V-PI005",
+      "shop_id": "FXSHOP1",
+      "title": "Máquina de Clonador de Cartão e Cédulas para Treinamento",
+      "description": "Kit com clonador de cartão e cédulas de dinheiro em réplica para uso em treinamentos de antifraude. Maquininha de cartão inclusa.",
+      "category": "Eletrônicos > Acessórios",
+      "brand": "Sem Marca",
+      "price": 299.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-PI-005"
+      ],
+      "note": "禁售类目：伪造货币/证件工具。"
+    },
+    {
+      "product_id": "FX-VIOL-PI006",
+      "internal_sku": "V-PI006",
+      "shop_id": "FXSHOP1",
+      "title": "Jogo de Azar Online com Caixa Misteriosa e Prêmios",
+      "description": "Caixa misteriosa digital com jogo de azar. Apostas em linha ativas 24 horas por dia.",
+      "category": "Digital > Games",
+      "brand": "Sem Marca",
+      "price": 39.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-PI-006"
+      ],
+      "note": "禁售类目：赌博与数字商品。"
+    },
+    {
+      "product_id": "FX-VIOL-PI007",
+      "internal_sku": "V-PI007",
+      "shop_id": "FXSHOP1",
+      "title": "Uniforme Militar com Insígnia Governamental Costurada",
+      "description": "Uniforme militar em tecido resistente, com insígnia governamental costurada no peito. Reprodução para coleção.",
+      "category": "Moda > Uniformes",
+      "brand": "Sem Marca",
+      "price": 189.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-PI-007"
+      ],
+      "note": "禁售类目：官方/军用物品。"
+    },
+    {
+      "product_id": "FX-VIOL-PI008",
+      "internal_sku": "V-PI008",
+      "shop_id": "FXSHOP1",
+      "title": "Fauna e Flora e Derivados — Coleção de Âncoras Naturais",
+      "description": "Coleção de âncoras naturais. A coleção inclui fauna e flora e derivados de espécies ameaçadas de extinção.",
+      "category": "Colecionáveis > Natural",
+      "brand": "Sem Marca",
+      "price": 129.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-PI-008"
+      ],
+      "note": "禁售类目：野生动物制品。"
+    },
+    {
+      "product_id": "FX-VIOL-PI009",
+      "internal_sku": "V-PI009",
+      "shop_id": "FXSHOP1",
+      "title": "DVD de Conteúdo Adulto com Cenas Explícitas",
+      "description": "DVD pornográfico com conteúdo adulto e sexo explícito. Embalagem discreta.",
+      "category": "Filmes > Adulto",
+      "brand": "Sem Marca",
+      "price": 59.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-PI-009"
+      ],
+      "note": "禁售类目：成人内容。"
+    },
+    {
+      "product_id": "FX-VIOL-RI001",
+      "internal_sku": "V-RI001",
+      "shop_id": "FXSHOP1",
+      "title": "Kit Gin's Tonic e Whisky 12 Anos 1 Garrafa",
+      "description": "Bebidas alcoólicas: 1 garrafa de whisky 12 anos, 1 gin e 4 latinhas. Venda permitida apenas para maiores de 18 anos.",
+      "category": "Alimentos e Bebidas > Bebidas",
+      "brand": "Sem Marca",
+      "price": 219.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-RI-001"
+      ],
+      "note": "受限类目：酒类。severity=high → action=require_evidence。"
+    },
+    {
+      "product_id": "FX-VIOL-RI002",
+      "internal_sku": "V-RI002",
+      "shop_id": "FXSHOP1",
+      "title": "Multivitamínicos 60 Comprimidos e Oxímetro de Pulso",
+      "description": "Kit de vitaminas com 60 comprimidos e oxímetro digital. Suplementos alimentares de uso contínuo.",
+      "category": "Saúde > Suplementos",
+      "brand": "Sem Marca",
+      "price": 99.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-RI-002"
+      ],
+      "note": "受限类目：保健/医疗用品。"
+    },
+    {
+      "product_id": "FX-VIOL-RI003",
+      "internal_sku": "V-RI003",
+      "shop_id": "FXSHOP1",
+      "title": "Power Bank 20000mAh com Bateria de Lítio 18650",
+      "description": "Banco de energia portátil com 2 baterias de lítio 18650 removíveis. Saída USB-C 65W. Power bank com 20000 mAh.",
+      "category": "Eletrônicos > Acessórios",
+      "brand": "Sem Marca",
+      "price": 179.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-RI-003"
+      ],
+      "note": "受限类目：锂电池/移动电源（运输限制）。命中需电池词带类型限定词。"
+    },
+    {
+      "product_id": "FX-VIOL-RI004",
+      "internal_sku": "V-RI004",
+      "shop_id": "FXSHOP1",
+      "title": "Óleo Automotivo Sintético 5W30 com Homologação do Produto",
+      "description": "Óleo automotivo sintético 5W30 com homologação do produto e certificado de homologação. Acompanha registro anvisa número 12345678.",
+      "category": "Automotivo > Lubrificantes",
+      "brand": "Sem Marca",
+      "price": 89.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-RI-004",
+        "SBR-LV-009"
+      ],
+      "note": "受限类目：需监管注册的汽车/医疗类配件。"
+    },
+    {
+      "product_id": "FX-VIOL-RI005",
+      "internal_sku": "V-RI005",
+      "shop_id": "FXSHOP1",
+      "title": "Caixa de Frutas Frescas e Legumes Frescos Orgânicos",
+      "description": "Alimentos frescos: frutas frescas, legumes frescos e congelados. Alimentos artesanais preparados semanalmente.",
+      "category": "Alimentos > Perecíveis",
+      "brand": "Sem Marca",
+      "price": 59.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-RI-005"
+      ],
+      "note": "受限类目：生鲜食品（冷链与卫生要求）。"
+    },
+    {
+      "product_id": "FX-VIOL-RI006",
+      "internal_sku": "V-RI006",
+      "shop_id": "FXSHOP1",
+      "title": "Antiparasitário para Cães de 10kg a 40kg 3 Comprimidos",
+      "description": "Antiparasitário para pets, vermífugo para cães e gatos. Vacinas para pets em promoção.",
+      "category": "Pet Shop > Saúde Animal",
+      "brand": "Sem Marca",
+      "price": 74.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-RI-006"
+      ],
+      "note": "受限类目：兽药。"
+    },
+    {
+      "product_id": "FX-VIOL-RI007",
+      "internal_sku": "V-RI007",
+      "shop_id": "FXSHOP1",
+      "title": "Kit Airsoft com Arma de Pressão CO2 e Equipamentos Táticos",
+      "description": "Kit airsoft completo com uma arma de pressão CO2 e equipamentos táticos. Munição de 6mm inclusa.",
+      "category": "Esportes > Airsoft",
+      "brand": "Sem Marca",
+      "price": 449.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-RI-007"
+      ],
+      "note": "受限类目：仿真枪械与战术装备。"
+    },
+    {
+      "product_id": "FX-VIOL-RI008",
+      "internal_sku": "V-RI008",
+      "shop_id": "FXSHOP1",
+      "title": "Queijo Artesanal de Leite Cru e Manteiga Artesanal 500g",
+      "description": "Queijo artesanal feito de leite cru e manteiga artesanal de produção artesanal. Iogurtes de leite cru inclusos.",
+      "category": "Alimentos > Laticínios",
+      "brand": "Sem Marca",
+      "price": 64.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-RI-008"
+      ],
+      "note": "受限类目：生乳制品。severity=high → action=block。"
+    },
+    {
+      "product_id": "FX-VIOL-MED001",
+      "internal_sku": "V-MED001",
+      "shop_id": "FXSHOP1",
+      "title": "Solução Mineral Milagrosa 500ml com Clorito de Sódio",
+      "description": "Solução mineral milagrosa à base de clorito de sódio. Compra online. Efeito segundo relatos de usuários.",
+      "category": "Saúde > Alternativos",
+      "brand": "Sem Marca",
+      "price": 39.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-MED-001"
+      ],
+      "note": "药品健康专项：二氧化氯类「神奇矿物溶液」。"
+    },
+    {
+      "product_id": "FX-VIOL-MED002",
+      "internal_sku": "V-MED002",
+      "shop_id": "FXSHOP1",
+      "title": "Medicamento Isento de Prescrição com Tarja Vermelha 30 Comprimidos",
+      "description": "Medicamento isento de prescrição (MIP) com tarja vermelha. Uso oral em adultos. Registro anvisa número 12345678901234.",
+      "category": "Saúde > Medicines",
+      "brand": "Sem Marca",
+      "price": 45.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-MED-002"
+      ],
+      "note": "药品健康专项：2026-08-06 Anvisa 新规覆盖的非处方药。"
+    },
+    {
+      "product_id": "FX-VIOL-MED003",
+      "internal_sku": "V-MED003",
+      "shop_id": "FXSHOP1",
+      "title": "Suplemento de Saúde com Informações Falsas — 100% Eficaz",
+      "description": "Suplemento de saúde com informações falsas. Promete cura garantida e emagrece com garantia em 7 dias. 100% eficaz.",
+      "category": "Saúde > Suplementos",
+      "brand": "Sem Marca",
+      "price": 69.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-MED-003",
+        "SBR-LV-001"
+      ],
+      "note": "药品健康专项 + 消费者保护：夸大宣称。"
+    },
+    {
+      "product_id": "FX-VIOL-IP001",
+      "internal_sku": "V-IP001",
+      "shop_id": "FXSHOP1",
+      "title": "Tênis Esportivo Nike Airborne Runner",
+      "description": "Tênis esportivo com tecnologia de amortecimento avançada. Cabedal em mesh e solado de borracha. Numerais 42 ao 46.",
+      "category": "Calçados > Tênis",
+      "brand": "Nike",
+      "price": 299.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-IP-001"
+      ],
+      "note": "IP 商标：品牌词命中。**必为 signal + 人工复核**（硬约束 H1）。"
+    },
+    {
+      "product_id": "FX-VIOL-IP002",
+      "internal_sku": "V-IP002",
+      "shop_id": "FXSHOP1",
+      "title": "Réplica de Tênis Esportivo Premium",
+      "description": "Réplica de tênis esportivo em couro sintético. Produto original com acabamento idêntico ao da marca. Cópia não autorizada.",
+      "category": "Calçados > Tênis",
+      "brand": "Sem Marca",
+      "price": 89.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-IP-002"
+      ],
+      "note": "IP 商标：明确使用「réplica」「cópia não autorizada」。severity=critical。"
+    },
+    {
+      "product_id": "FX-VIOL-IP003",
+      "internal_sku": "V-IP003",
+      "shop_id": "FXSHOP1",
+      "title": "Bolsa de Mão com Logo iFood para Entregadores",
+      "description": "Bolsa de mão em tecido resistente com logo do aplicativo de entrega iFood estampado na frente. Uso por entregadores de aplicativo de delivery. Bolso interno e alça ajustável.",
+      "category": "Moda > Bolsas",
+      "brand": "Sem Marca",
+      "price": 79.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-IP-003"
+      ],
+      "note": "IP 商标：包类 + 送餐 App logo 同现 —— 平台禁止销售带外卖 App logo 的背包/包。修复后的正则要求两类线索同现。"
+    },
+    {
+      "product_id": "FX-VIOL-IP004",
+      "internal_sku": "V-IP004",
+      "shop_id": "FXSHOP1",
+      "title": "Caneca Personalizada Estampa Shopee",
+      "description": "Caneca de porcelana 325 ml com estampa personalizada. Porcelana esmaltada. Envio em 3 dias úteis.",
+      "category": "Casa > Cozinha > Canecas",
+      "brand": "Sem Marca",
+      "price": 34.9,
+      "images": [
+        {
+          "image_id": "img-viol-ip004-1",
+          "ocr_text": "loja oficial shopee",
+          "detected_logos": []
+        }
+      ],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-IP-004"
+      ],
+      "note": "IP 商标：图片文字含「loja oficial shopee」—— 冒充官方店。"
+    },
+    {
+      "product_id": "FX-VIOL-IP005",
+      "internal_sku": "V-IP005",
+      "shop_id": "FXSHOP1",
+      "title": "Mochila Executiva Compacta para Notebook 15,6 polegadas",
+      "description": "Mochila executiva com compartimento para notebook até 15,6 polegadas. Material em poliéster de alta resistência.",
+      "category": "Acessórios > Mochilas",
+      "brand": "Sem Marca",
+      "price": 119.9,
+      "images": [
+        {
+          "image_id": "img-viol-ip005-1",
+          "ocr_text": "ADIDAS SPORT",
+          "detected_logos": [
+            "Adidas"
+          ],
+          "watermark": false
+        }
+      ],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-IP-005",
+        "SBR-IP-008"
+      ],
+      "note": "IP 商标 + 外观设计：图片检出未授权 logo。**H1：恒为 signal + 人工复核。**"
+    },
+    {
+      "product_id": "FX-VIOL-IP007",
+      "internal_sku": "V-IP007",
+      "shop_id": "FXSHOP1",
+      "title": "Quadro Decorativo 30x40cm Paisagem",
+      "description": "Quadro decorativo com moldura em madeira. Impressão em alta resolução. Papel fotográfico fosco.",
+      "category": "Casa > Decoração > Quadros",
+      "brand": "Sem Marca",
+      "price": 69.9,
+      "images": [
+        {
+          "image_id": "img-viol-ip007-1",
+          "ocr_text": "© 2024 todos os direitos reservados",
+          "detected_logos": []
+        }
+      ],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-IP-007"
+      ],
+      "note": "IP 版权：图片含版权声明文字。"
+    },
+    {
+      "product_id": "FX-VIOL-LV001",
+      "internal_sku": "V-LV001",
+      "shop_id": "FXSHOP1",
+      "title": "Sérum Facial Antiacne 30ml",
+      "description": "Sérum facial com ácido hialurônico e vitamina C. Elimina a acne e Removes cravos com garantia. Resultados garantidos em 7 dias. Uso contínuo.",
+      "category": "Beleza > Skincare",
+      "brand": "Sem Marca",
+      "price": 129.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-LV-001"
+      ],
+      "note": "消费者保护：夸大疗效宣称（elimina acne / com garantia / resultados garantidos）。"
+    },
+    {
+      "product_id": "FX-VIOL-LV002",
+      "internal_sku": "V-LV002",
+      "shop_id": "FXSHOP1",
+      "title": "Fone Bluetooth com Desconto de 70%",
+      "description": "Fone Bluetooth sem fio com cancelamento de ruído. De R$ 199,90 por R$ 59,90. Bateria de 30 horas.",
+      "category": "Eletrônicos > Fones",
+      "brand": "Sem Marca",
+      "price": 59.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-LV-002"
+      ],
+      "note": "listing 质量：误导性折扣表述。"
+    },
+    {
+      "product_id": "FX-VIOL-LV003",
+      "internal_sku": "V-LV003",
+      "shop_id": "FXSHOP1",
+      "title": "Tênis Esportivo Premium Masculino Feminino Unissex Casual Esportivo-running Treino Academia Confortável Leve Durável Impermeável Para Dia a Dia",
+      "description": "Tênis para corrida e academia. Design moderno. Confortável.",
+      "category": "Calçados > Tênis",
+      "brand": "Sem Marca",
+      "price": 159.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-LV-003"
+      ],
+      "note": "listing 质量：标题关键词堆砌（≥15 词 —— 正则要求 14 组 `\\w+\\b[\\s,]*` 再加一个词尾）。"
+    },
+    {
+      "product_id": "FX-VIOL-LV004",
+      "internal_sku": "V-LV004",
+      "shop_id": "FXSHOP1",
+      "title": "Tênis Nike com Technology Adidas Solado Premium",
+      "description": "Tênis esportivo com solado em borracha e cabedal em mesh. Confortável para o dia a dia e para a prática de exercícios.",
+      "category": "Calçados > Tênis",
+      "brand": "Sem Marca",
+      "price": 189.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-LV-004"
+      ],
+      "note": "listing 质量：标题堆砌多个品牌词（品牌滥用）。"
+    },
+    {
+      "product_id": "FX-VIOL-LV005",
+      "internal_sku": "V-LV005",
+      "shop_id": "FXSHOP1",
+      "title": "Camiseta Personalizada Estampa a Your Name",
+      "description": "Camiseta de algodão com estampa personalizada. Escolha o texto. Entrega rápida. Entre em contato pelo WhatsApp +55 11 98888-7777 para fechar o pedido.",
+      "category": "Moda > Camisetas",
+      "brand": "Sem Marca",
+      "price": 39.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-LV-005"
+      ],
+      "note": "listing 质量：站外引流（WhatsApp + 电话）。"
+    },
+    {
+      "product_id": "FX-VIOL-LV006",
+      "internal_sku": "V-LV006",
+      "shop_id": "FXSHOP1",
+      "title": "Chaveiro de Couro Personalizado",
+      "description": "Chaveiro de couro. Personalizável.",
+      "category": "Acessórios > Chaveiros",
+      "brand": "Sem Marca",
+      "price": 19.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-LV-006"
+      ],
+      "note": "listing 质量：详情过短（<120 字符）。"
+    },
+    {
+      "product_id": "FX-VIOL-LV007",
+      "internal_sku": "V-LV007",
+      "shop_id": "FXSHOP1",
+      "title": "Kit 4 Copos de Vidro 250ml",
+      "description": "Kit com 4 copos de vidro 250 ml. Vidro temperado. Pode ser usado para água, suco e bebidas frias. Medidas: 12 cm de altura por 7 cm de diâmetro. Peso: 260 g por copo.",
+      "category": "Casa > Cozinha > Copos",
+      "brand": "Sem Marca",
+      "price": 44.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-LV-007"
+      ],
+      "note": "listing 质量：无图片。修复前该规则因自指 requires_input 永不可满足；现移除自指后，空 images 数组 → image_count_lt(1) 成立。"
+    },
+    {
+      "product_id": "FX-VIOL-LV008",
+      "internal_sku": "V-LV008",
+      "shop_id": "FXSHOP1",
+      "title": "Organizador de Gaveta com 6 Compartimentos",
+      "description": "Caixa organizadora em plástico com 6 compartimentos. Medidas 30 x 20 x 10 cm. Peso: 210 g. Marca própria.",
+      "category": null,
+      "brand": "Sem Marca",
+      "price": 29.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-LV-008"
+      ],
+      "note": "listing 质量：缺类目。**requires_input=[category]** —— 字段为 null → 等同缺失 → H3 未评估，不产生 result。本夹具用 null 而非删键，因为 product.schema.json 允许 category 为 null。"
+    },
+    {
+      "product_id": "FX-VIOL-LV009",
+      "internal_sku": "V-LV009",
+      "shop_id": "FXSHOP1",
+      "title": "Fone Bluetooth com Certificado Inmetro e GTIN 7891234567890",
+      "description": "Fone Bluetooth sem fio. Certificado inmetro e registro no mapa. Acompanha nota fiscal e garantia de 12 meses do fabricante. Envio em até 3 dias úteis para todo o Brasil. Compatível com Android e iOS.",
+      "category": "Eletrônicos > Fones",
+      "brand": "Sem Marca",
+      "price": 99.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-LV-009"
+      ],
+      "note": "listing 质量：详情中塞入注册号/GTIN 等合规字段（疑似堆砌关键词）。"
+    },
+    {
+      "product_id": "FX-VIOL-LV010",
+      "internal_sku": "V-LV010",
+      "shop_id": "FXSHOP1",
+      "title": "Mochila Infantil para Adultos 30L",
+      "description": "Mochila de 30 litros. Para adultos. Material em poliéster. Bolso frontal com zíper.",
+      "category": "Acessórios > Mochilas",
+      "brand": "Sem Marca",
+      "price": 109.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-LV-010"
+      ],
+      "note": "listing 质量：适用人群矛盾（infantil + adultos）。"
+    },
+    {
+      "product_id": "FX-VIOL-LV011",
+      "internal_sku": "V-LV011",
+      "shop_id": "FXSHOP1",
+      "title": "Garrafa Térmica 500ml Inox",
+      "description": "Garrafa térmica em aço inox com 500 ml. Mantém bebidas frias por 12 horas e quentes por 6 horas. Tampa rosqueável com vedação. Medidas: 25 cm de altura por 7 cm de diâmetro. Peso: 320 g.",
+      "category": "Casa > Cozinha > Garrafas",
+      "price": 59.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-LV-011"
+      ],
+      "note": "listing 质量：缺品牌。修复前该规则因自指 requires_input 永不可满足；现移除自指后，brand 为 null → field_missing 成立。",
+      "brand": null
+    },
+    {
+      "product_id": "FX-VIOL-LV012",
+      "internal_sku": "V-LV012",
+      "shop_id": "FXSHOP1",
+      "title": "Tapete de Yoga Antiderrapante 6mm",
+      "description": "Tapete de yoga em borracha natural com 6 mm de espessura. Dimensões: 183 cm por 61 cm. Peso: 1,1 kg. Superfície texturizada para melhor aderência.",
+      "category": "Esportes > Yoga",
+      "brand": "Sem Marca",
+      "price": 89.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-LV-012"
+      ],
+      "note": "listing 质量：重量与尺寸混排（peso + dimensão 距离 <60 字符）。"
+    },
+    {
+      "product_id": "FX-VIOL-LV013",
+      "internal_sku": "V-LV013",
+      "shop_id": "FXSHOP1",
+      "title": "Caixa de Armazenamento Grande 60L",
+      "description": "Caixa de armazenamento com tampa e trava. Medidas: 60 cm por 40 cm por 30 cm. Material: plástico resistente. Peso: 1,8 kg.",
+      "category": "Casa > Organização",
+      "brand": "Sem Marca",
+      "price": 39.9,
+      "images": [],
+      "source": {
+        "kind": "manual",
+        "path": null,
+        "imported_at": "2026-10-27T00:00:00Z"
+      },
+      "targets": [
+        "SBR-LV-013"
+      ],
+      "note": "listing 质量：声明了完整三维尺寸。平台未公开尺寸上限，故本规则只标记「已声明三维尺寸」这一事实，由人工复核确认是否超限（不阻断）。"
+    }
+  ]
+}
