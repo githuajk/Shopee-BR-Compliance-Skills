@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "manifest_version": "1.2.0",
+  "manifest_version": "1.3.0",
   "project": {
     "code": "SBRCA",
     "name": "Shopee Brazil Compliance Agent",
@@ -8,7 +8,7 @@
     "market": "巴西 Shopee",
     "language": "中文（文档）/ 葡萄牙语（源材料与规则引文）/ 英语（代码标识符）",
     "status": "Phase 1 — 公共契约已冻结，等待并行模块开发",
-    "last_updated": "2026-10-27"
+    "last_updated": "2026-10-28"
   },
   "governance": {
     "project_rules": "PROJECT_RULES.md",
@@ -356,6 +356,15 @@
       "purpose": "词库扫描器 —— 确定性筛查（归一化、组级边界策略、豁免、位置记录）+ 12 条回归用例",
       "owner": "shopee-br-listing-audit",
       "self_test": "python3 tools/scan_lexicon.py --self-test"
+    },
+    "user_sop": {
+      "path": "docs/USER_SOP.md",
+      "purpose": "使用者操作规程 —— 把现有流程做成八步框架（定位→标准化→完整性→扫描→上下文判定→分流→改写复扫→交付留痕），面向店主/运营/审核执行人",
+      "owner": "integrator",
+      "audience": "使用者（非开发 Agent）",
+      "status": "Draft — 待用户审批",
+      "version": "1.0.0",
+      "created": "2026-10-28"
     }
   },
   "existing_state": {
@@ -395,5 +404,5 @@
     },
     "validation": "env -u LD_LIBRARY_PATH python3 tools/validate_lexicon.py"
   },
-  "last_updated": "2026-10-27"
+  "last_updated": "2026-10-28"
 }

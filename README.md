@@ -26,6 +26,22 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 
 ---
 
+## 我该看哪份文档？
+
+| 你是谁 | 先读 | 再读 |
+|---|---|---|
+| **店主 / 老板** | `docs/USER_SOP.md` §1 §2 §9 §10 | `docs/USER_SOP.md` §8（怎么看报告） |
+| **运营 / 执行人** | `docs/USER_SOP.md`（全文，按步骤做） | `docs/SOP_COMPLIANCE_REVIEW.md`（判定语义与铁律细节） |
+| **审核执行人** | `docs/USER_SOP.md` §5 §6 §7 | `contracts/risk_action_matrix.json`（动作查表） |
+| **开发 Agent** | `PROJECT_RULES.md` + `AGENT_COLLABORATION.md` | `tasks/*.md`（自包含任务包） |
+
+> **两份 SOP 的分工**
+> - `docs/USER_SOP.md` —— **给使用者看**。回答"做什么、按什么顺序做、做完交什么、遇到问题怎么办"。
+> - `docs/SOP_COMPLIANCE_REVIEW.md` —— **给判定层看**。回答"什么算违规、怎么判定、哪些铁律不能破"。
+> - USER_SOP **不新增任何判定规则**，只做流程框架与操作入口。
+
+---
+
 ## 三个交付物
 
 ### ① 公共契约与全局规范
@@ -47,6 +63,7 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 | `tests/test_plan.md` | 统一测试与集成验收标准 |
 | `contracts/lexicon_rule_map.json` | 词组 → 规则映射 |
 | `docs/SOP_COMPLIANCE_REVIEW.md` | ★ **统一审核 SOP**（合并历史全部方法） |
+| `docs/USER_SOP.md` | ★★ **使用者操作规程**（店主/运营/审核人看的端到端流程框架） |
 
 ### ② 七个 Skill 的模块说明与文件所有权
 
