@@ -1,0 +1,1358 @@
+{
+  "schema_version": "1.0",
+  "fixture_set": "listing_audit_rule_cases",
+  "description": "本模块自有的规则用例 —— 每条规则至少 1 个正例 + 1 个反例。全部为合成数据，不含任何真实商品或店铺信息。共享夹具（tests/fixtures/）由集成 Agent 拥有，本文件属于 shopee-br-listing-audit 模块。",
+  "construction_note": "cases 里的 must_fire / must_not_fire 只列本模块拥有的前缀（PI / RI / MED / LV）。用例覆盖四类：正例（应命中）、反例（不应命中）、边界（阈值与词边界）、缺失（缺字段 → 未评估）。",
+  "cases": [
+    {
+      "case_id": "LA-PI001-POS",
+      "scenario": "禁售 — 武器与弹药：标题含枪械，详情含训练弹药",
+      "rule_id": "SBR-PI-001",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-PI001-POS",
+        "internal_sku": "LA-PI001-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Pistola de Treinamento Airsoft com Munição de Plástico",
+        "description": "Pistola de treino com munição de plástico. Acompanha maleta e alvo de papel. Medidas: 22 cm por 15 cm por 6 cm. Peso: 900 g.",
+        "category": "Esportes > Treinamento",
+        "brand": "Sem Marca",
+        "price": 249.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-PI-001"]
+    },
+    {
+      "case_id": "LA-PI001-NEG",
+      "scenario": "反例 — 厨房刀具套装是工具类，不是武器",
+      "rule_id": "SBR-PI-001",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-PI001-NEG",
+        "internal_sku": "LA-PI001-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Kit 6 Facas de Cozinha em Aço Inox",
+        "description": "Kit com 6 facas de cozinha em aço inox. Cabo antideslizante. Pode ser usado para cortes de legumes e carnes. Medidas: 30 cm por 15 cm por 4 cm. Peso: 1,2 kg.",
+        "category": "Casa > Cozinha > Utensílios",
+        "brand": "Sem Marca",
+        "price": 89.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-PI-001"]
+    },
+    {
+      "case_id": "LA-PI002-POS",
+      "scenario": "禁售 — 烟草与电子烟",
+      "rule_id": "SBR-PI-002",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-PI002-POS",
+        "internal_sku": "LA-PI002-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Vape Descartável 4000 Puffs com Atomizador",
+        "description": "Vape descartável com 4000 puffs e juice de nicotina. Atomizador de vapor recarregável incluso. Medidas: 10 cm por 4 cm por 2 cm. Peso: 120 g.",
+        "category": "Eletrônicos > Vapes",
+        "brand": "Sem Marca",
+        "price": 79.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-PI-002"]
+    },
+    {
+      "case_id": "LA-PI002-NEG",
+      "scenario": "反例 — 电子烟配件之外的普通充电宝描述不含烟草词",
+      "rule_id": "SBR-PI-002",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-PI002-NEG",
+        "internal_sku": "LA-PI002-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Carregador USB-C 30W para Celular",
+        "description": "Carregador de tomada com saída USB-C de 30 W. Compatível com celulares Android e iPhone. Medidas: 8 cm por 5 cm por 3 cm. Peso: 90 g.",
+        "category": "Eletrônicos > Carregadores",
+        "brand": "Sem Marca",
+        "price": 39.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-PI-002"]
+    },
+    {
+      "case_id": "LA-PI003-POS",
+      "scenario": "禁售 — 管制药品与处方药类别",
+      "rule_id": "SBR-PI-003",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-PI003-POS",
+        "internal_sku": "LA-PI003-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Antidepressivo com Tarja Vermelha 30 Comprimidos",
+        "description": "Medicamento controlado com tarja vermelha. Uso contínuo sob orientação médica. Medidas: 12 cm por 8 cm por 4 cm. Peso: 60 g.",
+        "category": "Saúde > Medicamentos",
+        "brand": "Sem Marca",
+        "price": 69.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-PI-003"]
+    },
+    {
+      "case_id": "LA-PI003-NEG",
+      "scenario": "反例 — 普通维生素补充剂不含管制药品词",
+      "rule_id": "SBR-PI-003",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-PI003-NEG",
+        "internal_sku": "LA-PI003-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Vitamina C 1000mg 60 Comprimidos",
+        "description": "Comprimidos de vitamina C 1000 mg. Contém 60 unidades. Sabor efervescente de laranja. Medidas: 10 cm por 6 cm por 4 cm. Peso: 80 g.",
+        "category": "Saúde > Suplementos",
+        "brand": "Sem Marca",
+        "price": 45.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-PI-003"]
+    },
+    {
+      "case_id": "LA-PI004-POS",
+      "scenario": "禁售 — 化学品与爆炸物",
+      "rule_id": "SBR-PI-004",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-PI004-POS",
+        "internal_sku": "LA-PI004-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Solvente Acetona 5 Litros para Limpeza Industrial",
+        "description": "Acetona pura para limpeza de equipamentos. Produto tóxico e corrosivo, exige EPI para manuseio. Medidas: 25 cm por 15 cm por 30 cm. Peso: 4 kg.",
+        "category": "Industria > Químicos",
+        "brand": "Sem Marca",
+        "price": 129.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-PI-004"]
+    },
+    {
+      "case_id": "LA-PI004-NEG",
+      "scenario": "反例 — 表面清洁剂不含爆炸物/毒性词",
+      "rule_id": "SBR-PI-004",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-PI004-NEG",
+        "internal_sku": "LA-PI004-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Detergente Neutro para Limpeza de Pisos 5L",
+        "description": "Detergente neutro concentrado para limpeza de pisos. Diluição conforme o rótulo. Medidas: 30 cm por 20 cm por 25 cm. Peso: 5,2 kg.",
+        "category": "Casa > Limpeza",
+        "brand": "Sem Marca",
+        "price": 29.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-PI-004"]
+    },
+    {
+      "case_id": "LA-PI005-POS",
+      "scenario": "禁售 — 假币与金融工具",
+      "rule_id": "SBR-PI-005",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-PI005-POS",
+        "internal_sku": "LA-PI005-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Máquina de Clonador de Cartão e Cédulas para Treinamento",
+        "description": "Kit com clonador de cartão e cédulas de dinheiro em réplica para treinamento. Medidas: 18 cm por 12 cm por 5 cm. Peso: 700 g.",
+        "category": "Eletrônicos > Acessórios",
+        "brand": "Sem Marca",
+        "price": 199.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-PI-005"]
+    },
+    {
+      "case_id": "LA-PI005-NEG",
+      "scenario": "反例 — 「peneiras」是厨具词根，不是钱币词",
+      "rule_id": "SBR-PI-005",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-PI005-NEG",
+        "internal_sku": "LA-PI005-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Kit 10 Peneiras em Aço Inox para Cozinha",
+        "description": "Kit com 10 peneiras em aço inox para peneirar farofa, farinha e chás. Diâmetros de 5 cm a 20 cm. Peso total: 480 g.",
+        "category": "Casa > Cozinha > Utensílios",
+        "brand": "Sem Marca",
+        "price": 32.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-PI-005"]
+    },
+    {
+      "case_id": "LA-PI006-POS",
+      "scenario": "禁售 — 博彩与盲盒",
+      "rule_id": "SBR-PI-006",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-PI006-POS",
+        "internal_sku": "LA-PI006-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Caixa Misteriosa com Surpresa Colecionável",
+        "description": "Caixa misteriosa com um item colecionável sorteado. Jogo de azar com prêmio surpresa. Medidas: 15 cm por 10 cm por 8 cm. Peso: 300 g.",
+        "category": "Brinquedos > Colecionáveis",
+        "brand": "Sem Marca",
+        "price": 59.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-PI-006"]
+    },
+    {
+      "case_id": "LA-PI006-NEG",
+      "scenario": "反例 — 桌游不含博彩词",
+      "rule_id": "SBR-PI-006",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-PI006-NEG",
+        "internal_sku": "LA-PI006-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Jogo de Tabuleiro Familiar 100 Peças",
+        "description": "Jogo de tabuleiro para a família com 100 peças. Cada partida dura cerca de 40 minutos. Medidas: 40 cm por 30 cm por 8 cm. Peso: 1,6 kg.",
+        "category": "Brinquedos > Jogos de Tabuleiro",
+        "brand": "Sem Marca",
+        "price": 149.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-PI-006"]
+    },
+    {
+      "case_id": "LA-PI007-POS",
+      "scenario": "禁售 — 政府标识与制服",
+      "rule_id": "SBR-PI-007",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-PI007-POS",
+        "internal_sku": "LA-PI007-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Uniforme Militar com Insígnia Governamental Costurada",
+        "description": "Uniforme militar com insígnia governamental e braçadeira. Tecido resistente com gola ajustável. Medidas: 35 cm por 25 cm por 5 cm. Peso: 900 g.",
+        "category": "Moda > Uniformes",
+        "brand": "Sem Marca",
+        "price": 219.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-PI-007"]
+    },
+    {
+      "case_id": "LA-PI007-NEG",
+      "scenario": "反例 — 工作围裙不含政府标识词",
+      "rule_id": "SBR-PI-007",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-PI007-NEG",
+        "internal_sku": "LA-PI007-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Aventom de Trabalho em Canvas com Bolso",
+        "description": "Aventom profissional em canvas resistente com bolso frontal e tiras reguláveis. Medidas: 90 cm por 70 cm por 2 cm. Peso: 400 g.",
+        "category": "Moda > Aventais",
+        "brand": "Sem Marca",
+        "price": 39.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-PI-007"]
+    },
+    {
+      "case_id": "LA-PI008-POS",
+      "scenario": "禁售 — 野生动物制品",
+      "rule_id": "SBR-PI-008",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-PI008-POS",
+        "internal_sku": "LA-PI008-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Coleção de Fauna e Flora e Derivados — Âncoras Naturais",
+        "description": "Coleção de fauna e flora e derivados com âncoras naturais em madeira. Cada peça é única. Medidas: 20 cm por 12 cm por 6 cm. Peso: 500 g.",
+        "category": "Decoração > Natural",
+        "brand": "Sem Marca",
+        "price": 79.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-PI-008"]
+    },
+    {
+      "case_id": "LA-PI008-NEG",
+      "scenario": "反例 — 人造花艺不含野生动物词",
+      "rule_id": "SBR-PI-008",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-PI008-NEG",
+        "internal_sku": "LA-PI008-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Arranjo de Flores Artificiais em vaso de Cerâmica",
+        "description": "Arranjo decorativo com flores artificiais e folhas em tecido. Base de cerâmica esmaltada. Medidas: 25 cm por 20 cm por 30 cm. Peso: 900 g.",
+        "category": "Decoração > Flores",
+        "brand": "Sem Marca",
+        "price": 69.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-PI-008"]
+    },
+    {
+      "case_id": "LA-PI009-POS",
+      "scenario": "禁售 — 成人内容",
+      "rule_id": "SBR-PI-009",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-PI009-POS",
+        "internal_sku": "LA-PI009-POS",
+        "shop_id": "LA-SHOP",
+        "title": "DVD de Conteúdo Adulto com Cenas Explícitas",
+        "description": "DVD de conteúdo adulto com cenas explícitas. Embalagem discreta para envio. Medidas: 19 cm por 14 cm por 2 cm. Peso: 110 g.",
+        "category": "Filmes > DVD",
+        "brand": "Sem Marca",
+        "price": 39.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-PI-009"]
+    },
+    {
+      "case_id": "LA-PI009-NEG",
+      "scenario": "反例 — 常规电影不含成人内容词",
+      "rule_id": "SBR-PI-009",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-PI009-NEG",
+        "internal_sku": "LA-PI009-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "DVD de Filme de Comédia Familiar",
+        "description": "DVD de filme de comédia familiar em full dubbing. Duração de 98 minutos. Medidas: 19 cm por 14 cm por 2 cm. Peso: 100 g.",
+        "category": "Filmes > DVD",
+        "brand": "Sem Marca",
+        "price": 24.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-PI-009"]
+    },
+    {
+      "case_id": "LA-RI001-POS",
+      "scenario": "受限 — 酒精饮料需资质",
+      "rule_id": "SBR-RI-001",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-RI001-POS",
+        "internal_sku": "LA-RI001-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Kit Gin's Tonic e Whisky 12 Anos 1 Garrafa",
+        "description": "Whisky 12 anos com tônica. Acompanha 2 copos. Medidas: 12 cm por 9 cm por 30 cm. Peso: 1,6 kg.",
+        "category": "Bebidas > Destilados",
+        "brand": "Sem Marca",
+        "price": 289.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-RI-001"]
+    },
+    {
+      "case_id": "LA-RI001-NEG",
+      "scenario": "反例 — 无醇饮品不含酒精词",
+      "rule_id": "SBR-RI-001",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-RI001-NEG",
+        "internal_sku": "LA-RI001-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Refrigerante de Cola Zero 2L",
+        "description": "Refrigerante de cola sem açúcar em garrafão de 2 litros. Mantém a bebida gelada. Medidas: 10 cm por 10 cm por 32 cm. Peso: 2,1 kg.",
+        "category": "Bebidas > Refrigerantes",
+        "brand": "Sem Marca",
+        "price": 8.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-RI-001"]
+    },
+    {
+      "case_id": "LA-RI002-POS",
+      "scenario": "受限 — 健康类商品需注册",
+      "rule_id": "SBR-RI-002",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-RI002-POS",
+        "internal_sku": "LA-RI002-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Multivitamínicos 60 Comprimidos e Oxímetro de Pulso",
+        "description": "Multivitamínicos com 60 comprimidos e oxímetro de pulso digital. Mede a saturação de oxigênio. Medidas: 15 cm por 10 cm por 6 cm. Peso: 250 g.",
+        "category": "Saúde > Suplementos",
+        "brand": "Sem Marca",
+        "price": 159.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-RI-002"]
+    },
+    {
+      "case_id": "LA-RI002-NEG",
+      "scenario": "反例 — 蛋白粉不含「suplementos alimentares」字面量，也不含疗效承诺",
+      "rule_id": "SBR-RI-002",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-RI002-NEG",
+        "internal_sku": "LA-RI002-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Suplemento Alimentar de Proteína com 24 Porções Sabor Chocolate",
+        "description": "Suplemento alimentar de proteína em pó, 24 porções de 30 g. Ingredientes: proteína do soro do leite, cacau em pó, edulcorante. Uso como complemento da rotina de treino. Não substitui refeições. Medidas: 15 cm por 12 cm por 25 cm. Peso: 900 g.",
+        "category": "Suplementos > Nutrição Esportiva",
+        "brand": "Sem Marca",
+        "price": 139.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": [],
+      "must_not_fire": ["SBR-RI-002"]
+    },
+    {
+      "case_id": "LA-RI003-POS",
+      "scenario": "受限 — 锂电池与充电宝",
+      "rule_id": "SBR-RI-003",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-RI003-POS",
+        "internal_sku": "LA-RI003-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Power Bank 20000mAh com Bateria de Lítio 18650",
+        "description": "Power bank de 20000 mAh com bateria de lítio 18650. Duas saídas USB. Medidas: 15 cm por 8 cm por 3 cm. Peso: 430 g.",
+        "category": "Eletrônicos > Carregadores",
+        "brand": "Sem Marca",
+        "price": 119.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-RI-003"]
+    },
+    {
+      "case_id": "LA-RI003-NEG",
+      "scenario": "反例 — 「bateria」单独出现（普通工具）不构成电池类",
+      "rule_id": "SBR-RI-003",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-RI003-NEG",
+        "internal_sku": "LA-RI003-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Furadeira de Impacto sem Fio 18V com Maleta e Bateria",
+        "description": "Furadeira de impacto sem fio 18V com maleta de transporte. Torque máximo de 55 Nm. Inclui brocas de aço. Medidas: 25 cm por 8 cm por 24 cm. Peso: 2,4 kg.",
+        "category": "Ferramentas > Furadeiras",
+        "brand": "Sem Marca",
+        "price": 349.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-RI-003"]
+    },
+    {
+      "case_id": "LA-RI004-POS",
+      "scenario": "受限 — 汽摩配件需认证信息",
+      "rule_id": "SBR-RI-004",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-RI004-POS",
+        "internal_sku": "LA-RI004-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Óleo Automotivo Sintético 5W30 com Homologação do Produto",
+        "description": "Óleo automotivo sintético 5W30 com certificado de homologação do produto. Rende 10 mil km. Medidas: 12 cm por 8 cm por 25 cm. Peso: 900 g.",
+        "category": "Automotivo > Lubrificantes",
+        "brand": "Sem Marca",
+        "price": 89.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-RI-004"]
+    },
+    {
+      "case_id": "LA-RI004-NEG",
+      "scenario": "反例 — 汽车座套不含汽车配件资质词",
+      "rule_id": "SBR-RI-004",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-RI004-NEG",
+        "internal_sku": "LA-RI004-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Capa de Banco Automotiva Impermeável",
+        "description": "Capa para banco de carro em material impermeável. Não acompanha o veículo. Medidas: 150 cm por 60 cm por 30 cm. Peso: 850 g.",
+        "category": "Automotivo > Acessórios Interno",
+        "brand": "Sem Marca",
+        "price": 149.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-RI-004"]
+    },
+    {
+      "case_id": "LA-RI005-POS",
+      "scenario": "受限 — 生鲜食品",
+      "rule_id": "SBR-RI-005",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-RI005-POS",
+        "internal_sku": "LA-RI005-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Caixa de Frutas Frescas e Legumes Frescos Orgânicos",
+        "description": "Caixa com frutas frescas e legumes frescos selecionados. Colheita da semana, embalagem refrigerada. Medidas: 40 cm por 30 cm por 20 cm. Peso: 6 kg.",
+        "category": "Alimentos > Hortifruti",
+        "brand": "Sem Marca",
+        "price": 59.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-RI-005"]
+    },
+    {
+      "case_id": "LA-RI005-NEG",
+      "scenario": "反例 — 常温干货不含生鲜词",
+      "rule_id": "SBR-RI-005",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-RI005-NEG",
+        "internal_sku": "LA-RI005-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Pacote de Arroz Integral 1kg",
+        "description": "Arroz integral de grão longo, pacote de 1 kg. Mantém o pyspiko com textura firme. Medidas: 25 cm por 18 cm por 6 cm. Peso: 1 kg.",
+        "category": "Alimentos > Mercearia",
+        "brand": "Sem Marca",
+        "price": 12.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-RI-005"]
+    },
+    {
+      "case_id": "LA-RI006-POS",
+      "scenario": "受限 — 宠物药品",
+      "rule_id": "SBR-RI-006",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-RI006-POS",
+        "internal_sku": "LA-RI006-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Antiparasitário para Cães de 10kg a 40kg 3 Comprimidos",
+        "description": "Antiparasitário para cães de 10 kg a 40 kg. Uso veterinário conforme orientação. Medidas: 12 cm por 8 cm por 3 cm. Peso: 60 g.",
+        "category": "Pet > Saúde Animal",
+        "brand": "Sem Marca",
+        "price": 79.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-RI-006"]
+    },
+    {
+      "case_id": "LA-RI006-NEG",
+      "scenario": "反例 — 宠物食盆不含宠物药品词",
+      "rule_id": "SBR-RI-006",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-RI006-NEG",
+        "internal_sku": "LA-RI006-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Comedouro Duplo para Cães em Aço Inox",
+        "description": "Comedouro duplo para cães em aço inox com base antiderrapante. Capacidade de 2 litros. Medidas: 30 cm por 20 cm por 10 cm. Peso: 800 g.",
+        "category": "Pet > Comedouros",
+        "brand": "Sem Marca",
+        "price": 49.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-RI-006"]
+    },
+    {
+      "case_id": "LA-RI007-POS",
+      "scenario": "受限 — 气动与仿真武器",
+      "rule_id": "SBR-RI-007",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-RI007-POS",
+        "internal_sku": "LA-RI007-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Kit Airsoft com Arma de Pressão CO2 e Equipamentos Táticos",
+        "description": "Kit de airsoft com arma de pressão CO2 e equipamentos táticos. Acompanha colete e munição de treino. Medidas: 45 cm por 30 cm por 15 cm. Peso: 2 kg.",
+        "category": "Esportes > Airsoft",
+        "brand": "Sem Marca",
+        "price": 599.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-RI-007"]
+    },
+    {
+      "case_id": "LA-RI007-NEG",
+      "scenario": "反例 — 普通工具包不含气动武器词",
+      "rule_id": "SBR-RI-007",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-RI007-NEG",
+        "internal_sku": "LA-RI007-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Maleta de Ferramentas 82 Peças",
+        "description": "Maleta com 82 peças de ferramentas para uso geral. Inclui chaves, alicates e martelo. Medidas: 45 cm por 25 cm por 12 cm. Peso: 3 kg.",
+        "category": "Ferramentas > Kits",
+        "brand": "Sem Marca",
+        "price": 259.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-RI-007"]
+    },
+    {
+      "case_id": "LA-RI008-POS",
+      "scenario": "禁售 — 未消毒乳制品与手工乳制品",
+      "rule_id": "SBR-RI-008",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-RI008-POS",
+        "internal_sku": "LA-RI008-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Queijo Artesanal de Leite Cru e Manteiga Artesanal 500g",
+        "description": "Queijo artesanal feito de leite cru e manteiga artesanal. Produção familiar sem pasteurização. Medidas: 12 cm por 8 cm por 6 cm. Peso: 500 g.",
+        "category": "Alimentos > Laticínios",
+        "brand": "Sem Marca",
+        "price": 69.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-RI-008"]
+    },
+    {
+      "case_id": "LA-RI008-NEG",
+      "scenario": "反例 — 工业巴氏杀菌奶酪不含生乳词",
+      "rule_id": "SBR-RI-008",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-RI008-NEG",
+        "internal_sku": "LA-RI008-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Queijo Muçarela Fatiado Industrial 150g",
+        "description": "Muçarela fatiada de produção industrial, pasteurizada e embalada com selagem. Mantém na geladeira. Medidas: 20 cm por 12 cm por 4 cm. Peso: 150 g.",
+        "category": "Alimentos > Laticínios",
+        "brand": "Sem Marca",
+        "price": 19.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-RI-008"]
+    },
+    {
+      "case_id": "LA-MED001-POS",
+      "scenario": "药品 — MMS / 氯酸钠等绝对禁售形态",
+      "rule_id": "SBR-MED-001",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-MED001-POS",
+        "internal_sku": "LA-MED001-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Solução Mineral Milagrosa 500ml com Clorito de Sódio",
+        "description": "Solução mineral milagrosa com clorito de sódio. Uso alternativo. Medidas: 8 cm por 6 cm por 22 cm. Peso: 540 g.",
+        "category": "Saúde > Produtos Alternativos",
+        "brand": "Sem Marca",
+        "price": 89.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-MED-001"]
+    },
+    {
+      "case_id": "LA-MED001-NEG",
+      "scenario": "反例 — 功能性支撑产品不含医疗禁售词",
+      "rule_id": "SBR-MED-001",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-MED001-NEG",
+        "internal_sku": "LA-MED001-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Suporte Ergonômico para Mesa de Trabalho",
+        "description": "Suporte ajustável para mesa em material resistente. Contribui para reduzir o desconforto postural em jornadas longas. Não é equipamento médico. Medidas: 45 cm por 25 cm por 12 cm. Peso: 1,2 kg.",
+        "category": "Escritório > Acessórios Ergonômicos",
+        "brand": "Sem Marca",
+        "price": 89.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-MED-001"]
+    },
+    {
+      "case_id": "LA-MED002-POS",
+      "scenario": "药品 — 非处方药（MIP）仅限持牌药房销售",
+      "rule_id": "SBR-MED-002",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-MED002-POS",
+        "internal_sku": "LA-MED002-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Medicamento Isento de Prescrição com Tarja Vermelha 30 Comprimidos",
+        "description": "Medicamento isento de prescrição (MIP) com tarja vermelha. Uso conforme orientação do profissional de saúde. Medidas: 10 cm por 7 cm por 4 cm. Peso: 55 g.",
+        "category": "Saúde > Medicamentos",
+        "brand": "Sem Marca",
+        "price": 39.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-MED-002"]
+    },
+    {
+      "case_id": "LA-MED002-NEG",
+      "scenario": "反例 — 保健品不含药品词",
+      "rule_id": "SBR-MED-002",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-MED002-NEG",
+        "internal_sku": "LA-MED002-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Ômega 3 1000mg 120 Cápsulas",
+        "description": "Ómega 3 em cápsulas de 1000 mg. Contém 120 cápsulas. Fonte de EPA e DHA. Medidas: 12 cm por 8 cm por 5 cm. Peso: 120 g.",
+        "category": "Saúde > Suplementos",
+        "brand": "Sem Marca",
+        "price": 79.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-MED-002"]
+    },
+    {
+      "case_id": "LA-MED003-POS",
+      "scenario": "药品 — 保健品虚假/误导信息",
+      "rule_id": "SBR-MED-003",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-MED003-POS",
+        "internal_sku": "LA-MED003-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Suplemento de Saúde com Informações Falsas - 100% Eficaz",
+        "description": "Suplemento de saúde com informações falsas sobre o produto. Promete cura garantida e resultado garantido em 7 dias. Medidas: 10 cm por 7 cm por 5 cm. Peso: 120 g.",
+        "category": "Saúde > Suplementos",
+        "brand": "Sem Marca",
+        "price": 99.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-MED-003"]
+    },
+    {
+      "case_id": "LA-MED003-NEG",
+      "scenario": "反例 — 普通蛋白粉无功效承诺",
+      "rule_id": "SBR-MED-003",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-MED003-NEG",
+        "internal_sku": "LA-MED003-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Suplemento Alimentar de Proteína 24 Porções",
+        "description": "Suplemento alimentar de proteína em pó, 24 porções de 30 g. Ingredientes: proteína do soro do leite, cacau em pó, edulcorante. Não substitui refeições. Medidas: 15 cm por 12 cm por 25 cm. Peso: 900 g.",
+        "category": "Suplementos > Nutrição Esportiva",
+        "brand": "Sem Marca",
+        "price": 139.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-MED-003"]
+    },
+    {
+      "case_id": "LA-LV001-POS",
+      "scenario": "刊登质量 — 夸大/奇迹健康宣称",
+      "rule_id": "SBR-LV-001",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-LV001-POS",
+        "internal_sku": "LA-LV001-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Sérum Facial Antiacne 30ml",
+        "description": "Sérum facial com ácido hialurônico e vitamina C. Elimina a acne e remove cravos com garantia. Resultados garantidos em 7 dias. Uso contínuo. Medidas: 4 cm por 4 cm por 12 cm. Peso: 60 g.",
+        "category": "Beleza > Skincare",
+        "brand": "Sem Marca",
+        "price": 79.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-001"]
+    },
+    {
+      "case_id": "LA-LV001-NEG",
+      "scenario": "反例 — 「reduzir o desconforto」是功能描述，不是疗效承诺",
+      "rule_id": "SBR-LV-001",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-LV001-NEG",
+        "internal_sku": "LA-LV001-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Suporte Ergonômico para Reduzir o Desconforto Postural",
+        "description": "Suporte ajustável para mesa de trabalho. Contribui para reduzir o desconforto postural em jornadas longas de home office. Não é equipamento médico e não substitui avaliação profissional. Medidas: 45 cm por 25 cm por 12 cm. Peso: 1,2 kg.",
+        "category": "Escritório > Acessórios Ergonômicos",
+        "brand": "Sem Marca",
+        "price": 89.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-001"]
+    },
+    {
+      "case_id": "LA-LV002-POS",
+      "scenario": "刊登质量 — 误导折扣/欺骗性定价",
+      "rule_id": "SBR-LV-002",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-LV002-POS",
+        "internal_sku": "LA-LV002-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Fone Bluetooth com Desconto de 70%",
+        "description": "Fone Bluetooth sem fio com cancelamento de ruído. De R$ 199,90 por R$ 59,90. Bateria de 30 horas. Medidas: 20 cm por 18 cm por 8 cm. Peso: 300 g.",
+        "category": "Eletrônicos > Fones",
+        "brand": "Sem Marca",
+        "price": 59.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-002"]
+    },
+    {
+      "case_id": "LA-LV002-NEG",
+      "scenario": "反例 — 正常定价商品不含折扣话术",
+      "rule_id": "SBR-LV-002",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-LV002-NEG",
+        "internal_sku": "LA-LV002-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Fone Bluetooth Sem Fio com Cancelamento de Ruído",
+        "description": "Fone Bluetooth sem fio com cancelamento de ruído e 30 horas de bateria. Acompanha estojo e cabo. Medidas: 20 cm por 18 cm por 8 cm. Peso: 320 g.",
+        "category": "Eletrônicos > Fones",
+        "brand": "Sem Marca",
+        "price": 199.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-002"]
+    },
+    {
+      "case_id": "LA-LV003-POS",
+      "scenario": "刊登质量 — 标题关键词堆砌",
+      "rule_id": "SBR-LV-003",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-LV003-POS",
+        "internal_sku": "LA-LV003-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Tênis Esportivo Premium Masculino Feminino Unissex Casual Esportivo-running Treino Academia Confortável Leve Durável Impermeável Para Dia a Dia",
+        "description": "Tênis para corrida e academia. Design moderno. Medidas: 30 cm por 20 cm por 12 cm. Peso: 700 g.",
+        "category": "Calçados > Tênis",
+        "brand": "Sem Marca",
+        "price": 159.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-003"]
+    },
+    {
+      "case_id": "LA-LV003-NEG",
+      "scenario": "反例 — 14 词标题在阈值下方",
+      "rule_id": "SBR-LV-003",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-LV003-NEG",
+        "internal_sku": "LA-LV003-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Tênis Esportivo Premium Masculino Feminino Unissex Casual Esportivo Treino Academia Confortável Leve Durável Impermeável",
+        "description": "Tênis para corrida e academia. Design moderno. Medidas: 30 cm por 20 cm por 12 cm. Peso: 700 g.",
+        "category": "Calçados > Tênis",
+        "brand": "Sem Marca",
+        "price": 159.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-003"]
+    },
+    {
+      "case_id": "LA-LV004-POS",
+      "scenario": "刊登质量 — 标题堆砌多个品牌名",
+      "rule_id": "SBR-LV-004",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-LV004-POS",
+        "internal_sku": "LA-LV004-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Tênis Nike com Technology Adidas Solado Premium",
+        "description": "Tênis esportivo com solado emborrachado. Medidas: 30 cm por 20 cm por 12 cm. Peso: 750 g.",
+        "category": "Calçados > Tênis",
+        "brand": "Sem Marca",
+        "price": 129.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-004"]
+    },
+    {
+      "case_id": "LA-LV004-NEG",
+      "scenario": "反例 — 单一品牌词不构成品牌堆砌",
+      "rule_id": "SBR-LV-004",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-LV004-NEG",
+        "internal_sku": "LA-LV004-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Tênis Esportivo Nike Runner Masculino",
+        "description": "Tênis esportivo para corrida com cabedal em mesh. Medidas: 30 cm por 20 cm por 12 cm. Peso: 700 g.",
+        "category": "Calçados > Tênis",
+        "brand": "Nike",
+        "price": 199.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-004"]
+    },
+    {
+      "case_id": "LA-LV005-POS",
+      "scenario": "刊登质量 — 站外引流（WhatsApp 与电话）",
+      "rule_id": "SBR-LV-005",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-LV005-POS",
+        "internal_sku": "LA-LV005-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Camiseta Personalizada Estampa a Your Name",
+        "description": "Camiseta de algodão com estampa personalizada. Escolha o texto. Entrega rápida. Entre em contato pelo WhatsApp +55 11 98888-7777 para fechar o pedido. Medidas: 30 cm por 22 cm por 2 cm. Peso: 200 g.",
+        "category": "Moda > Camisetas",
+        "brand": "Sem Marca",
+        "price": 49.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-005"]
+    },
+    {
+      "case_id": "LA-LV005-NEG",
+      "scenario": "反例 — 店铺自身的 shopee 子域属站内",
+      "rule_id": "SBR-LV-005",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-LV005-NEG",
+        "internal_sku": "LA-LV005-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Chaleira Elétrica Inox 1,7L",
+        "description": "Chaleira elétrica em aço inox com 1,7 litro de capacidade. Liga e desliga automaticamente. Voltagem bivolt automático. Medidas: 22 cm por 16 cm por 25 cm. Peso: 1,1 kg. Veja mais produtos em https://minhaloja.shopee.com.br.",
+        "category": "Casa > Cozinha > Chaleiras",
+        "brand": "Sem Marca",
+        "price": 149.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-005"]
+    },
+    {
+      "case_id": "LA-LV006-POS",
+      "scenario": "刊登质量 — 详情不足 120 字符",
+      "rule_id": "SBR-LV-006",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-LV006-POS",
+        "internal_sku": "LA-LV006-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Chaveiro de Couro Personalizado",
+        "description": "Chaveiro de couro.",
+        "category": "Acessórios > Chaveiros",
+        "brand": "Sem Marca",
+        "price": 19.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-006"]
+    },
+    {
+      "case_id": "LA-LV006-NEG",
+      "scenario": "反例 — 详情长度充足",
+      "rule_id": "SBR-LV-006",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-LV006-NEG",
+        "internal_sku": "LA-LV006-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Chaveiro de Couro Personalizado com Gravação",
+        "description": "Chaveiro de couro legítimo com passagem para chave e porta-chaves. Personalização de texto incluida no pedido. Dimensões: 9 cm por 2 cm por 1 cm. Peso: 30 g.",
+        "category": "Acessórios > Chaveiros",
+        "brand": "Sem Marca",
+        "price": 24.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-006"]
+    },
+    {
+      "case_id": "LA-LV007-POS",
+      "scenario": "刊登质量 — 无图片",
+      "rule_id": "SBR-LV-007",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-LV007-POS",
+        "internal_sku": "LA-LV007-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Kit 4 Copos de Vidro 250ml",
+        "description": "Kit com 4 copos de vidro 250 ml. Vidro temperado. Pode ser usado para água e suco. Medidas: 12 cm por 7 cm. Peso: 260 g por copo.",
+        "category": "Casa > Cozinha > Copos",
+        "brand": "Sem Marca",
+        "price": 44.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-007"]
+    },
+    {
+      "case_id": "LA-LV007-NEG",
+      "scenario": "反例 — 有图片",
+      "rule_id": "SBR-LV-007",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-LV007-NEG",
+        "internal_sku": "LA-LV007-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Kit 4 Copos de Vidro 250ml",
+        "description": "Kit com 4 copos de vidro 250 ml. Vidro temperado. Pode ser usado para água e suco. Medidas: 12 cm por 7 cm. Peso: 260 g por copo.",
+        "category": "Casa > Cozinha > Copos",
+        "brand": "Sem Marca",
+        "price": 44.9,
+        "images": [{"image_id": "img-la-lv007-neg-1", "ocr_text": "4 x 250 ml", "detected_logos": []}],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-007"]
+    },
+    {
+      "case_id": "LA-LV008-POS",
+      "scenario": "刊登质量 — 缺类目",
+      "rule_id": "SBR-LV-008",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-LV008-POS",
+        "internal_sku": "LA-LV008-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Organizador de Gaveta com 6 Compartimentos",
+        "description": "Caixa organizadora em plástico com 6 compartimentos. Medidas 30 x 20 x 10 cm. Peso: 210 g.",
+        "category": null,
+        "brand": "Sem Marca",
+        "price": 29.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-008"]
+    },
+    {
+      "case_id": "LA-LV008-NEG",
+      "scenario": "反例 — 类目完整",
+      "rule_id": "SBR-LV-008",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-LV008-NEG",
+        "internal_sku": "LA-LV008-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Organizador de Gaveta com 6 Compartimentos",
+        "description": "Caixa organizadora em plástico com 6 compartimentos. Medidas 30 x 20 x 10 cm. Peso: 210 g.",
+        "category": "Casa > Organização",
+        "brand": "Sem Marca",
+        "price": 29.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-008"]
+    },
+    {
+      "case_id": "LA-LV009-POS",
+      "scenario": "刊登质量 — 自述无注册/认证信息",
+      "rule_id": "SBR-LV-009",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-LV009-POS",
+        "internal_sku": "LA-LV009-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Fone Bluetooth sem Certificado e sem Registro",
+        "description": "Fone Bluetooth sem fio. Produto sem número de homologação e sem registro anvisa. Medidas: 20 cm por 18 cm por 8 cm. Peso: 300 g.",
+        "category": "Eletrônicos > Fones",
+        "brand": "Sem Marca",
+        "price": 59.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-009"]
+    },
+    {
+      "case_id": "LA-LV009-NEG",
+      "scenario": "反例 — 普通商品不含注册字段话术",
+      "rule_id": "SBR-LV-009",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-LV009-NEG",
+        "internal_sku": "LA-LV009-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Organizador de Gaveta Transparente com Tampa",
+        "description": "Caixa organizadora em plástico transparente com tampa e trava. Medidas: 30 cm por 20 cm por 10 cm. Peso: 210 g.",
+        "category": "Casa > Organização",
+        "brand": "Sem Marca",
+        "price": 29.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-009"]
+    },
+    {
+      "case_id": "LA-LV010-POS",
+      "scenario": "刊登质量 — 年龄分级与标题/类目不符",
+      "rule_id": "SBR-LV-010",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-LV010-POS",
+        "internal_sku": "LA-LV010-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Mochila Infantil para Adultos 30L",
+        "description": "Mochila de 30 litros para uso adulto com faixa etária 18+ e compatível com categorias infantis. Medidas: 48 cm por 30 cm por 15 cm. Peso: 900 g.",
+        "category": "Mochilas",
+        "brand": "Sem Marca",
+        "price": 129.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-010"]
+    },
+    {
+      "case_id": "LA-LV010-NEG",
+      "scenario": "反例 — 儿童用品年龄分级一致",
+      "rule_id": "SBR-LV-010",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-LV010-NEG",
+        "internal_sku": "LA-LV010-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Mochila Infantil para Crianças 20L",
+        "description": "Mochila infantil de 20 litros para crianças a partir de 6 anos. Alças acolchoadas e bolso frontal. Medidas: 40 cm por 28 cm por 13 cm. Peso: 450 g.",
+        "category": "Mochilas > Infantil",
+        "brand": "Sem Marca",
+        "price": 89.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-010"]
+    },
+    {
+      "case_id": "LA-LV011-POS",
+      "scenario": "刊登质量 — 缺品牌",
+      "rule_id": "SBR-LV-011",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-LV011-POS",
+        "internal_sku": "LA-LV011-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Garrafa Térmica 500ml Inox",
+        "description": "Garrafa térmica em aço inox com 500 ml. Mantém bebidas frias por 12 horas. Medidas: 25 cm por 7 cm. Peso: 320 g.",
+        "category": "Casa > Cozinha > Garrafas",
+        "brand": null,
+        "price": 59.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-011"]
+    },
+    {
+      "case_id": "LA-LV011-NEG",
+      "scenario": "反例 — 品牌完整",
+      "rule_id": "SBR-LV-011",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-LV011-NEG",
+        "internal_sku": "LA-LV011-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Garrafa Térmica 500ml Inox",
+        "description": "Garrafa térmica em aço inox com 500 ml. Mantém bebidas frias por 12 horas. Medidas: 25 cm por 7 cm. Peso: 320 g.",
+        "category": "Casa > Cozinha > Garrafas",
+        "brand": "TermoSul",
+        "price": 59.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-011"]
+    },
+    {
+      "case_id": "LA-LV012-POS",
+      "scenario": "刊登质量 — 尺寸与重量信息不精确",
+      "rule_id": "SBR-LV-012",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-LV012-POS",
+        "internal_sku": "LA-LV012-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Tapete de Yoga Antiderrapante 6mm",
+        "description": "Tapete de yoga em borracha natural com 6 mm de espessura. Dimensões: 183 cm por 61 cm. Peso: 1,1 kg. Superfície texturizada para melhor aderência. Medidas do produto são aproximadas.",
+        "category": "Esportes > Yoga",
+        "brand": "Sem Marca",
+        "price": 69.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-012"]
+    },
+    {
+      "case_id": "LA-LV012-NEG",
+      "scenario": "反例 — 只给重量不给尺寸（或反之）不构成 LV-012 的组合",
+      "rule_id": "SBR-LV-012",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-LV012-NEG",
+        "internal_sku": "LA-LV012-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Kit 10 Peneiras em Aço Inox para Cozinha",
+        "description": "Kit com 10 peneiras em aço inox para peneirar farofa, farinha e chás. Diâmetros de 5 cm a 20 cm. Material: aço inox 304. Peso total: 480 g.",
+        "category": "Casa > Cozinha > Utensílios",
+        "brand": "Sem Marca",
+        "price": 32.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-012"]
+    },
+    {
+      "case_id": "LA-LV013-POS",
+      "scenario": "刊登质量 — 声明完整三维尺寸（是否超限由人工复核）",
+      "rule_id": "SBR-LV-013",
+      "kind": "positive",
+      "product": {
+        "product_id": "LA-LV013-POS",
+        "internal_sku": "LA-LV013-POS",
+        "shop_id": "LA-SHOP",
+        "title": "Caixa de Armazenamento Grande 60L",
+        "description": "Caixa de armazenamento com tampa e trava. Medidas: 60 cm por 40 cm por 30 cm. Material: plástico resistente. Peso: 1,8 kg.",
+        "category": "Casa > Organização",
+        "brand": "Sem Marca",
+        "price": 89.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-013"]
+    },
+    {
+      "case_id": "LA-LV013-NEG",
+      "scenario": "反例 — 只给两维尺寸",
+      "rule_id": "SBR-LV-013",
+      "kind": "negative",
+      "product": {
+        "product_id": "LA-LV013-NEG",
+        "internal_sku": "LA-LV013-NEG",
+        "shop_id": "LA-SHOP",
+        "title": "Kit 6 Copos de Vidro 250ml",
+        "description": "Kit com 6 copos de vidro 250 ml. Medidas: 12 cm por 7 cm. Vidro temperado. Pode ser usado para água e suco. Peso: 260 g por copo.",
+        "category": "Casa > Cozinha > Copos",
+        "brand": "Sem Marca",
+        "price": 44.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-013"]
+    },
+    {
+      "case_id": "LA-LV014-DRAFT",
+      "scenario": "边界 — SBR-LV-014（变体使用不当）为 draft，不产出结论",
+      "rule_id": "SBR-LV-014",
+      "kind": "boundary",
+      "product": {
+        "product_id": "LA-LV014-DRAFT",
+        "internal_sku": "LA-LV014-DRAFT",
+        "shop_id": "LA-SHOP",
+        "title": "Camiseta Estampada com Variação de Tamanho",
+        "description": "Camiseta de algodão com estampa. Variação de cor e tamanho disponível. Medidas: 30 cm por 22 cm por 2 cm. Peso: 180 g.",
+        "category": "Moda > Camisetas",
+        "brand": "Sem Marca",
+        "price": 39.9,
+        "images": [],
+        "variations": [{"name": "Tamanho", "options": ["P", "M", "G"]}],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_not_fire": ["SBR-LV-014"]
+    },
+    {
+      "case_id": "LA-MISS-DESC",
+      "scenario": "H3 — 详情为空：依赖 description 的规则未评估，且不得判为通过",
+      "rule_id": "SBR-LV-006",
+      "kind": "missing",
+      "product": {
+        "product_id": "LA-MISS-DESC",
+        "internal_sku": "LA-MISS-DESC",
+        "shop_id": "LA-SHOP",
+        "title": "Abafador de Panela em Silicone",
+        "description": "",
+        "category": "Casa > Cozinha > Acessórios",
+        "brand": "Sem Marca",
+        "price": 19.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_be_unevaluated": ["SBR-LV-006"]
+    },
+    {
+      "case_id": "LA-MISS-CAT",
+      "scenario": "边界 — 类目为空白串：SBR-LV-008 的「类目缺失」本身即命中事实（字段缺失即违规）",
+      "rule_id": "SBR-LV-008",
+      "kind": "boundary",
+      "product": {
+        "product_id": "LA-MISS-CAT",
+        "internal_sku": "LA-MISS-CAT",
+        "shop_id": "LA-SHOP",
+        "title": "Organizador de Gaveta com 6 Compartimentos",
+        "description": "Caixa organizadora em plástico com 6 compartimentos. Medidas 30 x 20 x 10 cm. Peso: 210 g.",
+        "category": "   ",
+        "brand": "Sem Marca",
+        "price": 29.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-008"]
+    },
+    {
+      "case_id": "LA-MISS-IMG",
+      "scenario": "H3 — 图片字段完全缺失：图片类规则未评估，不得当作通过",
+      "rule_id": "SBR-LV-007",
+      "kind": "missing",
+      "product": {
+        "product_id": "LA-MISS-IMG",
+        "internal_sku": "LA-MISS-IMG",
+        "shop_id": "LA-SHOP",
+        "title": "Cadeira de Escritório Ergonômica",
+        "description": "Cadeira de escritório ergonômica com apoio de costas em mesh e ajuste de altura. Medidas: 60 cm por 60 cm por 100 cm. Peso: 15 kg.",
+        "category": "Móveis > Cadeiras de Escritório",
+        "brand": "Sem Marca",
+        "price": 899.9,
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_be_unevaluated": ["SBR-LV-007"]
+    },
+    {
+      "case_id": "LA-MISS-BRAND",
+      "scenario": "H3 — 品牌为空白串：品牌缺失触发 SBR-LV-011（品牌缺失本身即违规事实）",
+      "rule_id": "SBR-LV-011",
+      "kind": "missing",
+      "product": {
+        "product_id": "LA-MISS-BRAND",
+        "internal_sku": "LA-MISS-BRAND",
+        "shop_id": "LA-SHOP",
+        "title": "Garrafa Térmica 500ml Inox",
+        "description": "Garrafa térmica em aço inox com 500 ml. Mantém bebidas frias por 12 horas. Medidas: 25 cm por 7 cm. Peso: 320 g.",
+        "category": "Casa > Cozinha > Garrafas",
+        "brand": "  ",
+        "price": 59.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"}
+      },
+      "must_fire": ["SBR-LV-011"]
+    }
+  ]
+}
