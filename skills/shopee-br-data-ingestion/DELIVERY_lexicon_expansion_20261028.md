@@ -205,3 +205,44 @@ ANVISA 目录收录的是**注册品名 / 成分 / 商业名称**。商品名（
 2. **集成 Agent 处理 §5 三项契约变更建议**。
 3. **补抓 RDC 44/2009**（处方药专售），补齐 `br_anvisa_medicamentos_prescricao` 的 503 缺口。
 4. **C 类目录词的消费方式**需明确定义 —— 目前是「命中记录 + 降级」，尚未定义「成分级核验」的具体执行流程（listing 提及成分 → 查目录 → 收注册证据）。建议在 `SBR-MED-004` 落地时补充对应的 evidence 字段规范。
+
+---
+
+## 8. Rebase 与并发修复记录（2026-10-28 10:0x）
+
+### 8.1 Rebase 到 origin/main
+
+- 分支 `feature/lexicon-real-source-batch003` rebase 到最新 `origin/main`（`ac2d1fa`）。
+- 唯一冲突：`contracts/file_ownership.json`（ownership_version 1.5.0 vs 1.7.0）。取 1.7.0 / 2026-10-28（较新，且对应 rules/03 物理拆分）。
+- rebase 3/3 全部成功，最终提交：`25ca577`（cdb2e60 重放）、`c1ba730`、`e47f220`。
+
+### 8.2 Rebase 后暴露的并发问题（origin/main 原样存在，非本次引入）
+
+在 `origin/main` 上单独跑 `check_all.sh` 复现，第 6 步「来源清单与抓取件一致」报同样错误，确认是并发 agent 遗留：
+
+| 问题 | 根因 | 处理 |
+|---|---|---|
+| `shopee_br_ip_complaint` 记为 ok 但抓取件不存在 | slug 误登记 —— 该文章（article 2820）真实标题是「Como selecionar a categoria de anúncios correta?」，内容已由 `shopee_br_categoria_correta.txt` 抓取 | 报告条目改为正确 slug `shopee_br_categoria_correta`（chars 4777，对齐实际字节数）；未新建重复抓取件 |
+| `shopee_br_mudanca_conta_cpf_cnpj` 记为 error_TimeoutError 但抓取件存在 | 重试成功但报告未同步 | 报告改为 `ok` + chars 14558（实际字节数） |
+| `_fetch_report.json` 12 条记为占位值「20 字符」 | 首轮占位，重抓后未更新 | 按实际字节数回填 12 条 |
+
+### 8.3 修复后校验结果
+
+```
+PASSED: 206   FAILED: 0    框架自检
+契约校验 — 通过 19，失败 0
+PASSED: 770   FAILED: 0    词库校验（100 组 / 210807 词 / 100 条映射 / 57 条规则）
+自测: 12/12 通过              扫描器回归
+0 errors, 0 warnings          规则库 + 词库 Schema
+57/57 excerpts verified       引文逐字核验
+来源清单与抓取件一致            19 条来源 / 20 个抓取件 / 1 条失败来源
+全部规则的正则可编译            57 条规则 / 42 条正则
+all fixtures valid            90 products / 10 cases / 8 scenarios
+全部夹具与规则库一致            108 条断言（58 应命中 / 50 应不命中）
+PASSED: 259   FAILED: 0    任务包与所有权一致性
+ALL CHECKS PASSED
+```
+
+### 8.4 工具环境备注
+
+`tools/fetch_edu_article.py` 与 `tools/render_page.py` 写死 `CHROME = "/usr/bin/chromium"`（Linux 路径），在 macOS 上不可用。本次**未修改项目内这两个文件**（属 listing-audit 所有），改用 `/tmp` 副本替换 Chrome 路径完成抓取。**建议集成 Agent 将 CHROME 路径改为可配置（环境变量或 `shutil.which` 探测）**，否则 macOS 开发者无法复现抓取流程。
