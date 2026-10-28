@@ -3,7 +3,7 @@
   "registry_version": "1.0.0",
   "last_updated": "2026-10-27",
   "contract_version": "1.0.0",
-  "notes": "任务注册表是唯一任务来源。allowed_paths 是白名单 —— 越界即任务失败。depends_on 决定可并行分组；同 parallel_group 的任务之间无依赖，可由不同 Agent 同时开工。 | 2026-10-27: 补充 objective/workspace 字段；任务包由 tools/gen_task_packs.py 从本注册表生成。 | 2026-10-27: 新增 tools/scan_lexicon.py（词库扫描器 + 12 条回归用例） | 2026-10-28: 状态回填 —— 模块 Agent 已完成 G2/G3/G4（实现 + 自有测试），G5 集成进行中。 | 2026-10-28: 合并 feature/lexicon-real-source-batch003 —— 真实来源词库 A/B/C 三批次 + 社区准则六类词组（SBR-LV-015~020）并入，rules/03 物理拆分（C5 达成），policy-research 与 ip-review 遗留失败项修复，10/10 任务全部完成。",
+  "notes": "任务注册表是唯一任务来源。allowed_paths 是白名单 —— 越界即任务失败。depends_on 决定可并行分组；同 parallel_group 的任务之间无依赖，可由不同 Agent 同时开工。 | 2026-10-27: 补充 objective/workspace 字段；任务包由 tools/gen_task_packs.py 从本注册表生成。 | 2026-10-27: 新增 tools/scan_lexicon.py（词库扫描器 + 12 条回归用例） | 2026-10-28: 状态回填 —— 模块 Agent 已完成 G2/G3/G4（实现 + 自有测试），G5 集成进行中。 | 2026-10-28: 合并 feature/lexicon-real-source-batch003 —— 真实来源词库 A/B/C 三批次 + 社区准则六类词组（SBR-LV-015~020）并入，rules/03 物理拆分（C5 达成），policy-research 与 ip-review 遗留失败项修复，10/10 任务全部完成。 | 2026-10-28: 状态回填 —— 8 份任务包 md 的状态字段由 pending 回填为 completed（与注册表一致，防止误领已完成任务）。",
   "path_ownership": {
     "PROJECT_RULES.md": "integrator",
     "AGENT_COLLABORATION.md": "integrator",

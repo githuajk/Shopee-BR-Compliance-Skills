@@ -3,8 +3,9 @@
 | 任务 ID | `TASK-DUP-01` |
 | 归属模块 | `shopee-br-duplicate-detection` |
 | 并行组 | `G3` |
-| 状态 | pending |
+| 状态 | completed |
 | 契约版本 | 1.0.0 |
+| 回填日期 | 2026-10-28 |
 | 负责 Agent | <你的标识> |
 | 工作区 | `/tmp/sbrca_work/TASK-DUP-01/` |
 | 开始时间 | （待填） |

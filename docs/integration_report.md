@@ -465,7 +465,7 @@ ip 15 + duplicate 15 + reporting 17 + 主 Skill 17）逐条断言：
 `tools/scan_lexicon.py` 6 项缺陷（D1–D6）、`br_anvisa_medicamentos_prescricao`
 （http_503）来源缺官方引文、C 类目录词标题误伤以豁免降级缓解。
 
-**本轮新缺陷 D4（已修复，SBR-MED-004 永不触发）**：
+**本轮新缺陷 D7（已修复，SBR-MED-004 永不触发）**：
 B 分支新增的 `SBR-MED-004`（监管目录命中 → `require_evidence`）声明
 `trigger_conditions` 为空 value 的 `contains_any`（「由词库候选驱动」），
 但引擎先规则评估、后词库扫描，`_contains_any(text, [])` 恒 False ——
@@ -475,7 +475,9 @@ B 分支新增的 `SBR-MED-004`（监管目录命中 → `require_evidence`）�
 NO_MATCH）。夹具回归 `LA-MED004-POS`（amoxicilina，实测 fired 且
 `action=require_evidence` 不阻断）/ `LA-MED004-NEG`（普通商品，0 命中不触发）。
 
-**验收**：合并后全量校验与模块测试重跑结果见 `docs/PROGRESS_REPORT.md` v2.1.0。
+**验收**：合并后全量校验与模块测试重跑结果见 `docs/PROGRESS_REPORT.md` v2.1.0
+（集成测试断言数在 C5 拆分断言加入后为 **232 项，全过**；上文 §7–§9 的
+「226 项」为 G5 验收时点的历史记录）。
 
 ---
 

@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0",
-  "manifest_version": "1.8.0",
+  "manifest_version": "1.9.0",
   "project": {
     "code": "SBRCA",
     "name": "Shopee Brazil Compliance Agent",
     "positioning": "一套可供不同 Agent、不同模型使用的 Skills 集合。不是需要立即部署的完整软件服务。",
     "market": "巴西 Shopee",
     "language": "中文（文档）/ 葡萄牙语（源材料与规则引文）/ 英语（代码标识符）",
-    "status": "Phase 1 — 公共契约已冻结，等待并行模块开发",
+    "status": "词库合并轮完成 —— 10/10 任务全部完成（G5 集成验收 + 词库真实来源批次并入）；剩余为待裁定事项与已登记缺陷（见 README 下一阶段）",
     "last_updated": "2026-10-28"
   },
   "governance": {

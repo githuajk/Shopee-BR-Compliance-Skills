@@ -111,14 +111,14 @@
 
 **职责**：跨模块冲突/重复/接口一致性检查、`rules/03` 拆分、契约变更、集成验收报告。
 
-**执行结果（2026-10-28）**：C1–C4、I1–I6、V1–V6、A1–A5 全部通过
-（集成验收脚本 `tests/integration/run_tests.py`，**226 项断言全过**）。
-两项**未达成**并已如实登记在 `docs/integration_report.md`：
+**执行结果（2026-10-28，词库合并轮终态）**：C1–C4、I1–I6、V1–V6、A1–A5 全部通过
+（集成验收脚本 `tests/integration/run_tests.py`，**232 项断言全过**，0 已知缺陷）。
+下表两项曾登记为「未达成」（G5 验收时点），**均已于同日词库合并轮关闭**：
 
 | 项 | 状态 | 原因 |
 |---|---|---|
-| C5（`rules/03` 拆分） | ⬜ 未执行 | 任务包 §2.1 的白名单不含 `rules/**`；拆分还需改两个模块自有的规则文件常量，均在白名单外 |
-| C6（证据类型词表） | ⬜ 未扩充 | 4 个 `evidence_type`（`image` / `listing_field` / `price_history` / `promotion_terms`）不在 Schema 示例集内；扩充 `contracts/` 在白名单外 |
+| C5（`rules/03` 拆分） | ✅ 已达成（2026-10-28 词库合并轮） | 原因为任务包 §2.1 白名单不含 `rules/**`。处置：集成 Agent 合并 `feature/lexicon-real-source-batch003` 时执行拆分（`03_listing_violations.json` / `06_duplicate_listings.json`，决策见 `contracts/file_ownership.json` split_decisions） |
+| C6（证据类型词表） | ✅ 已达成（2026-10-28 词库合并轮，契约 1.0.1） | 原状：4 个 `evidence_type` 不在 Schema 示例集内且 `contracts/` 在白名单外。处置：集成 Agent 将示例集由 24 扩至 38 项（并入规则扩充后实际使用的 14 个类型），见 `contracts/evidence_reference.schema.json` |
 
 另登记 **3 个跨模块缺陷**（D1–D3，见 `docs/integration_report.md` §4.3）——
 **已于 2026-10-28 全部修复**（含根因修复 + 回归断言），台账清空：
@@ -240,3 +240,4 @@ ip-review `target_ref` 由 1 个变为 15 个。
 |---|---|---|---|
 | 1.0.0 | 2026-10-27 | 初稿 | 技术负责人（Agent） |
 | 1.1.0 | 2026-10-28 | 补记波次 5 的执行结果：C1–C4 / I1–I6 / V1–V6 / A1–A5 通过；C5、C6 未达成；登记 D1–D3 三个跨模块缺陷 | 集成 Agent（TASK-INTEGRATE-01） |
+| 1.2.0 | 2026-10-28 | 波次 5 执行结果更新为词库合并轮终态：C5/C6 已达成（拆分 + 契约 1.0.1），集成断言 226 → 232；8 份任务包状态字段回填 completed | 集成 Agent（一致性核查轮） |
