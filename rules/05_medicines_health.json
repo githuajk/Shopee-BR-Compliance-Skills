@@ -86,7 +86,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(suplemento\\s+de\\s+sa[úu]de\\s+com\\s+informa[çc][õo]es?\\s+(falsas?|enganosas?)|cura\\s+garantida|100%\\s+eficaz|emagrece\\s+com\\s+garantia)(?![a-zA-Zà-ÿÀ-ß])"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(suplemento\\s+de\\s+sa[úu]de\\s+com\\s+informa[çc][õo]es?\\s+(falsas?|enganosas?)|cura\\s+garantida|100%\\s+eficaz|emagrece\\s+com\\s+garantia|apitoxina|apitoxin|veneno\\s+de\\s+abelha|bee\\s+venom)(?![a-zA-Zà-ÿÀ-ß])"
         }
       ],
       "severity": "high",
@@ -101,12 +101,13 @@
       "source_excerpt": "anúncios que vendem medicamentos controlados (sem licenciamento apropriado), drogas ilícitas ou suplementos de saúde com informações falsas e enganosas serão excluídos.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "supplement",
         "claims",
         "anvisa"
-      ]
+      ],
+      "notes": "2026-10-28 集成补齐：正则补蜂毒/蜂毒肽化妆成分（apitoxina / apitoxin / veneno de abelha / bee venom）—— 平台政策未明文禁止该成分，按本条 flag_for_review 语义降级处理（不得阻断），与词库组 restrito_apitoxina（internal_risk）联动。"
     },
     {
       "rule_id": "SBR-MED-004",

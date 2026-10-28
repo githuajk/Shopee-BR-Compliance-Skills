@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "name": "Shopee BR — 合并词库",
-  "description": "合并来源：2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 现有 25 组 179 词。每个词组是筛查信号，不是违规结论 —— 结论由规则层依据来源判定。 2026-10-28 集成修复：删除 catalog_anvisa_saneante_product_names__single 中的裸日常词「Marca」（匹配平台默认品牌值「Sem Marca」导致 SBR-MED-004 误触发；与 D6 批量剔除 gasolina/etanol/diesel 同类原则）。",
+  "description": "合并来源：2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 现有 25 组 179 词。每个词组是筛查信号，不是违规结论 —— 结论由规则层依据来源判定。 2026-10-28 集成修复：删除 catalog_anvisa_saneante_product_names__single 中的裸日常词「Marca」（匹配平台默认品牌值「Sem Marca」导致 SBR-MED-004 误触发；与 D6 批量剔除 gasolina/etanol/diesel 同类原则）。 2026-10-28 集成补齐：新增 proibido_botulino（3 词，platform_official → SBR-PI-003 阻断）与 restrito_apitoxina（5 词，internal_risk → SBR-MED-003/SBR-LV-001 flag）两组。",
   "last_updated": "2026-10-28",
   "usage": "加载后用 Aho-Corasick 建立多模式索引（规模扩大时）。匹配时：大小写不敏感 → NFD 去重音 → 显式 lookaround 边界。",
   "matching_notes": [
@@ -211195,6 +211195,18 @@
       "cloridrato de ciprofloxacino",
       "cloridrato de ciprofloxacino monoidratado",
       "fosfato de clindamicina"
+    ],
+    "proibido_botulino": [
+      "botox",
+      "toxina botulínica",
+      "toxina botulinica"
+    ],
+    "restrito_apitoxina": [
+      "apitoxina",
+      "apitoxin",
+      "veneno de abelha",
+      "bee venom",
+      "toxina de abelha"
     ]
   },
   "group_meta": {
@@ -211897,10 +211909,24 @@
       "risk_hint": "restricted",
       "source_tier": "law",
       "note": "ANVISA/CTI/MAPA 开放数据目录多词条目（strict 完整词边界，避免子串前缀串味）。登记 ≠ 禁售，仅作成分级资格核验信号；命中须人工收集注册/许可/标签证据。"
+    },
+    "proibido_botulino": {
+      "label": "禁售 — 肉毒毒素（Botox）注射类药品",
+      "risk_hint": "prohibited",
+      "source_tier": "platform_official",
+      "matching": "strict",
+      "note": "平台政策 [313] 禁止注射类药品广告（Severidade: Extrema）；ANVISA 将肉毒毒素列为管制药品（见 catalog_anvisa_restricted_medicine_active_ingredients）。2026-10-28 集成补齐，映射 SBR-PI-003。"
+    },
+    "restrito_apitoxina": {
+      "label": "受限 — 蜂毒/蜂毒肽美容成分（apitoxina）",
+      "risk_hint": "restricted",
+      "source_tier": "internal_risk",
+      "matching": "strict",
+      "note": "平台政策未明文禁止；蜂毒/蜂毒肽（apitoxin）美容成分属 internal_risk 级信号，映射 SBR-MED-003 / SBR-LV-001（flag_for_review，不阻断）。2026-10-28 集成补齐。"
     }
   },
   "stats": {
-    "group_count": 100,
-    "term_count": 210984
+    "group_count": 102,
+    "term_count": 210992
   }
 }

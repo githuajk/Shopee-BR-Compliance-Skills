@@ -79,7 +79,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(droga(s)?\\s+il[íi]cita(s)?|trato\\s+tarja\\s+(preta|vermelha)|tarja\\s+(preta|vermelha)|medicamento(s)?\\s+controlado(s)?|antidepressivo(s)?|estimulante(s)?\\s+sexual(is)?|abortivo(s)?|minoxidil)(?![a-zA-Zà-ÿÀ-ß])"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(droga(s)?\\s+il[íi]cita(s)?|trato\\s+tarja\\s+(preta|vermelha)|tarja\\s+(preta|vermelha)|medicamento(s)?\\s+controlado(s)?|antidepressivo(s)?|estimulante(s)?\\s+sexual(is)?|abortivo(s)?|minoxidil|botox|toxina\\s+botul[íi]nica)(?![a-zA-Zà-ÿÀ-ß])"
         }
       ],
       "severity": "critical",
@@ -94,13 +94,14 @@
       "source_excerpt": "[313] Anúncio proibido para medicamentos com tarja preta, abortivos, injetáveis, estimulantes sexuais e antidepressivos. Severidade: Extrema. Gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "medicine",
         "controlled",
         "critical",
         "platform_code_313"
-      ]
+      ],
+      "notes": "2026-10-28 集成补齐：正则补 `botox` / `toxina botulínica|botulinica` —— 来源依据本条现有引文 [313]「Anúncio proibido para medicamentos com tarja preta, abortivos, **injetáveis**, estimulantes sexuais e antidepressivos」（platform_official，severidade Extrema）与本条 description 的 prescription-only medicines；肉毒毒素属 ANVISA 管制注射药品（见词库 catalog_anvisa_restricted_medicine_active_ingredients）。"
     },
     {
       "rule_id": "SBR-PI-004",
