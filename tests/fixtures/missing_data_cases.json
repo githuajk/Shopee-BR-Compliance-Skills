@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0",
+  "fixture_set": "missing_data_cases",
+  "description": "资料缺失用例 —— 硬约束 **H3** 的测试基准。输入字段缺失或为空时，相关规则必须判为**未评估**（记入 unevaluated[]、不产生 result），**绝不能**当作合规通过。",
+  "construction_note": "每个用例声明 must_be_unevaluated（这些规则因依赖字段缺失而无法评估）与 must_fire（其它规则仍应正常评估）。由 tools/verify_fixtures.py 机械校验。",
+  "cases": [
+    {
+      "case_id": "MD-01",
+      "scenario": "完全缺品牌 —— SBR-LV-011 的依赖字段缺失",
+      "rationale": "PROJECT_RULES §11.1：字段存在但为空等同于缺失。LV-011 在修复自指 requires_input 前永不可满足。",
+      "product": {
+        "product_id": "FX-MISS-0001",
+        "internal_sku": "MISS-0001",
+        "shop_id": "FXSHOP1",
+        "title": "Garrafa Térmica 500ml Inox",
+        "description": "Garrafa térmica em aço inox com 500 ml. Mantém bebidas frias por 12 horas. Medidas: 25 cm por 7 cm. Peso: 320 g.",
+        "category": "Casa > Cozinha > Garrafas",
+        "brand": null,
+        "price": 59.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": [],
+        "note": "brand 为 null。"
+      },
+      "must_be_unevaluated": [],
+      "must_fire": ["SBR-LV-011"]
+    },
+    {
+      "case_id": "MD-02",
+      "scenario": "缺类目 —— SBR-LV-008 的依赖字段缺失",
+      "rationale": "category 为 null 时，类目类规则无法评估。",
+      "product": {
+        "product_id": "FX-MISS-0002",
+        "internal_sku": "MISS-0002",
+        "shop_id": "FXSHOP1",
+        "title": "Organizador de Gaveta com 6 Compartimentos",
+        "description": "Caixa organizadora em plástico com 6 compartimentos. Medidas 30 x 20 x 10 cm. Peso: 210 g.",
+        "category": null,
+        "brand": "Sem Marca",
+        "price": 29.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": [],
+        "note": "category 为 null。"
+      },
+      "must_be_unevaluated": [],
+      "must_fire": ["SBR-LV-008"]
+    },
+    {
+      "case_id": "MD-03",
+      "scenario": "无图片 —— 图片类规则无法评估",
+      "rationale": "images 为空数组时，图片相关判定不可做。但注意：SBR-LV-007（image_count_lt）本就是「图片数不足」规则，空数组**应当命中**，不是未评估。",
+      "product": {
+        "product_id": "FX-MISS-0003",
+        "internal_sku": "MISS-0003",
+        "shop_id": "FXSHOP1",
+        "title": "Kit 4 Copos de Vidro 250ml",
+        "description": "Kit com 4 copos de vidro 250 ml. Vidro temperado. Pode ser usado para água e suco. Medidas: 12 cm por 7 cm. Peso: 260 g por copo.",
+        "category": "Casa > Cozinha > Copos",
+        "brand": "Sem Marca",
+        "price": 44.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": [],
+        "note": "images 为空数组。"
+      },
+      "must_be_unevaluated": [],
+      "must_fire": ["SBR-LV-007"]
+    },
+    {
+      "case_id": "MD-04",
+      "scenario": "详情为空 —— SBR-LV-006 的依赖字段缺失",
+      "rationale": "description 为空字符串时，长度类规则无法评估（不是「长度为 0 所以命中」）。",
+      "product": {
+        "product_id": "FX-MISS-0004",
+        "internal_sku": "MISS-0004",
+        "shop_id": "FXSHOP1",
+        "title": "Abafador de Panela em Silicone",
+        "description": "",
+        "category": "Casa > Cozinha > Acessórios",
+        "brand": "Sem Marca",
+        "price": 19.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": [],
+        "note": "description 为空字符串。"
+      },
+      "must_be_unevaluated": ["SBR-LV-006"],
+      "must_fire": []
+    },
+    {
+      "case_id": "MD-05",
+      "scenario": "授权材料缺失 —— SBR-AU-001 的依赖字段缺失",
+      "rationale": "history 中没有授权文件记录时，授权类规则不能评估，也不能当作「已授权」。",
+      "product": {
+        "product_id": "FX-MISS-0005",
+        "internal_sku": "MISS-0005",
+        "shop_id": "FXSHOP1",
+        "title": "Kit 2 Garrafas Térmicas 750ml Aço Inox",
+        "description": "Kit com 2 garrafas térmicas em aço inox de 750 ml. Mantém bebidas frias por 24 horas. Medidas: 28 cm por 8 cm. Peso: 620 g cada.",
+        "category": "Casa > Cozinha > Garrafas",
+        "brand": "Sem Marca",
+        "price": 129.9,
+        "images": [],
+        "history": {},
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": [],
+        "note": "history 为空对象 —— 无授权文档记录。"
+      },
+      "must_be_unevaluated": [],
+      "must_fire": []
+    },
+    {
+      "case_id": "MD-06",
+      "scenario": "授权材料不完整 —— 仅有发票，缺注册证",
+      "rationale": "SBR-AU-001：history 含 authorization_documents 但缺关键项时，产出 require_evidence。",
+      "product": {
+        "product_id": "FX-MISS-0006",
+        "internal_sku": "MISS-0006",
+        "shop_id": "FXSHOP1",
+        "title": "Vitamina D3 2000 UI Comprimidos 60 Unidades",
+        "description": "Suplemento alimentar com vitamina D3 2000 UI por comprimido. Contém 60 comprimidos. Uso contínuo conforme orientação do profissional de saúde.",
+        "category": "Saúde > Suplementos",
+        "brand": "Sem Marca",
+        "price": 49.9,
+        "images": [],
+        "history": {
+          "authorization_documents": ["invoice_only"],
+          "missing": ["anvisa_registration"]
+        },
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": [],
+        "note": "仅有发票，缺 anvisa_registration。"
+      },
+      "must_be_unevaluated": [],
+      "must_fire": ["SBR-AU-001", "SBR-RI-002"]
+    }
+  ]
+}
