@@ -205,6 +205,39 @@ def test_brand_lists_aligned() -> None:
           not blocking_brands, f"仍阻断的品牌: {blocking_brands}")
 
 
+def test_target_ref_is_product_level() -> None:
+    section("L3c target_ref 必须是商品级")
+
+    # 回归：`target_ref` 曾取 `source.path` —— 同一批的 15 件商品得到同一个
+    # target_ref，下游按 target_ref 分桶时结论**塌缩成 1 个目标**，
+    # 商品级归因彻底丢失。口径必须与 listing-audit / duplicate-detection 一致
+    # （都用 product_id）。
+    products = [
+        {"product_id": f"SKU-{i}", "internal_sku": f"SKU-{i}", "shop_id": "S1",
+         "title": f"Produto {i}", "description": "Nike replica",
+         "category": "Teste", "brand": "Nike", "images": [],
+         "source": {"kind": "xlsx", "path": "/data/batch.xlsx",
+                    "imported_at": "2026-10-27T00:00:00Z"}}
+        for i in range(1, 16)
+    ]
+    bundle = review(products, request_id="REQ-TARGET-REF")
+    results = bundle["results"]
+    refs = [r["target_ref"] for r in results]
+    check("每件商品都产出结果", len(results) == len(products),
+          f"{len(results)} vs {len(products)}")
+    check("target_ref 互不相同（商品级）",
+          len(set(refs)) == len(products), f"{len(set(refs))} 个不同值")
+    check("target_ref 是商品 id 而非文件路径",
+          all(ref.startswith("SKU-") for ref in refs),
+          str(sorted(set(refs))[:3]))
+    # 溯源仍然要指向来源文件 —— source_refs 与 target_ref 是两件事
+    src = results[0]["provenance"].get("source_refs") or []
+    check("source_refs 仍记录来源文件路径",
+          "/data/batch.xlsx" in src, str(src))
+    check("source_refs 也记录商品 id",
+          any(ref.startswith("SKU-") for ref in src), str(src))
+
+
 def test_h2_blocking_requires_authoritative_rule() -> None:
     section("L4 硬约束 H2 —— 阻断类动作只来自权威 active 规则")
 
@@ -480,6 +513,7 @@ def main() -> int:
     test_h1_never_deterministic()
     test_nominative_use_exemption()
     test_brand_lists_aligned()
+    test_target_ref_is_product_level()
     test_h2_blocking_requires_authoritative_rule()
     test_h3_missing_input()
     test_authorization_dimension()

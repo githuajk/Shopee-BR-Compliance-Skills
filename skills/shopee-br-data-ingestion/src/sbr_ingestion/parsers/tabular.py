@@ -22,6 +22,12 @@ BANNER_SHOP = re.compile(r"(?i)^\s*(?:loja|shop|loja\s*id|店铺|店铺名|店�
 BANNER_DATE = re.compile(r"(?i)^\s*(?:data\s*de\s*exporta(?:ç|c)[ãa]o|export\s*date|导出日期|导出时间)\s*[:：]\s*(.+?)\s*$")
 BANNER_ANY = re.compile(r"^\s*([^:：]{1,40})\s*[:：]\s*(.+?)\s*$")
 
+#: 分格布局下的**标签**（值在下一个单元格）—— 只匹配键名，不带值
+BANNER_SHOP_KEY = re.compile(
+    r"(?i)^(?:loja|shop|loja\s*id|店铺|店铺名|店铺\s*id)$")
+BANNER_DATE_KEY = re.compile(
+    r"(?i)^(?:data\s*de\s*exporta(?:ç|c)[ãa]o|export\s*date|导出日期|导出时间)$")
+
 
 def score_header(row) -> int:
     """该行作为表头的可信度 —— 能映射到规范字段的列数。"""
@@ -83,11 +89,21 @@ def scan_banner(rows_before_header) -> dict:
     """扫描 banner 行，提取店铺名与导出日期等上下文。
 
     返回 `dict`（可能为空）。
+
+    **两种 banner 布局都要支持** —— Shopee 的导出文件两种都出现过：
+
+    | 布局 | 单元格 |
+    |---|---|
+    | 同行 | `["Loja: Minha Loja", "", ...]` |
+    | **分格** | `["Loja:", "Minha Loja", "", ...]` |
+
+    分格布局是常见的一种，只匹配「标签和值在同一格」的正则会**整行漏掉** ——
+    结果是 `shop_id` 缺失，所有记录都因「缺必填字段」而失败。
     """
     found: dict = {}
     for row in rows_before_header or []:
-        for cell in row or []:
-            text = "" if cell is None else str(cell).strip()
+        cells = ["" if c is None else str(c).strip() for c in (row or [])]
+        for index, text in enumerate(cells):
             if not text:
                 continue
             match = BANNER_SHOP.match(text)
@@ -97,6 +113,20 @@ def scan_banner(rows_before_header) -> dict:
             match = BANNER_DATE.match(text)
             if match:
                 found.setdefault("exported_at", match.group(1).strip())
+                continue
+            # 分格布局：标签格以冒号结尾，值在**下一个**非空格
+            if text.endswith(":") or text.endswith("："):
+                value = next((c for c in cells[index + 1:] if c), "")
+                if not value:
+                    continue
+                label = text.rstrip(":：").strip()
+                if BANNER_SHOP_KEY.match(label):
+                    found.setdefault("shop_name", value)
+                    continue
+                if BANNER_DATE_KEY.match(label):
+                    found.setdefault("exported_at", value)
+                    continue
+                found.setdefault("banner", {})[label.casefold()] = value
                 continue
             match = BANNER_ANY.match(text)
             if match:

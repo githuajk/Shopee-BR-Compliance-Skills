@@ -185,8 +185,15 @@ def main(argv=None) -> int:
         from sbr_compliance.matrix import RiskMatrix, load_matrix
 
         root = args.root or _default_root()
-        matrix = RiskMatrix(load_matrix(os.path.join(root, "contracts",
-                                                     "risk_action_matrix.json")))
+        try:
+            matrix = RiskMatrix(load_matrix(os.path.join(root, "contracts",
+                                                         "risk_action_matrix.json")))
+        except Exception as exc:            # noqa: BLE001
+            # 矩阵读不到 → 显式失败，不抛裸 traceback。
+            # 退化成「无风险」比报错危险得多。
+            print(f"错误：契约矩阵不可读（{root}/contracts/"
+                  f"risk_action_matrix.json）：{exc}", file=sys.stderr)
+            return 2
         upstream: list = []
         for path in args.result_files:
             try:
@@ -220,8 +227,15 @@ def main(argv=None) -> int:
 
 
 def _default_root() -> str:
-    here = os.path.dirname(os.path.abspath(__file__))
-    return os.path.abspath(os.path.join(here, "..", "..", "..", ".."))
+    """推导仓库根。
+
+    用 `matrix.find_repo_root()` —— 它**向上查找**含
+    `contracts/risk_action_matrix.json` 的目录，而不是按固定层数上溯。
+    固定层数在这里是错的：`src/sbr_compliance/` 上溯四级到的是
+    `skills/shopee-br-compliance/`（模块目录），不是仓库根。
+    """
+    from sbr_compliance.matrix import find_repo_root
+    return find_repo_root()
 
 
 def _integrate_only(request_id: str, upstream: list, matrix, args,
@@ -243,17 +257,19 @@ def _integrate_only(request_id: str, upstream: list, matrix, args,
                 "handoff": None, "report": None, "routing": None, "runs": [],
                 "written": []}
 
-    class _Decision:
-        explicit = False
-
-        def to_dict(self):
-            return {"stages": [], "modules": [], "reasons": {},
-                    "skipped": {}, "explicit": False}
-
-        def note(self):
-            return "本次执行模块：(仅整合既有结果，未重跑专业模块)"
-
-    decision = _Decision()
+    # 用**真正的** RoutingDecision，而不是伪造的类。
+    # 伪造的类只实现了 to_dict()，而下游读的是 `decision.stages` /
+    # `decision.skipped` 这两个**属性** —— 结果在 `_build_summary` 里
+    # 抛 AttributeError，整条 `--result-file` 路径崩溃。
+    from sbr_compliance.routing import RoutingDecision
+    decision = RoutingDecision(
+        stages=[],
+        reasons={},
+        skipped={stage: "本次只整合既有结果，未重跑该模块的 CLI"
+                 for stage in ("ingestion", "content_audit", "ip", "duplicate",
+                               "reporting")},
+        explicit=False,
+    )
     summary = _build_summary(per_target, batch, upstream, [], decision, matrix,
                              request_id, produced_at)
     notes = decision.note()

@@ -87,12 +87,35 @@ def _product_id(product: dict, index: int) -> str:
 
 
 def _target_ref(product: dict, product_id: str) -> str:
+    """该结论归属的**商品**标识。
+
+    必须是**商品级**标识，不能是来源文件路径 —— `source.path` 指向的是
+    整批文件，同一批的 15 件商品会得到同一个 `target_ref`，
+    下游按 `target_ref` 分桶聚合时这 15 件的结论就**塌缩成 1 个目标**，
+    商品级归因彻底丢失。
+
+    口径与 `shopee-br-listing-audit` / `shopee-br-duplicate-detection`
+    一致：都用 `product_id`。
+    """
+    return product_id
+
+
+def _source_refs(product: dict, product_id: str) -> list[str]:
+    """溯源引用 —— 来源文件路径 + 商品标识。
+
+    `source_refs` 的语义是「这条结论来自哪里」，与 `target_ref`
+    （这条结论**关于**哪个商品）**不是一回事**：
+    15 件商品来自同一个文件时，它们的 `source_refs` 相同是**正确**的，
+    而 `target_ref` 必须各不相同。
+    """
+    refs: list[str] = []
     source = product.get("source")
     if isinstance(source, dict):
         path = source.get("path")
         if isinstance(path, str) and path:
-            return path
-    return product_id
+            refs.append(path)
+    refs.append(product_id)
+    return refs
 
 
 def _digest(text: str) -> str:
@@ -320,7 +343,7 @@ def _review_one(product: dict, product_id: str, request_id: str,
         "provenance": {
             "produced_at": produced_at,
             "producer": REVIEWER_VERSION,
-            "source_refs": [_target_ref(product, product_id)],
+            "source_refs": _source_refs(product, product_id),
             "notes": _provenance_notes(product, fired, unevaluated),
         },
         "errors": [],

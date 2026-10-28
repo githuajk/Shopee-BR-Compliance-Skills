@@ -358,8 +358,15 @@ def run_compliance(skill_input: dict, *, root: str | None = None,
 
 
 def _default_root() -> str:
-    here = os.path.dirname(os.path.abspath(__file__))
-    return os.path.abspath(os.path.join(here, "..", "..", "..", ".."))
+    """推导仓库根。
+
+    用 `matrix.find_repo_root()` —— 它**向上查找**含
+    `contracts/risk_action_matrix.json` 的目录，而不是按固定层数上溯。
+    固定层数在这里是错的：`src/sbr_compliance/` 上溯四级到的是
+    `skills/shopee-br-compliance/`（模块目录），不是仓库根。
+    """
+    from .matrix import find_repo_root
+    return find_repo_root()
 
 
 def _run_view(run: ModuleRun) -> dict:

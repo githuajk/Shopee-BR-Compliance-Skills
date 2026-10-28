@@ -396,6 +396,43 @@ def test_cli_end_to_end() -> None:
               str(proc2.returncode))
 
 
+def test_result_file_path() -> None:
+    section("L9 只整合既有结果（--result-file）")
+
+    # 回归：`--result-file` 路径曾崩溃 —— 两个原因：
+    #   1. 仓库根按固定层数上溯（`src/sbr_compliance/` 上溯四级到的是
+    #      模块目录，不是仓库根）→ 找不到契约矩阵
+    #   2. 伪造的 `_Decision` 类只有 `to_dict()`，而下游读的是
+    #      `decision.stages` / `decision.skipped` 这两个**属性**
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        results_file = os.path.join(tmp, "results.json")
+        with open(results_file, "w", encoding="utf-8") as handle:
+            json.dump([{
+                "result_id": "R1", "request_id": "Q",
+                "module": "shopee-br-listing-audit", "target_ref": "SKU-1",
+                "verdict": "PASS", "risk_level": "info", "action": "allow",
+                "reason": "x", "rule_refs": [], "evidence_refs": [],
+                "confidence": "confirmed", "requires_human_review": False,
+                "rule_version": "v1",
+                "provenance": {"produced_at": "2026-10-27T00:00:00Z",
+                               "producer": "t", "source_refs": []},
+            }], handle)
+
+        out_dir = os.path.join(tmp, "out")
+        cli = os.path.join(SRC, "sbr_compliance_cli.py")
+        proc = subprocess.run(
+            [sys.executable, cli, "--request-id", "REQ-RESULT-FILE",
+             "--out-dir", out_dir, "--result-file", results_file],
+            capture_output=True, text=True, cwd=ROOT)
+        check("--result-file 退出码 0", proc.returncode == 0,
+              (proc.stdout or "")[-200:] + (proc.stderr or "")[-400:])
+        check("--result-file 不抛 traceback",
+              "Traceback" not in (proc.stderr or ""), (proc.stderr or "")[-300:])
+        check("--result-file 产出 audit_summary.json",
+              os.path.exists(os.path.join(out_dir, "audit_summary.json")))
+
+
 def test_no_writes_to_platform() -> None:
     section("L9 边界 —— 不执行任何线上处置")
 
@@ -448,6 +485,7 @@ def main() -> int:
     test_real_chain_integration()
     test_gaps_reported()
     test_cli_end_to_end()
+    test_result_file_path()
     test_no_writes_to_platform()
 
     elapsed = (datetime.now(timezone.utc) - started).total_seconds()

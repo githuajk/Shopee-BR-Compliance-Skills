@@ -1,0 +1,68 @@
+{
+  "handoff_id": "HO-INTEGRATE-TASK-INTEGRATE-01",
+  "from_module": "integrator",
+  "to_module": "human-review",
+  "request_id": "REQ-INTEGRATE-TASK-INTEGRATE-01",
+  "payload_ref": {
+    "artifact_ref": "docs/integration_report.md",
+    "inline": {
+      "batch_verdict": "PASS",
+      "batch_action": "allow",
+      "batch_risk_level": "info",
+      "target_count": 17,
+      "verdict_counts": {
+        "PASS": 0,
+        "REVISE": 0,
+        "REVIEW": 14,
+        "BLOCK": 2
+      },
+      "unevaluated_count": 5,
+      "executed_modules": [
+        "shopee-br-data-ingestion",
+        "shopee-br-listing-audit",
+        "shopee-br-ip-review",
+        "shopee-br-duplicate-detection",
+        "shopee-br-reporting",
+        "shopee-br-compliance"
+      ],
+      "integration_assertions_passed": 218,
+      "integration_assertions_failed": 0,
+      "registered_defects": 7
+    },
+    "record_count": 17
+  },
+  "contract_version": "1.0.0",
+  "produced_at": "2026-10-28T01:36:55Z",
+  "assumptions": [
+    "The integration acceptance is driven by the real command-line entry points of all six modules: each stage consumes the previous stage's actual output files, not a simulated or in-process substitute. No mock, stub or fixture-injected module result is used anywhere in the chain.",
+    "The aggregation semantics of the final per-product conclusion are defined solely by contracts/risk_action_matrix.json. The acceptance suite recomputes that aggregation independently from the contract and compares it against the main Skill's actual output, target by target; a divergence would fail the suite.",
+    "The four contract checks C1-C6, I1-I6, V1-V6 and A1-A5 are implemented against the real frozen contracts (contracts/audit_result.schema.json, contracts/module_handoff.schema.json, contracts/skill_input.schema.json, contracts/evidence_reference.schema.json, data/schema/product.schema.json) using tools/validate_json.py's Validator, not against a hand-written approximation of them.",
+    "The three cross-module defects D1-D3 recorded in docs/integration_report.md section 4.3 are characterized by assertions that assert the defect is STILL PRESENT. They are therefore excluded from FAILED (they are registered pre-existing issues, not regressions introduced by this task) but they are printed one by one at the end of every run, so they can never be silently forgotten. If an upstream module fixes a defect, the corresponding assertion fails and the ledger must be updated.",
+    "The rules/03 split (LV to shopee-br-listing-audit, DUP to shopee-br-duplicate-detection) was NOT executed: tasks/TASK-INTEGRATE-01.md section 2.1 does not list rules/** in the writable whitelist, and the split would also require changing module-owned constants in skills/shopee-br-listing-audit/** and skills/shopee-br-duplicate-detection/**. The current state is nevertheless self-consistent because both modules read rules/03 by rule-ID prefix and neither writes it; the acceptance suite asserts that each rule file's actual prefixes are a subset of its declared owner's prefixes.",
+    "The shared fixtures under tests/fixtures/ were not modified. The cross-module combination data the acceptance needs (a case object plus a renamed copy of the listing, two same-title listings in different shops) is derived from the shared fixtures at run time inside tests/integration/run_tests.py, so the read-only fixture pool is not polluted.",
+    "No online enforcement was performed and none is proposed as executable. The acceptance suite asserts across every module's source tree that no publish_listing / delist_product / unfreeze_listing / submit_appeal / requests.post / urllib.request entry point exists, and that freeze_relist and escalate_legal always carry requires_human_review = true (hard constraint H6)."
+  ],
+  "known_gaps": [
+    "rules/03_listing_violations_duplicates.json was NOT split. It still holds 14 LV rules (owner: shopee-br-listing-audit) and 3 DUP rules (owner: shopee-br-duplicate-detection). The split is deferred because the task whitelist excludes rules/** and the two modules' own constants. Acceptance check C5 is therefore reported as NOT met; the functional consequence is nil today (both modules select by prefix), but the file-ownership inconsistency remains open.",
+    "4 evidence_type values used on the chain are outside the examples set of contracts/evidence_reference.schema.json: image, listing_field, price_history and promotion_terms (all produced by shopee-br-listing-audit). They pass the Schema because examples is an annotation and not an assertion in JSON Schema, so acceptance check C6 is reported as NOT met pending either a Schema expansion or a type renaming by the owning module.",
+    "Defect D1: the main Skill's --result-file (integrate-only) path crashes with AttributeError: '_Decision' object has no attribute 'skipped' (skills/shopee-br-compliance/src/sbr_compliance/pipeline.py line 566). The pseudo-_Decision class built in sbr_compliance_cli.py's _integrate_only() does not implement the skipped attribute that _build_handoff() reads.",
+    "Defect D1b: the same path derives its default repository root four levels up from skills/shopee-br-compliance/src/, landing on the PARENT of the repository, so contracts/risk_action_matrix.json is not found (MatrixUnavailable: risk action matrix not found: /config/dianshang/contracts/risk_action_matrix.json). Passing --root explicitly avoids this one, but the crashed path in D1 still fails.",
+    "Defect D2: shopee-br-ip-review sets target_ref from product['source']['path'] instead of the product id, so all 15 products of a batch collapse onto 1 data-source-level target (measured: 1 target_ref / 15 results). The IP dimension's per-product conclusions can therefore not be attributed to the product they belong to. This violates no hard constraint (H1-H6 all hold), but it is an interface inconsistency with shopee-br-listing-audit and shopee-br-duplicate-detection, which both use product_id.",
+    "Defect D3: the main Skill's --input path yields 0 products for data/samples/demo_mass_update.xlsx, because the xlsx carries no shop_id column and its banner puts the label ('Loja:') and the shop name in two adjacent cells while the BANNER_SHOP regex expects both in one cell. The gap is reported honestly (30 errors, 15 unevaluated, verdict REVIEW / flag_for_review, never PASS), but the three specialist dimensions are all skipped, leaving only a data-source-level conclusion. Adding --default-shop-id restores the full 15-product chain.",
+    "The acceptance suite covers the chain over the 15 synthetic products of data/samples/demo_mass_update.xlsx plus the shared fixture sets. It does not cover a real Shopee export file: the repository holds no such sample, so the realism of the column and banner handling for real exports is asserted only through the synthetic sample.",
+    "The main Skill's report was not compared section by section against shopee-br-reporting's report for content equality; the acceptance asserts the report STRUCTURE (section headings, ordering of the data-gap section ahead of the decision section) and the aggregation equivalence of the two modules, not the prose of the two reports."
+  ],
+  "unevaluated": [
+    {
+      "rule_id": "C5",
+      "reason": "the rules/03 split (LV to shopee-br-listing-audit, DUP to shopee-br-duplicate-detection) was not executed; tasks/TASK-INTEGRATE-01.md section 2.1 excludes rules/** from the writable whitelist, and the split would also require changing module-owned constants outside the whitelist",
+      "missing_fields": ["rules/**", "skills/shopee-br-listing-audit/**", "skills/shopee-br-duplicate-detection/**"]
+    },
+    {
+      "rule_id": "C6",
+      "reason": "the evidence_type values image, listing_field, price_history and promotion_terms are outside the examples set of contracts/evidence_reference.schema.json; expanding that Schema is outside the writable whitelist",
+      "missing_fields": ["contracts/evidence_reference.schema.json"]
+    }
+  ],
+  "requires_human_review": true
+}

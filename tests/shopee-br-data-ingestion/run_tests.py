@@ -321,6 +321,62 @@ def test_unit() -> None:
 # L2 契约测试
 # ---------------------------------------------------------------------------
 
+def test_banner_layouts() -> None:
+    section("L1b banner 两种布局")
+
+    # Shopee 的导出文件 banner 有两种布局，两种都必须支持：
+    #   同行：["Loja: Minha Loja", ...]
+    #   分格：["Loja:", "Minha Loja", ...]
+    # 分格布局曾整行漏掉 → shop_id 缺失 → 所有记录因缺必填字段失败。
+    from sbr_ingestion.parsers.tabular import scan_banner
+
+    same_cell = scan_banner([["Loja: Minha Loja SP", "", ""],
+                             ["Data de exportacao: 2026-10-27", "", ""]])
+    check("同行布局：解析出 shop_name",
+          same_cell.get("shop_name") == "Minha Loja SP", str(same_cell))
+    check("同行布局：解析出 exported_at",
+          same_cell.get("exported_at") == "2026-10-27", str(same_cell))
+
+    split_cell = scan_banner([["Loja:", "Minha Loja SP", ""],
+                              ["Data de exportacao:", "2026-10-27", ""]])
+    check("分格布局：解析出 shop_name",
+          split_cell.get("shop_name") == "Minha Loja SP", str(split_cell))
+    check("分格布局：解析出 exported_at",
+          split_cell.get("exported_at") == "2026-10-27", str(split_cell))
+    check("两种布局结果一致",
+          same_cell.get("shop_name") == split_cell.get("shop_name")
+          and same_cell.get("exported_at") == split_cell.get("exported_at"),
+          f"{same_cell} vs {split_cell}")
+
+    # 其它标签走 banner 字典
+    other = scan_banner([["Aviso:", "Nao editar as colunas A, B e E", ""]])
+    check("分格布局：其它标签进 banner 字典",
+          other.get("banner", {}).get("aviso") == "Nao editar as colunas A, B e E",
+          str(other))
+
+
+def test_demo_sample_reads() -> None:
+    section("L1c 官方样例文件能读出商品")
+
+    # `data/samples/demo_mass_update.xlsx` 是仓库自带的样例 ——
+    # 它读不出商品，说明分格 banner 没被识别（回归）。
+    sample = os.path.join(ROOT, "data", "samples", "demo_mass_update.xlsx")
+    if not os.path.exists(sample):
+        check("样例文件存在", False, sample)
+        return
+    bundle = ingest_paths([sample], request_id="REQ-DEMO-001")
+    check("样例文件读出商品", len(bundle["products"]) > 0,
+          f"{len(bundle['products'])} 件")
+    check("样例文件没有 error 级失败",
+          not any(e.get("severity") == "error" for e in bundle["errors"]),
+          str([e.get("message") for e in bundle["errors"]
+               if e.get("severity") == "error"][:2]))
+    if bundle["products"]:
+        first = bundle["products"][0]
+        check("样例商品有 shop_id", bool(first.get("shop_id")), str(first.get("shop_id")))
+        check("样例商品有 title", bool(first.get("title")), str(first.get("title")))
+
+
 def test_contract(bundle: dict) -> None:
     section("L2 契约测试")
 
@@ -991,6 +1047,8 @@ def main() -> int:
     workdir = tempfile.mkdtemp(prefix="sbr-ingest-test-")
     try:
         test_unit()
+        test_banner_layouts()
+        test_demo_sample_reads()
 
         demo = os.path.join(ROOT, "data", "samples", "demo_mass_update.xlsx")
         demo_before = file_snapshot(demo)
