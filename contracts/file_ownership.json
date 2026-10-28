@@ -1,0 +1,255 @@
+{
+  "schema_version": "1.0",
+  "ownership_version": "1.5.0",
+  "last_updated": "2026-10-27",
+  "contract_version": "1.0.0",
+  "notes": "文件所有权的唯一权威来源。skills/*/SKILL.md 的「文件所有权」章节与 tasks/*.md 的 §2.1 白名单都必须与本文件一致。模块 Agent 不得修改本文件；需变更时提交契约变更建议。 | 2026-10-27: 补充 integrator 角色（集成 Agent），版本 1.1.0。 | 2026-10-27: 明确 lexicon/** 归 shopee-br-data-ingestion 所有（与 task_registry 的 allowed_paths 一致）；从 shared_assets 只读清单移除。",
+  "rules": [
+    {
+      "rule": "一个路径只能有一个 owner",
+      "detail": "同一路径不得出现在两个模块的可写路径中。例外：archive 目录与公共契约目录为全局只读/受控路径。"
+    },
+    {
+      "rule": "公共契约目录只读",
+      "detail": "contracts/、PROJECT_RULES.md、AGENT_COLLABORATION.md、manifest.json、tasks/task_registry.json、tasks/task_template.md、tests/test_plan.md、docs/parallel_execution_plan.md 对所有模块 Agent 只读。发现问题走契约变更建议流程。"
+    },
+    {
+      "rule": "归档区受控",
+      "detail": ".archive/ 为临时保留区。默认只读；回迁需用户确认并同步更新引用路径。"
+    },
+    {
+      "rule": "测试与实现同源",
+      "detail": "每个模块的测试目录与其 Skill 目录同名前缀，归属同一 owner。"
+    }
+  ],
+  "global_readonly": [
+    "contracts/**",
+    "PROJECT_RULES.md",
+    "AGENT_COLLABORATION.md",
+    "manifest.json",
+    "tasks/task_registry.json",
+    "tasks/task_template.md",
+    "tests/test_plan.md",
+    "docs/parallel_execution_plan.md",
+    ".archive/**"
+  ],
+  "modules": {
+    "shopee-br-policy-research": {
+      "owns": [
+        "skills/shopee-br-policy-research/**",
+        "tests/shopee-br-policy-research/**",
+        "research/sources.json",
+        "research/violation_codes.json",
+        "research/edu_articles.json",
+        "research/raw/**"
+      ],
+      "reads": [
+        "contracts/**",
+        "data/schema/**",
+        "rules/**",
+        "tools/verify_citations.py",
+        "tools/validate_json.py",
+        "tools/render_page.py",
+        "tools/cdp_client.py",
+        "tools/fetch_sources.py",
+        "tools/fetch_edu_articles.py",
+        "tools/fetch_edu_article.py",
+        "tools/parse_violation_codes.py",
+        "tools/dump_page_text.py",
+        "tools/inspect_page.py",
+        "tools/capture_api.py"
+      ],
+      "rule_prefixes": [],
+      "notes": "不拥有任何审核规则前缀。它为其他模块提供来源与引文核验能力，规则作者身份属各专业模块。"
+    },
+    "shopee-br-data-ingestion": {
+      "owns": [
+        "skills/shopee-br-data-ingestion/**",
+        "tests/shopee-br-data-ingestion/**",
+        "lexicon/**"
+      ],
+      "reads": [
+        "contracts/**",
+        "data/schema/**",
+        "lexicon/term_groups.json",
+        "tools/validate_json.py",
+        "tools/validate_fixtures.py"
+      ],
+      "rule_prefixes": [],
+      "notes": "不拥有规则前缀。它定义数据模型映射，规则层只消费其输出。"
+    },
+    "shopee-br-listing-audit": {
+      "owns": [
+        "skills/shopee-br-listing-audit/**",
+        "tests/shopee-br-listing-audit/**",
+        "rules/01_prohibited_restricted_items.json",
+        "rules/05_medicines_health.json",
+        "lexicon/term_groups.json",
+        "lexicon/rewrite_map.json",
+        "lexicon/exemptions.json",
+        "lexicon/quality_patterns.json",
+        "lexicon/non_avoidable.json",
+        "lexicon/verb_conjugations.json",
+        "tools/scan_lexicon.py"
+      ],
+      "reads": [
+        "contracts/**",
+        "data/schema/**",
+        "lexicon/term_groups.json",
+        "research/**",
+        "rules/03_listing_violations_duplicates.json"
+      ],
+      "rule_prefixes": [
+        "PI",
+        "RI",
+        "MED",
+        "LV"
+      ],
+      "notes": "PI=禁售受限、RI=受限商品、MED=药品健康专项、LV=listing 质量。rules/03 中的 LV 前缀由本模块提出拆分建议，拆分由集成 Agent 执行。"
+    },
+    "shopee-br-duplicate-detection": {
+      "owns": [
+        "skills/shopee-br-duplicate-detection/**",
+        "tests/shopee-br-duplicate-detection/**",
+        "rules/04_cases_relist_authorization.json"
+      ],
+      "reads": [
+        "contracts/**",
+        "data/schema/**",
+        "rules/03_listing_violations_duplicates.json",
+        "research/**",
+        "lexicon/term_groups.json",
+        "lexicon/non_avoidable.json"
+      ],
+      "rule_prefixes": [
+        "DUP",
+        "RL",
+        "AU",
+        "AC"
+      ],
+      "notes": "DUP=重复刊登、RL=违规重发、AU=授权、AC=处罚点。rules/03 中 DUP 前缀归本模块；LV 前缀归 listing-audit —— 两者均只提拆分建议，不并发改写。"
+    },
+    "shopee-br-ip-review": {
+      "owns": [
+        "skills/shopee-br-ip-review/**",
+        "tests/shopee-br-ip-review/**",
+        "rules/02_ip_trademark_copyright.json"
+      ],
+      "reads": [
+        "contracts/**",
+        "data/schema/**",
+        "research/**",
+        "rules/04_cases_relist_authorization.json",
+        "lexicon/term_groups.json",
+        "lexicon/exemptions.json",
+        "tools/scan_lexicon.py"
+      ],
+      "rule_prefixes": [
+        "IP"
+      ],
+      "notes": "IP=商标版权外观设计专利。rules/04 中的 AU 前缀归 duplicate-detection，本模块只读引用，不改写。"
+    },
+    "shopee-br-reporting": {
+      "owns": [
+        "skills/shopee-br-reporting/**",
+        "tests/shopee-br-reporting/**"
+      ],
+      "reads": [
+        "contracts/**",
+        "data/schema/**",
+        "rules/**",
+        "skills/*/SKILL.md"
+      ],
+      "rule_prefixes": [],
+      "notes": "不定义规则、不引入来源判断。只做聚合、证据引用与报告渲染。"
+    },
+    "shopee-br-compliance": {
+      "owns": [
+        "skills/shopee-br-compliance/**",
+        "tests/shopee-br-compliance/**"
+      ],
+      "reads": [
+        "contracts/**",
+        "data/schema/**",
+        "rules/**",
+        "skills/*/SKILL.md",
+        "docs/parallel_execution_plan.md",
+        "docs/SOP_COMPLIANCE_REVIEW.md",
+        "lexicon/**"
+      ],
+      "rule_prefixes": [],
+      "notes": "主 Skill：任务分流、显式读取模块说明、整合结果。不定义业务规则。"
+    },
+    "integrator": {
+      "owns": [
+        "docs/integration_report.md",
+        "docs/parallel_execution_plan.md",
+        "tests/fixtures/**",
+        "tests/integration/**"
+      ],
+      "reads": [
+        "contracts/**",
+        "data/schema/**",
+        "rules/**",
+        "skills/**",
+        "tasks/**",
+        "tests/**",
+        "tools/**",
+        "research/**",
+        "lexicon/**"
+      ],
+      "rule_prefixes": [],
+      "notes": "集成角色，非 Skill 模块。职责：统一审查七个模块的交付，检查冲突、重复内容与接口不一致；执行 rules/03 的拆分决定（LV 归 listing-audit，DUP 归 duplicate-detection）；维护共享夹具。"
+    }
+  },
+  "shared_assets": {
+    "read_only_for_all": [
+      {
+        "path": "data/schema/**",
+        "purpose": "领域数据模型 Schema（Product / Case / Rule / ReviewResult / Lexicon）",
+        "owner": "总控 Agent（第一阶段已交付）"
+      },
+      {
+        "path": "data/samples/**",
+        "purpose": "合成输入样例，作为各模块测试输入",
+        "owner": "总控 Agent（第一阶段已交付）"
+      },
+      {
+        "path": "tools/validate_json.py",
+        "purpose": "JSON Schema 校验器，全模块共用",
+        "owner": "总控 Agent"
+      },
+      {
+        "path": "tools/verify_citations.py",
+        "purpose": "引文逐字核验器，全模块共用",
+        "owner": "总控 Agent"
+      },
+      {
+        "path": "tools/validate_fixtures.py",
+        "purpose": "夹具校验器，全模块共用",
+        "owner": "总控 Agent"
+      }
+    ],
+    "note": "shared_assets 全部对模块 Agent 只读。需要变更走契约变更建议流程。"
+  },
+  "reserved_paths": {
+    "note": "以下路径由总控 Agent 与集成 Agent 保留，**模块 Agent** 不得写入。integrator 角色在其 owns 列表中显式声明的路径不受本限制约束（见 modules.integrator）。注意：tools/ 不再整目录保留 —— 各工具的所有权由 modules.<name>.owns 逐个声明，未声明的工具由总控 Agent 维护。需要时提交契约变更建议。",
+    "paths": [
+      "contracts/**",
+      "PROJECT_RULES.md",
+      "AGENT_COLLABORATION.md",
+      "manifest.json",
+      "tasks/**",
+      "tests/test_plan.md",
+      "tests/fixtures/**",
+      "docs/**",
+      "scripts/**",
+      ".archive/**",
+      ".gitignore"
+    ],
+    "exempt_owner": "integrator",
+    "removed_from_list": [
+      "tools/**"
+    ]
+  }
+}
