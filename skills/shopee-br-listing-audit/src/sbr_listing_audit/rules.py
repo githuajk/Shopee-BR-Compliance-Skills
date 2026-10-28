@@ -6,7 +6,7 @@
 |---|---|---|
 | `rules/01_prohibited_restricted_items.json` | `PI` `RI` | **可写** |
 | `rules/05_medicines_health.json` | `MED` | **可写** |
-| `rules/03_listing_violations_duplicates.json` | `LV`（`DUP` 属他模块） | **只读** |
+| `rules/03_listing_violations.json` | `LV` | **拥有** |
 
 `rules/03` 混有两个 owner 的前缀，拆分由集成 Agent 在集成阶段执行；
 本模块只**读取**其中的 `LV` 部分，不写该文件（见 `SKILL.md` §5）。
@@ -31,10 +31,18 @@ OWNED_RULE_FILES = (
     "rules/05_medicines_health.json",
 )
 
-#: 本模块只读引用、但前缀属于本模块的规则文件。
-READONLY_RULE_FILES = (
-    "rules/03_listing_violations_duplicates.json",
+#: 本模块拥有的规则文件（`LV` 前缀）。2026-10-28 集成拆分后由
+#: `rules/03_listing_violations_duplicates.json` 独立成
+#: `rules/03_listing_violations.json`；`DUP` 前缀已拆至
+#: `rules/06_duplicate_listings.json`（duplicate-detection 拥有）。
+OWNED_RULE_FILES = (
+    "rules/01_prohibited_restricted_items.json",
+    "rules/05_medicines_health.json",
+    "rules/03_listing_violations.json",
 )
+
+#: 本模块只读引用、但前缀属于本模块的规则文件。
+READONLY_RULE_FILES = ()
 
 #: `source.tier` → 允许的最高动作（`contracts/risk_action_matrix.json`
 #: 的 H2 条款）。**不可自造**：这四档最高只能到 `flag_for_review`。

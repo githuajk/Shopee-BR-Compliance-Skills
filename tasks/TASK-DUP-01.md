@@ -37,7 +37,7 @@ rules/04_cases_relist_authorization.json
 ```
 contracts/**
 data/schema/**
-rules/03_listing_violations_duplicates.json
+rules/03_listing_violations.json
 research/**
 lexicon/term_groups.json
 lexicon/non_avoidable.json

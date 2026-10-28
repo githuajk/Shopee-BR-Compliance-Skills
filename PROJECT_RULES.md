@@ -128,11 +128,12 @@ shopee-br-compliance-agent/
 |---|---|---|---|
 | `rules/01_prohibited_restricted_items.json` | `PI` `RI` | 17 | `shopee-br-listing-audit` |
 | `rules/02_ip_trademark_copyright.json` | `IP` | 8 | `shopee-br-ip-review` |
-| `rules/03_listing_violations_duplicates.json` | `LV` `DUP` | 17 | `shopee-br-listing-audit`（`LV`）/`shopee-br-duplicate-detection`（`DUP`）|
+| `rules/03_listing_violations.json` | `LV` | 20 | `shopee-br-listing-audit` |
+| `rules/06_duplicate_listings.json` | `DUP` | 3 | `shopee-br-duplicate-detection` |
 | `rules/04_cases_relist_authorization.json` | `RL` `AU` `AC` | 5 | `shopee-br-duplicate-detection` |
 | `rules/05_medicines_health.json` | `MED` | 3 | `shopee-br-listing-audit` |
 
-> `03_listing_violations_duplicates.json` 混有两个模块的规则前缀。**拆分动作由集成 Agent 在集成阶段执行**（避免两个 Agent 并发改同一文件）。各模块在各自任务中只提交拆分建议，不直接改该文件。
+> **2026-10-28 集成阶段已拆分**：原 `03_listing_violations_duplicates.json`（混有 `LV` 与 `DUP` 两个模块前缀）拆分为 `03_listing_violations.json`（`LV` → `shopee-br-listing-audit`）与 `06_duplicate_listings.json`（`DUP` → `shopee-br-duplicate-detection`）。至此每个规则文件只属于一个模块，并行波次路径零重叠。
 
 ---
 

@@ -99,9 +99,9 @@
 |---|---|---|
 | `prohibited_restricted_policy` | `PI` `RI` | `rules/01_prohibited_restricted_items.json` |
 | `regulator_prohibited` | `PI` `RI` | 同上 |
-| `listing_violation` | `LV` | `rules/03_listing_violations_duplicates.json` |
+| `listing_violation` | `LV` | `rules/03_listing_violations.json` |
 | `ip_trademark` / `ip_copyright` / `ip_design` | `IP` | `rules/02_ip_trademark_copyright.json` |
-| `duplicate_listing` | `DUP` | `rules/03_listing_violations_duplicates.json` |
+| `duplicate_listing` | `DUP` | `rules/03_listing_violations.json` |
 | `regulator_policy_change` | `PI`（政策变更） | `rules/01_prohibited_restricted_items.json` |
 | `fulfillment` | （本库未覆盖） | — |
 

@@ -281,7 +281,7 @@
   },
   "rule_library": {
     "directory": "rules/",
-    "current_rule_count": 50,
+    "current_rule_count": 56,
     "ownership": [
       {
         "file": "rules/01_prohibited_restricted_items.json",
@@ -301,14 +301,13 @@
         "owner": "shopee-br-ip-review"
       },
       {
-        "file": "rules/03_listing_violations_duplicates.json",
+        "file": "rules/03_listing_violations.json",
         "prefixes": [
-          "LV",
-          "DUP"
+          "LV"
         ],
-        "count": 17,
-        "owner": "SPLIT_PENDING_INTEGRATION",
-        "note": "混有两个模块前缀，集成阶段由集成 Agent 拆分"
+        "count": 20,
+        "owner": "shopee-br-listing-audit",
+        "note": "2026-10-28 集成拆分（原 rules/03_listing_violations_duplicates.json 的 LV 部分）"
       },
       {
         "file": "rules/04_cases_relist_authorization.json",
@@ -327,6 +326,15 @@
         ],
         "count": 3,
         "owner": "shopee-br-listing-audit"
+      },
+      {
+        "file": "rules/06_duplicate_listings.json",
+        "prefixes": [
+          "DUP"
+        ],
+        "count": 3,
+        "owner": "shopee-br-duplicate-detection",
+        "note": "2026-10-28 集成拆分（原 rules/03_listing_violations_duplicates.json 的 DUP 部分）"
       }
     ]
   },
@@ -381,19 +389,20 @@
   },
   "lexicon": {
     "path": "lexicon/term_groups.json",
-    "groups": 37,
-    "terms": 856,
+    "groups": 43,
+    "terms": 957,
     "risk_hints": {
       "prohibited": 15,
-      "restricted": 12,
-      "ip_signal": 8,
-      "listing_violation": 4
+      "restricted": 10,
+      "ip_signal": 9,
+      "listing_violation": 9
     },
     "source_tiers": {
-      "platform_official": 25,
+      "platform_official": 31,
       "internal_risk": 12
     },
-    "validation": "env -u LD_LIBRARY_PATH python3 tools/validate_lexicon.py"
+    "validation": "env -u LD_LIBRARY_PATH python3 tools/validate_lexicon.py",
+    "last_updated": "2026-10-28"
   },
-  "last_updated": "2026-10-27"
+  "last_updated": "2026-10-28"
 }

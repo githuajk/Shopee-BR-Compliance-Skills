@@ -98,7 +98,7 @@
 |---|---|---|---|
 | `rules/01_prohibited_restricted_items.json` | 2026-10-27 | 2026-10-27 | 17 |
 | `rules/05_medicines_health.json` | 2026-10-27 | 2026-10-27 | 3 |
-| `rules/03_listing_violations_duplicates.json`（`LV` 部分） | 2026-10-27 | 2026-10-27 | 14 |
+| `rules/03_listing_violations.json`（`LV` 部分） | 2026-10-27 | 2026-10-27 | 14 |
 
 > 库级与规则级的 `last_verified` 是两个独立的字段，**都要维护**。
 > 规则级才是「这条规则的引文被核验过」。

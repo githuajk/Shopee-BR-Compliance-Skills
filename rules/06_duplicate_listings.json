@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0",
+  "library": "Shopee BR — duplicate listings",
+  "source_tier": "platform_official",
+  "source_url": "https://seller.br.shopee.cn/edu/article/5139",
+  "source_excerpt": "Quando um anúncio viola essas regras, ele pode ser suspenso ou removido. Dependendo da gravidade da infração, o vendedor também pode receber Pontos de Penalidade.",
+  "last_verified": "2026-10-27",
+  "notes": "Duplicate-listing rules. 拆分自原 rules/03_listing_violations_duplicates.json（2026-10-28 集成阶段，DUP 前缀归 shopee-br-duplicate-detection）；LV 部分见 rules/03_listing_violations.json。",
+  "rules": [
+    {
+      "rule_id": "SBR-DUP-001",
+      "title": "Duplicate listing within the same store",
+      "category": "duplicate_listing",
+      "description": "Listings that copy another listing of the same seller are removed. Code [401] (Cópia de outro(s) anúncio(s)) carries severity Baixa and does not generate a penalty point. The platform treats listings of the same product without substantive differences in title, description, photos or variants as duplicates and deletes them.",
+      "trigger_conditions": [
+        {
+          "field": "any_text",
+          "operator": "contains_any",
+          "value": [
+            "__DUPLICATE_SIGNAL__"
+          ]
+        }
+      ],
+      "severity": "medium",
+      "decision": "flag_for_review",
+      "evidence_required": [
+        "canonical_listing_id",
+        "variant_rationale"
+      ],
+      "human_review_required": true,
+      "source_url": "https://seller.br.shopee.cn/edu/article/5139",
+      "source_tier": "platform_official",
+      "source_excerpt": "[401] Cópia de outro(s) anúncio(s). Severidade: Baixa. Não gera ponto de penalidade.",
+      "last_verified": "2026-10-27",
+      "status": "active",
+      "version": 1,
+      "tags": [
+        "duplicate",
+        "within_store",
+        "platform_code_401"
+      ],
+      "notes": "The trigger is a sentinel: the duplicate engine injects the token __DUPLICATE_SIGNAL__ into the field it wants the rule to match, so the duplicate verdict is produced by the duplicate engine (which has the cross-store index) rather than by a text pattern. The rule then governs the severity/decision/evidence."
+    },
+    {
+      "rule_id": "SBR-DUP-002",
+      "title": "Duplicate listings across stores (cross-store same product)",
+      "category": "cross_store_duplicate",
+      "description": "The same product listed in more than one store, including across the operator's own stores. The platform removes duplicate listings (code [302], severity Baixa, no penalty point). Cross-store duplication of one SKU across several of the operator's stores is an internal catalogue-hygiene issue as well: it splits review history and can trigger 'anúncios duplicados' removals in each store.",
+      "trigger_conditions": [
+        {
+          "field": "any_text",
+          "operator": "contains_any",
+          "value": [
+            "__CROSS_STORE_DUPLICATE_SIGNAL__"
+          ]
+        }
+      ],
+      "severity": "medium",
+      "decision": "flag_for_review",
+      "evidence_required": [
+        "canonical_listing_id",
+        "variant_rationale",
+        "master_sku_assignment"
+      ],
+      "human_review_required": true,
+      "source_url": "https://seller.br.shopee.cn/edu/article/5139",
+      "source_tier": "platform_official",
+      "source_excerpt": "[302] Anúncios duplicados. Severidade: Baixa. Não gera ponto de penalidade.",
+      "last_verified": "2026-10-27",
+      "status": "active",
+      "version": 1,
+      "tags": [
+        "duplicate",
+        "cross_store",
+        "platform_code_302"
+      ],
+      "notes": "Sentinel trigger, same mechanism as SBR-DUP-001: the duplicate engine injects the token. Cross-store matching uses supplier-SKU identity plus title/description similarity; see engine/duplicates.py."
+    },
+    {
+      "rule_id": "SBR-DUP-003",
+      "title": "Same product re-listed with a modified title or SKU",
+      "category": "duplicate_listing",
+      "description": "Re-publishing a previously removed or banned listing under a modified title or a new SKU to escape enforcement. The platform removes the copy (code [401]) and the listing that was copied is still attached to the original case, so the copy inherits the enforcement history. A modified title or SKU does not create a new, clean listing.",
+      "trigger_conditions": [
+        {
+          "field": "any_text",
+          "operator": "contains_any",
+          "value": [
+            "__RELIST_SIGNAL__"
+          ]
+        }
+      ],
+      "severity": "high",
+      "decision": "freeze_relist",
+      "evidence_required": [
+        "original_case_id",
+        "product_url_history",
+        "supplier_invoice"
+      ],
+      "human_review_required": true,
+      "source_url": "https://seller.shopee.com.br/edu/article/16318",
+      "source_tier": "platform_official",
+      "source_excerpt": "Anúncios banidos podem ser restabelecidos assim que a violação for resolvida. Os anúncios excluídos pela Shopee não podem ser recuperados e incorrerão pontos no sistema de Pontos de Penalidade do Vendedor da Shopee.",
+      "last_verified": "2026-10-27",
+      "status": "active",
+      "version": 1,
+      "tags": [
+        "relist",
+        "freeze",
+        "history"
+      ],
+      "notes": "Sentinel trigger. The relist engine matches a candidate listing against historical case records by supplier SKU, platform PID, product-image hash and title similarity. A match means the new listing inherits the old case and is frozen pending review."
+    }
+  ]
+}

@@ -339,7 +339,7 @@ LV 类的触发条件有 5 种算子，语义各不相同。**读 `reason` 里�
 | `SBR-LV-013` | `any_text` / `regex` | 匹配**完整三维尺寸**（`NNcm` × 3，或 `NNcm` × 2 + `NNm`）。**平台未公开尺寸上限数值**，本规则只标记「声明了完整三维尺寸」这一事实，是否超限由人工复核 —— 详见 `references/policy_currency.md` §5 |
 | `SBR-LV-014` | `variations` / `has_field` | **`status = draft`**，不参与判定。规则自身的 `notes` 写明：该触发条件无法区分「不当使用变体」与「正常变体」，需要变体 / 属性一致性检查才能落地。保留为 draft 是为了**保证它永远不会阻断** |
 
-> `rules/03_listing_violations_duplicates.json` 里同时还有 `SBR-DUP-001` … `SBR-DUP-003`。
+> `rules/03_listing_violations.json` 里同时还有 `SBR-DUP-001` … `SBR-DUP-003`。
 > **本模块不读它们** —— `rules.py` 的 `load_rules()` 按前缀过滤，只取 `PI` / `RI` / `MED` / `LV`。
 
 ### 5.3 典型正例 / 反例

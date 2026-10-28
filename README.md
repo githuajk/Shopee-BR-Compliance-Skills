@@ -168,7 +168,7 @@ FRAME-01 → FRAME-02 → {POLICY-01, INGEST-01} → {LISTING-01, DUP-01, IP-01,
 
 `contracts/file_ownership.json` 是**唯一权威来源**。同一路径只有一个 owner。
 
-唯一潜在冲突是 `rules/03_listing_violations_duplicates.json`（含 `LV` 属 listing-audit、`DUP` 属 duplicate-detection）—— 两者都**只提拆分建议**，由集成 Agent 统一拆分。
+唯一潜在冲突是 `rules/03_listing_violations.json`（含 `LV` 属 listing-audit、`DUP` 属 duplicate-detection）—— 两者都**只提拆分建议**，由集成 Agent 统一拆分。
 
 **三方一致性**（`tools/task_pack_check.py` 368 项断言强制）：
 `SKILL.md` 所有权章节 ≡ `tasks/*.md` §2.1 白名单 ≡ `task_registry.json` `allowed_paths`

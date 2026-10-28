@@ -47,7 +47,7 @@ contracts/**
 data/schema/**
 lexicon/term_groups.json
 research/**
-rules/03_listing_violations_duplicates.json
+rules/03_listing_violations.json
 ```
 
 全局只读（所有模块通用）：`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、

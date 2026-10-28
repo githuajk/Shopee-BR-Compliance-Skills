@@ -169,7 +169,7 @@ description: Use when you need to screen a Shopee Brazil listing for intellectua
 
 ## 13. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.6.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.7.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 

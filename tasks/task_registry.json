@@ -19,7 +19,6 @@
     "lexicon/**": "shopee-br-data-ingestion",
     "rules/01_prohibited_restricted_items.json": "shopee-br-listing-audit",
     "rules/02_ip_trademark_copyright.json": "shopee-br-ip-review",
-    "rules/03_listing_violations_duplicates.json": "SPLIT_PENDING_INTEGRATION",
     "rules/04_cases_relist_authorization.json": "shopee-br-duplicate-detection",
     "rules/05_medicines_health.json": "shopee-br-listing-audit",
     "skills/shopee-br-policy-research/**": "shopee-br-policy-research",
@@ -29,7 +28,9 @@
     "skills/shopee-br-data-ingestion/**": "shopee-br-data-ingestion",
     "skills/shopee-br-reporting/**": "shopee-br-reporting",
     "skills/shopee-br-compliance/**": "shopee-br-compliance",
-    "tests/shopee-br-*/**": "对应模块"
+    "tests/shopee-br-*/**": "对应模块",
+    "rules/03_listing_violations.json": "shopee-br-listing-audit",
+    "rules/06_duplicate_listings.json": "shopee-br-duplicate-detection"
   },
   "parallel_groups": {
     "G0": "公共规范与契约 —— 必须先完成，其余全部依赖它",
@@ -232,7 +233,7 @@
         "PROJECT_RULES.md",
         "rules/01_prohibited_restricted_items.json",
         "rules/05_medicines_health.json",
-        "rules/03_listing_violations_duplicates.json"
+        "rules/03_listing_violations.json"
       ],
       "rule_prefixes": [
         "PI",
@@ -253,7 +254,7 @@
         "H2/H3 断言通过（内部建议不阻断、缺失不当作通过）",
         "不得修改 rules/03（该文件待集成阶段拆分）"
       ],
-      "split_request": "rules/03_listing_violations_duplicates.json 含 LV（属本模块）与 DUP（属 duplicate-detection）两组前缀。本模块只提拆分建议，不直接改该文件。",
+      "split_request": "已拆分（2026-10-28 集成阶段）：LV 前缀 → rules/03_listing_violations.json（本模块拥有）；DUP 前缀 → rules/06_duplicate_listings.json（duplicate-detection 拥有）。",
       "objective": "建立商品内容合规审核能力：检查标题、详情、属性、图片与宣传内容中的禁售、受限、刊登质量与药品健康类风险，产出可追溯的结论。",
       "workspace": "/tmp/sbrca_work/TASK-LISTING-01/",
       "note": "2026-10-27 实现完成。",
@@ -281,7 +282,7 @@
       "readonly_paths": [
         "contracts/**",
         "PROJECT_RULES.md",
-        "rules/03_listing_violations_duplicates.json",
+        "rules/06_duplicate_listings.json",
         "rules/04_cases_relist_authorization.json"
       ],
       "rule_prefixes": [
@@ -302,7 +303,7 @@
         "案件处于 under_review 时不冻结的用例",
         "输出符合 audit_result 契约"
       ],
-      "split_request": "同 TASK-LISTING-01：rules/03 的 DUP 前缀部分归本模块，需集成阶段拆分。",
+      "split_request": "已拆分（2026-10-28 集成阶段）：DUP 前缀 → rules/06_duplicate_listings.json（本模块拥有）；LV 前缀 → rules/03_listing_violations.json（listing-audit 拥有）。",
       "objective": "建立重复刊登与违规重发检查能力：识别同店重复、跨店同款，核查历史违规案件、处罚点与授权状态，判定重发是否应被冻结。",
       "workspace": "/tmp/sbrca_work/TASK-DUP-01/",
       "note": "2026-10-27 实现完成。",

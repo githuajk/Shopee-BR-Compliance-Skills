@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "name": "Shopee BR — 合并词库",
   "description": "合并来源：2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 现有 25 组 179 词。每个词组是筛查信号，不是违规结论 —— 结论由规则层依据来源判定。",
-  "last_updated": "2026-10-27",
+  "last_updated": "2026-10-28",
   "usage": "加载后用 Aho-Corasick 建立多模式索引（规模扩大时）。匹配时：大小写不敏感 → NFD 去重音 → 显式 lookaround 边界。",
   "matching_notes": [
     "葡语 \\b 不可靠 —— 用 (?<![a-zA-Zà-ÿÀ-ß])...(?!...) 显式边界（SOP §4.2）",
@@ -941,6 +941,119 @@
       "testado dermatologicamente",
       "tipo: cosmético",
       "todos os tipos de pele"
+    ],
+    "conteudo_ofensivo": [
+      "idiota completo",
+      "idiota perdido",
+      "otario sem noção",
+      "imbecil sem vergonha",
+      "palhaco de mierda",
+      "vai se foder",
+      "vai tomar no cu",
+      "vai se lamber",
+      "dou-me ao caralho",
+      "filha da puta",
+      "todo mundo é merda",
+      "que se foda",
+      "foda-se",
+      "merda de qualidade",
+      "porra de qualidade",
+      "lixo de qualidade",
+      "arrombado mesmo",
+      "porra do caralho",
+      "idiota do caralho"
+    ],
+    "conteudo_sexual": [
+      "quente pra caralho",
+      "deixa eu te foder",
+      "fode com você",
+      "vem me comer",
+      "vem de noite",
+      "me chama de noite",
+      "acompanha-me na cama",
+      "te mostra tudo",
+      "postura erótica",
+      "posturas eróticas",
+      "exposição de partes íntimas",
+      "sexo explícito no anúncio",
+      "conteúdo sexual explícito",
+      "linguagem sexual explícita",
+      "brinquedo sexual com demonstração",
+      "boneca de caráter erótico infantil",
+      "anúncios de sexo ilegal",
+      "trabalho sexual"
+    ],
+    "conteudo_extremista": [
+      "partido nazista",
+      "partido nazi",
+      "organização extremista",
+      "organização terrorista",
+      "organização criminosa",
+      "grupo de ódio",
+      "recrutar novos membros",
+      "incentive a participação",
+      "apologia ao nazismo",
+      "elogiar o nazismo",
+      "cruz suástica",
+      "simbolo nazi",
+      "simboloextremista",
+      "seita destrutiva",
+      "seita apocalíptica",
+      "culto destrutivo",
+      "nazismo",
+      "hitlerismo"
+    ],
+    "conteudo_desinformacao": [
+      "vacina causa",
+      "vacina causa autofimose",
+      "5g causa",
+      "chip da 5g controla",
+      "a terra é plana",
+      "chemtrails",
+      "quedas de avião não existem",
+      "o corona foi inventado",
+      "covid não existe",
+      "pandemia é mentira",
+      "cloro cura",
+      "cloro mata vírus",
+      "desinformação que incite ódio",
+      "desinformação associada a emergências"
+    ],
+    "simbolo_odio": [
+      "raca superior",
+      "superioridade racial",
+      "brasao nazi",
+      "símbolo nazi",
+      "cruz suástica",
+      "bandeira nazi",
+      "uniforme nazi",
+      "camisa nazi",
+      "camiseta nazi",
+      "moletom nazi",
+      "capuz nazi",
+      "bracelete nazi",
+      "corrente nazi",
+      "broche nazi",
+      "adesivo nazi",
+      "estampa nazi",
+      "impressão nazi",
+      "cruz 卐",
+      "cruz 卍",
+      "卐 nazi",
+      "卍 nazi"
+    ],
+    "vestimenta_indecente": [
+      "nudez total",
+      "nudez parcial",
+      "mostrar o corpo inteiro",
+      "roupa de baixo transparente",
+      "roupa íntima transparente",
+      "sem sutiã",
+      "sem calcinha",
+      "vestido de baixo decote",
+      "deixei a manga pra fora",
+      "saia a menos de 10 cm",
+      "roupa de baixo de liga estilo fio"
     ]
   },
   "group_meta": {
@@ -1202,10 +1315,52 @@
       "source_tier": "internal_risk",
       "matching": "strict",
       "note": "★ 来自店主 491 商品审阅反馈的具体模板话术（见 SOP §7.5）"
+    },
+    "conteudo_ofensivo": {
+      "label": "内容违规 — 粗俗脏话与侮辱性表达",
+      "risk_hint": "listing_violation",
+      "source_tier": "platform_official",
+      "matching": "strict",
+      "note": "社区准则 §6 (L179)：粗俗/无礼/亵渎用语，含粗鄙的性关系与性器官指称。⚠️ 只收句式组合、不收裸词 —— puta/merda/diabo/idiota 在葡语商品文案与买家评价中有大量合法用法"
+    },
+    "conteudo_sexual": {
+      "label": "内容违规 — 性暗示与调情表达",
+      "risk_hint": "listing_violation",
+      "source_tier": "platform_official",
+      "matching": "strict",
+      "note": "社区准则 §2.1 (L48/L51/L55)、§5.2 (L146)：性暗示、性挑逗、露骨性表达。⚠️ 只收明确性挑逗句式 —— sexy/atractivo/lingerie 属正常营销与商品类目"
+    },
+    "conteudo_extremista": {
+      "label": "内容违规 — 极端组织与邪教传播",
+      "risk_hint": "listing_violation",
+      "source_tier": "platform_official",
+      "matching": "strict",
+      "note": "社区准则 §1.4 (L41-L46)：极端主义/犯罪/恐怖组织的名称、符号、旗帜、口号、制服、招募与美化。⚠️ 只收「组织+标志物」组合 —— 'igreja'/'religião'/'partido' 单独出现不违规。服饰/配件上的实体标识归 simbolo_odio 组，避免跨组重复告警"
+    },
+    "conteudo_desinformacao": {
+      "label": "内容违规 — 谣言与阴谋论话术",
+      "risk_hint": "listing_violation",
+      "source_tier": "platform_official",
+      "matching": "strict",
+      "note": "社区准则 §7.2 (L191-L195)：引发仇恨/恐慌的虚假信息、危害健康的医疗虚假信息、被操纵的合成媒体。⚠️ 只收成型谣言标签，不收正常疑问句与科普表述"
+    },
+    "simbolo_odio": {
+      "label": "禁售 — 仇恨符号与种族优越标识",
+      "risk_hint": "prohibited",
+      "source_tier": "platform_official",
+      "matching": "strict",
+      "note": "社区准则 §6 (L158-L176) + 禁售政策 (L1394)：仇恨/暴力/极端主义符号与种族优越口号，含纳粹卐字。⚠️ 这类属**禁售商品**（印在服饰/配件上）而非仅内容违规 → risk_hint=prohibited。只收明确标识组合，不收 'raca'/'negro' 等普通描述词。卐/卍 单字符不合词库最小长度，以短语形式（cruz 卐 / 卐 nazi）收录，扫描器归一化后仍可命中裸符号的上下文"
+    },
+    "vestimenta_indecente": {
+      "label": "内容违规 — 不当着装与低俗服饰",
+      "risk_hint": "listing_violation",
+      "source_tier": "platform_official",
+      "matching": "strict",
+      "note": "社区准则 §2.1 (L50) + §6 (L180)：裸露展示、不雅或违背社会规范的服饰。⚠️ 剔除正常商品 —— 'saia curta'(短裙)、'biquíni'(泳衣)、'lingerie'(内衣)、'top sem aro'(无钢圈内衣) 均为合法商品，不收"
     }
   },
   "stats": {
-    "group_count": 37,
-    "term_count": 856
+    "group_count": 43,
+    "term_count": 957
   }
 }
