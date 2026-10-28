@@ -4,12 +4,12 @@
 |---|---|
 | 文档 ID | `SBRCA-REF-LA-005` |
 | 所属模块 | `shopee-br-listing-audit` |
-| 版本 | 1.0.0 |
+| 版本 | 1.1.0 |
 | 状态 | **Active** |
-| 创建/更新 | 2026-10-27 |
+| 创建/更新 | 2026-10-27；2026-10-28 索引重写（1.1.0） |
 | 适用范围 | 合并词库的使用方式、匹配算法与误报控制 |
 | 相关文档 | `lexicon/term_groups.json`、`contracts/lexicon_rule_map.json`、`docs/SOP_COMPLIANCE_REVIEW.md` §4 |
-| 未决事项 | 大规模索引（Aho–Corasick）**未实现** —— 当前按组线性匹配；2026-10-27 实测基于 37 组 / 856 词；2026-10-28 集成扩充后（100 组 / 210,984 词，其中 C 类监管目录 209,652 词）性能待复测；见 §7 |
+| 未决事项 | 大规模索引（前缀分桶 + C 级 `str.find`）**已实现**（2026-10-28，§3.5 / §7.1）；EX-BRAND-GENERIC 的同行误降级残留需改 `lexicon/exemptions.json` 的 pattern（data-ingestion 所有，走契约变更） |
 
 ---
 
@@ -19,11 +19,11 @@
 |---|---|---|
 | `lexicon/term_groups.json` | 词组（扫描用） | **100 组 / 210,984 词**（2026-10-28 集成扩充后；原 37 组 / 856 词） |
 | `lexicon/rewrite_map.json` | 触线 → 中性替代（改写用） | 8 类映射 |
-| `lexicon/exemptions.json` | 误报豁免规则 | 7 条 |
+| `lexicon/exemptions.json` | 误报豁免规则 | 61 条 |
 | `lexicon/quality_patterns.json` | 套模板/批量味检测 | 15 条特征 |
 | `lexicon/non_avoidable.json` | 无法文字规避的品类 | 6 类 |
 | `lexicon/verb_conjugations.json` | 葡语动词变位匹配表 | 7 个动词 |
-| `contracts/lexicon_rule_map.json` | 词组 → 规则映射 | 37 条 |
+| `contracts/lexicon_rule_map.json` | 词组 → 规则映射 | 100 条 |
 
 **合并来源**：2026-09-15 合规审计线的 7 类 1320 词词库 + `02_risk_dictionary.md` 触线词 + 原 25 组 179 词。覆盖率经逐词比对达 **96.3%**（剩余为文档说明文字，非词条）。
 
@@ -118,21 +118,23 @@ re.search(r'(?<![a-zA-Zà-ÿÀ-ß])at[óo]xico(?![a-zA-Zà-ÿÀ-ß])', 'produto 
 
 ### 3.5 规模与索引
 
-856 词规模下用普通编译正则足够；2026-10-28 词库扩充至 210,984 词后，建议尽快用 Aho–Corasick 建立多模式索引：
+856 词规模下用普通编译正则足够；2026-10-28 词库扩充至 210,984 词后，改用**前缀分桶 + C 级 `str.find`** 实现：
 
 ```python
-# 逻辑示意
-from collections import defaultdict
-def build_index(groups):
-    goto, fail, out = {}, {}, defaultdict(list)
-    for gid, terms in groups.items():
-        for t in terms:
-            pat = compile_pattern(t)
-            insert(goto, fail, out, pat, gid)
-    return goto, fail, out
+# tools/scan_lexicon.py · _build_index / scan_text
+by_pre: dict[str, list] = {}          # 前 3 字符分桶（L=2 时前缀即全词）
+for gid, terms in groups.items():
+    for t in terms:
+        key = norm(t)                 # 小写+NFD去重音
+        by_pre.setdefault(key[:3], []).append((key, len(key), gid, t))
+# 匹配期：计算文本 3-gram 集合，跳过未出现的整桶，再用 C 级 find
+t3 = frozenset(n[i:i+3] for i in range(Ln-2))
+for pre, entries in by_pre.items():
+    if pre not in t3: continue
+    i = n.find(key); while i != -1: ...
 ```
 
-> **Aho–Corasick 只是索引加速手段。规则原始数据仍以 JSON 保存**（`PROJECT_RULES.md` 硬性要求）。
+> **纯标准库实现**，无第三方依赖。索引按（词库目录, mtime）缓存在模块级，同一进程内重复 `Scanner(...)` 是 O(1)。
 
 ---
 
@@ -140,7 +142,7 @@ def build_index(groups):
 
 ### 4.1 豁免规则
 
-`lexicon/exemptions.json` 定义 7 条豁免：
+`lexicon/exemptions.json` 定义 61 条豁免（2026-10-28 集成后：原 7 条 + 37 条 `EX-CATALOG-*` 目录降级 + 17 条 `EX-D6-*` 批次；交付时点的 44 条为 D6 批次并入前）：
 
 | ID | 场景 | 动作 |
 |---|---|---|
@@ -151,8 +153,24 @@ def build_index(groups):
 | `EX-DESCONFORTO` | "em caso de desconforto, suspenda o uso" | `exempt` |
 | `EX-SEGURO-FUNCIONAL` | "fechamento seguro" | `exempt` |
 | `EX-BRAND-GENERIC` | 品牌名可能是产品通用词 | `require_review` |
+| `EX-CATALOG-*` ×37 | ANVISA/CTI/MAPA 监管目录全组降级 | `exempt` |
+| `EX-D6-*` ×17 | 2026-10-28 批次登记的误报场景 | `flag_low` / `require_review` |
 
 > ⚠️ **豁免 ≠ 放行。** 命中仍要记录，只是降低置信度或转为需复核。
+
+**豁免匹配语义（2026-10-28 D1–D5 修复后）**：
+
+1. **区间重叠才豁免（D1）** —— 豁免正则的某个匹配区间必须与该命中的区间
+   `[offset, offset+len]` 重叠，命中才标记豁免。同一字段里与工具词无关的
+   武器命中不会被 `EX-TOOLS` 连带降级。`EX-CATALOG-*` 的全文 pattern
+   （`[\s\S]*`）区间覆盖全文，目录组全组降级是既定行为，保持不变。
+2. **重音折叠后匹配（D4）** —— 豁免正则作用于归一化文本（小写 + NFD 去重音）。
+   归一化文本是纯 ASCII 形态，其中 pattern 里的 `\b` 等价于显式词边界，
+   不会再吞相邻重音字母（SOP §4.2 的葡语 `\b` 铁律在原文层仍然成立）。
+3. **换行压平（D5）** —— 豁免匹配前把 `\n` / `\r` 替换为空格（等长替换，
+   偏移不变），`^...$` 锚定模式不再被多行文本绕开。已知残留：
+   `EX-BRAND-GENERIC` 的 `^(.*)...` 区间覆盖整行，同一无关通用词会使整行
+   命中降级 —— 需改 pattern 本身（data-ingestion 所有，走契约变更流程）。
 
 ### 4.2 豁免的判定顺序
 
@@ -179,7 +197,7 @@ def build_index(groups):
 
 ## 5. 词组 → 规则映射
 
-`contracts/lexicon_rule_map.json` 定义 37 条映射。
+`contracts/lexicon_rule_map.json` 定义 100 条映射。
 
 ```json
 {
@@ -274,35 +292,27 @@ def _assert_no_charclass_in_values(rules):
 
 | 项 | 状态 | 实测依据 |
 |---|---|---|
-| Aho–Corasick 索引 | ❌ **未实现** | 当前按组线性匹配。§7.1 性能数据基于 37 组 / 856 词；2026-10-28 扩充至 100 组 / 210,984 词后需复测 |
+| 大规模索引 | ✅ **已实现**（前缀分桶 + C 级 `str.find`，纯标准库） | 210,984 词冷启动构建 **0.85 s**；进程内命中缓存后重复构造 **~0.06 ms**；见 §7.1 |
 | 扫描器 CLI | ✅ **已实现** | `tools/scan_lexicon.py`，参数：`--title` / `--description` / `--brand` / `--input` / `--self-test` |
-| 性能基线 | ✅ **已实测** | 见 §7.1 |
-| 词库与规则的联动测试 | ✅ **已实现** | `tools/verify_fixtures.py` 的 108 条夹具-规则断言（58 应命中 / 50 应不命中）+ `tools/scan_lexicon.py --self-test` 的 12 条回归用例 |
+| 性能基线 | ✅ **已实测**（100 组 / 210,984 词） | 见 §7.1 |
+| 词库与规则的联动测试 | ✅ **已实现** | `tools/verify_fixtures.py` 的 108 条夹具-规则断言（58 应命中 / 50 应不命中）+ `tools/scan_lexicon.py --self-test` 的 19 条回归用例（12 条基础 + D1–D5 缺陷回归） |
 
 ### 7.1 性能基线（实测）
 
-测量条件：本机，单次 `Scanner.scan_text(text, "description")`，文本 10,200 字符。
+测量条件：本机，100 组 / 210,984 词词库，2026-10-28 索引重写后复测。
 
 | 指标 | 实测值 |
 |---|---|
-| 单次扫描 | **130.0 ms**（10,200 字符） |
-| 推算 500 商品 × 3 字段 | **约 195 s** |
-| 推算 5,000 商品 × 3 字段 | **约 1,950 s（32 分钟）** |
-| CLI 单次（含解释器启动） | 419 ms |
+| 冷启动构建（新进程，含 21 MB JSON 载入 + 归一化 + 分桶） | **0.85 s** |
+| 进程内缓存命中后重复 `Scanner(...)` | **~0.06 ms**（O(1)） |
+| 单次扫描 10,200 字符详情 | **~75 ms** |
+| 单次扫描 60 字符字段 | **~2 ms** |
+| 推算 500 商品 × 3 字段（单进程） | **约 40 s** |
+| 推算 5,000 商品 × 3 字段（单进程） | **约 400 s（≈7 分钟）** |
 
-**这是已知的性能瓶颈。** 扫描是**按组**线性匹配的 —— 组数越多、
-文本越长，耗时线性增长。
-
-**实际影响**：Shopee 单店常见 1,000–5,000 个商品。按上表，5,000 商品的
-纯词库扫描约需半小时。
-
-**可行的优化方向**（均未实现）：
-
-1. **Aho–Corasick 多模式匹配** —— 把 856 个词条编译成一台自动机，
-   单次遍历文本完成全部匹配。理论上把 O(组数 × 文本长度) 降到 O(文本长度)。
-2. **先做归一化再匹配** —— `norm()` 已经把文本归一化过了，但目前是
-   **每个组各归一化一次**。改成整篇归一化一次可省掉重复开销。
-3. **按字段长度预筛** —— 短文本不可能命中长词组，可跳过。
+与旧实现（逐词条 `re.compile`，21 万条正则，单次构建 37–70 s，
+listing 测试套件全跑 ~39 分钟）相比，listing 套件实测降到 **~28 s**
+（`tests/shopee-br-listing-audit/run_tests.py`，406/406 全绿）。
 
 > **不要**在没有实测数据的情况下写「性能足够」或「性能有风险」这类
 > 判断 —— 上面每个数字都可复现。
@@ -312,8 +322,8 @@ def _assert_no_charclass_in_values(rules):
 `tools/scan_lexicon.py --input` 接受**一个** JSON 文件。
 批量场景应当：
 
-- 在**单个进程内**复用同一个 `Scanner` 实例（不要每个商品起一个进程 ——
-  解释器启动开销 419 ms/次会主导总耗时）
+- 在**单个进程内**复用同一个 `Scanner` 实例（索引按词库 mtime 缓存，
+  重复构造是 O(1)，无需额外「常驻进程」）
 - 或直接调用 `shopee-br-listing-audit` 的引擎，它内部已按商品复用扫描器
 
 ### 7.3 词库扫描与规则判定是两层
