@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0",
+  "fixture_set": "edge_cases",
+  "description": "边界用例 —— 防规则过宽。刻意贴近某条规则的触发形态，但语义上**合规**。每个用例声明 must_fire / must_not_fire，由 tools/verify_fixtures.py 机械校验。",
+  "construction_note": "边界用例是误报的最后一道防线：规则越宽，这里越先失败。",
+  "cases": [
+    {
+      "case_id": "EC-01",
+      "scenario": "兼容性描述 —— 提到品牌但属于指示性使用（Art. 132 II）",
+      "rationale": "历史误报来源第 3 项（zzj-02）。兼容性描述 ≠ 商标侵权。",
+      "product": {
+        "product_id": "FX-EDGE-0001",
+        "internal_sku": "EDGE-0001",
+        "shop_id": "FXSHOP1",
+        "title": "Suporte para Celular Compatível com Samsung Galaxy S21",
+        "description": "Suporte de mesa para celular. Compatível com o modelo Samsung Galaxy S21. Não acompanha o aparelho. Produto sem marca registrada.",
+        "category": "Eletrônicos > Acessórios",
+        "brand": "Sem Marca",
+        "price": 39.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": ["SBR-IP-001"],
+        "note": "含品牌词 Samsung，但 SBR-IP-006（指示性使用豁免）应覆盖 SBR-IP-001。平台禁止的是**冒充**与**混淆性使用**，不是提及兼容性。"
+      },
+      "must_fire": [],
+      "must_not_fire": ["SBR-IP-002"]
+    },
+    {
+      "case_id": "EC-02",
+      "scenario": "描述性关键词 —— 出现「desconforto」但无医疗宣称",
+      "rationale": "历史误报来源第 2 项（chongyang1 57 处命中中 4 处为 desconforto 误报）。",
+      "product": {
+        "product_id": "FX-EDGE-0002",
+        "internal_sku": "EDGE-0002",
+        "shop_id": "FXSHOP1",
+        "title": "Almofada de Memória para Reduzir Desconforto ao Sentar",
+        "description": "Almofada em espuma viscoelástica que ajuda a reduzir o desconforto ao sentar por longos períodos. Não é equipamento médico. Medidas: 45 cm por 45 cm por 10 cm. Peso: 800 g.",
+        "category": "Casa > Decoração > Almofadas",
+        "brand": "Sem Marca",
+        "price": 79.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": ["SBR-LV-001", "SBR-MED-001", "SBR-MED-003"],
+        "note": "含「desconforto」但无疗效承诺、无医疗宣称、无「cura garantida」。"
+      },
+      "must_fire": [],
+      "must_not_fire": ["SBR-LV-001", "SBR-MED-001", "SBR-MED-003"]
+    },
+    {
+      "case_id": "EC-03",
+      "scenario": "描述性关键词 —— 出现「seguro」但无安全承诺",
+      "rationale": "历史误报来源第 2 项（chongyang1 1 处 seguro 误报）。",
+      "product": {
+        "product_id": "FX-EDGE-0003",
+        "internal_sku": "EDGE-0003",
+        "shop_id": "FXSHOP1",
+        "title": "Trava de Porta de Segurança para Bebê",
+        "description": "Trava de segurança para portas de quarto infantil. Instalação sem furação. Material em plástico ABS. Dimensões: 12 cm por 6 cm por 3 cm. Peso: 90 g.",
+        "category": "Casa > Segurança",
+        "brand": "Sem Marca",
+        "price": 24.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": ["SBR-LV-001"],
+        "note": "「segurança」是商品用途描述（安全门锁），不是疗效或安全承诺。"
+      },
+      "must_fire": [],
+      "must_not_fire": ["SBR-LV-001"]
+    },
+    {
+      "case_id": "EC-04",
+      "scenario": "只有两维尺寸 —— 不构成 SBR-LV-013 的三维声明",
+      "rationale": "SBR-LV-013 判定「已声明完整三维尺寸」，两维不应命中。",
+      "product": {
+        "product_id": "FX-EDGE-0004",
+        "internal_sku": "EDGE-0004",
+        "shop_id": "FXSHOP1",
+        "title": "Kit 6 Copos de Vidro 250ml",
+        "description": "Kit com 6 copos de vidro 250 ml. Medidas: 12 cm por 7 cm. Vidro temperado. Pode ser usado para água, suco e bebidas frias. Peso: 260 g por copo.",
+        "category": "Casa > Cozinha > Copos",
+        "brand": "Sem Marca",
+        "price": 44.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": ["SBR-LV-013"],
+        "note": "两个 cm 单位 —— 第三个缺失 → 不命中。"
+      },
+      "must_fire": [],
+      "must_not_fire": ["SBR-LV-013"]
+    },
+    {
+      "case_id": "EC-05",
+      "scenario": "「reduzir」用于尺寸变化而非疗效",
+      "rationale": "历史误报来源第 2 项（chongyang1 46 处 reduzir 误报）。",
+      "product": {
+        "product_id": "FX-EDGE-0005",
+        "internal_sku": "EDGE-0005",
+        "shop_id": "FXSHOP1",
+        "title": "Fechadura Embutir para Reduzir Espessura da Porta",
+        "description": "Fechadura embutir para portas de madeira. Projeto que reduz a espessura total da porta em 2 cm. Cilindro em latão. Medidas: 12 cm por 8 cm por 4 cm. Peso: 380 g.",
+        "category": "Construção > Fechaduras",
+        "brand": "Sem Marca",
+        "price": 69.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": ["SBR-LV-001"],
+        "note": "「reduzir」描述物理尺寸变化，与疾病/疗效无关。"
+      },
+      "must_fire": [],
+      "must_not_fire": ["SBR-LV-001"]
+    },
+    {
+      "case_id": "EC-06",
+      "scenario": "词边界 —— 「tira」出现在普通商品名中",
+      "rationale": "葡语词边界坑：SBR-PI-005 的货币词根之一是 'tira'（tira-glacês 语境）。",
+      "product": {
+        "product_id": "FX-EDGE-0006",
+        "internal_sku": "EDGE-0006",
+        "shop_id": "FXSHOP1",
+        "title": "Kit 5 Tiras de Silicone para Preparo de Alimentos",
+        "description": "Kit com 5 tiras de silicone reutilizáveis para auxiliar na preparação de alimentos. Material alimentício, resistente a altas temperaturas. Medidas: 12 cm por 4 cm por 1 cm. Peso: 45 g.",
+        "category": "Casa > Cozinha > Acessórios",
+        "brand": "Sem Marca",
+        "price": 24.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": ["SBR-PI-005"],
+        "note": "「tira」是厨具名称的一部分，与伪造货币无关。"
+      },
+      "must_fire": [],
+      "must_not_fire": ["SBR-PI-005"]
+    },
+    {
+      "case_id": "EC-07",
+      "scenario": "词边界 —— 「peneira」出现在普通商品名中",
+      "rationale": "SBR-PI-005 的货币词根之一是 'peneira'（peneira de dinheiro 语境）。",
+      "product": {
+        "product_id": "FX-EDGE-0007",
+        "internal_sku": "EDGE-0007",
+        "shop_id": "FXSHOP1",
+        "title": "Kit 10 Peneiras em Aço Inox para Cozinha",
+        "description": "Kit com 10 peneiras em aço inox 304 para peneirar farofa, farinha e chás. Diâmetros de 5 cm a 20 cm. Peso total: 480 g.",
+        "category": "Casa > Cozinha > Utensílios",
+        "brand": "Sem Marca",
+        "price": 32.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": ["SBR-PI-005"],
+        "note": "「peneira」是筛网，与伪造货币无关。"
+      },
+      "must_fire": [],
+      "must_not_fire": ["SBR-PI-005"]
+    },
+    {
+      "case_id": "EC-08",
+      "scenario": "电池词 —— 「bateria」单独出现（普通工具）",
+      "rationale": "RI-003 收敛前，任何含 'bateria' 的商品都会被判为电池类。",
+      "product": {
+        "product_id": "FX-EDGE-0008",
+        "internal_sku": "EDGE-0008",
+        "shop_id": "FXSHOP1",
+        "title": "Furadeira de Impacto sem Fio 18V com Maleta e Bateria",
+        "description": "Furadeira de impacto sem fio 18V com maleta de transporte. Torque máximo de 55 Nm. Inclui brocas de aço. Dimensões: 25 cm por 8 cm por 24 cm. Peso: 2,4 kg. Produto para uso profissional e doméstico.",
+        "category": "Ferramentas > Furadeiras",
+        "brand": "Sem Marca",
+        "price": 349.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": ["SBR-RI-003"],
+        "note": "工具自带电池，但文案未声明电池类型（lítio/18650/power bank）—— 不应命中受限电池类。"
+      },
+      "must_fire": [],
+      "must_not_fire": ["SBR-RI-003"]
+    },
+    {
+      "case_id": "EC-09",
+      "scenario": "包类商品 —— 不带外卖 App logo",
+      "rationale": "IP-003 收敛前，任何 'mochila'/'bolsa' 都会被判为带外卖 logo。",
+      "product": {
+        "product_id": "FX-EDGE-0009",
+        "internal_sku": "EDGE-0009",
+        "shop_id": "FXSHOP1",
+        "title": "Mochila Executiva Compacta para Notebook 15,6 polegadas",
+        "description": "Mochila executiva com compartimento para notebook até 15,6 polegadas. Material em poliéster de alta resistência. Bolso frontal com zíper. Costura reforçada nas alças. Dimensões: 45 cm por 30 cm por 15 cm. Peso: 620 g. Produto próprio, sem logotipo de terceiros.",
+        "category": "Acessórios > Mochilas",
+        "brand": "Sem Marca",
+        "price": 119.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": ["SBR-IP-003"],
+        "note": "普通背包，无送餐 App logo。"
+      },
+      "must_fire": [],
+      "must_not_fire": ["SBR-IP-003"]
+    },
+    {
+      "case_id": "EC-10",
+      "scenario": "详情页含自家网址 —— 不应判为站外引流",
+      "rationale": "SBR-LV-005 的负向预查：shopee.com.br 及店铺子域是允许的。",
+      "product": {
+        "product_id": "FX-EDGE-0010",
+        "internal_sku": "EDGE-0010",
+        "shop_id": "FXSHOP1",
+        "title": "Chaleira Elétrica Inox 1,7L",
+        "description": "Chaleira elétrica em aço inox com 1,7 litro de capacidade. Liga e desliga automaticamente. Pode ser usada para água, chá e café. Voltagem bivolt automático. Medidas: 22 cm por 16 cm por 25 cm. Peso: 1,1 kg. Veja mais produtos em https://minhaloja.shopee.com.br.",
+        "category": "Casa > Cozinha > Chaleiras",
+        "brand": "Sem Marca",
+        "price": 149.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": ["SBR-LV-005"],
+        "note": "shopee 子域属于站内，不应判为站外引流。"
+      },
+      "must_fire": [],
+      "must_not_fire": ["SBR-LV-005"]
+    },
+    {
+      "case_id": "EC-11",
+      "scenario": "关键词堆砌的临界值 —— 14 词不命中，15 词命中",
+      "rationale": "LV-003 的阈值边界，用于防止把阈值改错。",
+      "product": {
+        "product_id": "FX-EDGE-0011",
+        "internal_sku": "EDGE-0011",
+        "shop_id": "FXSHOP1",
+        "title": "Tênis Esportivo Premium Masculino Feminino Unissex Casual Esportivo Treino Academia Confortável Leve Durável Impermeável",
+        "description": "Tênis para corrida e academia. Design moderno. Confortável. Medidas: 30 cm por 20 cm por 12 cm. Peso: 700 g.",
+        "category": "Calçados > Tênis",
+        "brand": "Sem Marca",
+        "price": 159.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": ["SBR-LV-003"],
+        "note": "恰好 14 词 —— 阈值下方，不命中。"
+      },
+      "must_fire": [],
+      "must_not_fire": ["SBR-LV-003"]
+    },
+    {
+      "case_id": "EC-12",
+      "scenario": "含连字符的长标题 —— 词数不应被低估",
+      "rationale": "LV-003 修正前的连字符词会中断词数统计。",
+      "product": {
+        "product_id": "FX-EDGE-0012",
+        "internal_sku": "EDGE-0012",
+        "shop_id": "FXSHOP1",
+        "title": "Tênis Esportivo Premium Masculino Feminino Unissex Casual Esportivo-running Treino Academia Confortável Leve Durável Impermeável Para Dia a Dia",
+        "description": "Tênis para corrida e academia. Design moderno. Medidas: 30 cm por 20 cm por 12 cm. Peso: 700 g.",
+        "category": "Calçados > Tênis",
+        "brand": "Sem Marca",
+        "price": 159.9,
+        "images": [],
+        "source": {"kind": "manual", "path": null, "imported_at": "2026-10-27T00:00:00Z"},
+        "targets": ["SBR-LV-003"],
+        "note": "含 'Esportivo-running' 连字符词 —— 修正后按 17 词计，应命中。"
+      },
+      "must_fire": ["SBR-LV-003"],
+      "must_not_fire": []
+    }
+  ]
+}
