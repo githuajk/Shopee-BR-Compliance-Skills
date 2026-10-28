@@ -32,13 +32,14 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 |---|---|---|
 | **店主 / 老板** | `docs/USER_SOP.md` §1 §2 §9 §10 | `docs/USER_SOP.md` §8（怎么看报告） |
 | **运营 / 执行人** | `docs/USER_SOP.md`（全文，按步骤做） | `docs/SOP_COMPLIANCE_REVIEW.md`（判定语义与铁律细节） |
-| **审核执行人** | `docs/USER_SOP.md` §5 §6 §7 | `contracts/risk_action_matrix.json`（动作查表） |
+| **审核执行人** | **`docs/MANUAL_REVIEW.md`**（纯手工手册，不需看代码） | `docs/USER_SOP.md` §5 §6 §7 |
 | **开发 Agent** | `PROJECT_RULES.md` + `AGENT_COLLABORATION.md` | `tasks/*.md`（自包含任务包） |
 
-> **两份 SOP 的分工**
+> **三份 SOP 的分工**
 > - `docs/USER_SOP.md` —— **给使用者看**。回答"做什么、按什么顺序做、做完交什么、遇到问题怎么办"。
+> - `docs/MANUAL_REVIEW.md` —— **给人工审核员看**。纯手工、无代码：查什么、怎么判、改成什么样。
 > - `docs/SOP_COMPLIANCE_REVIEW.md` —— **给判定层看**。回答"什么算违规、怎么判定、哪些铁律不能破"。
-> - USER_SOP **不新增任何判定规则**，只做流程框架与操作入口。
+> - USER_SOP 与 MANUAL_REVIEW **不新增任何判定规则**，只做流程框架与操作入口；判定依据一律来自 `rules/*.json` 与 `research/violation_codes.json`。
 
 ---
 
@@ -64,6 +65,7 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 | `contracts/lexicon_rule_map.json` | 词组 → 规则映射 |
 | `docs/SOP_COMPLIANCE_REVIEW.md` | ★ **统一审核 SOP**（合并历史全部方法） |
 | `docs/USER_SOP.md` | ★★ **使用者操作规程**（店主/运营/审核人看的端到端流程框架） |
+| `docs/MANUAL_REVIEW.md` | ★★ **人工审核操作手册**（纯手工，无代码：查什么/怎么判/改成什么样） |
 
 ### ② 七个 Skill 的模块说明与文件所有权
 
