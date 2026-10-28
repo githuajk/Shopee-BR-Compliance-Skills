@@ -16,7 +16,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(clorito\\s+de\\s+s[óo]dio|dióxido\\s+de\\s+cloro(\\s+(CDS|mms))?|solu[çc][ãa]o\\s+mineral\\s+milagrosa|medicamento\\s+abortivo|inje[çc][ãa]vel|intravenoso|medicamento\\s+veterin[aá]rio|droga\\s+il[íi]cita)(?![a-zA-Zà-ÿÀ-ß])"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(clorito\\s+de\\s+s[óo]dio|dióxido\\s+de\\s+cloro(\\s+(CDS|mms))?|solu[çc][ãa]o\\s+mineral\\s+milagrosa|medicamento\\s+abortivo|inje[tç]?[aá]ve(is|l)?|intravenoso|medicamento\\s+veterin[aá]rio|droga\\s+il[íi]cita)(?![a-zA-Zà-ÿÀ-ß])"
         }
       ],
       "severity": "critical",
@@ -32,14 +32,14 @@
       "source_excerpt": "Medicamentos de uso humano em geral; Medicamentos de uso veterinário; Medicamentos, produtos ou serviços que estejam relacionados com a realização de abortos; Clorito de sódio, dióxido de cloro (CDS) ou soluções minerais milagrosas (MMS), em todas as suas formas e apresentações;",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "medicine",
         "prohibited",
         "critical",
         "anvisa"
       ],
-      "notes": "This rule deliberately does NOT fire on the generic word 'medicamento' — see SBR-MED-002, which handles the licensing question. Firing on the generic word would block every supplement listing and would be wrong after the 6 Aug 2026 Anvisa authorisation."
+      "notes": "This rule deliberately does NOT fire on the generic word 'medicamento' — see SBR-MED-002, which handles the licensing question. Firing on the generic word would block every supplement listing and would be wrong after the 6 Aug 2026 Anvisa authorisation. 2026-10-28 集成修复：`inje[çc][ãa]vel` 拼写缺口（只能匹配不存在的“injecável”，漏掉葡语标准拼法 injetável/injetáveis）→ `inje[tç]?[aá]ve(is|l)?`，使“注射类药品”条款实际生效（肉毒毒素、填充剂等注入剂落入 SBR-MED-001 阻断层）。"
     },
     {
       "rule_id": "SBR-MED-002",
