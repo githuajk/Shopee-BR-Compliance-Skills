@@ -1,0 +1,161 @@
+{
+  "contract_version": "1.0.0",
+  "last_updated": "2026-10-27",
+  "notes": "风险等级与处理动作正交定义。本矩阵规定二者允许的组合、结论聚合规则与不可绕过的硬约束。",
+  "risk_levels": {
+    "info": {
+      "label": "提示性",
+      "description": "不构成风险，仅供知悉。",
+      "example": "描述中包含营销词但不违规"
+    },
+    "low": {
+      "label": "低风险",
+      "description": "可能被平台提示或建议修改，通常不扣分。",
+      "example": "标题堆砌关键词（平台码 [506]）"
+    },
+    "medium": {
+      "label": "中风险",
+      "description": "可能被下架并扣分（需证据），或需补充材料。",
+      "example": "夸大健康宣称（平台码 [337]，Média，扣分）"
+    },
+    "high": {
+      "label": "高风险",
+      "description": "扣分 + 下架，或需冻结重发。",
+      "example": "重复刊登（平台码 [401]）、受限类目缺授权"
+    },
+    "critical": {
+      "label": "极严重",
+      "description": "扣分 + 可能冻结账号。",
+      "example": "电子烟（平台码 [311]，Extrema）、假冒（[601]，Alta）"
+    }
+  },
+  "actions": {
+    "allow": {
+      "label": "通过",
+      "description": "不产生处置动作。",
+      "verdict": "PASS",
+      "always_human_review": false,
+      "executable_by": "automation"
+    },
+    "flag_for_review": {
+      "label": "提示人工复核",
+      "description": "不阻断，但需人工确认。",
+      "verdict": "REVIEW",
+      "always_human_review": true,
+      "executable_by": "human"
+    },
+    "require_evidence": {
+      "label": "需补齐证据",
+      "description": "在补齐 evidence_required 指定的材料前不得上架。",
+      "verdict": "REVIEW",
+      "always_human_review": true,
+      "executable_by": "human"
+    },
+    "revise": {
+      "label": "需修改后复审",
+      "description": "内容需修改（如模板化详情、缺品牌），改后复审。",
+      "verdict": "REVISE",
+      "always_human_review": true,
+      "executable_by": "human"
+    },
+    "block": {
+      "label": "不得上架",
+      "description": "商品不得发布/上架。",
+      "verdict": "BLOCK",
+      "always_human_review": true,
+      "executable_by": "human"
+    },
+    "freeze_relist": {
+      "label": "冻结重发",
+      "description": "商品存在但不得重新发布，直至关联案件了结。",
+      "verdict": "BLOCK",
+      "always_human_review": true,
+      "executable_by": "human_only"
+    },
+    "escalate_legal": {
+      "label": "转交法务/PI",
+      "description": "需法务责任人介入。IP 类结论默认走此路径。",
+      "verdict": "BLOCK",
+      "always_human_review": true,
+      "executable_by": "human_only"
+    }
+  },
+  "matrix": [
+    {"risk_level": "info", "action": "allow", "allowed": true, "note": null},
+    {"risk_level": "info", "action": "flag_for_review", "allowed": true, "note": null},
+    {"risk_level": "info", "action": "require_evidence", "allowed": false, "note": "信息级风险不需补证"},
+    {"risk_level": "info", "action": "revise", "allowed": false, "note": null},
+    {"risk_level": "info", "action": "block", "allowed": false, "note": null},
+    {"risk_level": "info", "action": "freeze_relist", "allowed": false, "note": null},
+    {"risk_level": "info", "action": "escalate_legal", "allowed": false, "note": null},
+
+    {"risk_level": "low", "action": "allow", "allowed": true, "note": null},
+    {"risk_level": "low", "action": "flag_for_review", "allowed": true, "note": null},
+    {"risk_level": "low", "action": "require_evidence", "allowed": true, "note": null},
+    {"risk_level": "low", "action": "revise", "allowed": true, "note": null},
+    {"risk_level": "low", "action": "block", "allowed": false, "note": "低风险不阻断"},
+    {"risk_level": "low", "action": "freeze_relist", "allowed": false, "note": null},
+    {"risk_level": "low", "action": "escalate_legal", "allowed": false, "note": null},
+
+    {"risk_level": "medium", "action": "allow", "allowed": false, "note": "中风险不直接放行"},
+    {"risk_level": "medium", "action": "flag_for_review", "allowed": true, "note": null},
+    {"risk_level": "medium", "action": "require_evidence", "allowed": true, "note": null},
+    {"risk_level": "medium", "action": "revise", "allowed": true, "note": null},
+    {"risk_level": "medium", "action": "block", "allowed": true, "note": "需 source.tier 为 platform_official 或 law"},
+    {"risk_level": "medium", "action": "freeze_relist", "allowed": false, "note": null},
+    {"risk_level": "medium", "action": "escalate_legal", "allowed": true, "note": "需 source.tier 为 platform_official 或 law"},
+
+    {"risk_level": "high", "action": "allow", "allowed": false, "note": null},
+    {"risk_level": "high", "action": "flag_for_review", "allowed": true, "note": null},
+    {"risk_level": "high", "action": "require_evidence", "allowed": true, "note": null},
+    {"risk_level": "high", "action": "revise", "allowed": true, "note": null},
+    {"risk_level": "high", "action": "block", "allowed": true, "note": "需 source.tier 为 platform_official 或 law"},
+    {"risk_level": "high", "action": "freeze_relist", "allowed": true, "note": "需关联已处置案件"},
+    {"risk_level": "high", "action": "escalate_legal", "allowed": true, "note": "需 source.tier 为 platform_official 或 law"},
+
+    {"risk_level": "critical", "action": "allow", "allowed": false, "note": null},
+    {"risk_level": "critical", "action": "flag_for_review", "allowed": true, "note": "仅当无法确认时"},
+    {"risk_level": "critical", "action": "require_evidence", "allowed": true, "note": null},
+    {"risk_level": "critical", "action": "revise", "allowed": false, "note": "极严重风险不适用「改一改再上」"},
+    {"risk_level": "critical", "action": "block", "allowed": true, "note": "需 source.tier 为 platform_official 或 law"},
+    {"risk_level": "critical", "action": "freeze_relist", "allowed": true, "note": "需关联已处置案件"},
+    {"risk_level": "critical", "action": "escalate_legal", "allowed": true, "note": "需 source.tier 为 platform_official 或 law"}
+  ],
+  "verdict_aggregation": {
+    "order": ["PASS", "REVISE", "REVIEW", "BLOCK"],
+    "rule": "max_with_action_detail",
+    "note": "多模块结果聚合时，verdict 取最重；action 保留最细粒度的那一条（如 REVIEW 档下保留 require_evidence 而非笼统的 flag_for_review）。"
+  },
+  "hard_constraints": [
+    {
+      "id": "H1",
+      "rule": "IP 类结论（category ∈ {ip_trademark, ip_copyright, ip_design, ip_patent}）恒为 confidence=signal 且 requires_human_review=true。关键词或 logo 命中只是筛查信号；仅权利人投诉、书面授权或平台投诉通知可确立侵权。",
+      "enforcement": "模块输出前自检；集成验收时断言"
+    },
+    {
+      "id": "H2",
+      "rule": "action ∈ {block, freeze_relist, escalate_legal} 只能由 source.tier ∈ {platform_official, law} 的 active 规则产生。AI 结论（source.tier=ai_inference）与 internal_risk/unverified 规则最高只能到 flag_for_review。确定性结论不可被 AI 降级。",
+      "enforcement": "模块输出前自检；集成验收时断言"
+    },
+    {
+      "id": "H3",
+      "rule": "输入字段缺失时该规则不评估，必须产出 unevaluated 条目（severity=warning，stage=rule_evaluation）。不得静默视为通过。",
+      "enforcement": "模块输出前自检；集成验收时断言"
+    },
+    {
+      "id": "H4",
+      "rule": "source.excerpt 必须逐字出现在 research/raw/ 的抓取件中。核验命令 tools/verify_citations.py。不通过则规则不得标记为 active。",
+      "enforcement": "tools/verify_citations.py；集成验收"
+    },
+    {
+      "id": "H5",
+      "rule": "evidence_refs 的 artifact_ref 只存引用，禁止内嵌完整凭证或授权文件内容。",
+      "enforcement": "人工评审 + 敏感信息扫描"
+    },
+    {
+      "id": "H6",
+      "rule": "freeze_relist 与 escalate_legal 为 human_only —— 任何自动化都不得执行解冻或 IP 投诉处置。",
+      "enforcement": "executable_by 字段；集成验收断言"
+    }
+  ]
+}
