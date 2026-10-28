@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shopee-br-compliance-agent.local/schema/product.schema.json",
+  "title": "Product",
+  "description": "Normalised listing record. One product = one Shopee listing (or one normalised candidate derived from an external source).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "product_id",
+    "internal_sku",
+    "shop_id",
+    "title",
+    "source"
+  ],
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "minLength": 4,
+      "description": "Stable internal id, e.g. SBRP-<shop_id>-<pid>."
+    },
+    "shop_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Which store the listing belongs to. Cross-store matching is scoped by this."
+    },
+    "shop_name": {"type": "string"},
+    "platform_pid": {
+      "type": ["string", "null"],
+      "description": "Shopee numeric product id (the A-column 商品ID of a mass_update export), if known."
+    },
+    "internal_sku": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Seller's own SKU / 主商品货号."
+    },
+    "supplier_sku": {
+      "type": ["string", "null"],
+      "description": "Supplier / distributor item number, used to detect same-SKU relisting."
+    },
+    "product_url": {"type": ["string", "null"], "format": "uri"},
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "description": {"type": "string"},
+    "attributes": {
+      "type": "object",
+      "description": "Category / spec attributes as key-value pairs.",
+      "additionalProperties": {"type": ["string", "number", "boolean", "null"]}
+    },
+    "category": {
+      "type": ["string", "null"],
+      "description": "Shopee category path as published."
+    },
+    "category_declared_by": {
+      "type": "string",
+      "enum": ["platform", "seller", "unknown"],
+      "default": "unknown"
+    },
+    "brand": {"type": ["string", "null"]},
+    "model": {"type": ["string", "null"]},
+    "price": {"type": ["number", "null"]},
+    "currency": {"type": "string", "default": "BRL"},
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["image_id"],
+        "properties": {
+          "image_id": {"type": "string"},
+          "url": {"type": ["string", "null"], "format": "uri"},
+          "local_path": {"type": ["string", "null"]},
+          "ocr_text": {"type": ["string", "null"], "description": "Text detected in the image."},
+          "detected_logos": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Logo/wordmark candidates found by visual analysis. A hit is a SIGNAL, not a finding of infringement."
+          },
+          "watermark": {"type": ["boolean", "null"]}
+        }
+      }
+    },
+    "variations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {"type": "string"},
+          "options": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["xlsx", "csv", "json", "jsonl", "txt", "md", "docx", "pdf", "image", "url", "manual", "platform_export"]
+        },
+        "path": {"type": ["string", "null"]},
+        "url": {"type": ["string", "null"], "format": "uri"},
+        "imported_at": {"type": "string"},
+        "raw_ref": {
+          "type": ["string", "null"],
+          "description": "Locator inside the original file (sheet + row, or record index) so the raw input is never lost."
+        }
+      }
+    },
+    "case_ids": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Cases this product is linked to."
+    },
+    "history": {
+      "type": "object",
+      "description": "Historical listing / violation history for this product.",
+      "additionalProperties": true
+    },
+    "notes": {"type": "string"}
+  }
+}
