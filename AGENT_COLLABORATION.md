@@ -3,8 +3,8 @@
 | 字段 | 值 |
 |---|---|
 | 文档 ID | `SBRCA-PROJ-002` |
-| 版本 | 1.0.0 |
-| 状态 | **Frozen — 已冻结，任何 Agent 不得自行修改** |
+| 版本 | 1.0.1 |
+| 状态 | **Frozen — 已冻结，任何 Agent 不得自行修改（集成 Agent 依契约流程修改并提升版本）** |
 | 冻结日期 | 2026-10-27 |
 | 适用范围 | 参与 SBRCA 的全部 Agent（模块 Agent、集成 Agent、任务执行者） |
 | 相关文档 | `PROJECT_RULES.md`、`contracts/`、`tasks/task_registry.json`、`tasks/task_template.md`、`tests/test_plan.md` |
@@ -266,7 +266,7 @@ env -u LD_LIBRARY_PATH python3 tools/verify_citations.py
 | 冲突检查 | 跨模块的规则 ID 冲突、语义冲突、职责重叠 |
 | 重复检查 | 跨模块的重复规则、重复实现 |
 | 接口一致性 | 各模块输出是否真的符合契约、能否被主 Skill 整合 |
-| 文件拆分 | 拆分混有多模块前缀的规则文件（`03_listing_violations_duplicates.json`） |
+| 文件拆分 | 拆分混有多模块前缀的规则文件（`rules/03` 已于 2026-10-28 拆为 `03_listing_violations.json` / `06_duplicate_listings.json`，决策见 `contracts/file_ownership.json` split_decisions） |
 | 验收 | 按 `tests/test_plan.md` 的集成验收标准判定 |
 
 集成 Agent **也是**契约的唯一修改者（经流程）。
@@ -307,3 +307,4 @@ env -u LD_LIBRARY_PATH python3 tools/verify_citations.py
 | 版本 | 日期 | 变更 | 作者 |
 |---|---|---|---|
 | 1.0.0 | 2026-10-27 | 初版并冻结（文件名为 `AGENT_COLLABORATION.md` 以避开平台保护文件） | 技术负责人（Agent） |
+| 1.0.1 | 2026-10-28 | §10 文件拆分示例更新为 rules/03 拆分后的现状（03/06，决策见 `contracts/file_ownership.json` split_decisions） | 集成 Agent（合并 feature/lexicon-real-source-batch003） |

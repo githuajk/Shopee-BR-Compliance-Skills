@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "name": "Shopee BR — 误报豁免规则",
   "description": "词库命中后需要人工判定的场景。豁免不等于放行 —— 命中仍要记录，只是降低置信度或转为需复核。",
-  "last_updated": "2026-10-27",
+  "last_updated": "2026-10-28",
   "rules": [
     {
       "id": "EX-TOOLS",
@@ -52,6 +52,384 @@
       "pattern": "^(.*)\\b(vidro|vidros|maleta|case|bolsa|cabide|suporte|organizador|abertura|fechadura)\\b(.*)$",
       "action": "require_review",
       "reason": "品牌名可能是产品通用词。默认仍按侵权命中，需上下文判断。"
+    },
+    {
+      "id": "EX-CATALOG-01",
+      "group_id": "catalog_anvisa_agrotoxico_active_ingredients__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-02",
+      "group_id": "catalog_anvisa_agrotoxico_active_ingredients__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-03",
+      "group_id": "catalog_anvisa_agrotoxico_substances__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-04",
+      "group_id": "catalog_anvisa_agrotoxico_substances__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-05",
+      "group_id": "catalog_anvisa_food_company_names__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-06",
+      "group_id": "catalog_anvisa_food_company_names__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-07",
+      "group_id": "catalog_anvisa_food_product_categories__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-08",
+      "group_id": "catalog_anvisa_food_product_categories__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-09",
+      "group_id": "catalog_anvisa_food_product_names__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-10",
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-11",
+      "group_id": "catalog_anvisa_food_product_types__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-12",
+      "group_id": "catalog_anvisa_food_product_types__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-13",
+      "group_id": "catalog_anvisa_health_commercial_names__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-14",
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-15",
+      "group_id": "catalog_anvisa_health_holders__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-16",
+      "group_id": "catalog_anvisa_health_holders__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-17",
+      "group_id": "catalog_anvisa_health_manufacturers__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-18",
+      "group_id": "catalog_anvisa_health_manufacturers__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-19",
+      "group_id": "catalog_anvisa_health_technical_names__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-20",
+      "group_id": "catalog_anvisa_health_technical_names__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-21",
+      "group_id": "catalog_anvisa_ifa_active_ingredients__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-22",
+      "group_id": "catalog_anvisa_ifa_active_ingredients__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-23",
+      "group_id": "catalog_anvisa_medicine_active_ingredients__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-24",
+      "group_id": "catalog_anvisa_medicine_active_ingredients__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-25",
+      "group_id": "catalog_anvisa_medicine_holders__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-26",
+      "group_id": "catalog_anvisa_medicine_product_names__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-27",
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-28",
+      "group_id": "catalog_anvisa_medicine_therapeutic_classes__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-29",
+      "group_id": "catalog_anvisa_medicine_therapeutic_classes__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-30",
+      "group_id": "catalog_anvisa_restricted_medicine_active_ingredients__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-31",
+      "group_id": "catalog_anvisa_restricted_medicine_active_ingredients__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-32",
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-33",
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-34",
+      "group_id": "catalog_anvisa_saneante_company_names__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-35",
+      "group_id": "catalog_anvisa_saneante_company_names__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-36",
+      "group_id": "catalog_anvisa_saneante_product_names__multi",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-CATALOG-37",
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "pattern": "[\\s\\S]*",
+      "action": "exempt",
+      "reason": "ANVISA/CTI/MAPA 监管目录登记条目。目录登记 ≠ 平台明文禁词，命中仅作成分级资格核验信号（转 SBR-MED-004 收注册/许可/标签证据），不作标题违规判定。"
+    },
+    {
+      "id": "EX-D6-LATICINIO-ROTULADO",
+      "group_id": "proibido_dairy",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(queijo\\ artesanal|manteiga\\ artesanal|laticínios\\ caseiros|laticínios\\ artesanais)(?![a-zA-Zà-ÿÀ-ß0-9]).*(?<![a-zA-Zà-ÿÀ-ß0-9])(com\\ rotulagem|rotulagem\\ adequada|embrulhado|rotulado|selo\\ de\\ inspeção|sello|registro|rastreabilidade|lacta|pasteurizado)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "require_review",
+      "reason": "官方 2.2.1 禁止的是『Laticínios caseiros/artesanais, à granel e/ou sem selagem industrial e rastreabilidade (ex.: \"manteiga artesanal\", \"queijo artesanal\" sem rotulagem adequada)』；2.2.2 明确 minas frescal 等有认证乳制品为许可品。带合规标识/溯源的 artisanal 奶酪属授权卖家许可范围，不应直接判禁售。"
+    },
+    {
+      "id": "EX-D6-ALIMENTO-AUTORIZADO",
+      "group_id": "restrito_alimento",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(alimentos\\ frescos|alimentos\\ frescos\\ e\\ congelados|produtos\\ caseiros)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "flag_low",
+      "reason": "官方 2. ALIMENTOS E BEBIDAS 原文：『Não são permitidos alimentos frescos e produtos caseiros, exceto para vendedores autorizados』——禁售仅针对未授权卖家，授权卖家（OKlist Turbo - Alimentos Frescos）可合法销售。该组映射 SBR-RI-005 属 require_evidence 而非禁售，命中应降为需复核，不应直接拦截。"
+    },
+    {
+      "id": "EX-D6-BEBIDA-CASEIRA-NONALCOOLICA",
+      "group_id": "restrito_bebida",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(bebidas\\ caseiras|bebida\\ caseira)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "flag_low",
+      "reason": "官方 2.1 BEBIDAS ALCÓOLICAS 禁止的是自酿酒精饮品；『Bebidas caseiras』同样出现在 2. ALIMENTOS E BEBIDAS，指未经许可的鲜食/自制食品，许可卖家可售。该组映射 SBR-RI-001 属 require_evidence，命中应降为需复核。"
+    },
+    {
+      "id": "EX-D6-METAIS-NOJOIARIA",
+      "group_id": "platform_currency_human_body_restricted",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(metais\\ preciosos|metal\\ precioso)(?![a-zA-Zà-ÿÀ-ß0-9]).*(?<![a-zA-Zà-ÿÀ-ß0-9])(joalheria|joia|joias|bijuter|ourivesaria|fundição|banco\\ de\\ metais|fundicao|arte|artesanato|chaveiro)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "require_review",
+      "reason": "官方 6. MOEDA FÍSICA / CRÉDITOS 禁止『Metais preciosos』，指向贵金属货币/投资标的。珠宝DIY工具、贵金属加工与收藏工艺品属常见在售品类，需上下文判定是否属货币/金融标的。"
+    },
+    {
+      "id": "EX-D6-PILHAS-ALCALINAS-COMERCIO",
+      "group_id": "restrito_bateria",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(pilhas\\ alcalinas|pilha\\ alcalina|pilhas\\ de\\ zinco|pilhas\\ alcalinas\\ lr6|aalk)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "flag_low",
+      "reason": "官方 5.4.1 ELETRÔNICOS：『É restrita a venda de pilhas alcalinas, lítio e zinco』——属受限（require_evidence）而非禁售。商品标题直述品类属正常上架信息，实际拦截依据是缺少 Inmetro/ANATEL 等注册证据，由 SBR-RI-003 / SBR-AU-001 承接。"
+    },
+    {
+      "id": "EX-D6-TATICO-NAO-BALISTICO",
+      "group_id": "restrito_airsoft",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(equipamentos\\ táticos|equipamento\\ tático|equipamentos\\ taticos)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "flag_low",
+      "reason": "官方 13.1.2：『produtos como balas e munição para airsoft de calibre maior que 6.35 milímetros e alguns equipamentos táticos como colete à prova de balas, são proibidos』——禁的是弹道护具与实弹，普通战术装备（背心/手套/护具/背包）属许可类。该组映射 SBR-RI-007 属 require_evidence。"
+    },
+    {
+      "id": "EX-D6-ETIQUETA-EMBRULHO-VAZIO",
+      "group_id": "platform_out_of_commerce",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(selos|rótulos|lacres|garrafas\\ vazias)(?![a-zA-Zà-ÿÀ-ß0-9]).*(?<![a-zA-Zà-ÿÀ-ß0-9])(vazia|vazias|personalizado|personalizada|adesivo|adesivos|impressão|impressos|branco|branca|vinho|cerveceria|engarrafamento)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "require_review",
+      "reason": "官方 12. PRODUTOS FORA DO COMÉRCIO 中『Garrafas vazias, selos, rótulos, lacres e certificações de bebidas alcóolicas』为整句，指与酒类认证/流通环节相关的空瓶与防伪标，非酒类包装物料（空白标签贴、封条）本身禁止。"
+    },
+    {
+      "id": "EX-D6-ARTEFATO-REGULAR",
+      "group_id": "platform_illegal_activities",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(valor\\ histórico,\\ cultural\\ ou\\ arqueológico\\ protegido|bens\\ naturais\\ de\\ origem\\ restrita)(?![a-zA-Zà-ÿÀ-ß0-9]).*(?<![a-zA-Zà-ÿÀ-ß0-9])(réplica|replica|réplica|decorativo|decorativa|réplica\\ decorativa|brinquedo|miniatura|réplica\\ em\\ miniatura)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "require_review",
+      "reason": "官方 HOBBIES 章节禁的是受保护文物的真品与非法来源天然标本。博物馆级复制品、装饰性缩比模型、家居摆件为常规在售品类，需上下文区分真品与复制品。"
+    },
+    {
+      "id": "EX-D6-EBOOK-LEITOR-FISICO",
+      "group_id": "platform_illegal_activities",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(kindle|ereader|e\\-reader)(?![a-zA-Zà-ÿÀ-ß0-9]).*(?<![a-zA-Zà-ÿÀ-ß0-9])(leitor|leitor\\ de\\ livros|aparelho|suporte|capa|protetor|organizador|acessório|acessorio)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "require_review",
+      "reason": "官方禁售的是『livros em formato digital / ebooks』等数字内容本体（未经授权分发）。电子阅读器硬件、阅读器保护套与书架属正常在售品类。"
+    },
+    {
+      "id": "EX-D6-SELOS-HOMOLOGACAO",
+      "group_id": "platform_illegal_activities",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(selos\\ de\\ registro|selos\\ de\\ registro,\\ homologação|documentos\\ autorizados|documentos\\ de\\ identificação)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "require_review",
+      "reason": "官方 3.2 DOCUMENTOS AUTORIZADOS 禁的是『fornecimento』——即提供/售卖政府签发的身份证件、注册与认证印章本身。listing 中提及『número de homologação』等注册号属合规信息展示，与 SBR-LV-009 重复。"
+    },
+    {
+      "id": "EX-D6-SIMBOLOS-RELIGIOSOS-NAO-VIOLENCIA",
+      "group_id": "conteudo_extremista",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(promova\\ violência|promove\\ violência|espalhe\\ ódio\\ ou\\ medo)(?![a-zA-Zà-ÿÀ-ß0-9]).*(?<![a-zA-Zà-ÿÀ-ß0-9])(contra|religião|religiao|cultura|tradição|tradicao|divulgação|divulgacao|informativo|livro|história|historia)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "require_review",
+      "reason": "官方 8. POLÍTICA/RELIGIÃO 禁的是煽动暴力、散布仇恨与宣扬军事政权等内容。宗教文化普及读物、历史研究、和平倡议类商品常含相关表述，需上下文判定。"
+    },
+    {
+      "id": "EX-D6-COSMETICOS-USADOS-RECOMERCIAL",
+      "group_id": "restrito_saude",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(produtos\\ cosméticos\\ e\\ perfumes\\ usados)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "flag_low",
+      "reason": "官方 7. BELEZA 确实禁售『Produtos cosméticos e perfumes usados』。但『usados』在 listing 中也常指『二手/翻新』语境或「已被使用过的产品类别」描述语，且该条同时被 SBR-RI-002（健康类受限）承接。降置信以提示复核，不直接按禁售拦截。"
+    },
+    {
+      "id": "EX-D6-FERTILIZANTE-HOMEM",
+      "group_id": "certificacao_marca",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(fertilizantes\\ ou\\ adubos\\ caseiros|fertilizante|fertilizantes|adubos\\ caseiros|adubo\\ caseiro)(?![a-zA-Zà-ÿÀ-ß0-9]).*(?<![a-zA-Zà-ÿÀ-ß0-9])(horta|hortaliça|hortalica|plantio|jardim|casa|domicílio|domicilio|autoprodução|autoproducao|vaso|samambaia|mudas)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "require_review",
+      "reason": "官方 3.3 章节对肥料/土壤改良剂要求 MAPA 认证（certificação do mapa）。家庭园艺用有机肥、堆肥、自制堆肥为合规常见场景，拦截依据应是缺 MAPA 注册号而非品类本身。"
+    },
+    {
+      "id": "EX-D6-EXTINTOR-COMERCIAL",
+      "group_id": "certificacao_marca",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(extintores\\ de\\ incêndio|extintor\\ de\\ incêndio|extintores\\ de\\ incendio)(?![a-zA-Zà-ÿÀ-ß0-9]).*(?<![a-zA-Zà-ÿÀ-ß0-9])(inmetro|homologado|certificado|nº|numero|capacidade|abc|pó|po|co2|industrial|residencial|automotivo|portátil|portatil)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "require_review",
+      "reason": "灭火器本体是合规在售品类（消防器材），受 Inmetro 认证与消防法约束。真正的拦截点是缺 Inmetro 认证号，由 SBR-LV-009 / SBR-AU-001 承接，不应按禁售品类拦截。"
+    },
+    {
+      "id": "EX-D6-PNEU-REMOLDADO-REGULAR",
+      "group_id": "platform_automotive_restricted",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(pneus\\ remoldados|pneu\\ remoldado|pneus\\ usados|pneu\\ usado)(?![a-zA-Zà-ÿÀ-ß0-9]).*(?<![a-zA-Zà-ÿÀ-ß0-9])(remold|inmetro|registro|homolog|venda|trocado|recauchetado)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "require_review",
+      "reason": "官方 5.4 允许 remold 轮胎销售，强制要求：标题标注『Remold』、正文填写 Inmetro 注册号。『Pneus usados』在汽配零售中是常规描述，拦截依据是缺 Remold 标注与 Inmetro 号。"
+    },
+    {
+      "id": "EX-D6-IDENTIFICACAO-PESSOAL",
+      "group_id": "platform_illegal_activities",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(localização\\ pessoal|identificações\\ pessoais|identificacoes\\ pessoais|vigilância\\ de\\ áudio|vigilancia\\ de\\ audio|números\\ de\\ cartões|numeros\\ de\\ cartoes)(?![a-zA-Zà-ÿÀ-ß0-9]).*(?<![a-zA-Zà-ÿÀ-ß0-9])(cpf|cnpj|rg|documento|identidade|placa|detetor|rastreador|tracker|câmera|camera|espia|espionagem|clandestin)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "require_review",
+      "reason": "官方 3.1 DADOS PESSOAIS 禁的是『fornecimento de informações privadas de um indivíduo』——即非法提供/买卖个人隐私数据。GPS 追踪器、防盗定位器、行车记录仪等合法安防/车载配件常含相关词，属正当品类。"
+    },
+    {
+      "id": "EX-D6-LICENCA-AUTORIZA",
+      "group_id": "platform_out_of_commerce",
+      "pattern": "(?<![a-zA-Zà-ÿÀ-ß0-9])(sem\\ registro\\ ou\\ com\\ registro\\ cancelado|foram\\ interditadas\\ ou\\ recolhidas|não\\ estão\\ autorizadas\\ para\\ comercialização|nao\\ estao\\ autorizadas\\ para\\ comercializacao)(?![a-zA-Zà-ÿÀ-ß0-9])",
+      "action": "flag_low",
+      "reason": "该组为『FORA DO COMÉRCIO』产品状态描述（已取消注册/被查扣/未获准销售）。listing 提及自身注册状态时属合规信息展示，真正的拦截依据是注册确实无效，由 SBR-AU-001 承接。"
     }
   ]
 }

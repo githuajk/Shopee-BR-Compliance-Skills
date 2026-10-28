@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
-  "library": "Shopee BR — listing violations, duplicates and consumer protection",
+  "library": "Shopee BR — listing violations",
   "source_tier": "platform_official",
   "source_url": "https://seller.br.shopee.cn/edu/article/5139",
   "source_excerpt": "Quando um anúncio viola essas regras, ele pode ser suspenso ou removido. Dependendo da gravidade da infração, o vendedor também pode receber Pontos de Penalidade.",
   "last_verified": "2026-10-27",
-  "notes": "These rules cover listing-quality violations, duplicate listings, misleading claims and consumer-protection duties. Where the platform only 'suggests' a correction (severity Baixa, no penalty point), the decision is a review flag rather than a block.",
+  "notes": "Listing-quality violations and prohibited-content rules. 拆分自原 rules/03_listing_violations_duplicates.json（2026-10-28 集成阶段，LV 前缀归 shopee-br-listing-audit）；DUP 部分见 rules/06_duplicate_listings.json。",
   "rules": [
     {
       "rule_id": "SBR-LV-001",
@@ -418,108 +418,196 @@
       "notes": "DRAFT / internal_risk: the trigger as written cannot distinguish an inappropriate use of variations from a legitimate one — it needs the variation-vs-attribute consistency check. Kept as draft so it can never block."
     },
     {
-      "rule_id": "SBR-DUP-001",
-      "title": "Duplicate listing within the same store",
-      "category": "duplicate_listing",
-      "description": "Listings that copy another listing of the same seller are removed. Code [401] (Cópia de outro(s) anúncio(s)) carries severity Baixa and does not generate a penalty point. The platform treats listings of the same product without substantive differences in title, description, photos or variants as duplicates and deletes them.",
+      "rule_id": "SBR-LV-015",
+      "title": "Obscene or profane language in listing content",
+      "category": "listing_violation",
+      "description": "Shopee's Community Guidelines prohibit content that contains words considered obscene, coarse, offensive, rude or profane, including coarse references to sexual relations or sexual organs. A listing whose title, description, attributes or brand field carries such language breaches the content rules. Detection is lexical and always requires human confirmation, because the same Portuguese words occur in legitimate merchant copy and in buyer reviews.",
       "trigger_conditions": [
         {
           "field": "any_text",
-          "operator": "contains_any",
-          "value": [
-            "__DUPLICATE_SIGNAL__"
-          ]
+          "operator": "regex",
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(idiota\\s+(completo|perdido)|ot[aá]rio\\s+sem\\s+no[çc][ãa]o|imbecil\\s+sem\\s+vergonha|[pv]alh[aç]o\\s+de\\s+mierda|vai\\s+se\\s+foder|vai\\s+tomar\\s+no\\s+cu|vai\\s+se\\s+lamber|dou-me\\s+ao\\s+caralho|filha\\s+da\\s+puta|que\\s+se\\s+foda|foda-se|merda\\s+de\\s+qualidade|porra\\s+de\\s+qualidade|lixo\\s+de\\s+qualidade|arrombado\\s+mesmo|porra\\s+do\\s+caralho|idiota\\s+do\\s+caralho)(?![a-zA-Zà-ÿÀ-ß])"
         }
       ],
       "severity": "medium",
       "decision": "flag_for_review",
       "evidence_required": [
-        "canonical_listing_id",
-        "variant_rationale"
+        "product_photographs",
+        "listing_text_snapshot"
       ],
       "human_review_required": true,
-      "source_url": "https://seller.br.shopee.cn/edu/article/5139",
+      "source_url": "https://help.shopee.com.br/4/article/150027-Diretrizes-da-Comunidade-Shopee",
       "source_tier": "platform_official",
-      "source_excerpt": "[401] Cópia de outro(s) anúncio(s). Severidade: Baixa. Não gera ponto de penalidade.",
-      "last_verified": "2026-10-27",
+      "source_excerpt": "Qualquer conteúdo que contenha palavras consideradas obscenas, carentes de refinamento de gosto, grosseiras, ofensivas, rudes ou profanas, incluindo referências grosseiras à relação sexual ou órgãos sexuais.",
+      "last_verified": "2026-10-28",
       "status": "active",
       "version": 1,
       "tags": [
-        "duplicate",
-        "within_store",
-        "platform_code_401"
+        "community_guidelines",
+        "obscene_language",
+        "content_violation"
       ],
-      "notes": "The trigger is a sentinel: the duplicate engine injects the token __DUPLICATE_SIGNAL__ into the field it wants the rule to match, so the duplicate verdict is produced by the duplicate engine (which has the cross-store index) rather than by a text pattern. The rule then governs the severity/decision/evidence."
+      "notes": "2026-10-28: 词库组 conteudo_ofensivo 触发。仅收录句式组合，不收裸词 —— puta/merda/diabo/idiota 在葡语商品文案与买家评价中有大量合法用法（'vale um diabo'、'idiota do preço'）。命中仅是信号，须人工确认发布者是否确以粗俗语气表述。"
     },
     {
-      "rule_id": "SBR-DUP-002",
-      "title": "Duplicate listings across stores (cross-store same product)",
-      "category": "cross_store_duplicate",
-      "description": "The same product listed in more than one store, including across the operator's own stores. The platform removes duplicate listings (code [302], severity Baixa, no penalty point). Cross-store duplication of one SKU across several of the operator's stores is an internal catalogue-hygiene issue as well: it splits review history and can trigger 'anúncios duplicados' removals in each store.",
+      "rule_id": "SBR-LV-016",
+      "title": "Sexually suggestive or explicit content in listing material",
+      "category": "listing_violation",
+      "description": "The Community Guidelines prohibit representing sexual content and nudity, whether real, dramatised, illustrated or animated, and prohibit content that depicts or implies sexual acts, that communicates explicit sexual gratification, or that verbally stimulates sexual activity. Listings advertising adult merchandise must stay within the platform's permitted non-explicit presentation; suggestive copy and images are removed.",
       "trigger_conditions": [
         {
           "field": "any_text",
-          "operator": "contains_any",
-          "value": [
-            "__CROSS_STORE_DUPLICATE_SIGNAL__"
-          ]
-        }
-      ],
-      "severity": "medium",
-      "decision": "flag_for_review",
-      "evidence_required": [
-        "canonical_listing_id",
-        "variant_rationale",
-        "master_sku_assignment"
-      ],
-      "human_review_required": true,
-      "source_url": "https://seller.br.shopee.cn/edu/article/5139",
-      "source_tier": "platform_official",
-      "source_excerpt": "[302] Anúncios duplicados. Severidade: Baixa. Não gera ponto de penalidade.",
-      "last_verified": "2026-10-27",
-      "status": "active",
-      "version": 1,
-      "tags": [
-        "duplicate",
-        "cross_store",
-        "platform_code_302"
-      ],
-      "notes": "Sentinel trigger, same mechanism as SBR-DUP-001: the duplicate engine injects the token. Cross-store matching uses supplier-SKU identity plus title/description similarity; see engine/duplicates.py."
-    },
-    {
-      "rule_id": "SBR-DUP-003",
-      "title": "Same product re-listed with a modified title or SKU",
-      "category": "duplicate_listing",
-      "description": "Re-publishing a previously removed or banned listing under a modified title or a new SKU to escape enforcement. The platform removes the copy (code [401]) and the listing that was copied is still attached to the original case, so the copy inherits the enforcement history. A modified title or SKU does not create a new, clean listing.",
-      "trigger_conditions": [
-        {
-          "field": "any_text",
-          "operator": "contains_any",
-          "value": [
-            "__RELIST_SIGNAL__"
-          ]
+          "operator": "regex",
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(quente\\s+pra\\s+caralho|deixa\\s+eu\\s+te\\s+foder|fode\\s+com\\s+você|vem\\s+me\\s+comer|vem\\s+de\\s+noite|me\\s+chama\\s+de\\s+noite|acompanha-me\\s+na\\s+cama|te\\s+mostra\\s+tudo|postura(s)?\\s+er[óo]tica(s)?|exposi[çc][ãa]o\\s+de\\s+partes\\s+[íi]ntimas|sexo\\s+expl[íi]cito\\s+no\\s+an[úu]ncio|conte[úu]do\\s+sexual\\s+expl[íi]cito|linguagem\\s+sexual\\s+expl[íi]cita|brinquedo\\s+sexual\\s+com\\s+demonstra[çc][ãa]o|boneca\\s+de\\s+caráter\\s+er[óo]tico\\s+infantil|an[úu]ncios\\s+de\\s+sexo\\s+ilegal|trabalho\\s+sexual)(?![a-zA-Zà-ÿÀ-ß])"
         }
       ],
       "severity": "high",
-      "decision": "freeze_relist",
+      "decision": "flag_for_review",
       "evidence_required": [
-        "original_case_id",
-        "product_url_history",
-        "supplier_invoice"
+        "product_photographs",
+        "listing_text_snapshot"
       ],
       "human_review_required": true,
-      "source_url": "https://seller.shopee.com.br/edu/article/16318",
+      "source_url": "https://help.shopee.com.br/4/article/150027-Diretrizes-da-Comunidade-Shopee",
       "source_tier": "platform_official",
-      "source_excerpt": "Anúncios banidos podem ser restabelecidos assim que a violação for resolvida. Os anúncios excluídos pela Shopee não podem ser recuperados e incorrerão pontos no sistema de Pontos de Penalidade do Vendedor da Shopee.",
-      "last_verified": "2026-10-27",
+      "source_excerpt": "Proibimos conteúdo que seja ofensivo, obsceno, ou culturalmente inapropriado ou conteúdo restrito por idade, não adequado para Usuários de todas as idades.",
+      "last_verified": "2026-10-28",
       "status": "active",
       "version": 1,
       "tags": [
-        "relist",
-        "freeze",
-        "history"
+        "community_guidelines",
+        "sexual_content",
+        "content_violation"
       ],
-      "notes": "Sentinel trigger. The relist engine matches a candidate listing against historical case records by supplier SKU, platform PID, product-image hash and title similarity. A match means the new listing inherits the old case and is frozen pending review."
+      "notes": "2026-10-28: 词库组 conteudo_sexual 触发。severity=high 因准则将性与裸露列为独立整节（第 2 节）并覆盖 MEASI（儿童性剥削材料），但决策保持 flag_for_review：文本命中无法证明商品或图片实际露骨，且成人用品在平台有合规类目存在（对比 SBR-RI-002 的 require_evidence 路径）。严禁在报告中输出命中词原文。"
+    },
+    {
+      "rule_id": "SBR-LV-017",
+      "title": "Promotion, praise or recruitment for extremist or terrorist organisations",
+      "category": "listing_violation",
+      "description": "The Community Guidelines prohibit praising, promoting or helping extremist, criminal or terrorist individuals or organisations, and prohibit content that encourages joining such an organisation or contains their names, symbols, logos, flags, slogans or uniforms. A listing that markets products carrying such organisations' identity, or that recruits for them, breaches the content rules.",
+      "trigger_conditions": [
+        {
+          "field": "any_text",
+          "operator": "regex",
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(partido\\s+nazi(s|ta)?|organiza[çc][ãa]o\\s+(extremista|terrorista|criminosa)|grupo\\s+de\\s+[óo]dio|recrutar\\s+novos\\s+membros|apologia\\s+ao\\s+nazismo|elogiar\\s+o\\s+nazismo|seita\\s+(destrutiva|apocal[íi]ptica)|culto\\s+destrutivo|nazismo|hitlerismo)(?![a-zA-Zà-ÿÀ-ß])"
+        }
+      ],
+      "severity": "high",
+      "decision": "flag_for_review",
+      "evidence_required": [
+        "product_photographs",
+        "listing_text_snapshot"
+      ],
+      "human_review_required": true,
+      "source_url": "https://help.shopee.com.br/4/article/150027-Diretrizes-da-Comunidade-Shopee",
+      "source_tier": "platform_official",
+      "source_excerpt": "Qualquer conteúdo destinado a elogiar, promover ou ajudar indivíduos ou organizações extremistas, criminosos ou terroristas também não é permitido no Shopee.",
+      "last_verified": "2026-10-28",
+      "status": "active",
+      "version": 1,
+      "tags": [
+        "community_guidelines",
+        "extremism",
+        "content_violation"
+      ],
+      "notes": "2026-10-28: 词库组 conteudo_extremista 触发。只收「组织/标志物/招募/美化」组合 —— 'igreja'/'religião'/'partido' 单独出现不违规（巴西宗教用品与政党周边为正常商品）。实体标识印在服饰/配件上的情形见 SBR-PI-010（禁售仇恨符号商品）。"
+    },
+    {
+      "rule_id": "SBR-LV-018",
+      "title": "Misinformation and conspiracy content in listing copy",
+      "category": "listing_violation",
+      "description": "The Community Guidelines prohibit content involving misinformation that incites hatred or prejudice, misinformation associated with emergencies that may cause panic, and medical misinformation that may endanger someone's physical health. Listings whose copy repeats such claims (for example, that a vaccine causes harm, that a certain technology controls people, or that a health product cures a disease) breach the content rules.",
+      "trigger_conditions": [
+        {
+          "field": "any_text",
+          "operator": "regex",
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(vacina\\s+causa|vacina\\s+causa\\s+autofimose|5g\\s+causa|chip\\s+da\\s+5g\\s+controla|a\\s+terra\\s+[ée]\\s+plana|chemtrails|quedas\\s+de\\s+avi[ãa]o\\s+n[ãa]o\\s+existem|o\\s+corona\\s+foi\\s+inventado|covid\\s+n[ãa]o\\s+existe|pandemia\\s+[ée]\\s+mentira|cloro\\s+cura|cloro\\s+mata\\s+v[íi]rus|desinforma[çc][ãa]o\\s+que\\s+incite\\s+[óo]dio|desinforma[çc][ãa]o\\s+associada\\s+a\\s+emerg[êe]ncias)(?![a-zA-Zà-ÿÀ-ß])"
+        }
+      ],
+      "severity": "medium",
+      "decision": "flag_for_review",
+      "evidence_required": [
+        "listing_text_snapshot",
+        "supplier_documentation"
+      ],
+      "human_review_required": true,
+      "source_url": "https://help.shopee.com.br/4/article/150027-Diretrizes-da-Comunidade-Shopee",
+      "source_tier": "platform_official",
+      "source_excerpt": "• Qualquer conteúdo envolvendo desinformação que incite ódio ou preconceito",
+      "last_verified": "2026-10-28",
+      "status": "active",
+      "version": 1,
+      "tags": [
+        "community_guidelines",
+        "misinformation",
+        "content_violation"
+      ],
+      "notes": "2026-10-28: 词库组 conteudo_desinformacao 触发。只收成型谣言标签，不收正常疑问句与科普表述。'vacina causa' 等短前缀存在与合法语境（如 'a vacina causa imunidade'）的边界风险，故 human_review_required=true 且 severity=medium，动作不阻断。"
+    },
+    {
+      "rule_id": "SBR-LV-019",
+      "title": "Nudity or indecent presentation in listing images and copy",
+      "category": "listing_violation",
+      "description": "The Community Guidelines prohibit any content showing total or partial nudity or depicting genitals, breasts or buttocks, whether clothed or not, and prohibit content that appears indecent, morally improper or contrary to social norms. A listing whose images or copy present the product or a model in such a way breaches the content rules.",
+      "trigger_conditions": [
+        {
+          "field": "any_text",
+          "operator": "regex",
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(nudez\\s+total|nudez\\s+parcial|mostrar\\s+o\\s+corpo\\s+inteiro|roupa\\s+(de\\s+baixo|[íi]ntima)\\s+transparente|sem\\s+suti[ãa]|sem\\s+calcinha|vestido\\s+de\\s+baixo\\s+decote|deixei\\s+a\\s+manga\\s+pra\\s+fora|saia\\s+a\\s+menos\\s+de\\s+10\\s*cm|roupa\\s+de\\s+baixo\\s+de\\s+liga\\s+estilo\\s+fio)(?![a-zA-Zà-ÿÀ-ß])"
+        }
+      ],
+      "severity": "high",
+      "decision": "flag_for_review",
+      "evidence_required": [
+        "product_photographs",
+        "listing_text_snapshot"
+      ],
+      "human_review_required": true,
+      "source_url": "https://help.shopee.com.br/4/article/150027-Diretrizes-da-Comunidade-Shopee",
+      "source_tier": "platform_official",
+      "source_excerpt": "• Qualquer conteúdo que mostre nudez (total ou parcial) ou represente genitálias, seios ou nádegas, vestidos ou não.",
+      "last_verified": "2026-10-28",
+      "status": "active",
+      "version": 1,
+      "tags": [
+        "community_guidelines",
+        "nudity",
+        "indecent",
+        "content_violation"
+      ],
+      "notes": "2026-10-28: 词库组 vestimenta_indecente 触发。已刻意剔除正常商品词：'saia curta'(短裙)、'biquíni'(泳衣)、'lingerie'(内衣)、'top sem aro'(无钢圈内衣) 均为合法商品不收。本规则只管文案表述层面的裸露宣称，图片层面的裸露判读由图片审核流程处理（image_review 证据）。"
+    },
+    {
+      "rule_id": "SBR-LV-020",
+      "title": "Hate symbols and racial-supremacy markings on the product itself",
+      "category": "prohibited_item",
+      "description": "Carrying hate symbols or racial-supremacy markings on a product is a prohibited-item problem rather than merely a content problem: the Community Guidelines forbid content carrying the names, symbols, logos, flags, slogans or uniforms of extremist organisations, and forbid hate speech that dehumanises people by comparing them to animals, vermin, diseases or inanimate objects, while the platform's prohibited-items policy bars Nazi symbols outright. A garment, accessory or decoration that reproduces such a marking is itself a banned item.",
+      "trigger_conditions": [
+        {
+          "field": "any_text",
+          "operator": "regex",
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(raca\\s+superior|ra[çc]a\\s+superior|superioridade\\s+racial|brasao\\s+nazi|s[íi]mbolo\\s+nazi|simbolo\\s+nazi|cruz\\s+su[áa]stica|bandeira\\s+nazi|uniforme\\s+nazi|camisa\\s+nazi|camiseta\\s+nazi|moletom\\s+nazi|capuz\\s+nazi|bracelete\\s+nazi|corrente\\s+nazi|broche\\s+nazi|adesivo\\s+nazi|estampa\\s+nazi|impress[ãa]o\\s+nazi|cruz\\s+[卐卍]|[卐卍]\\s+(nazi|su[áa]stica)|su[áa]stica\\s+[卐卍])(?![a-zA-Zà-ÿÀ-ß])"
+        }
+      ],
+      "severity": "critical",
+      "decision": "flag_for_review",
+      "evidence_required": [
+        "product_photographs"
+      ],
+      "human_review_required": true,
+      "source_url": "https://help.shopee.com.br/4/article/150027-Diretrizes-da-Comunidade-Shopee",
+      "source_tier": "platform_official",
+      "source_excerpt": "• Qualquer conteúdo contendo nomes, símbolos, logotipos, bandeiras, slogans, uniformes, retratos, músicas, letras e outros objetos de ou associados a uma organização extremista, criminosa ou terrorista",
+      "last_verified": "2026-10-28",
+      "status": "active",
+      "version": 1,
+      "tags": [
+        "community_guidelines",
+        "hate_symbol",
+        "prohibited_item"
+      ],
+      "notes": "2026-10-28: 词库组 simbolo_odio 触发。category=prohibited_item（实体商品带标识 = 禁售商品）而非 listing_violation。severity=critical 因命中对象为极端主义标识本身，但 decision 保持 flag_for_review 而非 block：文本关键词无法证明商品实物印制了该标识（可能只是描述历史/教育用途），须图片人工确认。卐/卍 单字符不合词库最小长度要求，以短语形式（cruz 卐 / 卐 nazi）收录。"
     }
   ]
 }

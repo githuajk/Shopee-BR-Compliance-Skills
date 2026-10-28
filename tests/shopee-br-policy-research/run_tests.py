@@ -259,7 +259,12 @@ def test_tools() -> None:
     proc = subprocess.run([sys.executable, os.path.join(ROOT, "tools/verify_citations.py")],
                           capture_output=True, text=True, cwd=ROOT)
     out = proc.stdout
-    check("引文核验 50/50 通过", "50/50" in out and "0 failed" in out,
+    # 不硬编码规则条数 —— 规则库随批次扩充，数量会变；
+    # 只断言「全部引文逐字命中且 0 failed」。
+    import re as _re
+    m = _re.search(r"(\d+)/(\d+) excerpts verified verbatim", out)
+    ok = bool(m) and m.group(1) == m.group(2) and "0 failed" in out
+    check(f"引文核验全部通过（{m.group(0) if m else '未解析'}）", ok,
           out.strip().splitlines()[-1] if out.strip() else "")
 
 

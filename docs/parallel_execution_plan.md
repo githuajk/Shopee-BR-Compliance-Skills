@@ -94,7 +94,7 @@
 
 **路径零重叠** —— 4 个 Agent 可同时开工。
 
-**注意**：`LISTING-01` 与 `DUP-01` 都涉及 `rules/03_listing_violations_duplicates.json`（`LV` vs `DUP` 前缀）。
+**注意**：`LISTING-01` 与 `DUP-01` 都涉及 `rules/03_listing_violations.json`（`LV` vs `DUP` 前缀）。
 → **两者都不得直接改该文件**；各自在交付中提交拆分建议，由 `INTEGRATE-01` 统一拆分。
 
 ### 波次 4 —— 主 Skill

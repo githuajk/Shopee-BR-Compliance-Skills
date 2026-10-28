@@ -3,11 +3,11 @@
 | 字段 | 值 |
 |---|---|
 | 文档 ID | `SBRCA-INT-001` |
-| 版本 | 1.0.0 |
-| 状态 | **已完成 —— 集成通过，带 3 项已登记缺陷** |
+| 版本 | 1.2.0 |
+| 状态 | **已完成 —— C5/C6 已解决（见 §10 追记）** |
 | 日期 | 2026-10-28 |
 | 任务 | `TASK-INTEGRATE-01`（并行组 G5，归属模块 `integrator`） |
-| 契约版本 | 1.0.0 |
+| 契约版本 | 1.0.1 |
 | 验收脚本 | `tests/integration/run_tests.py` |
 
 ---
@@ -443,7 +443,39 @@ ip 15 + duplicate 15 + reporting 17 + 主 Skill 17）逐条断言：
 回归断言），台账清空，集成验收 226 项断言全过。其中 D2（IP 结论塌缩）
 曾是最值得优先修的 —— 它不影响硬约束，但影响人工复核的定位能力。
 `rules/03` 的拆分（C5）与 `evidence_type` 扩充（C6）因白名单限制未执行，
-建议在下一轮处理（见 §6 契约变更建议）。
+已随 2026-10-28 词库合并由集成 Agent 解决（见 §10 追记）。
+
+---
+
+## 10. 追记（2026-10-28 词库合并后，v1.2.0）
+
+合并 `feature/lexicon-real-source-batch003` 后，两项「已知未达成」关闭：
+
+| 项 | 原状态 | 现状态 | 处置 |
+|---|---|---|---|
+| **C5** rules/03 拆分 | ⚠️ 未拆分（白名单不含 `rules/**`） | ✅ 已拆分 | 原 `03_listing_violations_duplicates.json`（17 条：LV 14 + DUP 3）拆为 `rules/03_listing_violations.json`（LV 20 条，含新增 SBR-LV-015~020，归 `shopee-br-listing-audit`）与 `rules/06_duplicate_listings.json`（DUP 3 条，归 `shopee-br-duplicate-detection`）；旧文件删除，**17 条原规则 ID 无丢失**（机械比对）。两模块加载器（`rules.py`）已改指新文件。决策记录在 `contracts/file_ownership.json` `split_decisions`，同步 `PROJECT_RULES.md` §3.3（v1.1.0）与 `manifest.json`（56 条规则）。集成测试 C5 段翻转为「拆分已达成」断言（旧文件不得复活 + 新文件前缀纯净）。 |
+| **C6** 证据类型词表 | ⚠️ 4 个类型超出示例集 | ✅ 已解决 | 随规则库扩充，实际使用且超出示例集的类型为 **14 个**（原报告基于 50 条规则时仅 4 个）。契约 1.0.1 将 `evidence_reference.schema.json` 的 `evidence_type` 示例集由 24 扩至 38（并入 `design_registration` / `image` / `listing_field` / `listing_text_snapshot` / `order_id` / `original_case_id` / `price_history` / `product_labelling` / `product_url_history` / `promotion_terms` / `regulator_registration_or_licence` / `seller_authorisation` / `supplier_documentation` / `trademark_registration`）。JSON Schema 的 `examples` 非约束字段，本变更属澄清语义（PATCH），模块无需改动。 |
+
+同批并入（`DELIVERY_lexicon_expansion_20261028.md` / `DELIVERY_d6_gap_exemptions_20261028.md` 有完整记录）：
+
+- 词库 43 组/957 词 → **100 组/210,984 词**（A/B 类 20 组 197 词真实来源短语 + C 类 37 组 209,653 词 ANVISA/CTI/MAPA 监管目录，映射 SBR-MED-004；分支交付时计数 210,807，合并轮集成修复删除裸日常词 `Marca` 后为 210,984，以 `tools/validate_lexicon.py` 实测为准）；豁免 7 → 44 条（37 条 `EX-CATALOG-*` 目录降级）。
+- `file_ownership.json` 1.7.0 → **1.8.0**：词库六文件从 `shopee-br-listing-audit` 的 owns 移除，`lexicon/**` 单一归属 `shopee-br-data-ingestion`（落实交付说明 §5.3 建议；listing 读需求经 `reads` 表达）。
+
+**新登记的已知问题**（不构成验收失败，见 `README.md` 下一阶段表）：
+`tools/scan_lexicon.py` 6 项缺陷（D1–D6）、`br_anvisa_medicamentos_prescricao`
+（http_503）来源缺官方引文、C 类目录词标题误伤以豁免降级缓解。
+
+**本轮新缺陷 D4（已修复，SBR-MED-004 永不触发）**：
+B 分支新增的 `SBR-MED-004`（监管目录命中 → `require_evidence`）声明
+`trigger_conditions` 为空 value 的 `contains_any`（「由词库候选驱动」），
+但引擎先规则评估、后词库扫描，`_contains_any(text, [])` 恒 False ——
+规则永不 fired，词库候选只写进 provenance 不参与判定，规则意图与实现脱节。
+修复（`skills/shopee-br-listing-audit/src/sbr_listing_audit/engine.py`）：词库扫描前置于规则评估，空 value 文本条件
+按词库驱动语义判定（有候选 → MATCH；筛查不可用 → UNEVALUATED，H3；无候选 →
+NO_MATCH）。夹具回归 `LA-MED004-POS`（amoxicilina，实测 fired 且
+`action=require_evidence` 不阻断）/ `LA-MED004-NEG`（普通商品，0 命中不触发）。
+
+**验收**：合并后全量校验与模块测试重跑结果见 `docs/PROGRESS_REPORT.md` v2.1.0。
 
 ---
 
@@ -453,3 +485,4 @@ ip 15 + duplicate 15 + reporting 17 + 主 Skill 17）逐条断言：
 |---|---|---|---|
 | 1.0.0 | 2026-10-28 | 初版 —— 集成验收报告（C1–C6 / I1–I6 / V1–V6 / A1–A5）、全链路实测数字、3 项已登记缺陷台账 | 集成 Agent（TASK-INTEGRATE-01） |
 | 1.1.0 | 2026-10-28 | 3 个跨模块缺陷（D1/D1b/D2/D2b/D3/D3b/D3c）全部修复；台账清空；断言方向由「缺陷仍在」翻转为「修复后正确行为」；集成验收 226 项全过 | 集成 Agent（TASK-INTEGRATE-01） |
+| 1.2.0 | 2026-10-28 | C5（rules/03 物理拆分）与 C6（evidence_type 示例集扩充至 38，契约 1.0.1）关闭；词库 100 组/210,807 词并入；所有权 1.8.0（lexicon 单一归属）；新增已知问题台账（§10） | 集成 Agent（合并 feature/lexicon-real-source-batch003） |

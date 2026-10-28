@@ -84,11 +84,6 @@
     "note": "此前记为占位值 20；文件为重抓后的实际内容，报告此前未更新"
   },
   {
-    "slug": "br_anvisa_publicidade_medicamentos",
-    "status": "http_503",
-    "url": "https://bvsms.saude.gov.br/docs/bvsms/legislacao/rdc/2008/rdc_96_2008_28_03_2011.html"
-  },
-  {
     "slug": "br_anvisa_medicamentos_prescricao",
     "status": "http_503",
     "url": "https://bvsms.saude.gov.br/docs/bvsms/legislacao/rdc/2009/rdc_44_2009_10_06_2009.html"

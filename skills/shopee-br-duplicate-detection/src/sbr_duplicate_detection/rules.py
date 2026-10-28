@@ -4,7 +4,7 @@
 `shopee-br-listing-audit` / `shopee-br-duplicate-detection` 各自拥有。
 本文件只做三件事：
 
-1. **装载** —— 从 `rules/03_listing_violations_duplicates.json` 取 `DUP`
+1. **装载** —— 从 `rules/06_duplicate_listings.json` 取 `DUP`
    前缀、从 `rules/04_cases_relist_authorization.json` 取 `RL`/`AU`/`AC`
    前缀；`SkillInput.rules[]` 里的规则信封可覆盖同名规则。
 2. **归一** —— 规则库用 `decision`/`source_tier`/`source_excerpt`，规则信封
@@ -47,10 +47,11 @@ __all__ = [
 #: 本模块拥有的规则前缀。
 OWNED_PREFIXES = ("DUP", "RL", "AU", "AC")
 
-#: 前缀 → 规则文件（仓库根相对）。`rules/03` 里混有 `LV` 前缀（归
-#: listing-audit），本模块只取 `DUP` 部分，**不改写该文件**。
+#: 前缀 → 规则文件（仓库根相对）。2026-10-28 集成拆分后 `DUP` 前缀
+#: 独立成 `rules/06_duplicate_listings.json`（本模块拥有）；
+#: `LV` 前缀在 `rules/03_listing_violations.json`（listing-audit 拥有）。
 RULE_FILES = {
-    "DUP": "rules/03_listing_violations_duplicates.json",
+    "DUP": "rules/06_duplicate_listings.json",
     "RL": "rules/04_cases_relist_authorization.json",
     "AU": "rules/04_cases_relist_authorization.json",
     "AC": "rules/04_cases_relist_authorization.json",

@@ -63,9 +63,9 @@ description: Use when you need to find duplicate or relisted Shopee Brazil listi
 | 文件 | 前缀 | 条数 |
 |---|---|---|
 | `rules/04_cases_relist_authorization.json` | `RL` `AU` `AC` | 5 |
-| `rules/03_listing_violations_duplicates.json` 的 `DUP` 部分 | `DUP` | 3 |
+| `rules/06_duplicate_listings.json` | `DUP` | 3 |
 
-> `rules/03` 待集成阶段拆分 —— **本模块在拆分前不得直接修改该文件**。
+> `rules/03` 已于 2026-10-28 集成阶段拆分完成，`DUP` 前缀部分独立为 `rules/06_duplicate_listings.json`。
 
 ### 5.2 平台依据
 
@@ -168,7 +168,7 @@ description: Use when you need to find duplicate or relisted Shopee Brazil listi
 
 ## 15. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.6.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.8.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 
@@ -176,6 +176,7 @@ description: Use when you need to find duplicate or relisted Shopee Brazil listi
 skills/shopee-br-duplicate-detection/**
 tests/shopee-br-duplicate-detection/**
 rules/04_cases_relist_authorization.json
+rules/06_duplicate_listings.json
 ```
 
 **只读路径：**
@@ -183,7 +184,7 @@ rules/04_cases_relist_authorization.json
 ```
 contracts/**
 data/schema/**
-rules/03_listing_violations_duplicates.json
+rules/03_listing_violations.json
 research/**
 lexicon/term_groups.json
 lexicon/non_avoidable.json
@@ -191,7 +192,7 @@ lexicon/non_avoidable.json
 
 **本模块拥有的规则前缀：** `DUP, RL, AU, AC`
 
-> DUP=重复刊登、RL=违规重发、AU=授权、AC=处罚点。rules/03 中 DUP 前缀归本模块；LV 前缀归 listing-audit —— 两者均只提拆分建议，不并发改写。
+> DUP=重复刊登、RL=违规重发、AU=授权、AC=处罚点。2026-10-28 集成拆分后 DUP 前缀独立为 `rules/06_duplicate_listings.json`（本模块拥有），LV 前缀在 `rules/03_listing_violations.json`（listing-audit 拥有），两模块不再共用同一文件。
 
 公共契约（`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、`manifest.json`、`tasks/**`、`tests/test_plan.md`、`tests/fixtures/**`、`docs/**`、`tools/**`、`scripts/**`、`.archive/**`）对所有模块 Agent **只读**。
 需要修改时提交契约变更建议，不要自行改动。

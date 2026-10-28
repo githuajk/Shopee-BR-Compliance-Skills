@@ -29,14 +29,12 @@ skills/shopee-br-listing-audit/**
 tests/shopee-br-listing-audit/**
 rules/01_prohibited_restricted_items.json
 rules/05_medicines_health.json
-lexicon/term_groups.json
-lexicon/rewrite_map.json
-lexicon/exemptions.json
-lexicon/quality_patterns.json
-lexicon/non_avoidable.json
-lexicon/verb_conjugations.json
+rules/03_listing_violations.json
 tools/scan_lexicon.py
 ```
+
+> 词库文件（`lexicon/**` 六件）自 1.8.0 起单一归属 `shopee-br-data-ingestion`；
+> 本任务只读消费词库。
 
 **越界即任务失败。** 若确需修改白名单外的路径 → 停止并在 §12.5 提交契约变更建议，**不要自行修改**。
 
@@ -46,8 +44,8 @@ tools/scan_lexicon.py
 contracts/**
 data/schema/**
 lexicon/term_groups.json
+lexicon/exemptions.json
 research/**
-rules/03_listing_violations_duplicates.json
 ```
 
 全局只读（所有模块通用）：`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、

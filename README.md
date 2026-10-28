@@ -6,10 +6,10 @@
 |---|---|
 | 项目代号 | SBRCA |
 | 阶段 | 第二轮 — 统一 SOP 与合并词库已并入 |
-| 契约版本 | 1.0.0 |
-| 所有权版本 | 1.3.0 |
-| manifest | 1.1.0 |
-| 最后更新 | 2026-10-27 |
+| 契约版本 | 1.0.1 |
+| 所有权版本 | 1.8.0 |
+| manifest | 1.3.0 |
+| 最后更新 | 2026-10-28 |
 
 ---
 
@@ -171,7 +171,7 @@ FRAME-01 → FRAME-02 → {POLICY-01, INGEST-01} → {LISTING-01, DUP-01, IP-01,
 
 `contracts/file_ownership.json` 是**唯一权威来源**。同一路径只有一个 owner。
 
-唯一潜在冲突是 `rules/03_listing_violations_duplicates.json`（含 `LV` 属 listing-audit、`DUP` 属 duplicate-detection）—— 两者都**只提拆分建议**，由集成 Agent 统一拆分。
+唯一潜在冲突是 `rules/03_listing_violations.json`（含 `LV` 属 listing-audit、`DUP` 属 duplicate-detection）—— 两者都**只提拆分建议**，由集成 Agent 统一拆分。
 
 **三方一致性**（`tools/task_pack_check.py` 368 项断言强制）：
 `SKILL.md` 所有权章节 ≡ `tasks/*.md` §2.1 白名单 ≡ `task_registry.json` `allowed_paths`
@@ -277,13 +277,19 @@ env -u LD_LIBRARY_PATH python3 tests/integration/run_tests.py   # 集成验收
 
 ## 下一阶段
 
-**10/10 任务已全部完成。** 剩余工作不再是开发，而是以下三项**待裁定**事项：
+**10/10 任务已全部完成，C5 / C6 两项集成缺口已于 2026-10-28 合并
+`feature/lexicon-real-source-batch003` 时解决**（真实来源词库 A/B/C 三批次 +
+社区准则六类词组并入，rules/03 物理拆分为 `03_listing_violations.json` /
+`06_duplicate_listings.json`，`evidence_type` 示例集扩至 38 项 —— 契约 1.0.1）。
+
+剩余**待裁定**事项：
 
 | # | 事项 | 归属 | 阻塞性 |
 |---|---|---|---|
 | 1 | `docs/SBRCA-P0-004_open_questions.json`（14 项待裁定：5 冲突 + 9 问题，每项带 `default_if_no_answer`） | 用户 | 否 —— 可按默认值执行 |
-| 2 | **C5**：`rules/03_listing_violations_duplicates.json` 拆分（LV → listing-audit，DUP → duplicate-detection） | 集成 Agent，需扩白名单 | 否 |
-| 3 | **C6**：`audit_result.schema.json` 的 4 个 `evidence_type`（`image` / `listing_field` / `price_history` / `promotion_terms`）超出示例集 | 集成 Agent，需扩白名单 | 否 |
+| 2 | `tools/scan_lexicon.py` 的 6 项已复现缺陷（D1–D6，豁免作用域 / finditer / offset / `\b` 裸用等；见 `skills/shopee-br-data-ingestion/DELIVERY_lexicon_expansion_20261028.md` §3.1） | `shopee-br-listing-audit`（扫描器 owner），建议另开任务 | 否 —— 缺陷已如实登记，现行行为可解释 |
+| 3 | `br_anvisa_medicamentos_prescricao` 抓取失败（http_503）仍登记在 `research/sources.json`；RDC 44/2009 官方逐字引文暂缺 | 集成 Agent 或 policy-research，待重抓 | 否 —— 校验器已识别放行，不得支撑规则 |
+| 4 | 词库 C 类目录词对商品标题判别力低（21 万词条全量入库；现行以 `EX-CATALOG-*` 降级缓解） | 后续可加 `scan_fields` 分字段开关（契约建议已登记） | 否 |
 
 另有一项**已知范围外**的缺口：`shopee-br-policy-research` 无 `src/` 实现
 （目录级：references + 测试），当前可接受。

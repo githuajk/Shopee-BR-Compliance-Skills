@@ -5,9 +5,9 @@ description: Use when you need to establish the authoritative basis for a Shopee
 
 # Shopee BR 官方政策研究与来源核查
 
-> 状态：**骨架 — 待 `TASK-POLICY-01` 填充**
+> 状态：**已实现**（`TASK-POLICY-01`）
 > 契约版本：1.0.0
-> 归属：`research/**`、`skills/shopee-br-policy-research/**`、`tests/shopee-br-policy-research/**`
+> 归属：`skills/shopee-br-policy-research/**`、`tests/shopee-br-policy-research/**`、`research/**`
 
 ---
 
@@ -15,106 +15,137 @@ description: Use when you need to establish the authoritative basis for a Shopee
 
 | # | 职责 |
 |---|---|
-| 1 | 抓取/刷新 Shopee 巴西站官方来源，保留原始抓取件于 `research/raw/` |
-| 2 | 维护来源清单 `research/sources.json`（URL、层级、抓取状态） |
-| 3 | 维护平台违规码目录 `research/violation_codes.json`（代码、严重度、是否扣分） |
-| 4 | 核验规则引文**逐字**出现在抓取件中 |
-| 5 | 向其他模块提供带来源与核查日期的规则素材 |
+| 1 | 抓取/刷新官方来源并保留原始抓取件（`research/raw/*.txt`） |
+| 2 | 核验规则引文**逐字**出现在抓取件中（硬约束 H4） |
+| 3 | 维护来源清单（`research/sources.json`）与平台违规码目录（`research/violation_codes.json`） |
+| 4 | 标注来源层级 `source.tier` 与核查日期 `last_verified` |
+| 5 | 核对来源清单、抓取件与抓取报告三者一致 |
 
 ## 2. 非职责
 
 - ❌ 不对具体商品做审核判定
-- ❌ 不定义审核结果格式（那是 `contracts/`）
-- ❌ 不代替各审核模块写业务规则
-- ❌ 不抓取需要登录态的页面（凭证管理未确认，见 `SBRCA-P0-004` Q-H）
+- ❌ 不定义审核规则（规则由各专业模块拥有）
+- ❌ 不修改 `rules/**`（只读引用）
+- ❌ 不做抓取之外的内容改写
 
 ## 3. 输入契约
 
-使用 `contracts/skill_input.schema.json`（v1.0.0）：
+本模块的输入是**外部政策页面**与**已有的规则库**，不是 `SkillInput`。
 
-| 字段 | 本模块用法 |
-|---|---|
-| `request_id` | 贯穿产出 |
-| `task_type` | 固定 `policy_research` |
-| `target.kind` | `rule_library` / `source_document` |
-| `options.sources` | 待抓取的来源 slug 列表（可选，缺省=全部登记来源） |
-| `options.refresh` | `true`=强制重抓，`false`=仅补缺失（默认） |
-| `provenance` | **原样透传**到产出 |
+| 输入 | 位置 | 说明 |
+|---|---|---|
+| 政策页面 URL | `research/sources.json` → `url` | 待抓取或待核验的官方页面 |
+| 现有规则 | `rules/*.json`（只读） | 用于核验其 `source_excerpt` 是否成立 |
 
 ## 4. 输出契约
 
-产出符合 `contracts/audit_result.schema.json`（v1.0.0）的 `AuditResult[]`：
+本模块**不产出** `AuditResult[]` —— 它产出**规则素材**（供各专业模块引用）。
 
-- `module` 固定为 `shopee-br-policy-research`
-- `target_ref` = 来源 slug 或规则 ID
-- `rule_refs[].source_tier` = 采集到的来源层级
-- `errors[]` = 抓取失败、解析失败
-- `unevaluated[]` = 未能核验的来源
+| 产出 | 位置 | 契约 |
+|---|---|---|
+| 原始抓取件 | `research/raw/<slug>.txt` | 抓取原文，含 `# title:` / `# url:` 头 |
+| 来源清单 | `research/sources.json` | 每条含 `slug` / `title` / `publisher` / `url` / `tier` / `scope` |
+| 违规码目录 | `research/violation_codes.json` | 每条含 `code` / `description` / `severity_pt` / `severity` / `generates_penalty_point` / `category` / `platform_code` |
+| 抓取报告 | `research/raw/_fetch_report.json`、`research/raw/_edu_fetch_report.json` | 每次抓取的 HTTP 状态与实际字符数 |
+
+**供规则引用的字段**（`contracts/rule_envelope.schema.json` 的 `source`）：
+
+| 字段 | 含义 |
+|---|---|
+| `tier` | `platform_official` / `law` / `internal_risk` / `unverified` / `ai_inference` / `technical` |
+| `url` | 指向具体页面的 URL |
+| `excerpt` | **原文引文**，必须逐字出现在 `research/raw/` 的抓取件中 |
+| `last_verified` | 核查日期（ISO 8601） |
+| `article_id` | 平台文章编号（如 5139），便于定位 |
+| `platform_code` | 平台违规码（如 `[337]`） |
 
 ## 5. 规则与来源要求
 
-### 5.1 来源层级
+### 5.1 来源层级与动作上限
 
-见 `PROJECT_RULES.md` §8.3。本模块负责**正确标注**层级：
+| `source.tier` | 含义 | 允许的最高动作 |
+|---|---|---|
+| `platform_official` | Shopee 官方页面明确写出 | `block` |
+| `law` | 巴西联邦法律明文 | `block` |
+| `technical` | 技术调研结论 | `flag_for_review` |
+| `internal_risk` | 内部风控建议 | `flag_for_review` |
+| `unverified` | 未验证假设 | `flag_for_review` |
+| `ai_inference` | AI 模型推断 | `flag_for_review` |
 
-| 层级 | 判定标准 |
-|---|---|
-| `platform_official` | 抓取自 `seller.shopee.com.br` / `help.shopee.com.br` / `seller.br.shopee.cn` 的正文 |
-| `law` | 抓取自 Planalto / INPI / gov.br 的法条正文 |
-| `internal_risk` | 内部建议、运营经验 —— 不是平台要求 |
-| `unverified` | 无法核实的说法 |
+**硬约束 H2**：只有 `platform_official` / `law` 的 `active` 规则能产生
+`block` / `freeze_relist` / `escalate_legal`。
 
-### 5.2 引文核验（硬约束 H4）
-
-**每条引文必须逐字出现在 `research/raw/*.txt` 中。**
+### 5.2 引文必须逐字可核验
 
 ```bash
 env -u LD_LIBRARY_PATH python3 tools/verify_citations.py
 ```
 
-核验不通过时**不得**把规则标记为 `active` —— 改为 `unverified` 并说明。
+**核验不通过 → 规则不得标记 `active`**。改为 `unverified` 并在交付说明中记录。
+**不要**把引文改写成「看起来对」的版本。
 
-### 5.3 抓取技术要点（已实测）
+### 5.3 禁止事项
 
-| 要点 | 说明 |
+| # | 禁止 |
 |---|---|
-| Seller Centre 是 SPA | 正文在 `/help/api/v3/article/detail/?article_id=<id>`，直连返回 `not allowed language` |
-| 必须渲染 | `tools/render_page.py` 用无头 Chromium 执行 SPA 后取 DOM |
-| Chromium 路径限制 | `TMPDIR` 与 `--user-data-dir` 必须短（`/tmp`），否则 `Socket path too long` 启动即死 |
-| 必须校验落地 | `Page.navigate` 后校验 `location.href`（`/json/list` 会报过期 URL） |
-| Help Center 是服务端渲染 | 普通 HTTP 即可，快约 20 倍 |
+| 1 | 引用平台**未公开的数值**作为事实（处罚点分值、OKlist 名单等） |
+| 2 | 把 2026-09-15 前的政策当现状（注意 **2026-08-06** 的非处方药政策变更） |
+| 3 | 把 `internal_risk` 建议表述为平台要求 |
+| 4 | 编造政策条文或来源引文 |
+
+> **关于处罚点**：平台页面明文写了「是否产生处罚点」与严重度（Alta/Média/Baixa），
+> 这些**可以**引用；但具体的点数分值不可引用 —— 平台未公开。
 
 ## 6. 失败处理
 
 | 情形 | 行为 | 产出 |
 |---|---|---|
-| 页面不可达 | 不重试超过 2 次，记录 HTTP 状态 | `error`（severity=error） |
-| SPA 渲染超时 | 记录等待时长与已得字符数 | `error` + `known_gaps` |
-| 引文核验失败 | 规则标 `unverified` | `warning` + 说明 |
-| 平台页面改版致旧抓取件失效 | 标 `last_verified` 过期，提示需重抓 | `warning` |
-| 需登录态的页面 | 明确拒绝抓取 | `error` + 说明需用户提供凭证方案 |
+| 页面抓取失败（HTTP 5xx / 超时） | 如实登记 `capture_status: failed` | `sources.json` 标注 + 抓取报告记录 |
+| 抓取到的内容过短（占位） | 报「疑似占位或抓取失败」 | `check_sources.py` 报错 |
+| 引文在抓取件中找不到 | 规则改 `unverified` | `verify_citations.py` 报错 |
+| 规则引用了抓取失败的来源 | **报错** —— 引文无法核验 | `check_sources.py` 报错 |
+| 规则引用了未登记的来源 | 报错 | `check_sources.py` 报错 |
+| 抓取报告与实际文件不一致 | 警告「报告已过期」 | `check_sources.py` 警告 |
 
 ## 7. 测试案例与验收标准
 
-| 类别 | 用例 | 断言 |
-|---|---|---|
-| 抓取 | 抓取一个未抓过的官方页面 | 产出 `research/raw/<slug>.txt` 且非空 |
-| 抓取 | 重复抓取已缓存来源 | 命中缓存，不重复下载 |
-| 抓取 | 抓取不存在的 URL | 产出 `error`，不崩溃 |
-| 核验 | 对现存 50 条规则跑核验 | 100% 通过 |
-| 核验 | 构造一条引文错误的规则 | 核验失败并被报告 |
-| 目录 | 解析违规码目录 | `research/violation_codes.json` 条数与源页面一致 |
-| 层级 | 内部建议 | 标 `internal_risk` 而非 `platform_official` |
+```bash
+env -u LD_LIBRARY_PATH python3 tests/shopee-br-policy-research/run_tests.py
+```
+
+| 类别 | 断言 |
+|---|---|
+| 来源清单 | 每条来源有 tier / url / scope；tier 取值合法 |
+| 抓取件 | 每条来源有对应抓取件；非空；非占位内容 |
+| 一致性 | 抓取报告的字符数与实际文件一致 |
+| 孤儿检测 | `research/raw/` 下无未登记的抓取件 |
+| 引用完整性 | 规则的 `source_url` 已登记（按 article id 匹配，容忍域名变体） |
+| 失败来源 | 抓取失败的来源**不支撑任何规则** |
+| 违规码 | 106 条码有 code / description / severity / penalty 标记 |
+| 引文 | 全库 50/50 逐字核验通过 |
+| 禁用数值 | 规则与词库中无平台未公开的处罚点分值 |
 
 ## 8. 依赖
 
 - **依赖**：无（可与 `shopee-br-data-ingestion` 并行）
-- **期待下游**：`listing-audit` / `ip-review` / `duplicate-detection` / `reporting` 使用本模块产出的来源与引文
-- **对其他模块的影响**：本模块的层级标注直接决定其他模块哪些规则能产生阻断类动作
+- **期待下游**：各专业模块用本模块的 `source` 字段填规则信封
+- **对其他模块的影响**：本模块决定规则的**来源可信度** —— 引文核验不过的规则不得 `active`
 
-## 12. 文件所有权
+## 9. 工作区与抓取
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.6.0）。
+工作目录 `research/`。抓取件以 `<slug>.txt` 命名，文件头两行是来源标记：
+
+```
+# title: <页面标题> | <站点名>
+# url: <页面 URL>
+```
+
+**URL 域名变体**：同一篇文章在平台上有 `seller.br.shopee.cn` 与
+`seller.shopee.com.br` 两个域名。校验按 **article id** 匹配，不按整条 URL。
+
+## 10. 文件所有权
+
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.8.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 
@@ -125,7 +156,6 @@ research/sources.json
 research/violation_codes.json
 research/edu_articles.json
 research/raw/**
-tools/check_sources.py
 ```
 
 **只读路径：**
@@ -136,34 +166,28 @@ data/schema/**
 rules/**
 tools/verify_citations.py
 tools/validate_json.py
-tools/render_page.py
-tools/cdp_client.py
-tools/fetch_sources.py
-tools/fetch_edu_articles.py
-tools/fetch_edu_article.py
-tools/parse_violation_codes.py
-tools/dump_page_text.py
-tools/inspect_page.py
-tools/capture_api.py
+tools/check_sources.py
 ```
 
-**本模块拥有的规则前缀：** 无（本模块不定义审核规则）
+**本模块拥有的规则前缀：** 无。
 
-> 不拥有任何审核规则前缀。它为其他模块提供来源与引文核验能力，规则作者身份属各专业模块。
+> 不拥有任何审核规则前缀。它为其他模块提供来源与引文核验能力，
+> 规则作者身份属各专业模块。
 
 公共契约（`contracts/**`、`PROJECT_RULES.md`、`AGENT_COLLABORATION.md`、`manifest.json`、`tasks/**`、`tests/test_plan.md`、`tests/fixtures/**`、`docs/**`、`tools/**`、`scripts/**`、`.archive/**`）对所有模块 Agent **只读**。
 需要修改时提交契约变更建议，不要自行改动。
 
-## 13. 待填内容
+## 11. 待填内容
 
-- [ ] `references/source_registry.md` —— 来源清单与抓取状态说明
-- [ ] `references/violation_codes.md` —— 违规码目录结构与解读
-- [ ] `references/citation_verification.md` —— 引文核验流程与常见失败原因
-- [ ] `references/platform_policy_summary.md` —— 政策要点摘要（禁限售类目、处罚机制、IP 四类）
-- [ ] `tests/shopee-br-policy-research/run_tests.py`
+- [x] `references/source_registry.md` —— 来源清单与抓取状态说明
+- [x] `references/violation_codes.md` —— 违规码目录结构与解读
+- [x] `references/citation_verification.md` —— 引文核验流程与常见失败原因
+- [x] `references/platform_policy_summary.md` —— 政策要点摘要
+- [x] `tests/shopee-br-policy-research/run_tests.py`
 
-## 14. 变更记录
+## 12. 变更记录
 
 | 版本 | 日期 | 变更 |
 |---|---|---|
+| 1.0.0 | 2026-10-27 | **实现完成**（`TASK-POLICY-01`）：来源清单核对工具、17 条来源登记、106 条违规码目录、4 份参考文档填实 |
 | 0.1.0 | 2026-10-27 | 骨架创建（待 TASK-POLICY-01 填充） |

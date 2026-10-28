@@ -413,8 +413,10 @@ def test_conflicts_and_ownership() -> set:
     file_owner = {
         "rules/01_prohibited_restricted_items.json": "shopee-br-listing-audit",
         "rules/02_ip_trademark_copyright.json": "shopee-br-ip-review",
+        "rules/03_listing_violations.json": "shopee-br-listing-audit",
         "rules/04_cases_relist_authorization.json": "shopee-br-duplicate-detection",
         "rules/05_medicines_health.json": "shopee-br-listing-audit",
+        "rules/06_duplicate_listings.json": "shopee-br-duplicate-detection",
     }
     for rel, owner in file_owner.items():
         prefixes = {str(r["rule_id"]).split("-")[1]
@@ -423,12 +425,22 @@ def test_conflicts_and_ownership() -> set:
         check(f"C5 {rel} 的前缀归属 {owner}", prefixes <= expected,
               f"实际 {sorted(prefixes)} 超出 {sorted(expected)}")
 
-    # rules/03 仍含两个 owner 的前缀（C5：拆分待办，见 §12.3）
-    mixed = os.path.join(ROOT, "rules", "03_listing_violations_duplicates.json")
-    mixed_prefixes = {str(r["rule_id"]).split("-")[1]
-                       for r in load_json(mixed)["rules"]}
-    check("C5 rules/03 仍混有两个 owner 的前缀（拆分待办，已登记）",
-          mixed_prefixes == {"LV", "DUP"}, str(sorted(mixed_prefixes)))
+    # rules/03 已物理拆分（2026-10-28 集成阶段，见 file_ownership.json
+    # split_decisions）：旧混合文件不得复活，新文件各自前缀纯净
+    old_mixed = os.path.join(ROOT, "rules",
+                             "03_listing_violations_duplicates.json")
+    check("C5 旧混合文件 03_..._duplicates.json 已删除",
+          not os.path.exists(old_mixed), "旧文件仍存在，拆分被回退")
+    lv_prefixes = {str(r["rule_id"]).split("-")[1]
+                   for r in load_json(os.path.join(ROOT, "rules",
+                                                    "03_listing_violations.json"))["rules"]}
+    dup_prefixes = {str(r["rule_id"]).split("-")[1]
+                    for r in load_json(os.path.join(ROOT, "rules",
+                                                     "06_duplicate_listings.json"))["rules"]}
+    check("C5 rules/03 仅含 LV 前缀", lv_prefixes == {"LV"},
+          str(sorted(lv_prefixes)))
+    check("C5 rules/06 仅含 DUP 前缀", dup_prefixes == {"DUP"},
+          str(sorted(dup_prefixes)))
 
     # --- C5：注册表与所有权登记一致 ---------------------------------------
     for path, owner in reg.get("path_ownership", {}).items():

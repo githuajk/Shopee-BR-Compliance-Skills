@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
-  "mapping_version": "1.0.0",
-  "last_updated": "2026-10-27",
+  "mapping_version": "1.2.0",
+  "last_updated": "2026-10-28",
   "contract_version": "1.0.0",
-  "notes": "词组 → 规则的映射表。词库命中是信号，不是结论 —— 本表只声明「该词组命中时应触发哪条规则去判定」，最终结论仍由规则层依据 source.tier 决定。",
+  "notes": "词组 → 规则的映射表。词库命中是信号，不是结论 —— 本表只声明「该词组命中时应触发哪条规则去判定」，最终结论仍由规则层依据 source.tier 决定。 2026-10-28: 新增 6 组社区准则类词组（脏话/性暗示/极端组织/谣言/不雅着装/仇恨符号），对应 SBR-LV-015 ~ SBR-LV-020，全部 flag_for_review（文本命中无法证明商品或图片实际违规，须人工确认）。 2026-10-28: 并入真实来源词库批次 A/B/C —— A/B 类 20 组政策短语（197 词，已剔除通用词，仅保留成型违规短语）；C 类 37 组 ANVISA/CTI/MAPA 监管目录（209,653 词，解码 HTML 实体，按单词/多词拆分为 strict/loose 两组），统一映射 SBR-MED-004（require_evidence，目录登记 ≠ 禁售，须人工收集注册/许可/标签证据）。",
   "principles": [
     "一个词组可映射多条规则（如「冒牌描述词」既触 IP 也触质量）",
     "映射到规则的 severity 不得高于该规则的 severity（词库不能放大风险）",
@@ -13,188 +13,735 @@
   "mappings": [
     {
       "group_id": "proibido_armas",
-      "rule_ids": ["SBR-PI-001"],
+      "rule_ids": [
+        "SBR-PI-001"
+      ],
       "note": "武器弹药。"
     },
     {
       "group_id": "proibido_tabaco",
-      "rule_ids": ["SBR-PI-002"],
+      "rule_ids": [
+        "SBR-PI-002"
+      ],
       "note": "烟草电子烟。"
     },
     {
       "group_id": "proibido_drogas",
-      "rule_ids": ["SBR-PI-003", "SBR-MED-001"],
+      "rule_ids": [
+        "SBR-PI-003",
+        "SBR-MED-001"
+      ],
       "note": "管制药品毒品。"
     },
     {
       "group_id": "proibido_quimicos",
-      "rule_ids": ["SBR-PI-004"],
+      "rule_ids": [
+        "SBR-PI-004"
+      ],
       "note": "化学品爆炸物。"
     },
     {
       "group_id": "proibido_financas",
-      "rule_ids": ["SBR-PI-005"],
+      "rule_ids": [
+        "SBR-PI-005"
+      ],
       "note": "货币与金融工具。"
     },
     {
       "group_id": "proibido_aval",
-      "rule_ids": ["SBR-PI-006"],
+      "rule_ids": [
+        "SBR-PI-006"
+      ],
       "note": "博彩。"
     },
     {
       "group_id": "proibido_government",
-      "rule_ids": ["SBR-PI-007"],
+      "rule_ids": [
+        "SBR-PI-007"
+      ],
       "note": "政府标识制服。"
     },
     {
       "group_id": "proibido_wildlife",
-      "rule_ids": ["SBR-PI-008"],
+      "rule_ids": [
+        "SBR-PI-008"
+      ],
       "note": "野生动物制品。"
     },
     {
       "group_id": "proibido_adulto",
-      "rule_ids": ["SBR-PI-009"],
+      "rule_ids": [
+        "SBR-PI-009"
+      ],
       "note": "成人内容。"
     },
     {
       "group_id": "proibido_licenca",
-      "rule_ids": ["SBR-LV-009", "SBR-AU-001"],
+      "rule_ids": [
+        "SBR-LV-009",
+        "SBR-AU-001"
+      ],
       "note": "自述无资质 → 无证销售。"
     },
     {
       "group_id": "proibido_dairy",
-      "rule_ids": ["SBR-RI-008"],
+      "rule_ids": [
+        "SBR-RI-008"
+      ],
       "note": "未消毒乳制品。"
     },
     {
       "group_id": "restrito_bebida",
-      "rule_ids": ["SBR-RI-001"],
+      "rule_ids": [
+        "SBR-RI-001"
+      ],
       "note": "酒精饮料需年龄验证与资质。"
     },
     {
       "group_id": "restrito_saude",
-      "rule_ids": ["SBR-RI-002", "SBR-MED-003"],
+      "rule_ids": [
+        "SBR-RI-002",
+        "SBR-MED-003"
+      ],
       "note": "保健品与持续用药。"
     },
     {
       "group_id": "restrito_bateria",
-      "rule_ids": ["SBR-RI-003"],
+      "rule_ids": [
+        "SBR-RI-003"
+      ],
       "note": "锂电池需空运资质。"
     },
     {
       "group_id": "restrito_auto",
-      "rule_ids": ["SBR-RI-004"],
+      "rule_ids": [
+        "SBR-RI-004"
+      ],
       "note": "汽摩配件类目资质核对。"
     },
     {
       "group_id": "restrito_alimento",
-      "rule_ids": ["SBR-RI-005"],
+      "rule_ids": [
+        "SBR-RI-005"
+      ],
       "note": "食品生鲜。"
     },
     {
       "group_id": "restrito_pet",
-      "rule_ids": ["SBR-RI-006"],
+      "rule_ids": [
+        "SBR-RI-006"
+      ],
       "note": "宠物药品。"
     },
     {
       "group_id": "restrito_airsoft",
-      "rule_ids": ["SBR-RI-007"],
+      "rule_ids": [
+        "SBR-RI-007"
+      ],
       "note": "气动与仿真武器。"
     },
     {
       "group_id": "ip_marca_global",
-      "rule_ids": ["SBR-IP-001", "SBR-LV-004"],
+      "rule_ids": [
+        "SBR-IP-001",
+        "SBR-LV-004"
+      ],
       "note": "国际品牌商标。⚠️ 指示性使用（兼容性描述）合法 —— 见 SBR-IP-006 的豁免。"
     },
     {
       "group_id": "ip_marca_cn",
-      "rule_ids": ["SBR-IP-001"],
+      "rule_ids": [
+        "SBR-IP-001"
+      ],
       "note": "中国出海品牌商标。"
     },
     {
       "group_id": "ip_marca_br",
-      "rule_ids": ["SBR-IP-001"],
+      "rule_ids": [
+        "SBR-IP-001"
+      ],
       "note": "巴西本地注册商标 —— INPI 优先查。"
     },
     {
       "group_id": "ip_entretenimento",
-      "rule_ids": ["SBR-IP-001", "SBR-IP-007"],
+      "rule_ids": [
+        "SBR-IP-001",
+        "SBR-IP-007"
+      ],
       "note": "影视动漫游戏 IP。"
     },
     {
       "group_id": "ip_esportes",
-      "rule_ids": ["SBR-IP-001"],
+      "rule_ids": [
+        "SBR-IP-001"
+      ],
       "note": "赛事标识与俱乐部队徽。"
     },
     {
       "group_id": "ip_contrafito",
-      "rule_ids": ["SBR-IP-002", "SBR-LV-007"],
+      "rule_ids": [
+        "SBR-IP-002",
+        "SBR-LV-007"
+      ],
       "note": "仿牌描述词。"
     },
     {
       "group_id": "ip_variante_marca",
-      "rule_ids": ["SBR-IP-002"],
+      "rule_ids": [
+        "SBR-IP-002"
+      ],
       "note": "品牌拼写变体 —— 仿牌强特征。"
     },
     {
       "group_id": "ip_copyright",
-      "rule_ids": ["SBR-IP-007"],
+      "rule_ids": [
+        "SBR-IP-007"
+      ],
       "note": "版权声明。"
     },
     {
       "group_id": "ip_shopee_asset",
-      "rule_ids": ["SBR-IP-004"],
+      "rule_ids": [
+        "SBR-IP-004"
+      ],
       "note": "冒用平台名义。"
     },
     {
       "group_id": "certificacao_marca",
-      "rule_ids": ["SBR-AU-001", "SBR-LV-009"],
+      "rule_ids": [
+        "SBR-AU-001",
+        "SBR-LV-009"
+      ],
       "note": "认证标志需授权。⚠️ 'FDA Approved' 是错误说法；'CE' 是合规标志非质量认证。"
     },
     {
       "group_id": "claim_saude",
-      "rule_ids": ["SBR-LV-001", "SBR-MED-001"],
+      "rule_ids": [
+        "SBR-LV-001",
+        "SBR-MED-001"
+      ],
       "note": "医疗健康功效宣称。"
     },
     {
       "group_id": "claim_beleza",
-      "rule_ids": ["SBR-LV-001", "SBR-MED-003"],
+      "rule_ids": [
+        "SBR-LV-001",
+        "SBR-MED-003"
+      ],
       "note": "美容塑形宣称。"
     },
     {
       "group_id": "claim_alimento",
-      "rule_ids": ["SBR-LV-001"],
+      "rule_ids": [
+        "SBR-LV-001"
+      ],
       "note": "食品特性宣称。"
     },
     {
       "group_id": "proibido_garantia",
-      "rule_ids": ["SBR-LV-002"],
+      "rule_ids": [
+        "SBR-LV-002"
+      ],
       "note": "绝对化保证词。⚠️ 误报高发 —— 见 exemptions.json。"
     },
     {
       "group_id": "proibido_reembolso",
-      "rule_ids": ["SBR-LV-005", "SBR-LV-002"],
+      "rule_ids": [
+        "SBR-LV-005",
+        "SBR-LV-002"
+      ],
       "note": "退款承诺与站外引流。"
     },
     {
       "group_id": "violacao_qualidade",
-      "rule_ids": ["SBR-LV-001", "SBR-LV-007"],
+      "rule_ids": [
+        "SBR-LV-001",
+        "SBR-LV-007"
+      ],
       "note": "夸大功效。"
     },
     {
       "group_id": "violacao_spam",
-      "rule_ids": ["SBR-LV-002", "SBR-LV-003"],
+      "rule_ids": [
+        "SBR-LV-002",
+        "SBR-LV-003"
+      ],
       "note": "促销堆砌与关键词堆砌。"
     },
     {
       "group_id": "violacao_offplatform",
-      "rule_ids": ["SBR-LV-005"],
+      "rule_ids": [
+        "SBR-LV-005"
+      ],
       "note": "站外引流。"
     },
     {
       "group_id": "violacao_atributo",
-      "rule_ids": ["SBR-LV-006", "SBR-LV-007", "SBR-LV-008", "SBR-LV-011"],
+      "rule_ids": [
+        "SBR-LV-006",
+        "SBR-LV-007",
+        "SBR-LV-008",
+        "SBR-LV-011"
+      ],
       "note": "★ 店主 491 商品审阅反馈的具体模板话术 —— 描述/类别/产地/品牌失实。"
+    },
+    {
+      "group_id": "conteudo_ofensivo",
+      "rule_ids": [
+        "SBR-LV-015"
+      ],
+      "note": "社区准则 §6：粗俗脏话与侮辱性表达。词库命中是信号 —— 葡语商品文案与买家评价常含同类词，须人工确认发布者语气。"
+    },
+    {
+      "group_id": "conteudo_sexual",
+      "rule_ids": [
+        "SBR-LV-016"
+      ],
+      "note": "社区准则 §2.1/§5.2：性暗示与调情表达。severity=high 因准则单列一节并覆盖 MEASI，但动作不阻断（成人用品有合规类目，需人工判别）。"
+    },
+    {
+      "group_id": "conteudo_extremista",
+      "rule_ids": [
+        "SBR-LV-017"
+      ],
+      "note": "社区准则 §1.4：极端组织/邪教的名称、标志物、招募与美化。实体标识印在商品上的情形另见 simbolo_odio → SBR-LV-020。"
+    },
+    {
+      "group_id": "conteudo_desinformacao",
+      "rule_ids": [
+        "SBR-LV-018"
+      ],
+      "note": "社区准则 §7.2：谣言与阴谋论话术。短前缀词条存在合法语境边界（如 'a vacina causa imunidade'），须人工复核。"
+    },
+    {
+      "group_id": "vestimenta_indecente",
+      "rule_ids": [
+        "SBR-LV-019"
+      ],
+      "note": "社区准则 §2.1/§6：文案层面的裸露宣称与不雅服饰。图片层面的裸露判读由图片审核流程处理。"
+    },
+    {
+      "group_id": "simbolo_odio",
+      "rule_ids": [
+        "SBR-LV-020"
+      ],
+      "note": "社区准则 §6 + 禁售政策：印在商品实体上的仇恨符号与种族优越标识。关键词无法证明实物印制该标识，须图片人工确认。"
+    },
+    {
+      "group_id": "platform_prohibited_weapons",
+      "rule_ids": [
+        "SBR-PI-001"
+      ],
+      "note": "武器/枪支/弹药类禁售词命中。"
+    },
+    {
+      "group_id": "platform_prohibited_drugs",
+      "rule_ids": [
+        "SBR-PI-003",
+        "SBR-MED-001"
+      ],
+      "note": "管制药品与毒品类禁售词命中。"
+    },
+    {
+      "group_id": "platform_prohibited_tobacco_vape",
+      "rule_ids": [
+        "SBR-PI-002"
+      ],
+      "note": "烟草/尼古丁/电子烟类禁售词命中。"
+    },
+    {
+      "group_id": "platform_illegal_activities",
+      "rule_ids": [
+        "SBR-PI-003",
+        "SBR-LV-005"
+      ],
+      "note": "涉非法活动商品词命中（伪造/偷盗/洗钱/人口与动物贩运等）。"
+    },
+    {
+      "group_id": "platform_extremism_criminal",
+      "rule_ids": [
+        "SBR-PI-007",
+        "SBR-LV-017"
+      ],
+      "note": "涉极端组织与犯罪组织关联词命中。"
+    },
+    {
+      "group_id": "platform_dangerous_self_harm",
+      "rule_ids": [
+        "SBR-LV-016",
+        "SBR-LV-018"
+      ],
+      "note": "自残/自杀/危险挑战类词命中。"
+    },
+    {
+      "group_id": "platform_sexual_nudity",
+      "rule_ids": [
+        "SBR-PI-009",
+        "SBR-LV-016",
+        "SBR-LV-019"
+      ],
+      "note": "成人/色情/性用品及性暗示内容词命中。"
+    },
+    {
+      "group_id": "platform_gambling_fraud",
+      "rule_ids": [
+        "SBR-PI-006",
+        "SBR-LV-005"
+      ],
+      "note": "赌博/神秘盒子/诈骗传销类词命中。"
+    },
+    {
+      "group_id": "platform_automotive_restricted",
+      "rule_ids": [
+        "SBR-RI-004"
+      ],
+      "note": "汽车/车辆类受限商品词命中。"
+    },
+    {
+      "group_id": "platform_food_animal_restricted",
+      "rule_ids": [
+        "SBR-RI-005",
+        "SBR-PI-008"
+      ],
+      "note": "食品/活体动物/动物来源类受限词命中。"
+    },
+    {
+      "group_id": "platform_health_claim_restricted",
+      "rule_ids": [
+        "SBR-RI-002",
+        "SBR-MED-003",
+        "SBR-LV-001"
+      ],
+      "note": "健康宣称与需注册产品类词命中。"
+    },
+    {
+      "group_id": "platform_currency_human_body_restricted",
+      "rule_ids": [
+        "SBR-PI-005",
+        "SBR-PI-008"
+      ],
+      "note": "货币/票据/人体部件/金融工具类禁售词命中。"
+    },
+    {
+      "group_id": "platform_chemicals_explosives_toxic",
+      "rule_ids": [
+        "SBR-PI-004"
+      ],
+      "note": "化学品/爆炸物/有毒物质类禁售词命中。"
+    },
+    {
+      "group_id": "platform_services_restricted",
+      "rule_ids": [
+        "SBR-PI-006",
+        "SBR-LV-005"
+      ],
+      "note": "受限与禁售服务类词命中。"
+    },
+    {
+      "group_id": "platform_tobacco_extended",
+      "rule_ids": [
+        "SBR-PI-002"
+      ],
+      "note": "烟草/尼古丁扩展禁词命中。"
+    },
+    {
+      "group_id": "platform_out_of_commerce",
+      "rule_ids": [
+        "SBR-LV-009",
+        "SBR-AU-001"
+      ],
+      "note": "非商业流通/未授权零售类词命中。"
+    },
+    {
+      "group_id": "platform_ip_explicit",
+      "rule_ids": [
+        "SBR-IP-001",
+        "SBR-IP-002",
+        "SBR-IP-007"
+      ],
+      "note": "listing 显式宣称仿牌/盗版/盗用商标水印。命中恒为信号，须人工复核。"
+    },
+    {
+      "group_id": "platform_ip_signal_terms",
+      "rule_ids": [
+        "SBR-IP-001",
+        "SBR-IP-008"
+      ],
+      "note": "商标/版权/专利/外观设计侵权信号词命中。命中恒为信号，须人工复核。"
+    },
+    {
+      "group_id": "ip_cti_registered_marks",
+      "rule_ids": [
+        "SBR-IP-001"
+      ],
+      "note": "CTI/INPI 登记商标命中。命中恒为信号（可能为合法授权使用），须人工复核。"
+    },
+    {
+      "group_id": "anvisa_ad_claim_terms",
+      "rule_ids": [
+        "SBR-MED-003",
+        "SBR-LV-001"
+      ],
+      "note": "RDC 96/2008 医药广告宣称限制用语命中，须结合商品类别与宣称语境判断。"
+    },
+    {
+      "group_id": "catalog_anvisa_agrotoxico_active_ingredients__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "MAPA 农用化学品活性成分命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_agrotoxico_active_ingredients__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "MAPA 农用化学品活性成分命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_agrotoxico_substances__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "MAPA 农用化学品登记物质命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_agrotoxico_substances__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "MAPA 农用化学品登记物质命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_food_company_names__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 食品生产/持证企业命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_food_company_names__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 食品生产/持证企业命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_categories__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 食品分类命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_categories__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 食品分类命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 食品登记品名命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 食品登记品名命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_types__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 食品产品类型命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_types__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 食品产品类型命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 保健品商品名命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 保健品商品名命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_health_holders__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 保健品持证企业命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_health_holders__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 保健品持证企业命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_health_manufacturers__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 保健品生产企业命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_health_manufacturers__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 保健品生产企业命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_health_technical_names__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 保健品技术名称命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_health_technical_names__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 保健品技术名称命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_ifa_active_ingredients__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "MAPA IFA 活性成分命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_ifa_active_ingredients__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "MAPA IFA 活性成分命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_active_ingredients__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 药品活性成分命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_active_ingredients__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 药品活性成分命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_holders__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 药品持证企业命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 药品登记品名命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 药品登记品名命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_therapeutic_classes__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 药品治疗分类命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_therapeutic_classes__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 药品治疗分类命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_active_ingredients__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 受限药品活性成分命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_active_ingredients__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 受限药品活性成分命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 受限药品登记品名命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 受限药品登记品名命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_company_names__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 卫生产品持证企业命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_company_names__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 卫生产品持证企业命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__multi",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 消毒/卫生产品登记品名命中 → 需注册与销售资质核验。"
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "rule_ids": [
+        "SBR-MED-004"
+      ],
+      "note": "ANVISA 消毒/卫生产品登记品名命中 → 需注册与销售资质核验。"
     }
   ],
   "unmapped_group_policy": "未在 mappings 中的词组不产生规则触发，但仍在扫描报告中作为提示列出。"

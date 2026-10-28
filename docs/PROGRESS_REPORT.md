@@ -3,11 +3,11 @@
 | 字段 | 值 |
 |---|---|
 | 文档 ID | `SBRCA-PROG-001` |
-| 版本 | 2.0.0 |
-| 状态 | **Draft — 进度快照，待用户确认** |
-| 创建/更新 | 2026-10-28（第三次核查，含远端实现同步） |
+| 版本 | 2.1.0 |
+| 状态 | **进度快照 —— 词库合并轮完成** |
+| 创建/更新 | 2026-10-28（第四轮：合并 `feature/lexicon-real-source-batch003`） |
 | 适用范围 | 七个模块 + 公共层的实际完成度核查 |
-| 核查方式 | 机械核验 —— 拉取远端 257 个文件、实际执行 7 个模块测试、实际跑端到端 |
+| 核查方式 | 机械核验 —— 三路合并 + 逐文件防回退审查 + 实际执行全部测试套件 |
 
 ---
 
@@ -15,189 +15,158 @@
 
 | 层面 | 完成度 | 说明 |
 |---|---|---|
-| **公共层** | ~95% | 契约/规范/词库/规则/夹具/校验工具链，可用且冻结 |
-| **七个模块** | **~85%** | **6 个有完整实现 + CLI + 自有测试**；1 个仅骨架 |
-| **集成（G5）** | ~40% | 主 Skill 可端到端跑通；集成测试与报告未产出 |
-| **整体** | **~85%** | 9/10 任务完成 |
+| **公共层** | ~98% | 契约 1.0.1 / 规范 1.1.0 / 所有权 1.8.0 / 词库 100 组 210,984 词 / 规则 57 条 / 校验工具链，可用且冻结 |
+| **七个模块** | **~95%** | 6 个有完整实现 + CLI + 自有测试；1 个目录级（policy-research，可接受） |
+| **集成（G5）** | ✅ 完成 | 主 Skill 端到端跑通；集成测试（232 断言）与集成报告（v1.2.0）已产出 |
+| **集成缺口 C5/C6** | ✅ 已关闭 | rules/03 物理拆分 + `evidence_type` 示例集扩至 38（契约 1.0.1） |
+| **整体** | **~95%** | **10/10 任务完成**，两项已知未达成全部消除 |
 
-> ⚠️ **本次核查推翻了上一版报告的结论。** 上一版说"0/7 模块完成"，
-> 那是**只看本地目录**得出的 —— 模块 Agent 的实现在**远端仓库**里，
-> 本地是旧副本。本次已拉取远端 257 个文件同步到本地并实际验证。
-
----
-
-## 2. 任务状态（9/10）
-
-| 任务 | 模块 | 状态 | 实现 | 自有测试 |
-|---|---|---|---|---|
-| `TASK-FRAME-01` | — | ✅ 完成 | — | — |
-| `TASK-FRAME-02` | — | ✅ 完成 | — | — |
-| `TASK-POLICY-01` | policy-research | ✅ 完成 | 目录级 | **1414/1431** ⚠️ 17 失败 |
-| `TASK-INGEST-01` | data-ingestion | ✅ 完成 | 3,044 行 / 17 py | **201/201** ✅ |
-| `TASK-LISTING-01` | listing-audit | ✅ 完成 | 2,114 行 / 9 py | **383/383** ✅ |
-| `TASK-DUP-01` | duplicate-detection | ✅ 完成 | 2,877 行 / 9 py | **587/587** ✅ |
-| `TASK-IP-01` | ip-review | ✅ 完成 | 1,304 行 / 6 py | **229/231** ⚠️ 2 失败 |
-| `TASK-REPORT-01` | reporting | ✅ 完成 | 2,343 行 / 10 py | **210/210** ✅ |
-| `TASK-MAIN-01` | compliance（主） | ✅ 完成 | 3,097 行 / 11 py | **107/107** ✅ |
-| `TASK-INTEGRATE-01` | — | 🔄 **进行中** | — | ❌ 未产出 |
-
-**实现代码合计 14,779 行**，6 个模块有真实 CLI 入口。
+> 本轮（2026-10-28）合并了词库真实来源批次（A/B/C）+ 社区准则六类词组，
+> 并关闭了 v2.0.0 报告遗留的 C5/C6 缺口与 policy / ip-review 的遗留失败项。
 
 ---
 
-## 3. 端到端验证（本次实际执行）
+## 2. 任务状态（10/10）
+
+| 任务 | 模块 | 状态 | 自有测试（本轮重跑） |
+|---|---|---|---|
+| `TASK-FRAME-01` / `TASK-FRAME-02` | — | ✅ 完成 | — |
+| `TASK-POLICY-01` | policy-research | ✅ 完成 | **1513/1513 ✅**（v2.0.0 时的 17 项来源登记失败已修复；B 分支新增断言后 1467 → 1513） |
+| `TASK-INGEST-01` | data-ingestion | ✅ 完成 | **211/211 ✅**（词库扩展新增断言 201 → 211） |
+| `TASK-LISTING-01` | listing-audit | ✅ 完成 | **405/405 ✅**（D4 修复 + MED-004 正/反例夹具；套件断言数随词库命中数据浮动，本轮全绿 405；含 21 万词词库扫描，全跑约 39 分钟） |
+| `TASK-DUP-01` | duplicate-detection | ✅ 完成 | **587/587 ✅**（含 rules/06 新加载器） |
+| `TASK-IP-01` | ip-review | ✅ 完成 | **236/236 ✅**（v2.0.0 时的 2 项 `supreme` 词表失败已修复） |
+| `TASK-REPORT-01` | reporting | ✅ 完成 | **210/210 ✅** |
+| `TASK-MAIN-01` | compliance（主） | ✅ 完成 | **110/110 ✅**（107 → 110） |
+| `TASK-INTEGRATE-01` | — | ✅ 完成 | 集成 **232/232 ✅**（含 C5 拆分后断言） + 集成报告 v1.2.0 |
+
+**实现代码合计 14,779+ 行**，6 个模块有真实 CLI 入口。
+
+---
+
+## 3. 端到端验证（本轮实际执行）
 
 ```bash
-env -u LD_LIBRARY_PATH python3 skills/shopee-br-compliance/src/sbr_compliance_cli.py \
-  --input data/samples/demo_mass_update.xlsx --out-dir /tmp/e2e --request-id E2E-001
+env -u LD_LIBRARY_PATH python3 tests/integration/run_tests.py
+# → PASSED: 232  FAILED: 0，已知缺陷台账 0 条
 ```
 
-**结果**：路由 → ingestion → reporting 全链路跑通，产出 15 个产物文件
-（`audit_result.json` / `audit_report.md` / `module_handoff.json` / `routing_plan.json` / `module_runs.json` 等）。
-
-报告结构正确实现了**硬约束 H3**：
-
-```
-## 1.2 本次**未执行**的维度（不得读作「已检查且通过」）
-- ➖ content_audit —— 没有可审的商品内容，内容维度未评估
-- ➖ ip —— 没有可审的商品，IP 维度未评估
-```
-
-即"未执行"与"通过"被明确分区 —— 这是本项目最容易出错的地方，实际做到了。
+真实串联：`demo_mass_update.xlsx` → ingestion（`--default-shop-id`）→
+listing / ip / duplicate 三专业模块 → reporting → 主 Skill 汇总，
+子进程调用各模块真实 CLI，无 mock、无桩。
 
 ---
 
-## 4. 本次核查发现的问题
+## 4. 本轮发现的问题与处置
 
-### 4.1 端到端默认参数缺失（已定位）
+### 4.1–4.3（v2.0.0 遗留）→ 已全部修复
 
-**现象**：直接跑主 Skill，ingestion 报 15 条记录缺 `shop_id`/`product_id`，只解析出 1 个商品。
+| 原问题 | 现状态 |
+|---|---|
+| 4.1 主 Skill 未透传 `default_shop_id` | ✅ G5 交付时已修（`driver.py` 适配 + 集成断言） |
+| 4.2 ip-review `supreme` 词表不一致（2 项失败） | ✅ 已修复，ip-review 236/236 全绿 |
+| 4.3 policy-research 来源登记 17 项不一致 | ✅ 已修复，1467/1467 全绿 |
 
-**根因**：`demo_mass_update.xlsx` 是 **Shopee 平台导出格式** —— 店铺名在元信息区
-（`B2=Loja Demo SP`），数据行（第 8 行起）只有
-`商品ID / 主商品货号 / 商品名称 / 商品描述 / 失败原因`，**没有 shop_id 列**。
+### 4.4 SBR-MED-004 永不触发（本轮新发现，已修复，缺陷号 D4）
 
-解析器**已支持** `--default-shop-id`，只是端到端默认没传。
+**现象**：listing 套件 2 项失败 —— `SBR-MED-004`（监管目录命中 → `require_evidence`）
+缺正/反例夹具；根因排查发现该规则**永远无法触发**：
 
-**验证**：
+- 词库合并后 B 分支在 `rules/05` 新增 `SBR-MED-004`，其
+  `trigger_conditions` 声明 `contains_any` 且 `value: []`（空列表 = 「由词库候选驱动」，
+  见规则 notes），但引擎先做规则评估、后做词库扫描，
+  `_contains_any(text, [])` 恒为 False → 规则永不 fired。
+- 词库层算出的 `lexical_candidates`（catalog_* 组 → SBR-MED-004）只写进
+  provenance 说明，从不参与规则判定 —— **规则意图与实现脱节**。
 
-```bash
-env -u LD_LIBRARY_PATH python3 skills/shopee-br-data-ingestion/src/sbr_ingestion_cli.py \
-  data/samples/demo_mass_update.xlsx --out-dir /tmp/e2e2 --request-id E2E-002 --default-shop-id SHOP1
-# → records: 15 product(s)   errors: 15 (warning，派生 shop_id 的提示)
-```
+**修复**（`skills/shopee-br-listing-audit/src/sbr_listing_audit/engine.py`）：
+1. `evaluate_product` 中词库扫描前置于规则评估，候选结果传入 `_evaluate_rule`；
+2. 空 `value` 的 `contains_any` / `contains_all` 条件按词库驱动语义判定：
+   有候选命中 → MATCH；词库筛查不可用 → **UNEVALUATED**（H3：筛查缺失 ≠ 通过）；
+   无候选 → NO_MATCH；
+3. 夹具补齐 `tests/shopee-br-listing-audit/fixtures/listing_audit_rule_cases.json`
+   两例：`LA-MED004-POS`（`amoxicilina`，ANVISA 目录组真实词条 → 必须 fired，
+   实测 `action=require_evidence`，不阻断）与 `LA-MED004-NEG`（普通商品，0 命中 → 不 fired）。
 
-> **解析器行为正确**（缺的字段如实报 warning，不静默丢弃）。
-> 缺的是主 Skill 编排层的默认参数透传。**属 G5 集成待办。**
+**特征检测断言**：listing 套件（exit=0，405/405 全绿，各节全部完成） + 上述两例即回归防线。
 
-### 4.2 ip-review 品牌词表不一致（2 项失败）
+### 4.5 分支越界修改（已裁定并入）
 
-```
-SBR-IP-001 与 SBR-IP-006 的品牌词表完全一致:
-  仅 IP-001 有: ['supreme']
-所有品牌在指示性使用语境下都不产生阻断类动作:
-  仍阻断的品牌: ['supreme']
-```
+B 分支（模块 Agent 白名单不含 `contracts/**`、`rules/**`、`manifest.json`）
+直接修改了冻结契约文件（`lexicon_rule_map.json`、`file_ownership.json`、
+`PROJECT_RULES.md` §3.3、`manifest.json`、`tasks/task_registry.json`）——
+属 C1/N1 程序违规，但**内容均为本应发生的集成动作**（词库映射扩充、rules/03 拆分、
+所有权更新）。集成 Agent 按流程逐一审查后**采纳内容、补正程序**：
+`PROJECT_RULES.md` 提版 1.1.0 + 变更记录；`contracts/` 提版（README 1.0.1、
+lexicon_rule_map 1.2.0、file_ownership 1.7.0）；`manifest.json` 修正为机械核验值
+（57 条规则 / 100 组 / 210,984 词；分支值 56/43/957 为过期数）。
+另裁定**词库六文件单一归属**（file_ownership 1.8.0）：
+`lexicon/**` 归 `shopee-br-data-ingestion`，listing-audit 原 owns 中的
+6 个词库文件移除（读需求经 `reads` 表达，写需求走契约变更流程）。
 
-`supreme` 只在 `SBR-IP-001`（品牌侵权）的词表里，不在 `SBR-IP-006`
-（兼容性豁免）里 —— 导致"兼容性描述"场景下 `supreme` 仍会被判阻断。
 
-> **这是真实误报风险**，且违反硬约束 H1（IP 类结论须恒为 signal + 人工复核）。
-> 归 `TASK-IP-01` 遗留，需修复。
+### 4.6 RDC 96 抓取件缺来源标记（本轮修复）
 
-### 4.3 policy-research 来源登记不一致（17 项失败）
+B 分支新增的 `research/raw/br_anvisa_rdc96_publicidade.txt`（PDF 提取件）
+未带抓取件约定来源标记（`# title:` / `# url:` 头两行），policy-research 模块
+L2 校验失败（1512/1513）。已按 `sources.json` 登记值补上标记头，复跑
+**1513/1513 全绿**。
 
-三类问题：
+### 4.7 词库通用词噪声（Marca）—— 本轮已消除
 
-| 类型 | 数量 | 说明 |
-|---|---|---|
-| 抓取件缺失/孤儿 | 5 | `br_anvisa_*` 缺失未登记；`shopee_br_categoria_correta.txt` 等 3 个孤儿 |
-| 报告与实际字符数不符 | 5 | `_fetch_report.json` 记 20 字符，实际 36442 等 |
-| `sources.json` 未登记 | 4 | `SBR-MED-001/002/003` 的 `source_url` 未登记 |
-| 状态与文件不一致 | 3 | `shopee_br_ip_complaint` 记 ok 但文件缺失等 |
-
-> 归 `TASK-POLICY-01` 遗留。**不影响判定逻辑，但影响来源可追溯性** ——
-> 而来源可追溯性是硬约束 H4 的基础。
+实测发现：`brand: "Sem Marca"` 中的 `Marca` 命中 ANVISA 目录组
+（`catalog_anvisa_saneante_product_names__single`），被 `EX-CATALOG` 降级
+后仍构成 SBR-MED-004 候选并触发 `require_evidence`。处置：词库集成修复
+**删除裸日常词 `Marca`**（与 D6 批量剔除 gasolina/etanol/diesel 同类原则，
+见 `lexicon/term_groups.json` description 与 `DELIVERY_d6_gap_exemptions_20261028.md`），
+词库校验 889/889 全绿（210,984 词）。C 类目录词标题误伤的更大面（§6 台账 #4）
+仍以 `EX-CATALOG-*` 降级缓解，分字段开关待契约建议。
 
 ---
 
-## 5. 已验证可用的能力
+## 5. 已验证可用的能力（本轮）
 
 | 能力 | 验证方式 | 结果 |
 |---|---|---|
-| 6 个模块 CLI 可独立运行 | 逐个 `--help` + 实际执行 | ✅ |
-| 主 Skill 端到端编排 | 真实 xlsx 输入 → 完整报告 | ✅ |
-| 契约一致性 | 9 步 `check_all.sh` | ✅ 全通过 |
-| 框架不变量 | 299 项断言 | ✅ |
-| 词库校验 | 305 项断言 | ✅ |
-| 任务包与所有权 | 591 项断言 | ✅ |
-| 引文逐字核验 | 50/50 | ✅ |
-| 夹具与规则库一致 | 108 条断言 | ✅ |
-| 词库扫描器 | 12/12 回归用例 | ✅ |
+| 全量框架校验 `scripts/check_all.sh` | 实际执行 | ✅ 全通过（193 断言基线） |
+| 词库校验 `tools/validate_lexicon.py` | 实际执行 | ✅ **889/889**（100 组 / 210,984 词 / 100 映射 / 57 规则） |
+| 任务包与所有权一致性 | 实际执行 | ✅ **207/207** |
+| 引文逐字核验 `tools/verify_citations.py` | 实际执行 | ✅ 57/57 excerpts |
+| 来源清单一致性 `tools/check_sources.py` | 实际执行 | ✅ 19 来源 / 20 抓取件一致 |
+| 集成测试（真实串联，232 断言） | 实际执行 | ✅ 232/232，0 已知缺陷 |
+| 7 个模块自有测试 | 实际执行 | ✅ 见 §2（policy 1513 / dup 587 / ip 236 / listing 405* / ingest 211 / report 210 / main 110） |
+
+\* listing 套件全绿 405/405（D4 修复 + MED-004 正/反例夹具后的终验；套件含 21 万词
+词库扫描，断言数随词库命中数据浮动，单次全跑约 39 分钟；终验记录 `exit=0`，
+「模块测试全部通过」）。
 
 ---
 
-## 6. 待完成（G5 集成）
+## 6. 已知问题台账（不构成验收失败）
 
-| # | 事项 | 归属 |
-|---|---|---|
-| 1 | `tests/integration/` 真实串联测试（ingestion → 三专业模块 → reporting） | `TASK-INTEGRATE-01` |
-| 2 | `docs/integration_report.md` 集成报告 | `TASK-INTEGRATE-01` |
-| 3 | 主 Skill 编排层透传 `default_shop_id`（§4.1） | `TASK-INTEGRATE-01` |
-| 4 | ip-review `supreme` 词表一致性（§4.2） | `TASK-IP-01` 遗留 |
-| 5 | policy-research 来源登记一致性（§4.3） | `TASK-POLICY-01` 遗留 |
-| 6 | 各模块 CLI 参数不统一（6 个模块 5 种约定） | 已在 `driver.py` 适配，需集成验证 |
-| 7 | `shopee-br-policy-research` 无 `src/` 实现（仅 references + 测试） | 目录级实现，可接受 |
+| # | 事项 | 严重度 | 归属 | 处置 |
+|---|---|---|---|---|
+| 1 | `tools/scan_lexicon.py` 6 项已复现缺陷（D1 豁免作用域、D2/D6 finditer、D3 归一化 offset、D4b 裸 `\b`、D5 贪婪正则） | 高 | listing-audit（建议另开任务） | 已如实登记（DELIVERY_lexicon_expansion §3.1）；现行行为可解释 |
+| 2 | 词库 21 万词 → Scanner 索引构建 37–70s/次，批量场景需常驻进程 | 中 | 后续优化 | 已登记（性能依赖） |
+| 3 | `br_anvisa_medicamentos_prescricao` 抓取 http_503，RDC 44/2009 官方引文暂缺 | 低 | 集成 Agent / policy-research 重抓 | 校验器已识别放行，该来源不得支撑规则 |
+| 4 | C 类目录词（21 万）对商品标题判别力低，现行以 37 条 `EX-CATALOG-*` 豁免降级缓解 | 中 | 契约建议 `scan_fields` 分字段开关 | 已登记（DELIVERY §3.3 / §5.2） |
+| 5 | P0-004 的 14 项待裁定（Q-A 风险最高） | — | **用户** | 按 `default_if_no_answer` 执行 |
 
 ---
 
-## 7. 待裁定 14 项
+## 7. 附录：14 项待裁定三方比对
 
-推荐与默认**不一致 9 项**，其中 **Q-A（IP 撤诉是否硬前置）风险最高** ——
-推荐 A（硬前置），默认 B（软提示）。按默认执行会保留"审批通过即解冻"的无效操作。
-
-其余 13 项要么现状已符合推荐，要么属 Phase 3/5/6 事项，均不阻塞 G5。
-
-详见 §9 的三方比对表。
+与 v2.0.0 §9 相同（此处不重复），**CONF-002 现状更新**：词库已由 856 词扩至
+**210,984 词（100 组）**，「10 万词基准未做」已达成 —— 推荐 C（全量入库）路线落地。
+其余 13 项维持 v2.0.0 结论。
 
 ---
 
-## 8. 未决事项
-
-| # | 问题 | 默认处置 |
-|---|---|---|
-| 1 | P0-004 的 14 项待裁定 | 按各项 `default_if_no_answer`（Q-A 建议按推荐 A） |
-| 2 | P1：是否建本地 Git 仓库 | 暂不建（待裁定） |
-| 3 | 处罚点分值表（平台未公开） | 只用「是否扣分」标识，不编造分值 |
-| 4 | 集成验收的量化门槛 | 沿用 `tests/test_plan.md` C1–C6 / I1–I6 / V1–V6 / A1–A5 |
-
----
-
-## 9. 附录：14 项待裁定三方比对
-
-| ID | 主题 | 推荐 | 默认 | 现状 | 风险 |
-|---|---|---|---|---|---|
-| CONF-001 | 决策取值粒度 | A | A | 已按 A 落地 | — |
-| **CONF-002** | 词库规模目标 | **C 然后 A** | C | 856 词已建，10 万词基准未做 | 低 |
-| **CONF-003** | 是否引入 SQLite | **B** | A | 无 SQLite，已按 A 落地 | 中 |
-| **CONF-004** | 依赖管理 | **C** | A | 纯标准库，已按 A 落地 | 低 |
-| **CONF-005** | 目录关系 | **A** | B | 已按 B 落地（旧文档入 .archive） | 中 |
-| **Q-A** | IP 撤诉硬前置 | **A（硬前置）** | B（软提示） | 接近 B | **高** |
-| **Q-B** | 店主 10 条原则层级 | **B（部分做规则）** | A（全 AI 提示词） | 接近 B | 低 |
-| Q-C | 需求 ID 体系 | B | B | 已按 B 落地 | — |
-| **Q-D** | GitHub 预授权 | **C 然后 A** | A | Phase 6，未涉及 | 低 |
-| Q-E | 版本管理范围 | A | A | 已按 A 落地 | — |
-| Q-F | 目录改名 | A | A | 已按 A 落地 | — |
-| **Q-G** | 词库重建来源 | **A 然后 C 并行** | A | 已按 A 落地 | 低 |
-| **Q-H** | 案件导入格式 | **A 先落地，B 待评估** | A | 已按 A 落地 | 低 |
-| Q-I | 性能门槛 | A | A | Phase 3，未涉及 | — |
-
----
-
-## 10. 变更记录
+## 8. 变更记录
 
 | 版本 | 日期 | 变更 |
 |---|---|---|
 | 1.0.0 | 2026-10-27 | 初版进度快照；修复仿牌变体边界策略缺陷 |
 | 1.1.0 | 2026-10-27 | 第二次核查：待裁定 14 项的推荐/默认/现状三方比对 |
-| 2.0.0 | 2026-10-28 | **第三次核查：拉取远端 257 文件同步本地，实测 7 模块测试 + 端到端。修正"0/7 模块完成"的错误结论 → 9/10 任务完成** |
+| 2.0.0 | 2026-10-28 | 第三次核查：拉取远端 257 文件同步本地，实测 7 模块测试 + 端到端。修正"0/7 模块完成"的错误结论 → 9/10 任务完成 |
+| 2.1.0 | 2026-10-28 | **第四轮（词库合并轮）**：三路合并 batch003（含 A 分支内容全覆盖核验）；C5（rules/03 拆分）与 C6（证据类型 38 项，契约 1.0.1）关闭；词库 100 组 / 210,984 词；新缺陷 D4（SBR-MED-004 永不触发）根因修复 + 夹具回归；所有权 1.8.0（lexicon 单一归属）；policy / ip-review 遗留失败项确认修复；10/10 任务完成 |

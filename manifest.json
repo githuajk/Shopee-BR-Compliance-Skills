@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "manifest_version": "1.2.0",
+  "manifest_version": "1.3.0",
   "project": {
     "code": "SBRCA",
     "name": "Shopee Brazil Compliance Agent",
@@ -281,7 +281,7 @@
   },
   "rule_library": {
     "directory": "rules/",
-    "current_rule_count": 50,
+    "current_rule_count": 57,
     "ownership": [
       {
         "file": "rules/01_prohibited_restricted_items.json",
@@ -301,14 +301,13 @@
         "owner": "shopee-br-ip-review"
       },
       {
-        "file": "rules/03_listing_violations_duplicates.json",
+        "file": "rules/03_listing_violations.json",
         "prefixes": [
-          "LV",
-          "DUP"
+          "LV"
         ],
-        "count": 17,
-        "owner": "SPLIT_PENDING_INTEGRATION",
-        "note": "混有两个模块前缀，集成阶段由集成 Agent 拆分"
+        "count": 20,
+        "owner": "shopee-br-listing-audit",
+        "note": "2026-10-28 集成拆分（原 rules/03_listing_violations_duplicates.json 的 LV 部分）"
       },
       {
         "file": "rules/04_cases_relist_authorization.json",
@@ -325,8 +324,17 @@
         "prefixes": [
           "MED"
         ],
-        "count": 3,
+        "count": 4,
         "owner": "shopee-br-listing-audit"
+      },
+      {
+        "file": "rules/06_duplicate_listings.json",
+        "prefixes": [
+          "DUP"
+        ],
+        "count": 3,
+        "owner": "shopee-br-duplicate-detection",
+        "note": "2026-10-28 集成拆分（原 rules/03_listing_violations_duplicates.json 的 DUP 部分）"
       }
     ]
   },
@@ -340,7 +348,7 @@
     "reference_impl_status": "missing_verified_2026-10-27",
     "lexicon": {
       "path": "lexicon/",
-      "purpose": "合并词库 —— 37 组 / 856 词（扫描）、改写映射、误报豁免、质量特征、无法规避品类、葡语变位表",
+      "purpose": "合并词库 —— 100 组 / 210,984 词（扫描）、改写映射、误报豁免、质量特征、无法规避品类、葡语变位表",
       "owner": "shopee-br-data-ingestion",
       "built_from": "2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 原 25 组 179 词",
       "coverage": "96.3% 逐词比对",
@@ -381,19 +389,21 @@
   },
   "lexicon": {
     "path": "lexicon/term_groups.json",
-    "groups": 37,
-    "terms": 856,
+    "groups": 100,
+    "terms": 210984,
     "risk_hints": {
-      "prohibited": 15,
-      "restricted": 12,
-      "ip_signal": 8,
-      "listing_violation": 4
+      "prohibited": 27,
+      "restricted": 52,
+      "ip_signal": 12,
+      "listing_violation": 9
     },
     "source_tiers": {
-      "platform_official": 25,
-      "internal_risk": 12
+      "platform_official": 49,
+      "internal_risk": 12,
+      "law": 39
     },
-    "validation": "env -u LD_LIBRARY_PATH python3 tools/validate_lexicon.py"
+    "validation": "env -u LD_LIBRARY_PATH python3 tools/validate_lexicon.py",
+    "last_updated": "2026-10-28"
   },
-  "last_updated": "2026-10-27"
+  "last_updated": "2026-10-28"
 }

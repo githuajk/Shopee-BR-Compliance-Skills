@@ -61,7 +61,7 @@ description: Use when you need to check a Shopee Brazil product listing for proh
 |---|---|---|
 | `rules/01_prohibited_restricted_items.json` | `PI` `RI` | 17 |
 | `rules/05_medicines_health.json` | `MED` | 3 |
-| `rules/03_listing_violations_duplicates.json` 的 `LV` 部分 | `LV` | 14 |
+| `rules/03_listing_violations.json` | `LV` | 14 |
 
 > `rules/03` 混有 `DUP` 前缀（属 duplicate-detection）。**本模块在集成阶段前不得直接修改该文件**，只提拆分建议。
 
@@ -148,7 +148,7 @@ Python 的 `\b` 在葡语重音元音旁不可靠（`at[óo]xico\b` 会吞 `Ócu
 
 ## 12. 文件所有权
 
-本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.6.0）。
+本模块的路径所有权由 `contracts/file_ownership.json` 定义（`ownership_version` 1.8.0）。
 
 **可写路径（白名单）—— 越界即任务失败：**
 
@@ -157,14 +157,12 @@ skills/shopee-br-listing-audit/**
 tests/shopee-br-listing-audit/**
 rules/01_prohibited_restricted_items.json
 rules/05_medicines_health.json
-lexicon/term_groups.json
-lexicon/rewrite_map.json
-lexicon/exemptions.json
-lexicon/quality_patterns.json
-lexicon/non_avoidable.json
-lexicon/verb_conjugations.json
+rules/03_listing_violations.json
 tools/scan_lexicon.py
 ```
+
+> 词库文件（`lexicon/**` 六件）自 1.8.0 起单一归属 `shopee-br-data-ingestion`。
+> 本模块只读消费；如需改词库（含 `exemptions.json`）→ 走契约变更建议流程。
 
 **只读路径：**
 
@@ -172,8 +170,8 @@ tools/scan_lexicon.py
 contracts/**
 data/schema/**
 lexicon/term_groups.json
+lexicon/exemptions.json
 research/**
-rules/03_listing_violations_duplicates.json
 ```
 
 **本模块拥有的规则前缀：** `PI, RI, MED, LV`

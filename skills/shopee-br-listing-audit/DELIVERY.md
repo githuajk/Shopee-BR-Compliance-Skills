@@ -252,7 +252,7 @@ dangling: 0
   - `data/schema/rule.schema.json` / `data/schema/rule_collection.schema.json` /
     `data/schema/product.schema.json` —— 规则与商品的字段枚举。
   - `rules/01_prohibited_restricted_items.json`、`rules/05_medicines_health.json`（可写，
-    本模块拥有）、`rules/03_listing_violations_duplicates.json` 的 `LV` 部分（**只读**）。
+    本模块拥有）、`rules/03_listing_violations.json`（**只读**）。
   - `tools/scan_lexicon.py`（本模块拥有）—— 词库扫描器实现，
     `skills/shopee-br-listing-audit/src/sbr_listing_audit/lexicon.py` 复用它而不重复实现。
 - **我期待下游提供的**：
@@ -273,7 +273,7 @@ dangling: 0
   - `contracts/lexicon_rule_map.json` 里 37 个词组中有 **30 个映射到本模块的规则**，
     **7 个只映射到他模块**（`ip_marca_cn`、`ip_marca_br`、`ip_entretenimento`、
     `ip_esportes`、`ip_variante_marca`、`ip_copyright`、`ip_shopee_asset`）。
-  - `rules/03_listing_violations_duplicates.json` 仍混有 `LV` 与 `DUP` 两组前缀。
+  - `rules/03_listing_violations.json` 仍混有 `LV` 与 `DUP` 两组前缀。
     拆分建议见 `tasks/task_registry.json` 的 `split_request` 字段，
     **本模块未修改该文件**。
 
@@ -337,7 +337,7 @@ dangling: 0
       `AGENT_COLLABORATION.md`、`manifest.json`、`tasks/**`、`tests/test_plan.md`、
       `docs/**`、`tools/**`、`scripts/**` 全部未改。
 - [x] **未修改他人拥有的文件** —— `rules/**`、`research/**`、`lexicon/**`、
-      `tests/fixtures/**` 全部未改。`rules/03_listing_violations_duplicates.json`
+      `tests/fixtures/**` 全部未改。`rules/03_listing_violations.json`
       只读引用（`split_request` 已在任务注册表里登记）。
 - [x] **引文核验通过** —— `tools/verify_citations.py` 全库 `50/50 excerpts verified verbatim, 0 failed`；
       另对本次 4 份文档里的 34 段原文做了独立核验，`34/34 quotes verified, 0 failed`。

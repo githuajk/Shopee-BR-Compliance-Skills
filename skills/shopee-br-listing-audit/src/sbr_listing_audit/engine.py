@@ -174,14 +174,11 @@ class ListingAuditEngine:
         fired: list[dict] = []
         unevaluated: list[dict] = []
 
-        for rule in self.rules:
-            outcome = self._evaluate_rule(product, rule)
-            if outcome["status"] == "fired":
-                fired.append(outcome)
-            elif outcome["status"] == "unevaluated":
-                unevaluated.append(outcome)
-
         # --- 词库筛查（信号层，不产生结论） ---
+        # 筛查必须先于规则评估完成：「词库驱动触发」类规则（如 SBR-MED-004，
+        # trigger_conditions 的 value 为空列表 = 声明由词库候选驱动）需要把候选
+        # 结果折算进条件判定（2026-10-28 集成修复 D4：规则先评估、词库后扫描
+        # 的顺序使这类规则永不触发，规则意图与实现脱节）。
         hits: list[dict] = []
         lexicon_state = "evaluated"
         if self.scanner is not None:
@@ -198,6 +195,14 @@ class ListingAuditEngine:
         lexical_candidates = candidate_rules(
             hits, self.lexicon_map, rules_mod.OWNED_PREFIXES)
 
+        for rule in self.rules:
+            outcome = self._evaluate_rule(product, rule, lexical_candidates,
+                                          lexicon_state)
+            if outcome["status"] == "fired":
+                fired.append(outcome)
+            elif outcome["status"] == "unevaluated":
+                unevaluated.append(outcome)
+
         return {
             "product_id": product_id,
             "product": product,
@@ -208,7 +213,9 @@ class ListingAuditEngine:
             "lexical_candidates": lexical_candidates,
         }
 
-    def _evaluate_rule(self, product: dict, rule: dict) -> dict:
+    def _evaluate_rule(self, product: dict, rule: dict,
+                       lexical_candidates: dict | None = None,
+                       lexicon_state: str = "evaluated") -> dict:
         """评估单条规则。"""
         rule_id = rule["rule_id"]
 
@@ -251,21 +258,57 @@ class ListingAuditEngine:
                     "missing_fields": [],
                     "detail": None,
                 }
+            # --- 词库驱动触发（D4，2026-10-28） -------------------------
+            # 条件声明 `contains_any` / `contains_all` 且 value 为空列表时，
+            # 文本条件本身不匹配任何内容 —— 该规则的触发由词库层候选驱动
+            # （词组 → 规则映射见 contracts/lexicon_rule_map.json，如
+            # catalog_* 组 → SBR-MED-004）：
+            #   * 有本规则候选命中   → MATCH（命中明细写入 detail）
+            #   * 词库筛查不可用     → UNEVALUATED（H3：筛查缺失 ≠ 通过）
+            #   * 无候选且筛查正常   → NO_MATCH（保持默认）
+            operand = condition.get("value")
+            if (str(condition.get("operator")) in ("contains_any",
+                                                   "contains_all")
+                    and not (operand or [])
+                    and result["status"] == NO_MATCH):
+                cands = (lexical_candidates or {}).get(rule_id) or []
+                if cands:
+                    terms = sorted({str(c.get("term")) for c in cands})[:8]
+                    groups = sorted({str(c.get("group_id"))
+                                     for c in cands})[:4]
+                    result["status"] = MATCH
+                    result["matched"] = (
+                        f"lexicon candidate hit: {', '.join(terms)} "
+                        f"(groups: {', '.join(groups)})")
+                    result["excerpt"] = result["matched"]
+                elif lexicon_state == "unevaluated":
+                    result["status"] = UNEVALUATED
+                    result["matched"] = "lexicon screening unavailable"
             details.append(result)
             if result["status"] == UNEVALUATED:
-                for required in condition.get("requires_input") or []:
-                    if required not in missing_fields:
-                        missing_fields.append(required)
-                if not missing_fields:
-                    missing_fields.append(str(condition.get("field") or "unknown"))
+                if result.get("matched") == "lexicon screening unavailable":
+                    if "lexicon_screening" not in missing_fields:
+                        missing_fields.append("lexicon_screening")
+                else:
+                    for required in condition.get("requires_input") or []:
+                        if required not in missing_fields:
+                            missing_fields.append(required)
+                    if not missing_fields:
+                        missing_fields.append(str(condition.get("field") or "unknown"))
 
         if any(item["status"] == UNEVALUATED for item in details):
+            if "lexicon_screening" in missing_fields:
+                reason = (f"lexicon screening is unavailable for rule "
+                          f"{rule_id}; the rule was NOT evaluated and is NOT "
+                          f"counted as a pass")
+            else:
+                reason = (f"required input field(s) are missing or empty for rule "
+                          f"{rule_id}: {', '.join(missing_fields)}; the rule was NOT "
+                          f"evaluated and is NOT counted as a pass")
             return {
                 "status": "unevaluated",
                 "rule": rule,
-                "reason": (f"required input field(s) are missing or empty for rule "
-                           f"{rule_id}: {', '.join(missing_fields)}; the rule was NOT "
-                           f"evaluated and is NOT counted as a pass"),
+                "reason": reason,
                 "missing_fields": missing_fields,
                 "detail": None,
             }

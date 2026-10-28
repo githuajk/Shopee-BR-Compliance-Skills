@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
-  "ownership_version": "1.6.0",
-  "last_updated": "2026-10-27",
+  "ownership_version": "1.8.0",
+  "last_updated": "2026-10-28",
   "contract_version": "1.0.0",
-  "notes": "文件所有权的唯一权威来源。skills/*/SKILL.md 的「文件所有权」章节与 tasks/*.md 的 §2.1 白名单都必须与本文件一致。模块 Agent 不得修改本文件；需变更时提交契约变更建议。 | 2026-10-27: 补充 integrator 角色（集成 Agent），版本 1.1.0。 | 2026-10-27: 明确 lexicon/** 归 shopee-br-data-ingestion 所有（与 task_registry 的 allowed_paths 一致）；从 shared_assets 只读清单移除。 | 2026-10-27: policy-research 模块 owns tools/check_sources.py（来源清单一致性校验，属该模块职责）",
+  "notes": "文件所有权的唯一权威来源。skills/*/SKILL.md 的「文件所有权」章节与 tasks/*.md 的 §2.1 白名单都必须与本文件一致。模块 Agent 不得修改本文件；需变更时提交契约变更建议。 | 2026-10-27: 补充 integrator 角色（集成 Agent），版本 1.1.0。 | 2026-10-27: 明确 lexicon/** 归 shopee-br-data-ingestion 所有（与 task_registry 的 allowed_paths 一致）；从 shared_assets 只读清单移除。 | 2026-10-27: policy-research 模块 owns tools/check_sources.py（来源清单一致性校验，属该模块职责） | 2026-10-28: lexicon 六文件从 listing-audit owns 移除，单一归属 data-ingestion（lexicon/**），版本 1.8.0",
   "rules": [
     {
       "rule": "一个路径只能有一个 owner",
@@ -85,20 +85,15 @@
         "tests/shopee-br-listing-audit/**",
         "rules/01_prohibited_restricted_items.json",
         "rules/05_medicines_health.json",
-        "lexicon/term_groups.json",
-        "lexicon/rewrite_map.json",
-        "lexicon/exemptions.json",
-        "lexicon/quality_patterns.json",
-        "lexicon/non_avoidable.json",
-        "lexicon/verb_conjugations.json",
-        "tools/scan_lexicon.py"
+        "tools/scan_lexicon.py",
+        "rules/03_listing_violations.json"
       ],
       "reads": [
         "contracts/**",
         "data/schema/**",
         "lexicon/term_groups.json",
         "research/**",
-        "rules/03_listing_violations_duplicates.json"
+        "lexicon/exemptions.json"
       ],
       "rule_prefixes": [
         "PI",
@@ -112,12 +107,12 @@
       "owns": [
         "skills/shopee-br-duplicate-detection/**",
         "tests/shopee-br-duplicate-detection/**",
-        "rules/04_cases_relist_authorization.json"
+        "rules/04_cases_relist_authorization.json",
+        "rules/06_duplicate_listings.json"
       ],
       "reads": [
         "contracts/**",
         "data/schema/**",
-        "rules/03_listing_violations_duplicates.json",
         "research/**",
         "lexicon/term_groups.json",
         "lexicon/non_avoidable.json"
@@ -252,5 +247,34 @@
     "removed_from_list": [
       "tools/**"
     ]
+  },
+  "split_decisions": {
+    "rules/03_listing_violations_duplicates.json": {
+      "decided_at": "2026-10-28",
+      "decided_by": "integrator (TASK-INTEGRATE-01)",
+      "strategy": "physical_split",
+      "result": {
+        "rules/03_listing_violations.json": "shopee-br-listing-audit (LV 20 条)",
+        "rules/06_duplicate_listings.json": "shopee-br-duplicate-detection (DUP 3 条)"
+      },
+      "reason": "原文件同时含 LV 与 DUP 两个模块的前缀，是所有权模型里最后一个「一路径多 owner」裂口，也是并行波次里唯一的路径重叠。任务包 TASK-INTEGRATE-01 的 deliverables 明确要求「rules/03 文件拆分结果（LV → listing-audit，DUP → duplicate-detection）」，PROJECT_RULES §3.3 亦规定该拆分由集成 Agent 在集成阶段执行。",
+      "loader_updates": [
+        "skills/shopee-br-listing-audit/src/sbr_listing_audit/rules.py: OWNED_RULE_FILES 改指 rules/03_listing_violations.json，READONLY_RULE_FILES 清空",
+        "skills/shopee-br-duplicate-detection/src/sbr_duplicate_detection/rules.py: RULE_FILES['DUP'] 改指 rules/06_duplicate_listings.json"
+      ],
+      "removed": "rules/03_listing_violations_duplicates.json（内容已全部迁入上述两个文件，无规则丢失）"
+    }
+  },
+  "ownership_decisions": {
+    "lexicon_single_owner": {
+      "decided_at": "2026-10-28",
+      "decided_by": "integrator (feature/lexicon-real-source-batch003 合并)",
+      "strategy": "single_owner_glob",
+      "result": {
+        "lexicon/**": "shopee-br-data-ingestion（唯一写者）",
+        "listing-audit 保留": "tools/scan_lexicon.py + rules/01/03/05"
+      },
+      "note": "shopee-br-listing-audit 的 owns 中移除 6 个词库文件（原与 data-ingestion 的 lexicon/** 通配所有权重叠，违反「一个路径一个 owner」）。listing 侧读需求经 reads 表达；写需求（如 exemptions.json 调整）改经契约变更建议流程。落实 DELIVERY_lexicon_expansion_20261028.md §5.3 建议。"
+    }
   }
 }
