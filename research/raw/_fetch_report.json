@@ -113,5 +113,21 @@
     "url": "https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2012/rdc0003_18_01_2012.html",
     "text_chars": 6188,
     "note": "2026-10-29 B1：决议正文（限用制度）；附件清单（PRT 24/2011 技术文档）404 未入。"
+  },
+  {
+    "slug": "br_anvisa_rdc1030_2026_cosmetico_proibidas",
+    "status": "http_403",
+    "http": 403,
+    "url": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=1696&cod_modulo=134&numeroAto=00001030&orgao=RDC%2FDC%2FANVISA%2FMS&seqAto=000&tipo=RDC&valorAno=2026",
+    "text_chars": null,
+    "note": "2026-10-29 B1：datalegis 403 + in.gov.br 000 → 存根入档，blocked_for_rules。"
+  },
+  {
+    "slug": "br_anvisa_rdc1029_2026_cosmetico_restritivo",
+    "status": "http_403",
+    "http": 403,
+    "url": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=1696&cod_modulo=134&numeroAto=00001029&orgao=RDC%2FDC%2FANVISA%2FMS&seqAto=000&tipo=RDC&valorAno=2026",
+    "text_chars": null,
+    "note": "2026-10-29 B1：datalegis 403 + in.gov.br 000 → 存根入档，blocked_for_rules。"
   }
 ]
