@@ -223,7 +223,19 @@
     "note": "2026-10-29 登记：官方载体 anvisalegis.datalegis.net 对本沙箱 403（HTML 与 PDF 端点均 403），in.gov.br（DOU 静态 PDF）000 阻断，bvsms 无 2026 年 RDC 索引。内容摘要（官方页面经搜索索引可核验）：incorpora GMC 07/25；新增 13 项（boro 类：trióxido de diboro/ácido bórico/octaborato dissódico 及 sais；mercúrio e seus compostos CAS 7439-97-6；POLYURETHANE-18/19；bis(tetrafluoroborato) de níquel；cetoconazol；N,N-dimetil-p-toluidina 等）；excluídas 4 项（peróxido de benzoíla, metileugenol, hidroquinona 1,4-dihidroxibenzeno, ácido azelaico）→ 移入限用（RDC 1.029/2026 第一部分，GMC 06/25）。化妆品禁用词组建组前置条件：获取 RDC 529/2021 附件全文 + RDC 1.030/2026 全文（逐字源）。",
     "blocked_for_rules": true,
     "capture_status": "failed_http_403_official_carrier_blocked",
-    "capture_note": "2026-10-29：datalegis 403（HTML+PDF 端点）+ in.gov.br 000；raw/ 存根仅供溯源，blocked_for_rules=true。"
+    "capture_note": "2026-10-29：datalegis 403（HTML+PDF 端点）+ in.gov.br 000；raw/ 存根仅供溯源，blocked_for_rules=true。",
+    "disposition": {
+      "disposition_id": "SBR-DISP-PR-015",
+      "status": "quarantined",
+      "reason": "fetch_failed_http_403_000_official_carriers_blocked_20261029",
+      "detail": "datalegis HTML+PDF 端点 403；in.gov.br（DOU 静态 PDF）000 阻断；bvsms 无 2026 RDC 索引。内容为化妆品禁用物质清单 2026 现行修订（GMC 07/25）。处置：建 `proibido_cosmetico_substancia` 词组前，须取得 RDC 529/2021 附件 + RDC 1.030/2026 逐字全文（C3）；届时置 status=cleared 并回填 dependent_rules_rebased。",
+      "first_registered": "2026-10-29",
+      "last_reviewed": "2026-10-29T00:00:00Z",
+      "blocked_for_rules": true,
+      "dependent_rules_rebased": [],
+      "rebased_to": [],
+      "remediation": "获取逐字全文后：status=cleared，回填 dependent_rules_rebased/rebased_to，词组建组联动（Q-015）"
+    }
   },
   {
     "slug": "br_anvisa_rdc1029_2026_cosmetico_restritivo",
@@ -237,6 +249,18 @@
     "note": "2026-10-29 登记：同 rdc1030 条目，datalegis 403 / in.gov.br 000 阻断。",
     "blocked_for_rules": true,
     "capture_status": "failed_http_403_official_carrier_blocked",
-    "capture_note": "2026-10-29：datalegis 403（HTML+PDF 端点）+ in.gov.br 000；raw/ 存根仅供溯源，blocked_for_rules=true。"
+    "capture_note": "2026-10-29：datalegis 403（HTML+PDF 端点）+ in.gov.br 000；raw/ 存根仅供溯源，blocked_for_rules=true。",
+    "disposition": {
+      "disposition_id": "SBR-DISP-PR-016",
+      "status": "quarantined",
+      "reason": "fetch_failed_http_403_000_official_carriers_blocked_20261029",
+      "detail": "同 SBR-DISP-PR-015。内容为限用物质清单 2026 第一部分（GMC 06/25；第二部分在 CP 1.399/2026 征询中）。限用词组建组（如 corticoides tópicos 组合信号）前置条件同禁用清单。",
+      "first_registered": "2026-10-29",
+      "last_reviewed": "2026-10-29T00:00:00Z",
+      "blocked_for_rules": true,
+      "dependent_rules_rebased": [],
+      "rebased_to": [],
+      "remediation": "获取逐字全文后：status=cleared，回填 dependent_rules_rebased/rebased_to，词组建组联动（Q-015）"
+    }
   }
 ]
