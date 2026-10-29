@@ -45,7 +45,7 @@
 ## 4. 执行进度（2026-10-28 当晚更新）
 
 - [x] **B5 英文信号词**：`proibido_drogas_en`（18 词）/ `proibido_tabaco_en`（9 词）入库；SBR-PI-003 v3 / SBR-PI-002 v2 正则联动（「nicotine」不入正则——戒烟贴片走 SBR-MED-002，仅「nicotine pouch」入正则）。靶向 11 例全过（7 阳性全命中、4 阴性零误伤）。
-- [x] **S2 剔除候选清单**：`docs/lexicon_exclusion_candidates.json`（848 项：≤4 字符 + 容器通用词，待 data-ingestion 按 C3 逐词留痕执行）。
+- [x] **S2 剔除执行**：848 项候选中 601 项已剔除（医学缩写/数字/含空格词 217 项保留），逐词留痕 `docs/s2_exclusion_trace_20261029.json`。
 - [x] **S3 索引**：已由集成轮完成（前缀分桶 + C 级 str.find，见 lexicon_scanning.md §7.1）。
 - [ ] B1 药妆 / B2 RDC44（重抓 URL 已 404，需新来源）/ B3 MAPA / B4 ANATEL —— 下一批
 - [ ] S1 scan_fields + S4 分层（契约变更建议，与 dbdf8d7 豁免收窄联动）

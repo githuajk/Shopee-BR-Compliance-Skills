@@ -1,0 +1,3614 @@
+{
+  "version": "1.0",
+  "executed_at": "2026-10-29",
+  "executed_by": "integrator (agent)",
+  "reason": "S2 候选通用词/超短词剔除（docs/lexicon_exclusion_candidates.json）",
+  "deleted": [
+    {
+      "group_id": "catalog_anvisa_agrotoxico_active_ingredients__single",
+      "term": "mcpa",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_agrotoxico_active_ingredients__single",
+      "term": "msma",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_agrotoxico_substances__single",
+      "term": "mcpa",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_agrotoxico_substances__single",
+      "term": "msma",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_categories__single",
+      "term": "GELO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_categories__single",
+      "term": "NULO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "term": "BCAA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "term": "BIJU",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "term": "BOLO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "term": "CAFE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "term": "FIGO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "term": "FUBA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "term": "GELO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "term": "Goma",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "term": "KIBE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "term": "KUFA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "term": "PETA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "term": "SAGU",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_food_product_names__single",
+      "term": "SOJA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "2WIN",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "4Pol",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "ACTH",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "AIDA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "AIOS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "AMBÚ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "ARES",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "ARIA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "ASP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "AT-T",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "AURA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Alça",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Apte",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Apté",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Atos",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "B2M",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "BENE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "BETA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "BIOS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "BITE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "BOLT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "BUZZ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Bia",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "CABO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "CLIP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Colt",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "D&D",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "DIVA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "DUDA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "DYNA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Dali",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "EDTA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "EVO.",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "EVOC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "EXIA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "GAAD",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "GAZE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "GEKO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "GUIA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "GoTo",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "HALO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "HBDH",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "HERA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "HUGO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "ICSI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "IKAP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "IRON",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "IgE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Join",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "KATM",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "KT-5",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "LENS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "LIFT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "LISE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "LLIS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "LUNA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "LYRA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Lexa",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Lyla",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "MACA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "MEMÊ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "MINT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "MK-1",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "MTch",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "MYLA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "MYOS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "N4SA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "NEFA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "NEVE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "NOZZ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Nep",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "NÍOO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "O4C",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "OPAK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "OTKS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "OZER",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Onix",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "P4C",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "PADS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "PEAK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "PFAT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "PIMA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "PURE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "PYON",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Pd60",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Pixi",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "QEVO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "QLAB",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "RACK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "RESt",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "RIVA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "ROHO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "SCAN",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "SEDA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "SEEK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "SEMA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "SHOF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "STAE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "STAR",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "SWAB",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "TALA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "TAPE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "TMAP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "TORO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "TTPA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "TWIN",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Tips",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Tube",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Tubo",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "UIBC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "UMEF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Urea",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "VBAS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "VERO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "VLab",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "Wave",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "XERF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "XN-L",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "YZAP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "aPTT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "eCal",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "eds",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "fT3",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "fT4",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "iQMR",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "iRF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "iSED",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "iSc",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "mRay",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "nëo",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "onda",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "ox-1",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "pHix",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "sCal",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "sLDL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_commercial_names__single",
+      "term": "trIA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_manufacturers__single",
+      "term": "3M",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_manufacturers__single",
+      "term": "AREX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_manufacturers__single",
+      "term": "EOVE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_manufacturers__single",
+      "term": "ITEM",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_manufacturers__single",
+      "term": "LARS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_manufacturers__single",
+      "term": "SERF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_manufacturers__single",
+      "term": "SIMA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_technical_names__single",
+      "term": "CPAP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_technical_names__single",
+      "term": "Clip",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_technical_names__single",
+      "term": "EDTA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_technical_names__single",
+      "term": "Gel",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_technical_names__single",
+      "term": "Guia",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_technical_names__single",
+      "term": "IODO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_health_technical_names__single",
+      "term": "ZIKA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_active_ingredients__single",
+      "term": "iodo",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_active_ingredients__single",
+      "term": "sene",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_active_ingredients__single",
+      "term": "água",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AAAA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ABBA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ACOG",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AFAX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AGUD",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AIXA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ALER",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ALIB",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ALIN",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ALIV",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ALIZ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AMMY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AMPI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ANLO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ANYA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ARES",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ASAP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ASDF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ASEA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ASID",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ATAK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ATIP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ATOF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AURA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AVAL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AVIV",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AXID",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AXOL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AZIX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AZLA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AZOD",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "AZOX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "BART",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "BECA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "BERK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "BEUM",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "BHIO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "BIZO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "BOLT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "BRAV",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "BROS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "CAAB",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "CAAS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "CALT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "CAPY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "CECI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "CLIC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "COEX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "CRYS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "CYNT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "CYRD",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DAEM",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DALÍ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DAPS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DAUF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DCOL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DECI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DEFB",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DEWS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DIAD",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DINE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DIOL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DIPA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DIVA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DOBU",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DOPO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DORE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DOSS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DOZI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DRAT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "DUAL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EBIX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ECOS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ECZO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EDEX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ELFI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ELIM",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ELUM",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ELÔ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EMAH",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EMBO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EMET",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EMLA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EMYO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ENAX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ENEK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EPAG",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EPIT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EPYL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EPÉZ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ESOP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ETNA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ETOD",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EVIR",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EVRA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EXIT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "EZET",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "FEXX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "FIGZ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "FILG",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "FLOX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "FLUX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "FOZA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "FURP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "GABA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "GAIA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "GCIB",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "GLIF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "GLYA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "GLYX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "GUAX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "HALO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "HEDD",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "HEZO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "HIXU",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "HYAX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "IBAN",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "IBUX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "IFLO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "IMIK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "INAF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "INIP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "IRBE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "IRNO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ISON",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ISOY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ITIÔ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "IUMI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "IXEL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "IZIZ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "JIVI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "KADÉ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "KELP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "KIOS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "KLEV",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LAIO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LAMI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LANZ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LARC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LASA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LEUX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LIDE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LIDY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LIND",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LOWE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LUCA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LUDU",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LUEQ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LUNE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LYNC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "LYRA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "MALÚ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "MANÁ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "MEGY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "MEVA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "MEXY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "MEZP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "MIBO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "MIND",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "MIWA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "MUSE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "NAOX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "NEOM",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "NEXT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "NIAR",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "NICE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "NIKI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "NIXE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "NOEX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "NORF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "NOXX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "NUIT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "OFEV",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "OHDE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "OLMY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "OLOP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "OMEC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "OMEP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ONAZ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ONUA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "OPPY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "OPTI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ORAP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "OSYS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "PACO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "PANT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "PASH",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "PERT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "PISA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "PLAQ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "POMADA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "PRED",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "PREM",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "PRÓS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "PSIU",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "PVPI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "PYPE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "QUET",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "RANA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "RISS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "RIZI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ROPI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ROXX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "RUVA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "RYRI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "SEKI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "SERC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "SETH",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "SLIV",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "SLOT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "SNIF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "SOLUÇÃO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "SOUL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "SOZZ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "SPOX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "STER",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "STUB",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "SVIR",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "TABS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "TACE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "TADA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "TERA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "TESS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "TIAG",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "TIMB",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "TOBI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "TOUX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "TROK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "TROL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "TURF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "TYNK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ULIP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "UMMA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "UNAK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "URAK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "URIC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "VANK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "VAST",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "VATE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "VAZY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "VEAC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "VITS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "VOPA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "VORI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "VZOM",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "XEFO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "XYGA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "YVEC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ZART",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ZARV",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ZINA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ZIOR",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ZIRK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ZOAF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ZOMI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ZOTY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ZYAD",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ÁRIA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ÉSIO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ÉTER",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_medicine_product_names__single",
+      "term": "ÍTEC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_active_ingredients__single",
+      "term": "IODO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_active_ingredients__single",
+      "term": "ÁGUA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ABBA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ACOG",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "AGUD",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ANLO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ANNE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ASEA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ATAK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ATIP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "AVAL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "AVIV",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "AZOX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "Anya",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "BECA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "CAPY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "Caab",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "Calt",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "Ceci",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "Cleo",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "DAEM",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "DALÍ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "DIAD",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "DIVA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "DMSA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "DRAT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "Deci",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ECOS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ELÔ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "EMAH",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "EMET",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "EPYL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ESOP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ETNA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "EVIR",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "EVRA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "EXIT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "EZET",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "FEXX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "FLOX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "FOZA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "Finu",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "GLYA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "GLYX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "HALO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "HIDX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "IBAN",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "INIP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "IRBE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "IUMI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "Iziz",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "LIDY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "LOWE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "LUNE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "MALÚ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "MEGY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "MEVA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "MIND",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "MIWA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "Meaz",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "Mezp",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "NEXT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "NICE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "NIKI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "NORF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "OFEV",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "OHDE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "OLMY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ONAZ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "OSYS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "PANT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "PARÁ",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "PERT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "PISA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "PRÓS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "RISS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "RIZI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ROPI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "RUVA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "SETH",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "STUB",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "Sozz",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "TADA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "TROK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "TURF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "Toux",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ULIP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "UNAK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "URIC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "VAZY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "VEAC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "VZOM",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "Vank",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "YVEC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ZIRK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ZOMI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ZOPY",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ZYAD",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "gcib",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ÁRIA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_restricted_medicine_product_names__single",
+      "term": "ÉSIO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "99S",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "ALVO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "AM-3",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "B2-N",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "B2-S",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "B6-S",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "B8-T",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "B9-A",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "BC-5",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "BLEM",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "BRIL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "CAID",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "CANF",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "CM-2",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "CM-3",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "COLT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "CRIS",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "DEOX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "DRAX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "EGEX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "EPSO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "F4I",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "FAST",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "FLUX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "FORT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "GARD",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "GRAX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "GRRR",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "H2D2",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "JATO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "JLAV",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "JS-2",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "JS-7",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "K59C",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "KAOL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "L-15",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "MABE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "MAKI",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "NABC",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "ONDA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "ORCA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "P&G",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "PACE",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "PYAM",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "PÓK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "Q-CL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "Q_CL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "R-3",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "RISP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "S-10",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "SHOT",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "SNAP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "SNIP",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "SOLO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "SOLV",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "SPAR",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "SUPO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "SUVA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "TRAX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "TWOL",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "UNNO",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "VERK",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "WIND",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "X-14",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "XTRA",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "ZIOX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    },
+    {
+      "group_id": "catalog_anvisa_saneante_product_names__single",
+      "term": "ZNOX",
+      "reason": "len<=4 + container_generic",
+      "retained": false
+    }
+  ]
+}

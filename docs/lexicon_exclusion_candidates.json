@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "name": "SBRCA 词库通用词/超短词剔除候选清单（S2）",
   "generated": "2026-10-28",
-  "status": "candidate —— 未删除；执行需 shopee-br-data-ingestion 按 C3 逐词留痕（参照 Marca 先例）",
+  "status": "executed（2026-10-29 integrator：848 候选中 601 项已剔除，217 项保留（医学缩写/数字混合/含空格词）；逐词留痕 docs/s2_exclusion_trace_20261029.json）",
   "criteria": {
     "len<=4": "catalog 单词组中 ≤4 字符条目（AAA/ABC/KG/MG 类，判别力趋近 0）",
     "pure_digit": "纯数字条目",

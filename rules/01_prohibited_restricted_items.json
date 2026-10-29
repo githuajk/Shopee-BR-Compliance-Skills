@@ -80,7 +80,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(droga(s)?\\s+il[íi]cita(s)?|trato\\s+tarja\\s+(preta|vermelha)|tarja\\s+(preta|vermelha)|medicamento(s)?\\s+controlado(s)?|antidepressivo(s)?|estimulante(s)?\\s+sexual(is)?|abortivo(s)?|minoxidil|botox|toxina\\s+botul[íi]nica|fentanyl|heroin|ketamine|psilocybin|nandrolone|stanozolol|dianabol|clenbuterol|methamphetamine|prednisone|testosterone|lsd|mdma|cannabis|marijuana|thc|cocaine|anabolic)(?![a-zA-Zà-ÿÀ-ß])"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(droga(s)?\\s+il[íi]cita(s)?|trato\\s+tarja\\s+(preta|vermelha)|tarja\\s+(preta|vermelha)|medicamento(s)?\\s+controlado(s)?|antidepressivo(s)?|estimulante(s)?\\s+sexual(is)?|abortivo(s)?|minoxidil|botox|toxina\\s+botul[íi]nica|fentanyl|heroin|ketamine|psilocybin|nandrolone|stanozolol|dianabol|clenbuterol|methamphetamine|prednisone|testosterone|lsd|mdma|cannabis|marijuana|thc|cocaine|anabolizante(s)?|esteroides|ester[óo]ide(s)?|entorpecente(s)?|narc[óo]tico(s)?|subst[âa]ncia\\s+controlada|psicotr[óo]pic(a|as)?|fitoter[áa]pic(a|os)?|psicoativa(s)?|anabolic)(?![a-zA-Zà-ÿÀ-ß])"
         }
       ],
       "severity": "critical",
@@ -95,14 +95,14 @@
       "source_excerpt": "[313] Anúncio proibido para medicamentos com tarja preta, abortivos, injetáveis, estimulantes sexuais e antidepressivos. Severidade: Extrema. Gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 3,
+      "version": 4,
       "tags": [
         "medicine",
         "controlled",
         "critical",
         "platform_code_313"
       ],
-      "notes": "2026-10-28 集成补齐：正则补 `botox` / `toxina botulínica|botulinica` —— 来源依据本条现有引文 [313]「Anúncio proibido para medicamentos com tarja preta, abortivos, **injetáveis**, estimulantes sexuais e antidepressivos」（platform_official，severidade Extrema）与本条 description 的 prescription-only medicines；肉毒毒素属 ANVISA 管制注射药品（见词库 catalog_anvisa_restricted_medicine_active_ingredients）。 2026-10-28 B5：补英文管制物质名（18 词：fentanyl/heroin/ketamine/psilocybin/nandrolone/stanozolol/dianabol/clenbuterol/methamphetamine/prednisone/testosterone/lsd/mdma/cannabis/marijuana/thc/cocaine/anabolic），与词库组 proibido_drogas_en 联动；未含 steroid 等化妆品语境歧义词。"
+      "notes": "2026-10-28 集成补齐：正则补 `botox` / `toxina botulínica|botulinica` —— 来源依据本条现有引文 [313]「Anúncio proibido para medicamentos com tarja preta, abortivos, **injetáveis**, estimulantes sexuais e antidepressivos」（platform_official，severidade Extrema）与本条 description 的 prescription-only medicines；肉毒毒素属 ANVISA 管制注射药品（见词库 catalog_anvisa_restricted_medicine_active_ingredients）。 2026-10-28 B5：补英文管制物质名（18 词：fentanyl/heroin/ketamine/psilocybin/nandrolone/stanozolol/dianabol/clenbuterol/methamphetamine/prednisone/testosterone/lsd/mdma/cannabis/marijuana/thc/cocaine/anabolic），与词库组 proibido_drogas_en 联动；未含 steroid 等化妆品语境歧义词。 2026-10-29 B5 续：葡语规则层缺口补齐 —— anabolizante/esteroides/esteróide/entorpecente/narcótico/substância controlada/psicotrópic/fitoterápico/psicoativa 入正则（词表全部来自既有 proibido_drogas 词库组，未新增政策断言；word-boundary 保证 corticoesteroides 等合法词不误触）。 修复：v4 误引入 `||` 空分支（正则可匹配空串、全库误触发）→ 单管道。"
     },
     {
       "rule_id": "SBR-PI-004",

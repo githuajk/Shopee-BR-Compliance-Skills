@@ -364,7 +364,7 @@
       "context": "2026-10-28 实测：词库 102 组 / 210,992 词，其中 99.4% 为 ANVISA 目录（37 组），非目录政策词仅 0.64%；扫描单品约 50 s（Aho-Corasick 未实现）；药妆品类层无专项支持（S1 结构缺口、B1 内容缺口）。详细规划见 docs/lexicon_expansion_plan.md。",
       "options": [
         {
-          "label": "按规划全量做（本集成轮 B5+S2 候选清单，下轮 B1/B2/B3/B4，再下 S1/S3/S4）",
+          "label": "按规划全量做（本轮已完成 B5+S2，下轮推进 B1/B2/B3/B4）",
           "impact": "覆盖率↑，性能压力也↑，需排期 S3"
         },
         {
@@ -380,7 +380,9 @@
           "impact": "当前已达标 10/10 任务，无新增风险"
         }
       ],
-      "default_if_no_answer": "按规划全量做：本集成轮 B5 英文信号词表 + S2 剔除候选清单；下轮 B1+B2（药妆+处方药重抓）；再下 B3+B4（MAPA+ANATEL）；所有批次前置 S3（Aho-Corasick）与 S1+S4（scan_fields + 置信度分层，走契约变更建议）。详见 docs/lexicon_expansion_plan.md。"
+      "default_if_no_answer": "继续推进可执行的下一批：B1 ANVISA RDC701/2021 药妆禁用物质（需在沙箱外抓取）+ B2 RDC44/2009 处方药（bvsms URL 已 404，需找新来源）；同时 S1 scan_fields + S4 置信度分层（契约变更建议，与主 agent dbdf8d7 联动）。B6 IP 品牌词待政策原文确认后并入。",
+      "updated": "2026-10-29",
+      "status": "部分完成：B5 + S2 执行完成（B5 英文信号词 27 词入库 + PI-002/PI-003 v4 规则层联动 + S2 剔除 601 项 + 双管道 bug 修复）；剩余 B1/B2/B3/B4/B6 因沙箱网络阻断（bvsms/anvisa/INMETRO/ANATEL 域名均无法解析，web_extract 亦屏蔽 .gov.br）待外部可达后处理；B6 IP 品牌词扩充缺乏政策原文支撑（C3 限制）暂搁置。S1+S4 走契约变更建议流程（与 dbdf8d7 豁免收窄联动），由主 agent 或下一轮推进。"
     }
   ],
   "summary": "5 项冲突 + 10 个问题（2026-10-28 新增 Q-015 词库扩展路线图）。默认处置均已登记，可按默认执行。"
