@@ -262,5 +262,27 @@
       "rebased_to": [],
       "remediation": "获取逐字全文后：status=cleared，回填 dependent_rules_rebased/rebased_to，词组建组联动（Q-015）"
     }
+  },
+  {
+    "slug": "br_anvisa_in388_2025_lmip_update",
+    "title": "IN 388/2025 — LMIP 修订（ciclopirox 入列；lactulose 适应症简化；Althaea officinalis 根入植物药；minoxidil 5% 等 3 项申请被拒）",
+    "publisher": "ANVISA / MS (DOU nº 144, 2025-08-01 Seção 1; SES-SP BVS 镜像 PDF)",
+    "url": "https://ses.sp.bvs.br/wp-content/uploads/2025/08/U_IN-MS-ANVISA-388_290725.pdf",
+    "tier": "law",
+    "scope": "Brazil - MIP 现行修订件 1（restrito_mip_otc 词组来源补充）",
+    "status": "ok",
+    "last_fetched": "2026-10-29",
+    "note": "2026-10-29 B2 批次抓取（官方 PDF 镜像 63k 字符逐字核验）。Minoxidil 5% 溶液入 LMIP 申请被 IN 388 第 4 条明确拒绝（= 处方药信号，高电商价值：生发产品）"
+  },
+  {
+    "slug": "br_anvisa_in404_2025_lmip_update",
+    "title": "IN 404/2025 — LMIP 修订（omeprazol 20mg 胶囊入 Anexo I）",
+    "publisher": "ANVISA / MS (DOU 2025-11-13 Seção 1; legisweb 镜像)",
+    "url": "https://www.legisweb.com.br/legislacao/?id=486310",
+    "tier": "law",
+    "scope": "Brazil - MIP 现行修订件 2（omeprazol 高频 OTC）",
+    "status": "ok",
+    "last_fetched": "2026-10-29",
+    "note": "2026-10-29 B2 批次抓取（官方 datalegis 403，legisweb 镜像 170k 字节）。"
   }
 ]

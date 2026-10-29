@@ -16,7 +16,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(clorito\\s+de\\s+s[óo]dio|dióxido\\s+de\\s+cloro(\\s+(CDS|mms))?|solu[çc][ãa]o\\s+mineral\\s+milagrosa|medicamento\\s+abortivo|inje[tç]?[aá]ve(is|l)?|intravenoso|medicamento\\s+veterin[aá]rio|droga\\s+il[íi]cita)(?![a-zA-Zà-ÿÀ-ß])"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(clorito\\s+de\\s+s[óo]dio|dióxido\\s+de\\s+cloro(\\s+(CDS|mms))?|solu[çc][ãa]o\\s+mineral\\s+milagrosa|medicamento\\s+abortivo|inje[tç]?[aá]ve(is|l)?|intravenoso|medicamento\\s+veterin[aá]rio|droga\\s+il[íi]cita|minoxidil|triancinolona|fluticasona)(?![a-zA-Zà-ÿÀ-ß])"
         }
       ],
       "severity": "critical",
@@ -39,7 +39,7 @@
         "critical",
         "anvisa"
       ],
-      "notes": "This rule deliberately does NOT fire on the generic word 'medicamento' — see SBR-MED-002, which handles the licensing question. Firing on the generic word would block every supplement listing and would be wrong after the 6 Aug 2026 Anvisa authorisation. 2026-10-28 集成修复：`inje[çc][ãa]vel` 拼写缺口（只能匹配不存在的“injecável”，漏掉葡语标准拼法 injetável/injetáveis）→ `inje[tç]?[aá]ve(is|l)?`，使“注射类药品”条款实际生效（肉毒毒素、填充剂等注入剂落入 SBR-MED-001 阻断层）。"
+      "notes": "This rule deliberately does NOT fire on the generic word 'medicamento' — see SBR-MED-002, which handles the licensing question. Firing on the generic word would block every supplement listing and would be wrong after the 6 Aug 2026 Anvisa authorisation. 2026-10-28 集成修复：`inje[çc][ãa]vel` 拼写缺口（只能匹配不存在的“injecável”，漏掉葡语标准拼法 injetável/injetáveis）→ `inje[tç]?[aá]ve(is|l)?`，使“注射类药品”条款实际生效（肉毒毒素、填充剂等注入剂落入 SBR-MED-001 阻断层）。 2026-10-29 B2：v2 补 IN 388/2025 Art.4 被拒 MIP 入列的 3 个处方药——minoxidil（生发液 5%）、triancinolona acetonida（鼻用悬浮液）、propionato de fluticasona（外用）——被拒 = 非 MIP = 处方药，平台禁止无处方渠道销售（SBR-MED-001 block 语义；法条级支撑引 IN 388/2025 原文）。"
     },
     {
       "rule_id": "SBR-MED-002",
@@ -50,7 +50,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(medicamento\\s+(isento\\s+de\\s+prescri[çc][ãa]o|MIP)|remédio\\s+isento\\s+de\\s+prescri[çc][ãa]o|medicamento\\s+controlado|medicamento\\s+com\\s+tarja|paracetamol|dipirona|ibuprofeno|loratadina|fexofenadina|desloratadina|hidrocortisona|cetoconazol|bisacodil|lactulose|simeticona|docusato|senna|magnésio|ácido acetilsalicílico|ácido salicílico|ácido bórico|bicarbonato de sódio|carbonato de cálcio|sulfato de magnésio|sulfato de zinco)(?![a-zA-Zà-ÿÀ-ß])"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(medicamento\\s+(isento\\s+de\\s+prescri[çc][ãa]o|MIP)|remédio\\s+isento\\s+de\\s+prescri[çc][ãa]o|medicamento\\s+controlado|medicamento\\s+com\\s+tarja|paracetamol|dipirona|ibuprofeno|loratadina|fexofenadina|desloratadina|hidrocortisona|cetoconazol|bisacodil|lactulose|simeticona|docusato|senna|magnésio|ácido acetilsalicílico|ácido salicílico|ácido bórico|bicarbonato de sódio|carbonato de cálcio|sulfato de magnésio|sulfato de zinco|omeprazol|ciclopirox)(?![a-zA-Zà-ÿÀ-ß])"
         }
       ],
       "severity": "high",
@@ -67,7 +67,7 @@
       "source_excerpt": "Desde 6 de agosto de 2026, a Shopee está autorizada pela Anvisa a comercializar medicamentos isentos de prescrição (MIPs), apenas por farmácias e drogarias regularmente licenciadas que sigam rigorosamente todas as regulamentações da categoria e da agência, conforme a Resolução-RE nº 3.056/2026.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 2,
+      "version": 3,
       "tags": [
         "medicine",
         "restricted",
@@ -75,7 +75,7 @@
         "license",
         "policy_change_2026_08_06"
       ],
-      "notes": "The decision is require_evidence, not block: the medicine may be legitimate and the seller may be a licensed pharmacy. The evidence list is what separates the two cases. A seller that cannot produce the pharmacy/drugstore licence must not list the item. 2026-10-29 B2：正则补 MIP OTC 活性成分 21 词（IN 285/2024 LMIP 高频子集，全部逐字出现于 IN 285 原文）——与词库组 restrito_mip_otc 联动（词库只产生候选，正则覆盖才触发）；MIP 药品提及 → 药房资质证据（require_evidence，不阻断，H2 tier 一致）。"
+      "notes": "The decision is require_evidence, not block: the medicine may be legitimate and the seller may be a licensed pharmacy. The evidence list is what separates the two cases. A seller that cannot produce the pharmacy/drugstore licence must not list the item. 2026-10-29 B2：正则补 MIP OTC 活性成分 21 词（IN 285/2024 LMIP 高频子集，全部逐字出现于 IN 285 原文）——与词库组 restrito_mip_otc 联动（词库只产生候选，正则覆盖才触发）；MIP 药品提及 → 药房资质证据（require_evidence，不阻断，H2 tier 一致）。 2026-10-29 B2：v3 补 omeprazol（IN 404/2025 入 LMIP）+ ciclopirox（IN 388/2025 入 LMIP）；与词库组 restrito_mip_otc 54 词联动（长尾走 provenance）。"
     },
     {
       "rule_id": "SBR-MED-003",

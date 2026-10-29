@@ -129,5 +129,21 @@
     "url": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=1696&cod_modulo=134&numeroAto=00001029&orgao=RDC%2FDC%2FANVISA%2FMS&seqAto=000&tipo=RDC&valorAno=2026",
     "text_chars": null,
     "note": "2026-10-29 B1：datalegis 403 + in.gov.br 000 → 存根入档，blocked_for_rules。"
+  },
+  {
+    "slug": "br_anvisa_in388_2025_lmip_update",
+    "status": "ok",
+    "http": 200,
+    "url": "https://ses.sp.bvs.br/wp-content/uploads/2025/08/U_IN-MS-ANVISA-388_290725.pdf",
+    "text_chars": 61825,
+    "note": "2026-10-29 B2：官方 PDF 镜像（ses.sp.bvs.br）。"
+  },
+  {
+    "slug": "br_anvisa_in404_2025_lmip_update",
+    "status": "ok",
+    "http": 200,
+    "url": "https://www.legisweb.com.br/legislacao/?id=486310",
+    "text_chars": 51818,
+    "note": "2026-10-29 B2：legisweb 镜像（官方 datalegis 403）。"
   }
 ]
