@@ -66,16 +66,57 @@ def load_rule_map(root: str | None = None) -> dict[str, list[str]]:
     return mapping
 
 
+def field_scope(root: str | None = None) -> dict[str, tuple[str, ...]]:
+    """S1（2026-10-29）：读取映射条目可选的 `scan_fields` 声明。
+
+    `contracts/lexicon_rule_map.json` 的每个 mapping 条目可声明
+    `"scan_fields": ["title", "description"]` —— 该词组只在声明字段内
+    扫描（未声明者默认全字段）。返回 `{group_id: 字段元组}`；
+    当前无任何词组声明 → 空 dict → 行为与旧版完全一致（非破坏性机制）。
+    """
+    root = root or _repo_root()
+    path = os.path.join(root, "contracts", "lexicon_rule_map.json")
+    try:
+        with open(path, encoding="utf-8") as handle:
+            document = json.load(handle)
+    except (OSError, ValueError):
+        return {}
+    scope: dict[str, tuple[str, ...]] = {}
+    for entry in document.get("mappings", []):
+        fields = entry.get("scan_fields")
+        if fields:
+            scope[str(entry.get("group_id"))] = tuple(str(f) for f in fields)
+    return scope
+
+
+def apply_field_scope(hits: list[dict], scope: dict[str, tuple[str, ...]]) -> list[dict]:
+    """S1：按 `scan_fields` 声明过滤命中（未声明者不过滤）。
+
+    纯函数（不触碰契约），便于单测与未来契约变更复用。
+    """
+    if not scope:
+        return hits
+    return [
+        h for h in hits
+        if h.get("group_id") not in scope
+        or h.get("field") in scope[h["group_id"]]
+    ]
+
+
 def scan_product(product: dict, root: str | None = None,
-                 scanner=None) -> list[dict]:
+                 scanner=None, scope=None) -> list[dict]:
     """扫描商品，返回命中列表。
 
     每条命中含：`group_id` / `term` / `field` / `offset` / `matched` /
     `excerpt` / `confidence` / `exempt` / `risk_hint` / `source_tier`。
+
+    S1（2026-10-29）：按契约 `scan_fields` 声明过滤字段（`scope=None`
+    时自动载入；无声明者全字段扫描，行为与旧版一致）。
     """
     root = root or _repo_root()
     scanner = scanner or _load_scanner(root)
-    return scanner.scan_product(product)
+    hits = scanner.scan_product(product)
+    return apply_field_scope(hits, field_scope(root) if scope is None else scope)
 
 
 def candidate_rules(hits: list[dict], rule_map: dict[str, list[str]],

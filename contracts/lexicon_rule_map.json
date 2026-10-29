@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "mapping_version": "1.4.0",
+  "mapping_version": "1.5.0",
   "last_updated": "2026-10-28",
   "contract_version": "1.0.0",
   "notes": "词组 → 规则的映射表。词库命中是信号，不是结论 —— 本表只声明「该词组命中时应触发哪条规则去判定」，最终结论仍由规则层依据 source.tier 决定。 2026-10-28: 新增 6 组社区准则类词组（脏话/性暗示/极端组织/谣言/不雅着装/仇恨符号），对应 SBR-LV-015 ~ SBR-LV-020，全部 flag_for_review（文本命中无法证明商品或图片实际违规，须人工确认）。 2026-10-28: 并入真实来源词库批次 A/B/C —— A/B 类 20 组政策短语（197 词，已剔除通用词，仅保留成型违规短语）；C 类 37 组 ANVISA/CTI/MAPA 监管目录（209,653 词，解码 HTML 实体，按单词/多词拆分为 strict/loose 两组），统一映射 SBR-MED-004（require_evidence，目录登记 ≠ 禁售，须人工收集注册/许可/标签证据）。 2026-10-28: 新增 proibido_botulino（→ SBR-PI-003 / SBR-MED-004）与 restrito_apitoxina（→ SBR-MED-003 / SBR-LV-001）两组，覆盖肉毒毒素（block 级）与蜂毒美容成分（flag 级）检查。 2026-10-28: B5 英文信号词 —— 新增 proibido_drogas_en（18 词 → SBR-PI-003/SBR-MED-001）与 proibido_tabaco_en（9 词 → SBR-PI-002/SBR-MED-001），覆盖跨境英文清单高频违禁词（Q-015 默认处置第 1 项）。",
@@ -776,5 +776,17 @@
       "note": "英文烟草电子烟词 → 禁售烟草阻断（[311]）+ 药品类阻断（SBR-MED-001 的尼古丁条款）。"
     }
   ],
-  "unmapped_group_policy": "未在 mappings 中的词组不产生规则触发，但仍在扫描报告中作为提示列出。"
+  "unmapped_group_policy": "未在 mappings 中的词组不产生规则触发，但仍在扫描报告中作为提示列出。",
+  "field_scoping": {
+    "status": "mechanism_available_no_groups_scoped",
+    "doc": "S1（2026-10-29）：mapping 条目可选键 \"scan_fields\"（商品字段列表，如 [\"title\",\"description\"]）。声明后该词组只在所列字段扫描；未声明者全字段扫描（现状）。实现：skills/shopee-br-listing-audit/src/sbr_listing_audit/lexicon.py 的 field_scope() / apply_field_scope()，引擎 scan_product 自动应用。契约为 PATCH 级：当前 0 组声明，行为与 1.4.0 完全一致；对 catalog_* 组应用分字段（如单词组仅 provenance 级）需经契约变更建议 + 夹具回归（Q-015）。",
+    "declared_groups": [],
+    "allowed_fields": [
+      "title",
+      "description",
+      "brand",
+      "category",
+      "attributes"
+    ]
+  }
 }

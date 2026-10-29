@@ -1169,6 +1169,7 @@ def main() -> int:
         test_l2_matrix_consistency,
         test_l3_own_rule_cases,
         test_med004_all_exempt_capped,
+        test_s1_field_scoping,
         test_l3_shared_fixtures,
         test_l3_shared_fixtures_untouched,
         test_h1_ip_never_deterministic,
@@ -1201,6 +1202,38 @@ def main() -> int:
         return 1
     print("模块测试全部通过。")
     return 0
+
+
+def test_s1_field_scoping() -> None:
+    """S1（2026-10-29）：scan_fields 分字段扫描机制 —— 纯函数 + 契约 + 非破坏性。"""
+    section("S1 分字段扫描机制（scan_fields）")
+    from sbr_listing_audit.lexicon import apply_field_scope, field_scope
+
+    hits = [
+        {"group_id": "catalog_a__single", "term": "ABC", "field": "brand"},
+        {"group_id": "catalog_a__single", "term": "ABC", "field": "title"},
+        {"group_id": "proibido_drogas", "term": "heroin",
+         "field": "description"},
+    ]
+    kept = apply_field_scope(hits, {"catalog_a__single": ("title",)})
+    check("S1 声明组外的字段命中被过滤（brand 剔除、title 保留）",
+          [h["field"] for h in kept] == ["title", "description"],
+          str(kept))
+    check("S1 未声明者不过滤（proibido_drogas 的 description 保留）",
+          any(h["group_id"] == "proibido_drogas" for h in kept), "")
+    check("S1 空 scope 恒等（行为与旧版一致）",
+          apply_field_scope(hits, {}) is hits, "")
+
+    scope = field_scope(ROOT)
+    check("S1 契约当前 0 组声明 scan_fields（非破坏性：现状行为不变）",
+          scope == {}, str(scope))
+    with open(os.path.join(ROOT, "contracts", "lexicon_rule_map.json"),
+              encoding="utf-8") as handle:
+        document = json.load(handle)
+    fs = document.get("field_scoping") or {}
+    check("S1 契约登记 field_scoping 机制块（mechanism_available）",
+          str(fs.get("status", "")).startswith("mechanism_available"),
+          str(fs.get("status")))
 
 
 if __name__ == "__main__":

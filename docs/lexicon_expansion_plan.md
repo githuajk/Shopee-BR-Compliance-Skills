@@ -48,7 +48,8 @@
 - [x] **S2 剔除执行**：848 项候选中 601 项已剔除（医学缩写/数字/含空格词 217 项保留），逐词留痕 `docs/s2_exclusion_trace_20261029.json`。
 - [x] **S3 索引**：已由集成轮完成（前缀分桶 + C 级 str.find，见 lexicon_scanning.md §7.1）。
 - [ ] B1 药妆 / B2 RDC44（重抓 URL 已 404，需新来源）/ B3 MAPA / B4 ANATEL —— 下一批
-- [ ] S1 scan_fields + S4 分层（契约变更建议，与 dbdf8d7 豁免收窄联动）
+- [x] **S1 scan_fields 机制**（2026-10-29）：`lexicon.py` 新增 `field_scope()` / `apply_field_scope()`（纯函数，引擎 scan_product 自动应用）；契约 1.5.0 登记 `field_scoping` 机制块（PATCH：0 组声明，行为不变）。对 catalog_* 组**应用**分字段（如单词组降 provenance 级）属数据决策，需夹具回归后执行（Q-015）。
+- [ ] S4 分层（与 dbdf8d7 豁免收窄联动，主 agent 推进）
 
 ---
 
