@@ -370,9 +370,9 @@ env -u LD_LIBRARY_PATH python3 tools/scan_lexicon.py --self-test
 
 | 文件 | 用途 | 规模 |
 |---|---|---|
-| `lexicon/term_groups.json` | 词组（扫描用） | 37 组 / 856 词 |
+| `lexicon/term_groups.json` | 词组（扫描用） | 105 组 / 210,439 词 |
 | `lexicon/rewrite_map.json` | 触线 → 中性替代（改写用） | 8 类映射 |
-| `lexicon/exemptions.json` | 误报豁免规则 | 7 条 |
+| `lexicon/exemptions.json` | 误报豁免规则 | 51 条 |
 | `lexicon/quality_patterns.json` | 套模板/批量味检测 | 15 条特征 |
 | `lexicon/non_avoidable.json` | 无法文字规避的品类 | 6 类 |
 | `lexicon/verb_conjugations.json` | 葡语动词变位匹配表 | 7 个动词 |

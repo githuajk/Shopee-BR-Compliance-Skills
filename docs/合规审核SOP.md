@@ -524,9 +524,9 @@ env -u LD_LIBRARY_PATH python3 tools/scan_lexicon.py --self-test
 
 | 文件 | 用途 | 规模 |
 |---|---|---|
-| `lexicon/term_groups.json` | 词组（扫描用） | 37 组 / 856 词 |
+| `lexicon/term_groups.json` | 词组（扫描用） | 105 组 / 210,439 词 |
 | `lexicon/rewrite_map.json` | 触线 → 中性替代（改写用） | 8 类映射 |
-| `lexicon/exemptions.json` | 误报豁免规则 | 7 条 |
+| `lexicon/exemptions.json` | 误报豁免规则 | 51 条 |
 | `lexicon/quality_patterns.json` | 套模板/批量味检测 | 15 条特征 |
 | `lexicon/non_avoidable.json` | 无法文字规避的品类 | 6 类 |
 | `lexicon/verb_conjugations.json` | 葡语动词变位匹配表 | 7 个动词 |
@@ -1481,11 +1481,12 @@ Row 88  | 适用年龄 | 默认：14 岁起，已加「Não use por menores de 1
 |---|---|
 | `rules/01_prohibited_restricted_items.json` | 17 条禁售/受限规则（PI + RI） |
 | `rules/02_ip_trademark_copyright.json` | 8 条知识产权规则（IP） |
-| `rules/03_listing_violations_duplicates.json` | 17 条刊登与重复规则（LV + DUP） |
+| `rules/03_listing_violations.json` | 20 条刊登违规规则（LV） |
 | `rules/04_cases_relist_authorization.json` | 5 条案件/重发/授权规则（RL + AU + AC） |
-| `rules/05_medicines_health.json` | 3 条药品健康规则（MED） |
+| `rules/05_medicines_health.json` | 4 条药品健康规则（MED） |
+| `rules/06_duplicate_listings.json` | 3 条重复刊登规则（DUP） |
 | `research/violation_codes.json` | 106 个平台处罚码（严重度 + 是否扣分） |
-| `lexicon/exemptions.json` | 7 条误报豁免规则 |
+| `lexicon/exemptions.json` | 51 条误报豁免规则 |
 | `lexicon/non_avoidable.json` | 6 类无法靠文字规避的品类 |
 | `lexicon/rewrite_map.json` | 触线 → 中性替换表 |
 | `lexicon/quality_patterns.json` | 15 条套模板/批量味特征 |

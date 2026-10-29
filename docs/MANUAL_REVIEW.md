@@ -8,7 +8,7 @@
 | 创建/更新 | 2026-10-28 |
 | 面向对象 | **人工审核员** —— 纯手工，不需要看代码、不需要跑脚本 |
 | 适用范围 | Shopee 巴西站商品标题与详情的**人工合规审核** |
-| 判定依据 | 全部来自 `rules/*.json`（50 条规则）、`lexicon/*.json`、`research/violation_codes.json`（106 个平台处罚码） |
+| 判定依据 | 全部来自 `rules/*.json`（57 条规则）、`lexicon/*.json`、`research/violation_codes.json`（106 个平台处罚码） |
 | 配套文档 | `docs/USER_SOP.md`（流程框架与工具铁律）、`docs/SOP_COMPLIANCE_REVIEW.md`（判定原理） |
 
 ---
@@ -1112,11 +1112,12 @@
 |---|---|
 | `rules/01_prohibited_restricted_items.json` | 17 条禁售/受限规则（PI + RI） |
 | `rules/02_ip_trademark_copyright.json` | 8 条知识产权规则（IP） |
-| `rules/03_listing_violations_duplicates.json` | 17 条刊登与重复规则（LV + DUP） |
+| `rules/03_listing_violations.json` | 20 条刊登违规规则（LV） |
 | `rules/04_cases_relist_authorization.json` | 5 条案件/重发/授权规则（RL + AU + AC） |
-| `rules/05_medicines_health.json` | 3 条药品健康规则（MED） |
+| `rules/05_medicines_health.json` | 4 条药品健康规则（MED） |
+| `rules/06_duplicate_listings.json` | 3 条重复刊登规则（DUP） |
 | `research/violation_codes.json` | 106 个平台处罚码（严重度 + 是否扣分） |
-| `lexicon/exemptions.json` | 7 条误报豁免规则 |
+| `lexicon/exemptions.json` | 51 条误报豁免规则 |
 | `lexicon/non_avoidable.json` | 6 类无法靠文字规避的品类 |
 | `lexicon/rewrite_map.json` | 触线 → 中性替换表 |
 | `lexicon/quality_patterns.json` | 15 条套模板/批量味特征 |
