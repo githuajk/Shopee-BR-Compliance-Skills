@@ -59,4 +59,9 @@ echo "== 10/10  任务包与所有权一致性 =="
 $PY tools/task_pack_check.py | tail -4
 
 echo
+echo "== 11/11  ChatGPT 判定手册词表与词库同步 =="
+$PY tools/gen_prompt_lexicon.py --check | tail -2
+$PY tools/inject_prompt_lexicon.py --check | tail -2
+
+echo
 echo "ALL CHECKS PASSED"

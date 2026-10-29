@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "manifest_version": "1.9.0",
+  "manifest_version": "2.0.0",
   "project": {
     "code": "SBRCA",
     "name": "Shopee Brazil Compliance Agent",
@@ -425,6 +425,25 @@
       "purpose": "ChatGPT 网页版使用指南 —— 传文件 + 贴一句话即可，不指定输入格式与位置（sbrca_run.py 自动发现上传目录）",
       "owner": "integrator",
       "audience": "用 ChatGPT 网页版的运营/店主",
+      "status": "Draft — 待用户审批",
+      "version": "1.0.0",
+      "created": "2026-10-29"
+    },
+    "chatgpt_prompt": {
+      "path": "docs/CHATGPT_PROMPT.md",
+      "purpose": "★ ChatGPT 直接读的判定手册 —— 68 组/1418 个触线词 + 豁免清单 + 改写对照表 + 输出格式；用于 Python 沙箱不能联网的环境，纯自然语言审核",
+      "owner": "integrator",
+      "audience": "ChatGPT 网页版（读 URL 后直接审）",
+      "status": "Draft — 待用户审批",
+      "version": "1.0.0",
+      "created": "2026-10-29",
+      "size": "46 KB / 979 行",
+      "sync": "词表由 tools/gen_prompt_lexicon.py 从 lexicon/term_groups.json 生成，tools/inject_prompt_lexicon.py 注入；check_all.sh 第 11 步强制校验同步"
+    },
+    "chatgpt_nlp": {
+      "path": "docs/CHATGPT_NLP.md",
+      "purpose": "ChatGPT 网页版自然语言审核指南 —— 说明为什么「读网页 + 自然语言」可行（词库 21 万词里只有 1418 个是判定词）",
+      "owner": "integrator",
       "status": "Draft — 待用户审批",
       "version": "1.0.0",
       "created": "2026-10-29"
