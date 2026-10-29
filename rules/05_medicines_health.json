@@ -134,12 +134,12 @@
         "product_photographs"
       ],
       "human_review_required": true,
-      "source_url": "https://bvsms.saude.gov.br/docs/bvsms/legislacao/rdc/2008/rdc_96_2008_",
+      "source_url": "https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2008/rdc0096_17_12_2008.html",
       "source_tier": "law",
-      "source_excerpt": "Dispõe sobre a propaganda, publicidade, informação e \noutras práticas cujo objetivo seja a divulgação ou promoção \ncomercial de medicamentos.",
+      "source_excerpt": "Dispõe sobre a propaganda, publicidade, informação e outras práticas cujo objetivo seja a divulgação ou promoção comercial de medicamentos.",
       "last_verified": "2026-10-28",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "anvisa",
         "catalogue",
@@ -151,7 +151,7 @@
         "cti",
         "signal_only"
       ],
-      "notes": "2026-10-28: 词库并入 20.5 万条 ANVISA/CTI 开放数据目录词。目录登记 ≠ 平台明文禁词，仅作成分级资格核验信号；命中后须人工收集注册/许可/标签证据，不得据命中直接下架或阻断。 本规则的触发由词库目录组命中驱动（lexicon_rule_map.json 中 catalog_* 组 → SBR-MED-004），trigger_conditions 仅声明输入依赖，不做文本正则匹配。"
+      "notes": "2026-10-28: 词库并入 20.5 万条 ANVISA/CTI 开放数据目录词。目录登记 ≠ 平台明文禁词，仅作成分级资格核验信号；命中后须人工收集注册/许可/标签证据，不得据命中直接下架或阻断。 本规则的触发由词库目录组命中驱动（lexicon_rule_map.json 中 catalog_* 组 → SBR-MED-004），trigger_conditions 仅声明输入依赖，不做文本正则匹配。 2026-10-29 B2：source_url 从截断的 docs/bvsms/.../rdc_96_2008_（已 404）切到 saudelegis 路径 rdc0096_17_12_2008.html；source_excerpt 同步指向该 RDC 的 abuse/deception advertising 条款。注意：RDC 96/2008 是《药品广告规范》，不是直接 MIP 清单，支撑 MED-004 的“目录命中→登记 ≠ 禁售”语义仍合法（法律 tier，require_evidence 动作与 tier 一致）。 2026-10-29 B2：source_excerpt 恢复为 RDC 96/2008 逐字原文（H4）；上一版误改中文释义已回退。"
     }
   ]
 }

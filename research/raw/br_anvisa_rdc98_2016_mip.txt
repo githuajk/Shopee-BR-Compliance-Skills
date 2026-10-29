@@ -1,0 +1,239 @@
+# title: RESOLUÇÃO - RDC N° 98, DE 1° DE AGOSTO DE 2016 — Critérios e procedimentos para o enquadramento de medicamentos como isentos de prescrição (MIP)
+# url: https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2016/rdc0098_01_08_2016.pdf
+# fetched: 2026-10-29 (集成轮 B2：MIP 现行框架法；MIP 清单现行版为 IN 285/2024（替代 IN 120/2022 → IN 86/2021 → IN 11/2016），IN 全文本沙箱暂不可达（datalegis 403 / bvsms 无索引），留痕见 note）
+ADVERTÊNCIA
+Este texto não substitui o publicado no Diário Oficial da União
+
+Ministério da Saúde
+Agência Nacional de Vigilância Sanitária
+
+RESOLUÇÃO DA DIRETORIA COLEGIADA – RDC N° 98, DE 1° DE
+AGOSTO DE 2016
+Dispõe sobre os critérios e procedimentos para
+o enquadramento de medicamentos como
+isentos de prescrição e o reenquadramento
+como medicamentos sob prescrição, e dá
+outras providências.
+A Diretoria Colegiada da Agência Nacional de Vigilância Sanitária, no uso da
+atribuição que lhe conferem o art. 15, III e IV aliado ao art. 7º, III, e IV, da Lei nº 9.782, de
+26 de janeiro de 1999, o art. 53, V, §§ 1º e 3º do Regimento Interno aprovado nos termos do
+Anexo I da Resolução da Diretoria Colegiada - RDC nº 61, de 3 de fevereiro de 2016,
+resolve adotar a seguinte Resolução da Diretoria Colegiada, conforme deliberado em
+reunião realizada em 19 de julho de 2016, e eu, Diretor-Presidente, determino a sua
+publicação.
+DISPOSIÇÕES INICIAIS
+Art. 1º Esta Resolução estabelece os critérios e procedimentos para o enquadramento de
+medicamentos como isentos de prescrição (MIPs), o reenquadramento desses
+medicamentos como sob prescrição, e para a devida adequação do registro.
+Art. 2º Para efeito desta Resolução são adotadas as seguintes definições:
+I- Medicamentos isentos de prescrição – são os medicamentos que podem ser
+dispensados sem exigência de prescrição;
+II- Medicamentos sob prescrição – são os medicamentos cuja dispensação é restrita
+à apresentação de prescrição, inclusive os sujeitos a controle especial.
+III- Lista de medicamentos isentos de prescrição (LMIP) – relação dos medicamentos
+enquadrados pela Anvisa como isentos de prescrição nos termos desta Resolução.
+CRITÉRIOS PARA O ENQUADRAMENTO
+Art. 3º Para um medicamento ser enquadrado como isento de prescrição, é
+necessário que comprove os critérios estabelecidos a seguir:
+I- Tempo mínimo de comercialização do princípio ativo ou da associação de
+princípios ativos, com as mesmas indicações, via de administração e faixa terapêutica de:
+a) 10 (Dez) anos sendo, no mínimo, 5 (cinco) anos Brasil como medicamento sob
+prescrição ou;
+
+b) 5 (cinco) anos no exterior como medicamento isento de prescrição cujos critérios
+para seu enquadramento sejam compatíveis com os estabelecidos nesta Resolução.
+II- Segurança, segundo avaliação da causalidade, gravidade e frequência de eventos
+adversos e intoxicação, baixo potencial de causar dano à saúde quando obtido sem
+orientação de um prescritor, considerando sua forma farmacêutica, princípio ativo,
+concentração do princípio ativo, via de administração e posologia, devendo o produto
+apresentar:
+a) Reações adversas com causalidades conhecidas e reversíveis após suspensão de
+uso do medicamento;
+b) Baixo potencial de toxicidade, quando reações graves ocorrem apenas com a
+administração de grande quantidade do produto, além de apresentar janela terapêutica
+segura;
+c) Baixo potencial de interação medicamentosa e alimentar, clinicamente significante.
+III- Indicação para o tratamento, prevenção ou alívio de sinais e sintomas de doenças
+não graves e com evolução inexistente ou muito lenta, sendo que os sinais e sintomas
+devem ser facilmente detectáveis pelo paciente, seu cuidador ou pelo farmacêutico, sem
+necessidade de monitoramento laboratorial ou consulta com o prescritor;
+IV- Utilização por curto período de tempo ou por tempo previsto em bula, exceto para
+os de uso preventivo, bem como para os medicamentos específicos e fitoterápicos
+indicados para doenças de baixa gravidade;
+V- Ser manejável pelo paciente, seu cuidador, ou mediante orientação pelo
+farmacêutico;
+VI- Baixo potencial de risco ao paciente, nas seguintes condições:
+a) Mau uso com a utilização do medicamento para finalidade diferente da
+preconizada em bula;
+b) Abuso com a utilização do medicamento em quantidade superior ao preconizado
+ou por período superior ao recomendado; e
+c) Intoxicação.
+VII- Não apresentar potencial dependência, ainda que seja utilizado conforme
+preconizado em bula.
+Parágrafo Único. Para fitoterápicos, o tempo de uso conforme previsto no inciso I,
+poderá ser demonstrado para a droga ou derivado vegetal específico que se pretende
+registrar.
+Art. 4º Não são passíveis de enquadramento como medicamentos isentos de
+prescrição:
+I- As apresentações do medicamento cuja via de administração seja a parenteral;
+II- As apresentações que tenham indicação sob prescrição.
+Art. 5º É permitido que em um mesmo processo de registro coexistam apresentações
+isentas e sob prescrição, desde que diferenciadas por concentração ou forma farmacêutica
+ou unidades farmacotécnicas.
+
+Parágrafo Único. Para as apresentações isentas de prescrição médica, o texto e o
+layout de bula e rotulagem deverão conter, obrigatoriamente, as informações estabelecidas
+em resolução específica.
+Art. 6º O enquadramento como MIP para medicamentos dinamizados segue a
+regulamentação específica.
+DA SOLICITAÇÃO DO ENQUADRAMENTO
+Art.7º Atendidos os critérios estabelecidos nos arts. 3º ao 5º desta Resolução, os
+detentores de registro de medicamentos na ANVISA poderão, a qualquer momento, solicitar
+o enquadramento como Medicamento Isento de Prescrição.
+Parágrafo Único. Os detentores de registro de medicamentos classificados como
+novos, específicos e fitoterápicos poderão requerer o enquadramento desde o momento da
+solicitação de registro nesta ANVISA.
+Art. 8º O enquadramento de princípios ativos isolados como medicamentos isentos
+de prescrição não garante que a associação em dose fixa ou razão fixa de dose seja
+enquadrada como MIP, devendo essas, cumprir com os critérios estabelecidos no art. 3º
+desta Resolução.
+Parágrafo único. Excetua-se do disposto no caput os prazos estabelecidos no inciso I
+do art. 3º desta Resolução.
+Art. 9º A petição de solicitação de enquadramento de medicamentos como isento de
+prescrição deverá estar acompanhada dos seguintes documentos:
+I- Comprovante de pagamento, ou de isenção, da Taxa de Fiscalização de Vigilância
+Sanitária (TFVS), mediante Guia de Recolhimento da União (GRU);
+II- Racional técnico para o enquadramento, abordando os critérios estabelecidos no
+art. 3º desta Resolução;
+III- Relatório Periódico de Farmacovigilância com dados cumulativos de acordo com o
+tempo mínimo de comercialização estabelecido no inciso I do art. 3º desta Resolução;
+IV- Plano de Minimização de Risco, quando aplicável, e;
+V- Formulário de avaliação de enquadramento do medicamento devidamente
+preenchido e acompanhado da documentação comprobatória, conforme Anexo I.
+Art. 10. A decisão da ANVISA quanto à avaliação das solicitações de enquadramento
+de medicamentos como isentos de prescrição será objeto de publicação no Diário Oficial da
+União, por meio de instrução normativa específica.
+§1º A relação dos medicamentos enquadrados como isentos de prescrição será
+disponibilizada na página eletrônica da ANVISA, por meio da LMIP.
+§ 2º A LMIP será atualizada após a publicação da instrução normativa citada no
+caput deste artigo.
+DA ADEQUAÇÃO
+Art. 11. A cada publicação da decisão de enquadramento efetuada pela ANVISA,
+todas as empresas detentoras de registro de medicamentos a serem enquadrados como
+MIP deverão submeter, via peticionamento exclusivamente eletrônico, em até 180 (cento e
+
+oitenta) dias após a publicação, a “solicitação de alteração da categoria de venda”, que
+deverá estar acompanhada dos seguintes documentos:
+I- Comprovante de pagamento, ou de isenção, da TFVS, mediante GRU;
+II- Formulários de petição devidamente preenchidos e assinados;
+III- Justificativa da petição e,
+IV- Novo layout de bula e rotulagem.
+Art. 12. A empresa deverá submeter uma “notificação de alteração de texto de bula”
+em até 30 (trinta) dias após aprovação da solicitação de alteração da categoria de venda.
+Parágrafo Único. Nenhuma mudança além das decorrentes da alteração da categoria
+de venda poderá ser realizada nas informações constantes no texto de bula.
+Art. 13. Os medicamentos enquadrados como isentos de prescrição só poderão ser
+disponibilizados em autosserviço após adequação do material de bula e rotulagem.
+DISPOSIÇÕES FINAIS
+Art. 14. Os medicamentos atualmente registrados como isentos de prescrição
+permanecerão assim enquadrados.
+Art. 15. A revisão do enquadramento de um medicamento como isento de prescrição
+poderá ocorrer a qualquer momento.
+§ 1º A ANVISA poderá exigir provas adicionais relativas às condições de
+enquadramento para os medicamentos já enquadrados como isentos de prescrição.
+§ 2º As empresas detentoras de medicamentos reenquadrados como sob prescrição
+deverão proceder à adequação de seus registros, observando os procedimentos, prazos e
+condições dispostos nos arts. 11 e 12 desta Resolução.
+Art. 16. O tempo previsto para o esgotamento de estoque seguirá os prazos
+estabelecidos em regulamentação específica.
+Art. 17. O descumprimento das disposições contidas nesta Resolução constitui
+infração sanitária, nos termos da Lei nº 6437/1977, sem prejuízo das responsabilidades
+civil, administrativa e penal cabíveis.
+Art. 18. Ficam revogadas a Resolução de Diretoria Colegiada RDC nº 138, de 29 de
+maio de 2003 e o art. 15 da Resolução de Diretoria Colegiada RDC nº 134, de 29 de maio
+de 2003.
+Art. 19. Esta Resolução entra em vigor 30 dias a contar da data de sua publicação.
+
+JARBAS BARBOSA DA SILVA JR.
+ANEXO I
+FORMULÁRIO DE AVALIAÇÃO DO ENQUADRAMENTO DOS MEDICAMENTOS COMO
+ISENTOS DE PRESCRIÇÃO (preenchimento em língua portuguesa)
+IDENTIFICAÇÃO DA EMPRESA SOLICITANTE
+
+Razão social:
+CNPJ:
+Número do telefone (com DDD):
+Número do fax (com DDD):
+Endereço eletrônico:
+REPRESENTANTE LEGAL
+Nome:
+CPF:
+RESPONSÁVEL TÉCNICO
+Nome:
+Profissão:
+Conselho Regional de:
+Inscrição:
+UF:
+Local e data Representante Legal
+Responsável Técnico
+Responsável Clínico
+1) AVALIAÇÃO DO ENQUADRAMENTO DOS MEDICAMENTOS COMO ISENTOS DE
+PRESCRIÇÃO
+Referente a: (indicar aqui todos os assuntos aos quais se requer avaliação):
+ classe terapêutica
+ princípio ativo
+ indicação
+ concentração máxima
+2) CARACTERÍSTICAS DO PRODUTO
+Composição do Produto [princípio(s) ativo(s)]:
+Classe terapêutica:
+Indicação terapêutica:
+Concentração:
+Forma farmacêutica:
+
+Vias de administração:
+Modo de usar:
+Posologia:
+Duração de tratamento:
+Apresentação comercial:
+3) COMPROVAÇÃO DE ATENDIMENTO AOS CRITÉRIOS PARA ENQUADRAMENTO
+COMO MEDICAMENTOS ISENTOS DE PRESCRIÇÃO
+a)Segurança (considerando os prazos estabelecidos no art 3º, item I. ):
+RESUMO:
+DOCUMENTOS :
+b) Sinal ou sintoma identificável pelo paciente:
+RESUMO:
+DOCUMENTOS :
+c) Período de utilização e facilidade de uso pelo paciente:
+RESUMO:
+DOCUMENTOS :
+d) Potencial de risco ao paciente (mau uso/abuso/intoxicação)
+RESUMO:
+DOCUMENTOS :
+e) Potencial de risco ao paciente (dependência)
+RESUMO:
+DOCUMENTOS:
+f) Via de Administração
+4) HISTÓRICO DE USO NO BRASIL (caso haja):
+a) Anos de comercialização
+b) Estimativa de unidades comercializadas
+c) Dados de farmacovigilância no Brasil (análise global das notificações; avaliação de
+causalidade dos casos ocorridos no Brasil; avaliação do perfil benefício/risco do
+medicamento como MIP)
+
+5) HISTÓRICO DE USO EM OUTROS PAÍSES:
+a) País:
+b) Anos de comercialização:
+c) Anos de comercialização como isento de prescrição e comprovante de enquadramento
+como isentos de prescrição no país onde o produto é comercializado:
+d) Dados de farmacovigilância (análise global das notificações; avaliação de causalidade
+dos casos ocorridos; avaliação do perfil benefício/risco do medicamento como MIP,
+PSUR/Periodic Safety Update Report).
+6) PLANO DE MINIMIZAÇÃO DE RISCO: (quando aplicável)
+a) Perfil de segurança do produto (riscos identificáveis e potenciais, além de uma discussão
+específica de riscos associados a mudança).
+b) Medidas de minimização de risco (como será realizado o monitoramento pela empresa?)
+
+Saúde Legis - Sistema de Legislação da Saúde
+
+

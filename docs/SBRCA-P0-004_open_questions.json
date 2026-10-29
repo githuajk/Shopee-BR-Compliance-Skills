@@ -382,7 +382,7 @@
       ],
       "default_if_no_answer": "继续推进可执行的下一批：B1 ANVISA RDC701/2021 药妆禁用物质（需在沙箱外抓取）+ B2 RDC44/2009 处方药（bvsms URL 已 404，需找新来源）；同时 S1 scan_fields + S4 置信度分层（契约变更建议，与主 agent dbdf8d7 联动）。B6 IP 品牌词待政策原文确认后并入。",
       "updated": "2026-10-29",
-      "status": "部分完成：B5（英文信号词 27 词 + PI-002 v2 / PI-003 v4 规则层联动，含葡语缺口与双管道 bug 修复）+ S1（scan_fields 机制，契约 1.5.0，0 组声明不改变现状行为）+ S2（848 候选中 601 项剔除，逐词留痕）已完成。剩余 B1/B2/B3/B4/B6 因沙箱网络阻断（.gov.br/.com.br 不可达）待外部可达环境执行；S4 分层与主 agent dbdf8d7 豁免收窄联动推进。"
+      "status": "已完成：B5（英文信号词）+ S2（601 词剔除）+ S1（scan_fields 机制，契约 1.5.0）+ B2 法规族（RDC44/96/98 重抓入库、sources 全 cleared、MED-004 source_url 修正、RDC 701 法条号纠错）。待外部条件：IN 285/2024 LMIP 全文（datalegis 403，需可达环境）→ restrito_mip_otc 词组；B1 药妆（需 ANVISA 官方禁用物质清单载体确认）；B3 MAPA（mapa.gov.br 阻断）；B4 ANATEL/INMETRO（需静态清单源）；S4 分层（与 dbdf8d7 联动）。"
     }
   ],
   "summary": "5 项冲突 + 10 个问题（2026-10-28 新增 Q-015 词库扩展路线图）。默认处置均已登记，可按默认执行。"

@@ -26,10 +26,10 @@
 
 | # | 批次 | 内容 | 依据 | 建议映射 | 成本 |
 |---|---|---|---|---|---|
-| B1 | **药妆/化妆品** | ANVISA RDC 701/2021 化妆品规范 + 禁用/限用物质清单（hydroquinona >2%、mercúrio、tetra…） | 上一轮「药妆」缺口检查：声明层有、品类层无 | 新组 `proibido_cosmetico_substancia`（platform_official/law → SBR-MED-001 或新 PI 条款需裁定） | 需新抓取 2–3 篇 RDC |
-| B2 | **处方药 RDC 44/2009** | 重抓（现登记 http_503，`_fetch_report.json` 已留痕） | `research/sources.json` 在册来源，校验器放行但不支撑规则 | `catalog_anvisa_restricted_medicine_*` 已有骨架，补全 | 1 篇重抓 |
-| B3 | **MAPA（农业/兽药/饲料）** | MAPA 兽药/饲料/农药目录 | SBR-RI-006（宠物药品）目前**零词库支撑** | `catalog_mapa_*` → SBR-RI-006 + SBR-MED-004 | 新数据源 |
-| B4 | **ANATEL/CTI（电信认证）+ INMETRO（安全认证）** | 无线设备/蓝牙/Wi-Fi 认证目录、玩具/电器安全认证 | 电子类目（耳机/路由器/充电宝）目前无认证类词支撑 | `catalog_anatel_*` → SBR-RI-004 类比/新 RI 条款需裁定 | 新数据源 |
+| B1 | **药妆/化妆品** | ~~RDC 701/2021~~（2026-10-29 核实：**RDC 701 为 2022 年消毒剂规范，非化妆品**——原条目法条号有误）；ANVISA 化妆品规范实为 RDC 41/42/43/2015 阳性清单（色淀/防腐剂/UV 剂，未列 = 禁用），「禁用词表」无干净逐字源 | 声明层已由 claim_beleza / claim_saude 覆盖（efeito medicinal 等 → SBR-MED-001 block） | 品类层词表暂缓 —— 需先确认 ANVISA 官方禁用物质清单载体（C3 纪律），或改走「化妆品类目 + 药名声明」组合信号（S4 分层后） | 源确认 |
+| B2 | **处方药/MIP 法规族** | ✅ 已重抓（2026-10-29）：RDC 44/2009（saudelegis rdc0044_17_08_2009，旧 404 URL 修正）+ RDC 96/2008（rdc0096_17_12_2008）+ RDC 98/2016（MIP 框架，PDF 转文本）；三源 disposition 全 cleared、raw 在档、MED-004 的 source_url 已切新路径 | 校验器全绿 | ⏸ MIP 清单（IN 285/2024）全文不可达（datalegis 403 / bvsms 无 IN 索引 / 浏览器工具故障）→ `restrito_mip_otc` 词组待 IN 全文到位后并入（C3） | IN 285 全文 |
+| B3 | **MAPA（农业/兽药/饲料）** | ⏸ 暂缓（2026-10-29 可达性复测：mapa.gov.br 本沙箱 000 阻断） | SBR-RI-006（宠物药品）目前**零词库支撑** | `catalog_mapa_*` → SBR-RI-006 + SBR-MED-004 | 换可达环境 |
+| B4 | **ANATEL/CTI（电信认证）+ INMETRO（安全认证）** | ⏸ 暂缓（anatel.gov.br 站点可达 200，但认证设备库为动态 Web 应用，无静态清单；INMETRO 目录待找） | 电子类目（耳机/路由器/充电宝）目前无认证类词支撑 | `catalog_anatel_*` → SBR-RI-004 类比/新 RI 条款需裁定 | 找静态导出源 |
 | B5 | **英文信号词** | 跨境卖家常用英文违规词（nandrolone、prednisone、e-cigarette、hookah、anabolic…）+ 英文品牌词 | 现有词库葡语中心；英文信号 <1% | 并入 `proibido_drogas`/`proibido_tabaco` 等既有组（同 tier） | 纯词表，无抓取 |
 | B6 | **IP 品牌词扩充** | 高仿重灾品牌（当前 ip_signal 仅 486 词） | `tests/fixtures/ip_cases.json` 覆盖有限 | `ip_*` 组 → SBR-IP-001/006（flag 级） | 需品牌清单来源 |
 

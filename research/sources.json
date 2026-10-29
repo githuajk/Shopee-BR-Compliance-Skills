@@ -99,23 +99,33 @@
     "slug": "br_anvisa_medicamentos_prescricao",
     "title": "RDC 44/2009 - Dispensação de medicamentos em farmácia e drogaria",
     "publisher": "Anvisa",
-    "url": "https://bvsms.saude.gov.br/docs/bvsms/legislacao/rdc/2009/rdc_44_2009_10_06_2009.html",
+    "url": "https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2009/rdc0044_17_08_2009.html",
     "tier": "law",
     "scope": "Brazil - prescription-only medicine dispensing rules",
-    "capture_status": "failed_http_404_20261028_retry",
-    "capture_note": "首抓失败（HTTP 503，站点不可达）；2026-10-28 重试：站点根可达（200）但来源 URL 返回 HTTP 404（页面迁移/下线，重抓未成功）。来源维持 unverified，不得支撑任何规则；tier/scope 未改动。",
+    "capture_status": "ok",
+    "capture_note": "2026-10-29 重抓成功：旧 URL 404，经 bvsms saudelegis 检索修正为 rdc0044_17_08_2009.html（RDC 44/2009 药房药事管理全文，48,231 字符）。",
     "disposition": {
       "disposition_id": "SBR-DISP-PR-001",
-      "status": "quarantined",
+      "status": "cleared",
       "reason": "fetch_failed_http_404_20261028_retry",
-      "detail": "bvsms.saude.gov.br 首抓 HTTP 503，重试后返回 HTTP 404（页面迁移/下线）。来源未核验，不得支撑任何规则（H4）。相关规则 SBR-MED-001/MED-002/MED-003 已改用 shopee_br_categorias_restrritas / shopee_br_politica_produtos_proibidos 替代。",
+      "detail": "bvsms 旧路径 404；2026-10-29 经 saudelegis 检索修正 URL（rdc0044_17_08_2009.html）重抓成功，raw 件 research/raw/br_anvisa_medicamentos_prescricao.txt 在档。注意：RDC 44/2009 为《药房药事管理》规范（非 MIP 清单；MIP 现行依据 RDC 98/2016 + IN 11/2016），可支撑 SBR-MED-002 处方/药剂调配语义；规则引文切换属 listing-audit 决策（Q-015 后续）。",
       "first_registered": "2026-10-27",
-      "last_reviewed": "2026-10-28T23:55:00Z",
-      "blocked_for_rules": true,
-      "dependent_rules_rebased": ["SBR-MED-001", "SBR-MED-002", "SBR-MED-003"],
-      "rebased_to": ["shopee_br_categorias_restrritas", "shopee_br_politica_produtos_proibidos"],
-      "remediation": "待站点重新上线时重抓 https://bvsms.saude.gov.br/docs/bvsms/legislacao/rdc/2009/rdc_44_2009_10_06_2009.html；写入 research/raw/br_anvisa_medicamentos_prescricao.txt；运行 tools/check_sources.py + tools/verify_citations.py；通过后将 disposition.status 改为 'cleared' 并清除 blocked_for_rules。"
-    }
+      "last_reviewed": "2026-10-29T00:00:00Z",
+      "blocked_for_rules": false,
+      "dependent_rules_rebased": [
+        "SBR-MED-001",
+        "SBR-MED-002",
+        "SBR-MED-003"
+      ],
+      "rebased_to": [
+        "shopee_br_categorias_restrritas",
+        "shopee_br_politica_produtos_proibidos"
+      ],
+      "remediation": "已完成（2026-10-29）：raw 件在档 + check_sources/verify_citations 通过，disposition 转 cleared。"
+    },
+    "status": "ok",
+    "last_fetched": "2026-10-29",
+    "note": "2026-10-29 B2：旧 URL（.../rdc/2009/rdc_44_2009_10_06_2009.html）404；经检索修正为 saudelegis 路径 rdc0044_17_08_2009.html 并抓取成功（47,913 字符）。注意：RDC 44/2009 为《药房药事管理》规范（非 MIP 清单；MIP 现行依据为 RDC 98/2016 + IN 11/2016）。"
   },
   {
     "slug": "shopee_br_categoria_correta",
@@ -145,9 +155,12 @@
     "slug": "br_anvisa_rdc96_publicidade",
     "title": "Resolução-RDC nº 96, de 17 de dezembro de 2008 — publicidade de medicamentos",
     "publisher": "ANVISA / Ministério da Saúde (BVSMS)",
-    "url": "https://bvsms.saude.gov.br/docs/bvsms/legislacao/rdc/2008/rdc_96_2008_",
+    "url": "https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2008/rdc0096_17_12_2008.html",
     "tier": "law",
-    "scope": "Advertising claims for medicines, supplements and health products sold on Shopee Brazil"
+    "scope": "Advertising claims for medicines, supplements and health products sold on Shopee Brazil",
+    "status": "ok",
+    "last_fetched": "2026-10-29",
+    "note": "2026-10-29 B2：旧登记 URL（docs/bvsms/...rdc_96_2008_ 截断）404；saudelegis 路径 rdc0096_17_12_2008.html 抓取成功（48,885 字符，RDC 96/2008 药品广告规范全文），raw 件按 slug 命名 br_anvisa_rdc96_publicidade.txt。"
   },
   {
     "slug": "shopee_br_video_diretrizes_comunidade_ip",
@@ -164,5 +177,16 @@
     "url": "https://help.shopee.com.br/portal/10/article/188364-Pol%C3%ADtica-de-P",
     "tier": "platform_official",
     "scope": "Prohibited and restricted product categories in video content and listings"
+  },
+  {
+    "slug": "br_anvisa_rdc98_2016_mip",
+    "title": "RDC 98/2016 - Critérios para enquadramento de medicamentos isentos de prescrição (MIP)",
+    "publisher": "ANVISA / Ministério da Saúde (BVSMS)",
+    "url": "https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2016/rdc0098_01_08_2016.pdf",
+    "tier": "law",
+    "scope": "Brazil - MIP (over-the-counter medicine) classification framework; 现行清单 IN 285/2024（未抓取，datalegis 403）",
+    "status": "ok",
+    "last_fetched": "2026-10-29",
+    "note": "2026-10-29 B2 抓取。RDC 98/2016 定义 MIP 判定标准（33 组/低毒/短疗程/无依赖等）；MIP 词表本体在 IN 285/2024（LMIP），本轮暂缺 → OTC 白组词组（restrito_mip_otc）待 IN 全文到位后并入（C3：无逐字源不建词表）。"
   }
 ]
