@@ -30,8 +30,8 @@ python sbrca_run.py --input ~/Downloads/mass_update.xlsx --out-dir ./out
 > 所以在 ChatGPT 网页版里，传完文件直接跑 `python sbrca_run.py` 就行。
 
 > **想在 ChatGPT 里用这个仓库？**
-> - `docs/CHATGPT_NLP.md` —— ★ **推荐**：读网页 + 纯自然语言审核（**不需要跑代码、不需要上传文件**）
-> - `docs/CHATGPT_PROMPT.md` —— 判定手册本体（给 ChatGPT 读的 URL）
+> - `docs/CHATGPT_PROMPT.md` —— ★ **入口**（唯一入口；读完自动分流到 T4/T3/T2/T1）
+> - `docs/CHATGPT_NLP.md` —— 使用指南（网页版 + 能力分级说明）
 > - `docs/CHATGPT_WEB.md` —— 网页版 + 代码解释器（需要沙箱能联网时）
 > - `docs/CHATGPT_USAGE.md` —— 总览（Actions / 本地跑）
 
@@ -87,7 +87,7 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 
 | 文件 | 作用 |
 |---|---|
-| **`docs/CHATGPT_PROMPT.md`** | ★★★ **ChatGPT 判定手册**（读 URL 后直接用自然语言审，不跑代码） |
+| **`docs/CHATGPT_PROMPT.md`** | ★★★ **ChatGPT 入口**（自动探测能力 → T4引擎/T3脚本/T2多文件/T1单文件） |
 | `sbrca_run.py` | ★★★ **单文件入口**（纯标准库；自动发现上传目录，不用指定格式和路径） |
 | **`docs/合规审核SOP.md`** | ★★★ **主作业手册**（按《跨境发货SOP》格式，含全部可填写字段） |
 | `PROJECT_RULES.md` | 公共工程规范：定位、格式政策、契约总览、四态语义、风险×动作、规则 ID、证据引用、复核要求、错误处理、交付标准、命名、禁止事项 |

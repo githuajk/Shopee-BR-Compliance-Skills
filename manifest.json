@@ -431,14 +431,21 @@
     },
     "chatgpt_prompt": {
       "path": "docs/CHATGPT_PROMPT.md",
-      "purpose": "★ ChatGPT 直接读的判定手册 —— 68 组/1418 个触线词 + 豁免清单 + 改写对照表 + 输出格式；用于 Python 沙箱不能联网的环境，纯自然语言审核",
+      "purpose": "★ ChatGPT 入口与能力分流 —— §A 探测环境能力并自动选 T4引擎/T3脚本/T2多文件/T1单文件四条路径之一；§B 判定规则；§C 68组/1439 触线词；§D 补充文件指针；§F 输出格式",
       "owner": "integrator",
-      "audience": "ChatGPT 网页版（读 URL 后直接审）",
+      "audience": "任何能读 raw.githubusercontent.com 的 AI 环境",
       "status": "Draft — 待用户审批",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "created": "2026-10-29",
-      "size": "46 KB / 979 行",
-      "sync": "词表由 tools/gen_prompt_lexicon.py 从 lexicon/term_groups.json 生成，tools/inject_prompt_lexicon.py 注入；check_all.sh 第 11 步强制校验同步"
+      "size": "51 KB / 1128 行",
+      "sync": "词表由 tools/gen_prompt_lexicon.py 生成；判定规则正文在 docs/parts/rules_body.md；tools/build_prompt_doc.py 组装全文；check_all.sh 第 11/12 步强制校验",
+      "build": "python tools/build_prompt_doc.py",
+      "tiers": {
+        "T4": "完整 shell + 联网 → 跑 sbrca_run.py 规则引擎",
+        "T3": "能跑 Python 取不到仓库 → 用 §C 词表自写扫描器",
+        "T2": "能读多文件 → 按 §D 指针按需追加读",
+        "T1": "只能读本文件 → 纯自然语言判定"
+      }
     },
     "chatgpt_nlp": {
       "path": "docs/CHATGPT_NLP.md",

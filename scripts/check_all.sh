@@ -64,4 +64,8 @@ $PY tools/gen_prompt_lexicon.py --check | tail -2
 $PY tools/inject_prompt_lexicon.py --check | tail -2
 
 echo
+echo "== 12/12  ChatGPT 入口文档与 parts/rules_body.md 同步 =="
+$PY tools/build_prompt_doc.py --check | tail -2
+
+echo
 echo "ALL CHECKS PASSED"
