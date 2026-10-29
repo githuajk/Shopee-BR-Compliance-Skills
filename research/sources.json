@@ -210,5 +210,33 @@
     "status": "ok",
     "last_fetched": "2026-10-29",
     "note": "2026-10-29 B1：curl 200 抓取正文（5.8k 字符）。规划中\"B1 需 RDC 701/2021\"系法条号误记——RDC 701/2022 实为消毒剂规范；化妆品限用实质法源链 = RDC 03/2012（限用，本文）+ RDC 48/2006（禁用）+ RDC 529/530/2021（2021 更新）。附件（PRT 24/2011 清单）bvsms 路径 404，词组入库待附件全文。"
+  },
+  {
+    "slug": "br_anvisa_rdc1030_2026_cosmetico_proibidas",
+    "title": "RDC 1.030/2026 — Atualização da lista de substâncias proibidas em cosméticos (GMC MERCOSUL 07/25)",
+    "publisher": "ANVISA (publicação: DOU Seção 1, 2026-06-15; plataforma oficial: anvisalegis.datalegis.net)",
+    "url": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=1696&cod_modulo=134&numeroAto=00001030&orgao=RDC%2FDC%2FANVISA%2FMS&seqAto=000&tipo=RDC&valorAno=2026",
+    "tier": "law",
+    "scope": "Brazil - 化妆品禁用物质清单 2026 现行版（修改 RDC 529/2021 附件；13 项新增含 boro 类/mercúrio，4 项移至限用）",
+    "status": "blocked",
+    "last_fetched": "2026-10-29",
+    "note": "2026-10-29 登记：官方载体 anvisalegis.datalegis.net 对本沙箱 403（HTML 与 PDF 端点均 403），in.gov.br（DOU 静态 PDF）000 阻断，bvsms 无 2026 年 RDC 索引。内容摘要（官方页面经搜索索引可核验）：incorpora GMC 07/25；新增 13 项（boro 类：trióxido de diboro/ácido bórico/octaborato dissódico 及 sais；mercúrio e seus compostos CAS 7439-97-6；POLYURETHANE-18/19；bis(tetrafluoroborato) de níquel；cetoconazol；N,N-dimetil-p-toluidina 等）；excluídas 4 项（peróxido de benzoíla, metileugenol, hidroquinona 1,4-dihidroxibenzeno, ácido azelaico）→ 移入限用（RDC 1.029/2026 第一部分，GMC 06/25）。化妆品禁用词组建组前置条件：获取 RDC 529/2021 附件全文 + RDC 1.030/2026 全文（逐字源）。",
+    "blocked_for_rules": true,
+    "capture_status": "failed_http_403_official_carrier_blocked",
+    "capture_note": "2026-10-29：datalegis 403（HTML+PDF 端点）+ in.gov.br 000；raw/ 存根仅供溯源，blocked_for_rules=true。"
+  },
+  {
+    "slug": "br_anvisa_rdc1029_2026_cosmetico_restritivo",
+    "title": "RDC 1.029/2026 — Lista de Substâncias Restritas (parte 1, GMC MERCOSUL 06/25)",
+    "publisher": "ANVISA (plataforma oficial: anvisalegis.datalegis.net)",
+    "url": "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=1696&cod_modulo=134&numeroAto=00001029&orgao=RDC%2FDC%2FANVISA%2FMS&seqAto=000&tipo=RDC&valorAno=2026",
+    "tier": "law",
+    "scope": "Brazil - 化妆品限用物质清单 2026 第一部分（CP 1.399/2026 征询中：第二部分 2026-07-08 至 09-08）",
+    "status": "blocked",
+    "last_fetched": "2026-10-29",
+    "note": "2026-10-29 登记：同 rdc1030 条目，datalegis 403 / in.gov.br 000 阻断。",
+    "blocked_for_rules": true,
+    "capture_status": "failed_http_403_official_carrier_blocked",
+    "capture_note": "2026-10-29：datalegis 403（HTML+PDF 端点）+ in.gov.br 000；raw/ 存根仅供溯源，blocked_for_rules=true。"
   }
 ]

@@ -444,7 +444,7 @@
   "lexicon": {
     "path": "lexicon/term_groups.json",
     "groups": 105,
-    "terms": 210439,
+    "terms": 210469,
     "risk_hints": {
       "prohibited": 27,
       "restricted": 53,
