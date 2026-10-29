@@ -382,7 +382,7 @@
       ],
       "default_if_no_answer": "继续推进可执行的下一批：B1 ANVISA RDC701/2021 药妆禁用物质（需在沙箱外抓取）+ B2 RDC44/2009 处方药（bvsms URL 已 404，需找新来源）；同时 S1 scan_fields + S4 置信度分层（契约变更建议，与主 agent dbdf8d7 联动）。B6 IP 品牌词待政策原文确认后并入。",
       "updated": "2026-10-29",
-      "status": "已完成：B5（英文信号词）+ S2（601 词剔除）+ S1（scan_fields 机制）+ B2 法规族（RDC44/96/98 重抓 + IN 285/2024 LMIP 镜像入库 + restrito_mip_otc 词组 21 词 + SBR-MED-002 v2 正则联动 + sources disposition 全 cleared + RDC 701 法条号纠错）。待下一批：全量 LMIP 同步（IN 388/404 修订差异）；B1 药妆（需 ANVISA 官方禁用物质清单载体确认）；B3 MAPA（mapa.gov.br 阻断）；B4 ANATEL/INMETRO（需静态清单源）；B6 IP 品牌词；S4 分层（与 dbdf8d7 联动）。"
+      "status": "已完成：B5（英文信号词）+ S2（601 词剔除）+ S1（scan_fields 机制）+ B2 法规族（RDC44/96/98 重抓 + IN 285/2024 LMIP 入库 + restrito_mip_otc 21 词 + SBR-MED-002 v2 正则联动）。本轮新增：B1 RDC 03/2012 正文入库（附件 PRT 24/2011 清单 404 留一批 + 法条纠错：RDC 701/2022 非化妆品禁限用）；B3 MAPA / B4 ANATEL/INMETRO 均无公开静态清单（动态 DB），B6 IP 品牌词无实例来源——三者登记 deferred。待下一批：MIP 全量 LMIP 与 IN 388/404 修订同步；化妆品附件清单（PRT 24/2011）抓取；MAPA 数据集 API 探活。"
     }
   ],
   "summary": "5 项冲突 + 10 个问题（2026-10-28 新增 Q-015 词库扩展路线图）。默认处置均已登记，可按默认执行。"

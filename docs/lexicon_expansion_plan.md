@@ -26,7 +26,7 @@
 
 | # | 批次 | 内容 | 依据 | 建议映射 | 成本 |
 |---|---|---|---|---|---|
-| B1 | **药妆/化妆品** | ~~RDC 701/2021~~（2026-10-29 核实：**RDC 701 为 2022 年消毒剂规范，非化妆品**——原条目法条号有误）；ANVISA 化妆品规范实为 RDC 41/42/43/2015 阳性清单（色淀/防腐剂/UV 剂，未列 = 禁用），「禁用词表」无干净逐字源 | 声明层已由 claim_beleza / claim_saude 覆盖（efeito medicinal 等 → SBR-MED-001 block） | 品类层词表暂缓 —— 需先确认 ANVISA 官方禁用物质清单载体（C3 纪律），或改走「化妆品类目 + 药名声明」组合信号（S4 分层后） | 源确认 |
+| B1 | **药妆/化妆品** | ~~RDC 701/2021~~（2026-10-29 核实：**RDC 701/2022 实为消毒剂规范，非化妆品**——原条目法条号有误）；ANVISA 化妆品禁限用实质法源链 = **RDC 03/2012（限用制度，正文已入档 `br_anvisa_rdc03_2012_cosmetico_restritivo`）+ RDC 48/2006（禁用）+ RDC 529/530/2021（2021 更新，未入）**；附件清单（MERCOSUL PRT 24/2011）bvsms 路径 404，「禁用词表」无逐字源 | 声明层已由 claim_beleza / claim_saude 覆盖（efeito medicinal 等 → SBR-MED-001 block） | 品类层词表暂缓 —— 附件清单（PRT 24/2011 技术文档）或 RDC 529/530/2021 全文入库后再建组（C3 纪律），或改走「化妆品类目 + 药名声明」组合信号（S4 分层后） | 附件/2021 更新全文 |
 | B2 | **处方药/MIP 法规族** | ✅ 完成（2026-10-29）：RDC 44/2009 + RDC 96/2008 + RDC 98/2016 重抓入库（sources 全 cleared）；**IN 285/2024 LMIP 已入**（镜像 PDF 68k 字符逐字核验）→ 词库 `restrito_mip_otc`（21 词 OTC 高频子集）+ SBR-MED-002 v2 正则联动；全量 LMIP 与 IN 388/404 修订差异留下一批 | 校验器全绿（839/839） | — | 全量 LMIP 批次 |
 | B3 | **MAPA（农业/兽药/饲料）** | ⏸ 暂缓（2026-10-29 可达性复测：mapa.gov.br 本沙箱 000 阻断） | SBR-RI-006（宠物药品）目前**零词库支撑** | `catalog_mapa_*` → SBR-RI-006 + SBR-MED-004 | 换可达环境 |
 | B4 | **ANATEL/CTI（电信认证）+ INMETRO（安全认证）** | ⏸ 暂缓（anatel.gov.br 站点可达 200，但认证设备库为动态 Web 应用，无静态清单；INMETRO 目录待找） | 电子类目（耳机/路由器/充电宝）目前无认证类词支撑 | `catalog_anatel_*` → SBR-RI-004 类比/新 RI 条款需裁定 | 找静态导出源 |
@@ -42,12 +42,14 @@
 | S3 | **Aho–Corasick 索引**（`lexicon_scanning.md` §7 未决项） | 词库 21 万词线性扫描 50 s/品不可持续；**B1–B6 扩容前应先做** | 扫描 50 s → 毫秒级；测试套件 45 min → 分钟级 |
 | S4 | **置信度分层** | catalog 单词命中 = signal（只 provenance）；catalog 多词命中 = candidate（可驱动规则）；政策词命中 = 高置信 candidate | 对齐 H3「筛查缺失 ≠ 通过」语义 |
 
-## 4. 执行进度（2026-10-28 当晚更新）
+## 4. 执行进度（2026-10-29 更新）
 
 - [x] **B5 英文信号词**：`proibido_drogas_en`（18 词）/ `proibido_tabaco_en`（9 词）入库；SBR-PI-003 v3 / SBR-PI-002 v2 正则联动（「nicotine」不入正则——戒烟贴片走 SBR-MED-002，仅「nicotine pouch」入正则）。靶向 11 例全过（7 阳性全命中、4 阴性零误伤）。
 - [x] **S2 剔除执行**：848 项候选中 601 项已剔除（医学缩写/数字/含空格词 217 项保留），逐词留痕 `docs/s2_exclusion_trace_20261029.json`。
 - [x] **S3 索引**：已由集成轮完成（前缀分桶 + C 级 str.find，见 lexicon_scanning.md §7.1）。
-- [ ] B1 药妆 / B2 RDC44（重抓 URL 已 404，需新来源）/ B3 MAPA / B4 ANATEL —— 下一批
+- [x] **B2 法规族（2026-10-29，本集成轮）**：RDC 44/2009 + RDC 96/2008 重抓（saudelegis 新 URL，旧 docs/bvsms 404）+ RDC 98/2016（MIP 框架）入档；**IN 285/2024 LMIP 全文**（镜像 PDF，官方 datalegis 403）逐字核验入档 → 词库 `restrito_mip_otc`（21 词 OTC 高频子集，全部逐字出现于 IN 285 原文）+ **SBR-MED-002 v2 正则联动**；5 阳性靶向全命中 MED-002 require_evidence、0 阻断，阴性零误伤。三源 disposition 全 cleared。
+- [x] **B1 正文入库 + 法条纠错（2026-10-29）**：RDC 03/2012（化妆品限用制度，MERCOSUL PRT 24/2011）正文入档 `br_anvisa_rdc03_2012_cosmetico_restritivo`；纠错：原条目「RDC 701/2021 化妆品」系误记——**RDC 701/2022 实为消毒剂规范**。附件清单（PRT 24/2011 技术文档）与 RDC 529/530/2021 全文 404/未入 → 词组建组留下一批（C3）。
+- [~] **B3 / B4 / B6 定界（2026-10-29）**：B3 MAPA（mapa.gov.br 与 dadosabertos.mapa.gov.br 本沙箱均阻断，000）；B4 ANATEL/INMETRO（站点可达 200，但认证设备/型号库为动态查询系统，无 csv/xlsx/pdf 静态清单）；B6 IP 品牌词（IP 政策原文与 INPI 立法件均无实例品牌名可提取，C3 不支持自造清单）——三者登记 deferred，条件变化后重启。
 - [x] **S1 scan_fields 机制**（2026-10-29）：`lexicon.py` 新增 `field_scope()` / `apply_field_scope()`（纯函数，引擎 scan_product 自动应用）；契约 1.5.0 登记 `field_scoping` 机制块（PATCH：0 组声明，行为不变）。对 catalog_* 组**应用**分字段（如单词组降 provenance 级）属数据决策，需夹具回归后执行（Q-015）。
 - [ ] S4 分层（与 dbdf8d7 豁免收窄联动，主 agent 推进）
 
