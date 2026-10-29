@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "name": "Shopee BR — 合并词库",
-  "description": "合并来源：2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 现有 25 组 179 词。每个词组是筛查信号，不是违规结论 —— 结论由规则层依据来源判定。 2026-10-28 集成修复：删除 catalog_anvisa_saneante_product_names__single 中的裸日常词「Marca」（匹配平台默认品牌值「Sem Marca」导致 SBR-MED-004 误触发；与 D6 批量剔除 gasolina/etanol/diesel 同类原则）。 2026-10-28 集成补齐：新增 proibido_botulino（3 词，platform_official → SBR-PI-003 阻断）与 restrito_apitoxina（5 词，internal_risk → SBR-MED-003/SBR-LV-001 flag）两组。 2026-10-28 B5 批次：新增英文信号组 proibido_drogas_en / proibido_tabaco_en（27 词）。 2026-10-29 B5 续 + S2 执行：剔除 654 项候选通用词/超短词（医学缩写/数字混合/短词保留；194 项保留）。 2026-10-29 B2：新增 restrito_mip_otc（21 词，IN 285/2024 LMIP OTC 高频子集）。 2026-10-29 B2：restrito_mip_otc 扩至 51 词（全表提取 30 词，逐字核验 IN 285 原文）。 2026-10-29 B2：restrito_mip_otc 扩至 54 词（IN 388/2025 + IN 404/2025 修订词 3 个）。 2026-10-29 B2：restrito_mip_otc 扩至 62 词（IN 388 Anexo I 全量提取 8 词）。 2026-10-29 B2：剔除脏词后 62 词。",
+  "description": "合并来源：2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 现有 25 组 179 词。每个词组是筛查信号，不是违规结论 —— 结论由规则层依据来源判定。 2026-10-28 集成修复：删除 catalog_anvisa_saneante_product_names__single 中的裸日常词「Marca」（匹配平台默认品牌值「Sem Marca」导致 SBR-MED-004 误触发；与 D6 批量剔除 gasolina/etanol/diesel 同类原则）。 2026-10-28 集成补齐：新增 proibido_botulino（3 词，platform_official → SBR-PI-003 阻断）与 restrito_apitoxina（5 词，internal_risk → SBR-MED-003/SBR-LV-001 flag）两组。 2026-10-28 B5 批次：新增英文信号组 proibido_drogas_en / proibido_tabaco_en（27 词）。 2026-10-29 B5 续 + S2 执行：剔除 654 项候选通用词/超短词（医学缩写/数字混合/短词保留；194 项保留）。 2026-10-29 B2：新增 restrito_mip_otc（21 词，IN 285/2024 LMIP OTC 高频子集）。 2026-10-29 B2：restrito_mip_otc 扩至 51 词（全表提取 30 词，逐字核验 IN 285 原文）。 2026-10-29 B2：restrito_mip_otc 扩至 54 词（IN 388/2025 + IN 404/2025 修订词 3 个）。 2026-10-29 B2：restrito_mip_otc 扩至 62 词（IN 388 Anexo I 全量提取 8 词）。 2026-10-29 B2：剔除脏词后 62 词。 2026-10-29 集成去重：restrito_mip_otc 剔除大小写重复词条 10 个（paracetamol/Paracetamol 等），词条 82 -> 72，总词条 210500 -> 210490。",
   "last_updated": "2026-10-28",
   "usage": "加载后用 Aho-Corasick 建立多模式索引（规模扩大时）。匹配时：大小写不敏感 → NFD 去重音 → 显式 lookaround 边界。",
   "matching_notes": [
@@ -210695,32 +210695,22 @@
       "omeprazol",
       "Alfaestradiol",
       "Bacillus cereus",
-      "Bisacodil",
       "Carmelose sódica",
-      "Cetoconazol",
       "Coaltar",
-      "Desloratadina",
-      "Dipirona",
       "Hialuronato de sódio",
-      "Ibuprofeno",
       "Ibuprofeno arginina",
-      "Lactulose",
-      "Loratadina",
       "Loxoprofeno sódico",
       "Maleato de",
       "Metronidazol",
       "Naproxeno",
       "Nitrato de miconazol",
       "Nitrato de oxiconazol",
-      "Paracetamol",
       "Picossulfato de sódio",
       "Policarbofila cálcica",
       "Salicilato de etilenoglicol",
       "Sulfato de neomicina",
       "Sulfeto de selênio",
-      "Tioconazol",
-      "Ácido acetilsalicílico",
-      "Ácido salicílico"
+      "Tioconazol"
     ]
   },
   "group_meta": {
@@ -211462,6 +211452,6 @@
   },
   "stats": {
     "group_count": 105,
-    "term_count": 210500
+    "term_count": 210490
   }
 }

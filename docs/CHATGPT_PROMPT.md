@@ -496,7 +496,9 @@ bisacodil · lactulose · simeticona · docusato · senna · magnésio · ácido
 Carbocisteína · Cloreto de sódio · Clotrimazol · Colagenase · Cânfora · Deltametrina · Diclofenaco sódico · Dropropizina
 Ebastina · Flurbiprofeno · Flutrimazol · Guaifenesina · Heparina sódica · Hipromelose · Iodopovidona · Magaldrato
 Mebendazol · Menaeptenona · Naproxeno sódico · Nicotina · Nimesulida · Penciclovir · Permetrina · Prometazina
-Ureia · Ácido azeláico · Álcool polivinílico
+Ureia · Ácido azeláico · Álcool polivinílico · ciclopirox · raiz de althaea officinalis · omeprazol · Alfaestradiol · Bacillus cereus
+Carmelose sódica · Coaltar · Hialuronato de sódio · Ibuprofeno arginina · Loxoprofeno sódico · Maleato de · Metronidazol · Naproxeno
+Nitrato de miconazol · Nitrato de oxiconazol · Picossulfato de sódio · Policarbofila cálcica · Salicilato de etilenoglicol · Sulfato de neomicina · Sulfeto de selênio · Tioconazol
 ```
 
 ### 酒类 🟡（restrito_bebida）
