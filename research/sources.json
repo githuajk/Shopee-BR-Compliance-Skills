@@ -199,5 +199,16 @@
     "status": "ok",
     "last_fetched": "2026-10-29",
     "note": "2026-10-29 B2 抓取（镜像 PDF；datalegis 官方页 403）。IN 388/2025 + IN 404/2025 后续修订 Anexo（RDC 882/2024 框架）——词组建库时已留痕修订差异，全量 LMIP 同步留待下一批。"
+  },
+  {
+    "slug": "br_anvisa_rdc03_2012_cosmetico_restritivo",
+    "title": "RDC 03/2012 — 化妆品限用物质清单制度（MERCOSUL PRT 24/2011）",
+    "publisher": "ANVISA",
+    "url": "https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2012/rdc0003_18_01_2012.html",
+    "tier": "law",
+    "scope": "Brazil - 化妆品限用物质制度法源（B1 规划条目；正文已入档，附件清单全文=下一批）",
+    "status": "ok",
+    "last_fetched": "2026-10-29",
+    "note": "2026-10-29 B1：curl 200 抓取正文（5.8k 字符）。规划中\"B1 需 RDC 701/2021\"系法条号误记——RDC 701/2022 实为消毒剂规范；化妆品限用实质法源链 = RDC 03/2012（限用，本文）+ RDC 48/2006（禁用）+ RDC 529/530/2021（2021 更新）。附件（PRT 24/2011 清单）bvsms 路径 404，词组入库待附件全文。"
   }
 ]
