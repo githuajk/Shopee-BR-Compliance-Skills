@@ -97,5 +97,13 @@
     "text_chars": 12166,
     "url": "https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2016/rdc0098_01_08_2016.pdf",
     "note": "2026-10-29 B2 抓取（PDF 经 pdftotext 转文本）"
+  },
+  {
+    "slug": "br_anvisa_in285_2024_lmip",
+    "status": "ok",
+    "http": 200,
+    "url": "https://www.fitoterapiabrasil.com.br/sites/default/files/legislacao/in_285_2024_.pdf",
+    "text_chars": 68082,
+    "note": "2026-10-29 B2 抓取（镜像 PDF；官方 datalegis 403）。IN 388/2025 + IN 404/2025 后续修订 Anexo。"
   }
 ]

@@ -339,9 +339,9 @@ product = {
 
 | 项 | 数量 |
 |---|---|
-| 词库组总数 | 104（210,418 词，2026-10-28 集成扩充 + 肉毒/蜂毒补齐后；原 37 组 / 856 词） |
-| 映射条目数 | 104 |
-| 映射到本模块前缀（`PI`/`RI`/`MED`/`LV`）的组 | 94 |
+| 词库组总数 | 105（210,439 词，2026-10-28 集成扩充 + 肉毒/蜂毒补齐后；原 37 组 / 856 词） |
+| 映射条目数 | 105 |
+| 映射到本模块前缀（`PI`/`RI`/`MED`/`LV`）的组 | 95 |
 | 只映射到他模块前缀的组 | 10（`ip_marca_cn`、`ip_marca_br`、`ip_entretenimento`、`ip_esportes`、`ip_variante_marca`、`ip_copyright`、`ip_shopee_asset`、`platform_ip_explicit`、`platform_ip_signal_terms`、`ip_cti_registered_marks`） |
 
 `lexicon.py` 的 `candidate_rules()` 只保留 `OWNED_PREFIXES` 的规则：

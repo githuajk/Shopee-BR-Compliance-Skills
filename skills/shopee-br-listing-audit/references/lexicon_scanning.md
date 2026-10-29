@@ -9,7 +9,7 @@
 | 创建/更新 | 2026-10-27；2026-10-28 索引重写（1.1.0） |
 | 适用范围 | 合并词库的使用方式、匹配算法与误报控制 |
 | 相关文档 | `lexicon/term_groups.json`、`contracts/lexicon_rule_map.json`、`docs/SOP_COMPLIANCE_REVIEW.md` §4 |
-| 未决事项 | 大规模索引（前缀分桶 + C 级 `str.find`）**已实现**（2026-10-28，§3.5 / §7.1；词库 104 组 / 210,418 词，其中 C 类监管目录 209,652 词）；EX-BRAND-GENERIC 的同行误降级残留需改 `lexicon/exemptions.json` 的 pattern（data-ingestion 所有，走契约变更） |
+| 未决事项 | 大规模索引（前缀分桶 + C 级 `str.find`）**已实现**（2026-10-28，§3.5 / §7.1；词库 105 组 / 210,439 词，其中 C 类监管目录 209,652 词）；EX-BRAND-GENERIC 的同行误降级残留需改 `lexicon/exemptions.json` 的 pattern（data-ingestion 所有，走契约变更） |
 
 ---
 
@@ -17,7 +17,7 @@
 
 | 文件 | 内容 | 规模 |
 |---|---|---|
-| `lexicon/term_groups.json` | 词组（扫描用） | **104 组 / 210,418 词**（2026-10-28 集成扩充后；原 37 组 / 856 词） |
+| `lexicon/term_groups.json` | 词组（扫描用） | **105 组 / 210,439 词**（2026-10-28 集成扩充后；原 37 组 / 856 词） |
 | `lexicon/rewrite_map.json` | 触线 → 中性替代（改写用） | 8 类映射 |
 | `lexicon/exemptions.json` | 误报豁免规则 | **51 条**（2026-10-28 集成时 61 条；E2E 验收轮删 10 条高特异性活性成分/疫苗/农药组 blanket EX-CATALOG，保留 27 条对低判别力通用目录降噪）|
 | `lexicon/quality_patterns.json` | 套模板/批量味检测 | 15 条特征 |

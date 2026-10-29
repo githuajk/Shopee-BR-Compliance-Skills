@@ -348,7 +348,7 @@
     "reference_impl_status": "missing_verified_2026-10-27",
     "lexicon": {
       "path": "lexicon/",
-      "purpose": "合并词库 —— 104 组 / 210,418 词（扫描）、改写映射、误报豁免、质量特征、无法规避品类、葡语变位表",
+      "purpose": "合并词库 —— 105 组 / 210,439 词（扫描）、改写映射、误报豁免、质量特征、无法规避品类、葡语变位表",
       "owner": "shopee-br-data-ingestion",
       "built_from": "2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 原 25 组 179 词",
       "coverage": "96.3% 逐词比对",
@@ -426,21 +426,21 @@
   },
   "lexicon": {
     "path": "lexicon/term_groups.json",
-    "groups": 104,
-    "terms": 210418,
+    "groups": 105,
+    "terms": 210439,
     "risk_hints": {
       "prohibited": 27,
-      "restricted": 52,
+      "restricted": 53,
       "ip_signal": 12,
       "listing_violation": 9
     },
     "source_tiers": {
       "platform_official": 49,
       "internal_risk": 12,
-      "law": 39
+      "law": 40
     },
     "validation": "env -u LD_LIBRARY_PATH python3 tools/validate_lexicon.py",
-    "last_updated": "2026-10-28"
+    "last_updated": "2026-10-29"
   },
   "last_updated": "2026-10-28"
 }

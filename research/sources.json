@@ -188,5 +188,16 @@
     "status": "ok",
     "last_fetched": "2026-10-29",
     "note": "2026-10-29 B2 抓取。RDC 98/2016 定义 MIP 判定标准（33 组/低毒/短疗程/无依赖等）；MIP 词表本体在 IN 285/2024（LMIP），本轮暂缺 → OTC 白组词组（restrito_mip_otc）待 IN 全文到位后并入（C3：无逐字源不建词表）。"
+  },
+  {
+    "slug": "br_anvisa_in285_2024_lmip",
+    "title": "IN 285/2024 — Lista de Medicamentos Isentos de Prescrição (LMIP)",
+    "publisher": "ANVISA / Ministério da Saúde (DOU 12/03/2024; 镜像源 fitoterapiabrasil.com.br，官方 LMIP 页 gov.br/anvisa)",
+    "url": "https://www.fitoterapiabrasil.com.br/sites/default/files/legislacao/in_285_2024_.pdf",
+    "tier": "law",
+    "scope": "Brazil - OTC (MIP) medicine whitelist; restrito_mip_otc 词组来源（高频子集 21 词，全量 LMIP 为后续批次）",
+    "status": "ok",
+    "last_fetched": "2026-10-29",
+    "note": "2026-10-29 B2 抓取（镜像 PDF；datalegis 官方页 403）。IN 388/2025 + IN 404/2025 后续修订 Anexo（RDC 882/2024 框架）——词组建库时已留痕修订差异，全量 LMIP 同步留待下一批。"
   }
 ]

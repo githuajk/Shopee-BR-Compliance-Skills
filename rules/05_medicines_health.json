@@ -50,7 +50,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(medicamento\\s+(isento\\s+de\\s+prescri[çc][ãa]o|MIP)|remédio\\s+isento\\s+de\\s+prescri[çc][ãa]o|medicamento\\s+controlado|medicamento\\s+com\\s+tarja)(?![a-zA-Zà-ÿÀ-ß])"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(medicamento\\s+(isento\\s+de\\s+prescri[çc][ãa]o|MIP)|remédio\\s+isento\\s+de\\s+prescri[çc][ãa]o|medicamento\\s+controlado|medicamento\\s+com\\s+tarja|paracetamol|dipirona|ibuprofeno|loratadina|fexofenadina|desloratadina|hidrocortisona|cetoconazol|bisacodil|lactulose|simeticona|docusato|senna|magnésio|ácido acetilsalicílico|ácido salicílico|ácido bórico|bicarbonato de sódio|carbonato de cálcio|sulfato de magnésio|sulfato de zinco)(?![a-zA-Zà-ÿÀ-ß])"
         }
       ],
       "severity": "high",
@@ -67,7 +67,7 @@
       "source_excerpt": "Desde 6 de agosto de 2026, a Shopee está autorizada pela Anvisa a comercializar medicamentos isentos de prescrição (MIPs), apenas por farmácias e drogarias regularmente licenciadas que sigam rigorosamente todas as regulamentações da categoria e da agência, conforme a Resolução-RE nº 3.056/2026.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "medicine",
         "restricted",
@@ -75,7 +75,7 @@
         "license",
         "policy_change_2026_08_06"
       ],
-      "notes": "The decision is require_evidence, not block: the medicine may be legitimate and the seller may be a licensed pharmacy. The evidence list is what separates the two cases. A seller that cannot produce the pharmacy/drugstore licence must not list the item."
+      "notes": "The decision is require_evidence, not block: the medicine may be legitimate and the seller may be a licensed pharmacy. The evidence list is what separates the two cases. A seller that cannot produce the pharmacy/drugstore licence must not list the item. 2026-10-29 B2：正则补 MIP OTC 活性成分 21 词（IN 285/2024 LMIP 高频子集，全部逐字出现于 IN 285 原文）——与词库组 restrito_mip_otc 联动（词库只产生候选，正则覆盖才触发）；MIP 药品提及 → 药房资质证据（require_evidence，不阻断，H2 tier 一致）。"
     },
     {
       "rule_id": "SBR-MED-003",

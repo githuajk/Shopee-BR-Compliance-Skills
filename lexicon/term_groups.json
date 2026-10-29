@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "name": "Shopee BR — 合并词库",
-  "description": "合并来源：2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 现有 25 组 179 词。每个词组是筛查信号，不是违规结论 —— 结论由规则层依据来源判定。 2026-10-28 集成修复：删除 catalog_anvisa_saneante_product_names__single 中的裸日常词「Marca」（匹配平台默认品牌值「Sem Marca」导致 SBR-MED-004 误触发；与 D6 批量剔除 gasolina/etanol/diesel 同类原则）。 2026-10-28 集成补齐：新增 proibido_botulino（3 词，platform_official → SBR-PI-003 阻断）与 restrito_apitoxina（5 词，internal_risk → SBR-MED-003/SBR-LV-001 flag）两组。 2026-10-28 B5 批次：新增英文信号组 proibido_drogas_en / proibido_tabaco_en（27 词）。 2026-10-29 B5 续 + S2 执行：剔除 654 项候选通用词/超短词（医学缩写/数字混合/短词保留；194 项保留）。",
+  "description": "合并来源：2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 现有 25 组 179 词。每个词组是筛查信号，不是违规结论 —— 结论由规则层依据来源判定。 2026-10-28 集成修复：删除 catalog_anvisa_saneante_product_names__single 中的裸日常词「Marca」（匹配平台默认品牌值「Sem Marca」导致 SBR-MED-004 误触发；与 D6 批量剔除 gasolina/etanol/diesel 同类原则）。 2026-10-28 集成补齐：新增 proibido_botulino（3 词，platform_official → SBR-PI-003 阻断）与 restrito_apitoxina（5 词，internal_risk → SBR-MED-003/SBR-LV-001 flag）两组。 2026-10-28 B5 批次：新增英文信号组 proibido_drogas_en / proibido_tabaco_en（27 词）。 2026-10-29 B5 续 + S2 执行：剔除 654 项候选通用词/超短词（医学缩写/数字混合/短词保留；194 项保留）。 2026-10-29 B2：新增 restrito_mip_otc（21 词，IN 285/2024 LMIP OTC 高频子集）。",
   "last_updated": "2026-10-28",
   "usage": "加载后用 Aho-Corasick 建立多模式索引（规模扩大时）。匹配时：大小写不敏感 → NFD 去重音 → 显式 lookaround 边界。",
   "matching_notes": [
@@ -210637,6 +210637,29 @@
       "hookah",
       "shisha",
       "nicotine"
+    ],
+    "restrito_mip_otc": [
+      "paracetamol",
+      "dipirona",
+      "ibuprofeno",
+      "loratadina",
+      "fexofenadina",
+      "desloratadina",
+      "hidrocortisona",
+      "cetoconazol",
+      "bisacodil",
+      "lactulose",
+      "simeticona",
+      "docusato",
+      "senna",
+      "magnésio",
+      "ácido acetilsalicílico",
+      "ácido salicílico",
+      "ácido bórico",
+      "bicarbonato de sódio",
+      "carbonato de cálcio",
+      "sulfato de magnésio",
+      "sulfato de zinco"
     ]
   },
   "group_meta": {
@@ -211367,10 +211390,17 @@
       "source_tier": "platform_official",
       "matching": "strict",
       "note": "B5 批次（2026-10-28 集成补齐）：对应 proibido_tabaco 组的英文/跨境高频词（e-cigarette/ecig/vape/vaping/vaporizer/electronic cigarette/hookah/shisha/nicotine），映射 SBR-PI-002 + SBR-MED-001（block 级）。「nicotine」严格 word-boundary 匹配，不会命中「nicotinamide（烟酰胺）」等前缀词。"
+    },
+    "restrito_mip_otc": {
+      "label": "受限 — 巴西 MIP（OTC）药品活性成分白名单（IN 285/2024 LMIP 高频子集）",
+      "risk_hint": "restricted",
+      "source_tier": "law",
+      "matching": "strict",
+      "note": "IN 285/2024 现行 LMIP 高频 OTC 活性成分（21 词，全部逐字出现于 IN 285 原文；全量清单为后续批次）。MIP 提及 → 药房资质/许可证据（SBR-MED-002）+ 受限销售类（SBR-RI-002），均 require_evidence 不阻断（MIP ≠ 禁售，H2 纪律）。后续修订 IN 388/2025 + IN 404/2025 已留痕；2026-10-29 B2 批次入库。"
     }
   },
   "stats": {
-    "group_count": 104,
-    "term_count": 210418
+    "group_count": 105,
+    "term_count": 210439
   }
 }

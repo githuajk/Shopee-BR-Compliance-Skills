@@ -1,0 +1,5533 @@
+# title: INSTRUÇÃO NORMATIVA - IN N° 285, DE 7 DE MARÇO DE 2024 — Lista de Medicamentos Isentos de Prescrição (LMIP)
+# url: https://www.fitoterapiabrasil.com.br/sites/default/files/legislacao/in_285_2024_.pdf （镜像；官方发布 DOU nº 49, 12/03/2024；ANVISA LMIP 页 https://www.gov.br/anvisa/.../lista-de-medicamentos-isentos-de-prescricao-lmip）
+# fetched: 2026-10-29 (B2：PDF 经 pdftotext 转文本)
+# note: Anexo I（合成/生物）+ Anexo II（植物药）。注意：后续 IN 388/2025 与 IN 404/2025 修订了 Anexo 文本（RDC 882/2024 框架）——本件为 IN 285/2024 原文，修订差异留痕于 sources.json 该条目 note
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+INSTRUÇÃO NORMATIVA - IN N° 285, DE 7 DE MARÇO DE 2024
+(Publicada no DOU nº 49, de 12 de março de 2024)
+Define a Lista de Medicamentos
+Isentos de Prescrição.
+A DIRETORIA COLEGIADA DA AGÊNCIA NACIONAL DE VIGILÂNCIA
+SANITÁRIA, no uso da atribuição que lhe confere o art. 15, III e IV, aliado ao art. 7º, III
+da Lei n° 9.782, de 26 de janeiro de 1999, e ao art. 187, VII, § 1º do Regimento Interno
+aprovado pela Resolução da Diretoria Colegiada - RDC n° 585, de 10 de dezembro de
+2021, resolve adotar a seguinte Instrução Normativa, conforme deliberado em reunião
+realizada em 6 de março de 2024, e eu, Diretor-Presidente, determino a sua publicação.
+Art. 1º Ficam instituídas as Listas de Medicamentos Isentos de Prescrição
+(LMIP) na forma dos Anexos I e II desta Instrução Normativa, e em atendimento à
+Resolução da Diretoria Colegiada - RDC nº 98, de 1º de agosto de 2016.
+§ 1º As indicações terapêuticas descritas nos Anexos I e II são simplificações
+daquelas que estão contempladas no texto de bula do profissional de saúde.
+§ 2º Para fins da LMIP constante do Anexo I, considera-se que:
+I - A caracterização de um medicamento como isento de prescrição ocorre
+para um produto com o mesmo IFA (ou associação), forma farmacêutica, indicação(ões)
+terapêutica(s) e com concentração igual ou inferior àqueles indicados em cada linha da
+LMIP;
+II - A coluna 'concentração máxima' refere-se à dose do insumo
+farmacêutico ativo presente na forma farmacêutica, não se referindo à dose posológica.
+§ 3º Para fins da LMIP constante do Anexo II, considera-se que a
+caracterização de um fitoterápico como isento de prescrição ocorre para um produto
+com a mesma espécie, parte empregada e indicação(ões) terapêutica(s) tendo por base
+cada linha da LMIP.
+Art. 2º Revoga-se a Instrução Normativa - IN nº 120, de 9 de março de 2022,
+publicada no Diário Oficial da União nº 51, de 16 de março de 2022, Seção 1, pág. 126.
+Art. 3º Esta Instrução Normativa entra em vigor em 1º de abril de 2024.
+ANTONIO BARRA TORRES
+Diretor-Presidente
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+ANEXO
+ANEXO I
+LISTA DE MEDICAMENTOS ISENTOS DE PRESCRIÇÃO (LMIP)
+Medicamentos Sintéticos, Específicos e Biológicos
+n
+
+1
+
+2
+
+3
+
+4
+
+5
+
+Fármaco
+
+Subgrupo
+terapêutico ou
+farmacológico
+
+Aceclofenaco
+
+M02A - Produtos
+para dor articular e Creme
+15 mg/g
+muscular de uso
+dermatológico
+local
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+Acetato de
+hidrocortisona
+
+D07A Corticosteroides
+(isolados) de uso
+local
+
+Creme
+dermatológico,
+10 mg/g
+pomada
+dermatológica
+
+Dermatites,
+eczemas, eritema
+solar, queimadura de
+primeiro grau e
+picadas de inseto.
+
+Comprimido
+efervescente,
+granulado
+
+600 mg
+
+Secreções mucosas
+densas e viscosas
+nas vias
+respiratórias,
+decorrentes ou
+associadas a doenças
+broncopulmonares.
+
+11,5 mg/mL
+
+Congestão nasal
+associada a rinites
+ou após
+procedimentos
+cirúrgicos no nariz.
+
+40 mg/mL
+
+Secreções mucosas
+densas e viscosas
+nas vias
+respiratórias,
+decorrentes ou
+associadas a doenças
+broncopulmonares.
+
+Forma
+farmacêutica
+
+Acetilcisteína
+
+R05C Expectorantes,
+excluindo
+associações com
+antitussígenos
+
+Acetilcisteína
+
+R01A Descongestionantes
+e outras
+Solução nasal
+preparações nasais
+de uso local
+
+Acetilcisteína
+
+R05C Expectorantes,
+excluindo
+associações com
+antitussígenos
+
+Solução oral
+
+Indicação
+Concentração
+terapêutica
+máxima
+simplificada
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+40 + 53 + 50
+mg/mL
+
+Auxiliar no
+tratamento dos
+distúrbios do fígado
+
+500 mg
+
+Febre. Dores leves a
+moderadas,
+incluindo as
+associadas com
+cólicas menstruais e
+a gripes e resfriados
+comuns.
+
+8
+
+Comprimido
+N02B - Analgésicos revestido de
+Ácido acetilsalicílico
+e antipiréticos
+liberação
+prolongada
+
+500 mg
+
+Febre. Dores leves a
+moderadas,
+incluindo as
+associadas com
+cólicas menstruais e
+a gripes e resfriados
+comuns.
+
+9
+
+Ácido acetilsalicílico
+N02B - Analgésicos
++ ácido ascórbico
+Comprimido
+e antipiréticos
+(Vit. C)
+
+Sintomas da gripe e
+resfriado comuns,
+400 + 200 mg
+como febre e
+cefaleia.
+
+10
+
+Ácido acetilsalicílico
+N02B - Analgésicos Comprimido
++ ácido ascórbico
+e antipiréticos
+efervescente
+(Vit. C)
+
+Sintomas da gripe e
+resfriado comuns,
+400 + 240 mg
+como febre e
+cefaleia.
+
+11
+
+Ácido acetilsalicílico N02B - Analgésicos
+Comprimido
++ cafeína
+e antipiréticos
+
+650 + 65 mg
+
+12
+
+Ácido acetilsalicílico
++ maleato de
+N02B - Analgésicos
+Cápsula dura
+clorfeniramina +
+e antipiréticos
+cafeína
+
+Sintomas da gripe e
+resfriado comuns,
+324 + 2 + 32,4
+como febre, dor,
+mg
+coriza e congestão
+nasal.
+
+13
+
+Ácido acetilsalicílico
++ maleato de
+N02B - Analgésicos
+dexclorfeniramina +
+Comprimido
+e antipiréticos
+cloridrato de
+fenilefrina + cafeína
+
+Sintomas da gripe e
+resfriado comuns,
+400 + 1 + 10 +
+como febre, dor,
+30 mg
+coriza e congestão
+nasal.
+
+6
+
+7
+
+Acetilracemetionina
+A05B - Terapia
++ citrato de colina +
+biliar, lipotrópicos
+betaína
+
+Ácido acetilsalicílico
+
+Solução oral
+
+N02B - Analgésicos
+Comprimido
+e antipiréticos
+
+Dores moderadas a
+fortes.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+Dores leves a
+moderadas,
+incluindo as
+associadas com
+cólicas menstruais e
+a gripes e resfriados
+comuns.
+
+14
+
+Ácido acetilsalicílico
+N02B - Analgésicos Comprimido
++ paracetamol +
+e antipiréticos
+revestido
+cafeína
+
+15
+
+Ácido azeláico
+
+D10A - Preparações
+Creme
+antiacne de uso
+200 mg/g
+dermatológico
+local
+
+Acne vulgar.
+
+16
+
+Ácido azeláico
+
+D10A - Preparações
+Gel
+antiacne de uso
+150 mg/g
+dermatológico
+local
+
+Acne vulgar. Rosácea
+papulopustulosa.
+
+17
+
+Ácido benzóico +
+ácido salicílico +
+iodo metálico
+
+D01A - Antifúngicos Solução
+20 + 20 + 2,5 Micoses superficiais
+de uso local
+dermatológica mg/mL
+da pele.
+
+18
+
+Dermatite de fraldas.
+Brotoeja.
+Ácido bórico +
+3,0 + 0,352 + Desodorante e
+ácido salicílico +
+D01A - Antifúngicos Pó
+17,602 +
+antiperspirante de
+enxofre + óxido de de uso local
+dermatológico
+11,735 g
+pés e axilas.
+zinco
+Prevenção de frieiras
+e pruridos na pele.
+
+19
+
+Ácido salicílico
+
+20
+
+Ácido undecilênico
++ undecilenato de
+sódio + ácido
+40 + 150 + 30
+D01A - Antifúngicos Solução
+Micoses superficiais
+propiônico +
++ 50 + 0,5
+de uso local
+dermatológica
+de pele e unha.
+propionato de
+mg/mL
+sódio +
+hexilresorcinol
+
+21
+
+Micoses de pele,
+Ácido undecilênico
+frieira, de unha,
++ undecilenato de
+D01A - Antifúngicos Pó
+2 + 150 + 60 + vulvar e peniana,
+zinco + propionato
+de uso local
+dermatológico 0,5 mg/g
+dermatite
+de cálcio +
+seborreica, pitiríase
+hexilresorcinol
+versicolor.
+
+D11A - Outras
+preparações
+dermatológicas
+
+250 + 250 +
+65 mg
+
+Gel
+270 mg/g
+dermatológico
+
+Tratamento e
+remoção das
+verrugas comuns.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+22
+
+23
+
+Alantoína +
+triclosana + óxido
+de zinco
+
+D01A - Antifúngicos Pó
+5 + 1 + 100
+de uso local
+dermatológico mg/g
+
+Dermatite de fraldas.
+Eczemas, brotoejas,
+queimaduras e
+outras irritações
+superficiais da pele.
+
+Álcool polivinílico
+
+S01X - Outros
+produtos
+oftalmológicos
+
+Lubrificante
+oftálmico / lágrima
+artificial.
+
+24
+
+Alfaestradiol
+
+G03C - estrógenos
+
+25
+
+Alginato de sódio +
+bicarbonato de
+A02A - Antiácidos
+potássio
+
+Solução
+oftálmica
+
+14 mg/mL
+
+Solução capilar 0,25 mg/ml
+
+Tratamento e
+prevenção da
+alopecia
+androgenética.
+Alívio da
+regurgitação ácida,
+azia e dor de
+estômago devido à
+má digestão.
+
+Suspensão oral
+
+100 + 20
+mg/mL
+
+26
+
+Alginato de sódio +
+bicarbonato de
+A02A - Antiácidos
+sódio + carbonato
+de cálcio
+
+Comprimido
+mastigável
+
+Alívio da azia, dor de
+250 + 133,5 + estômago devido à
+80 mg
+má digestão, enjoo e
+vômito.
+
+27
+
+Alginato de sódio +
+bicarbonato de
+A02A - Antiácidos
+sódio + carbonato
+de cálcio
+
+Alívio da azia, dor de
+50 + 26,7 + 16 estômago devido à
+Suspensão oral
+mg/mL
+má digestão, enjoo e
+vômito.
+
+A07F Microrganismos
+antidiarreicos
+
+Coadjuvante no
+tratamento da
+diarreia; coadjuvante
+em enterocolites
+crônicas e agudas.
+
+28
+
+Bacillus cereus
+
+29
+
+Bicarbonato de
+sódio + carbonato
+de magnésio +
+A02A - Antiácidos
+carbonato de cálcio
++ carbonato básico
+de bismuto
+
+Suspensão oral
+
+1 X 10^6
+end/mL
+
+Granulado
+
+586,742 +
+Alívio da azia e dor
+134,34 +
+de estômago devido
+134,34 +
+à má digestão.
+32,495 mg/g
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+30
+
+Bicarbonato de
+sódio + carbonato
+de magnésio +
+A02A - Antiácidos
+carbonato de cálcio
++ carbonato básico
+de bismuto
+
+Pastilha
+
+Alívio da azia e dor
+63,7 + 67 +
+de estômago devido
+521 + 3,3 mg
+à má digestão.
+
+31
+
+Bicarbonato de
+sódio + carbonato
+de magnésio +
+A02A - Antiácidos
+carbonato de cálcio
++ carbonato básico
+de bismuto
+
+Pó para
+solução oral
+
+649 + 146,67 Alívio da azia e dor
++ 146,67 +
+de estômago devido
+35,8 mg/g
+à má digestão.
+
+32
+
+Bicarbonato de
+sódio + carbonato
+de sódio
+
+A02A - Antiácidos
+
+Granulado
+efervescente
+
+462 + 90
+mg/g
+
+33
+
+Bicarbonato de
+sódio + carbonato
+de sódio + ácido
+acetilsalicílico +
+ácido cítrico
+
+A02A - Antiácidos
+
+Comprimido
+efervescente
+
+Alívio da azia, dor de
+1854 + 400 +
+estômago e cefaleia
+325 + 1413
+devido à má
+mg
+digestão.
+
+34
+
+Bicarbonato de
+sódio + carbonato
+de sódio + ácido
+cítrico
+
+A02A - Antiácidos
+
+Granulado
+efervescente,
+pó
+efervescente
+
+Alívio da azia e dor
+462,15 + 100
+de estômago devido
++ 440 mg/g
+à má digestão.
+
+Bisacodil
+
+A06A - Laxantes
+
+Comprimido
+revestido,
+comprimido
+revestido de
+liberação
+retardada
+
+5 mg
+
+Laxativo. Prisão de
+ventre. Sob
+orientação de
+profissional de
+saúde: preparo
+diagnóstico ou
+cirúrgico.
+
+36
+
+Bromidrato de
+dextrometorfano
+
+R05D Antitussígenos,
+excluindo
+associações com
+expectorantes
+
+3 mg/mL
+
+Tosse seca, sem
+catarro associada a
+gripes e resfriados
+ou à inalação de
+agentes irritantes.
+
+37
+
+Butilbrometo de
+escopolamina
+
+A03B - Belladonna e Comprimido
+derivados (isolados) revestido
+
+10 mg
+
+Alívio de cólicas
+gastrintestinais, das
+vias biliares, dos
+
+35
+
+Solução oral
+
+Alívio da azia e dor
+de estômago devido
+à má digestão.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+órgãos sexuais e das
+vias urinárias.
+
+10 mg/mL
+
+Alívio de cólicas
+gastrintestinais, das
+vias biliares, dos
+órgãos sexuais e das
+vias urinárias.
+
+Butilbrometo de
+escopolamina +
+dipirona
+
+A03D Antiespasmódicos Comprimido
+em associação com revestido
+analgésicos
+
+10 + 250 mg
+
+Alívio de cólicas
+gastrintestinais, das
+vias biliares, dos
+órgãos sexuais e das
+vias urinárias.
+
+Butilbrometo de
+escopolamina +
+dipirona
+
+A03D Antiespasmódicos
+Solução oral
+em associação com
+analgésicos
+
+Alívio de cólicas
+gastrintestinais, das
+6,667 + 333,4
+vias biliares, dos
+mg/mL
+órgãos sexuais e das
+vias urinárias.
+
+Butilbrometo de
+escopolamina +
+paracetamol
+
+A03D Antiespasmódicos Comprimido
+em associação com revestido
+analgésicos
+
+Alívio de cólicas
+gastrintestinais, das
+vias biliares, dos
+órgãos sexuais e das
+vias urinárias.
+
+42
+
+Cânfora
+
+D04A Antipruriginosos,
+incluindo antiTablete
+712 mg
+histamínicos,
+dermatológico
+anestésicos e
+outros de uso local
+
+43
+
+R05X - Outros
+Congestão nasal e
+Cânfora + eucaliptol
+Pomada
+25 + 100 + 50
+produtos para gripe
+tosse associadas a
++ mentol + guaiacol
+dermatológica + 10 mg/g
+e resfriados
+gripes e resfriados.
+
+Butilbrometo de
+escopolamina
+
+A03B - Belladonna e
+Solução oral
+derivados (isolados)
+
+39
+
+40
+
+38
+
+41
+
+44
+
+Carbocisteína
+
+R05C Expectorantes,
+excluindo
+associações com
+antitussígenos
+
+Solução oral
+
+10 + 500 mg
+
+50 mg/mL
+
+Irritações da pele.
+
+Secreções mucosas
+densas e viscosas
+nas vias
+respiratórias,
+decorrentes ou
+associadas a doenças
+broncopulmonares.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+45
+
+S01X - Outros
+Carbômer + sorbitol produtos
+oftalmológicos
+
+46
+
+Carbômer 940
+
+S01X - Outros
+produtos
+oftalmológicos
+
+47
+
+Carbonato de cálcio
++ hidróxido de
+alumínio +
+A02A - Antiácidos
+hidróxido de
+magnésio
+
+48
+
+Carbonato de cálcio
++ hidróxido de
+alumínio +
+A02A - Antiácidos
+hidróxido de
+magnésio
+
+49
+
+Carmelose sódica
+
+Gel oftálmico
+
+Lubrificante
+2 + 48,5 mg/g oftálmico / lágrima
+artificial.
+
+Gel Oftálmico 2,0 mg/g
+
+Lubrificante
+oftálmico / lágrima
+artificial.
+
+Comprimido
+mastigável
+
+230 + 178 + Alívio da azia e dor
+185 mg; ou
+de estômago devido
+231,5 + 159,9 à má digestão, enjôo
++ 208,9 mg
+e vômito.
+
+Pastilha
+
+Alívio da azia e dor
+231,5 + 178 + de estômago devido
+185 mg
+à má digestão, enjôo
+e vômito.
+
+S01X - Outros
+produtos
+oftalmológicos
+
+Solução
+oftálmica
+
+10 mg/mL
+
+Lubrificante
+oftálmico / lágrima
+artificial.
+
+50
+
+S01X - Outros
+Carmelose sódica +
+produtos
+glicerol
+oftalmológicos
+
+Solução
+oftálmica
+
+5 mg/ml + 9
+mg/ml
+
+Lubrificante
+oftálmico / lágrima
+artificial.
+
+51
+
+Cetoconazol
+
+D01A - Antifúngicos Creme
+20 mg/g
+de uso local
+dermatológico
+
+Micoses superficiais
+de pele.
+
+52
+
+Cetoconazol
+
+D01A - Antifúngicos
+Xampu
+de uso local
+
+20 mg/mL
+
+Dermatite
+seborreica.
+
+53
+
+Citrato de colina +
+betaína +
+racemetionina
+
+A05B - Terapia
+biliar, lipotrópicos
+
+Auxiliar no
+100 + 50 + 10
+tratamento dos
+mg/mL
+distúrbios do fígado
+
+54
+
+S01AX - Outros
+Cloreto de
+produtos
+benzalcônio + ácido
+antiinfecciosos
+bórico
+oftálmicos
+
+55
+
+Cloreto de
+D02A - Emolientes
+Pomada
+5 + 200 + 50
+benzalcônio + óxido e protetores de uso
+dermatológica mg/g
+de zinco + cânfora local
+
+Solução oral
+
+Solução
+oftálmica
+
+0,1 + 17
+mg/mL
+
+Irritação e prurido
+oculares causados
+por exposição a
+agentes irritantes.
+Higiene dos olhos.
+Acne vulgar, frieiras,
+picadas de insetos,
+urticárias,
+ferimentos leves e
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+D03A - Cicatrizantes
+de uso local
+D08A Antissépticos e
+desinfetantes de
+uso local
+
+escoriações, escaras.
+Desodorante e
+antiperspirante de
+axilas e pés.
+
+56
+
+Cloreto de
+cetilpiridínio
+
+R02A - Preparações
+Pastilha
+para a garganta
+
+1,34 mg
+
+Inflamações e dores
+na mucosa da boca e
+garganta.
+
+57
+
+Cloreto de
+cetilpiridínio +
+benzocaína
+
+R02A - Preparações
+Pastilha
+para a garganta
+
+1,466 + 10
+mg
+
+Inflamações e dores
+na mucosa da boca e
+garganta.
+
+58
+
+Cloreto de
+cetilpiridínio +
+benzocaína
+
+R02A - Preparações
+Solução
+para a garganta
+
+0,5 + 4
+mg/mL
+
+Inflamações e dores
+na mucosa da boca e
+garganta.
+
+59
+
+Cloreto de
+cetilpiridínio +
+borato de sódio +
+benzocaína
+
+R02A - Preparações
+Solução
+para a garganta
+
+1 + 60 + 0,2
+mg/mL
+
+Inflamações e dores
+na mucosa da boca e
+garganta.
+
+60
+
+Cloreto de
+cetilpiridínio +
+cloreto de
+cetalcônio
+
+R02A - Preparações
+Pastilha
+para a garganta
+
+1,25 + 1,25
+mg
+
+Inflamações e dores
+na mucosa da boca e
+garganta.
+
+61
+
+Cloreto de
+dequalínio +
+benzocaína
+
+R02A - Preparações
+Pastilha
+para a garganta
+
+0,25 + 5 mg
+
+Inflamações e dores
+na mucosa da boca e
+garganta.
+
+Cloreto de sódio
+
+R01A Descongestionantes
+e outras
+Gel nasal
+preparações nasais
+de uso local
+
+6,0 mg/g
+
+Mucosa nasal
+ressecada e irritada.
+
+Cloreto de sódio
+
+R01A Descongestionantes
+e outras
+Solução nasal
+preparações nasais
+de uso local
+
+30 mg/mL
+
+Congestão nasal.
+Mucosa nasal
+ressecada e irritada.
+
+62
+
+63
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+64
+
+Cloreto de sódio +
+gliconato de zinco +
+A07C - Eletrótitos
+glicose + citrato de
+com carboidratos
+sódio + citrato de
+potássio
+
+65
+
+Cloreto de sódio +
+gliconato de zinco +
+A07C - Eletrótitos
+glicose + citrato de
+com carboidratos
+sódio + citrato de
+potássio
+
+66
+
+Cloreto de sódio +
+gliconato de zinco +
+A07C - Eletrólitos
+glicose + citrato de
+com carboidratos
+sódio + cloreto de
+potássio
+
+67
+
+68
+
+69
+
+Cloridrato de
+ambroxol
+
+Cloridrato de
+ambroxol
+
+Cloridrato de
+ambroxol
+
+R05C Expectorantes,
+excluindo
+associações com
+antitussígenos
+
+R05C Expectorantes,
+excluindo
+associações com
+antitussígenos
+
+R05C Expectorantes,
+excluindo
+associações com
+antitussígenos
+
+Solução oral
+
+Reidratação ou
+2,076 + 0,061
+manutenção da
++ 25 + 0,94 +
+hidratação na
+2,16 mg/mL
+diarreia aguda.
+
+Solução oral
+
+Reidratação ou
+1,757 + 0,06 +
+manutenção da
+11,88 + 2,892
+hidratação na
++ 1,506 mg/mL
+diarreia aguda.
+
+Pó para
+solução
+
+650 mg +
+139,4 mg +
+3519 mg +
+720,1 mg +
+362,4 mg
+
+Reidratação ou
+manutenção da
+hidratação na
+diarreia aguda.
+
+75 mg
+
+Secreções mucosas
+densas e viscosas
+nas vias
+respiratórias,
+decorrentes ou
+associadas a
+doenças
+broncopulmonares.
+
+7,5 mg/mL
+
+Secreções mucosas
+densas e viscosas
+nas vias
+respiratórias,
+decorrentes ou
+associadas a
+doenças
+broncopulmonares.
+
+6 mg/mL
+
+Secreções mucosas
+densas e viscosas
+nas vias
+respiratórias,
+decorrentes ou
+associadas a
+doenças
+broncopulmonares.
+
+Cápsula dura
+de liberação
+prolongada
+
+Solução oral
+
+Xarope
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+70
+
+Cloridrato de
+amorolfina
+
+D01A - Antifúngicos Creme
+2,5 mg/g
+de uso local
+dermatológico
+
+Micoses superficiais
+de pele.
+
+71
+
+Cloridrato de
+amorolfina
+
+D01A - Antifúngicos
+Esmalte
+de uso local
+
+Micoses de unha.
+
+72
+
+Cloridrato de
+azelastina
+
+R01A Descongestionantes
+e outras
+Solução nasal 1 mg/mL
+preparações nasais
+de uso local
+
+Rinite alérgica.
+
+73
+
+cloridrato de
+benzidamina
+
+R02A - Preparações
+Colutório
+para a garganta
+
+1,5 mg/mL
+
+Inflamações e dores
+na mucosa da boca,
+língua e garganta.
+
+74
+
+Cloridrato de
+benzidamina
+
+A01A - Preparações
+Creme
+bucais
+
+5 mg/g
+
+Inflamações e dores
+na mucosa da boca
+e garganta.
+
+75
+
+Cloridrato de
+benzidamina
+
+R02A - Preparações
+Pastilha
+para a garganta
+
+3,15 mg
+
+Inflamações e dores
+na mucosa da boca
+e garganta.
+
+2 mg/mL
+
+Secreções mucosas
+densas e viscosas
+nas vias
+respiratórias,
+decorrentes ou
+associadas a
+doenças
+broncopulmonares.
+
+1,6 mg/mL
+
+Secreções mucosas
+densas e viscosas
+nas vias
+respiratórias,
+decorrentes ou
+associadas a
+doenças
+broncopulmonares.
+
+76
+
+Cloridrato de
+bromexina
+
+R05C Expectorantes,
+excluindo
+associações com
+antitussígenos
+
+Solução oral
+
+50 mg/mL
+
+77
+
+Cloridrato de
+bromexina
+
+R05C Expectorantes,
+excluindo
+associações com
+antitussígenos
+
+78
+
+Cloridrato de
+butenafina
+
+D01A - Antifúngicos Creme
+10 mg/g
+de uso local
+dermatológico
+
+Micoses superficiais
+de pele.
+
+79
+
+Cloridrato de
+clobutinol
+
+R05D Antitussígenos,
+
+Tosse seca, sem
+catarro.
+
+Xarope
+
+Solução oral
+
+4 mg/mL
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+excluindo
+associações com
+expectorantes
+80
+
+Cloridrato de
+difenidramina +
+R02A - Preparações
+Pastilha
+cloreto de amônio + para a garganta
+citrato de sódio
+
+5 + 50 + 10 mg
+
+Tosse. Irritações da
+garganta, faringites.
+
+81
+
+Cloridrato de
+R06A - Antidifenidramina +
+histamínicos para
+cloreto de amônio +
+uso sistêmico
+citrato de sódio
+
+2,5 + 25 +
+11,25 mg/mL
+
+Tosse. Irritações da
+garganta, faringites.
+
+20 mg
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele,
+eczemas.
+
+2 mg/mL
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele,
+eczemas.
+
+200 mg
+
+Dor, ardor,
+desconforto para
+urinar.
+
+180 mg
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele.
+
+Solução oral
+
+Cloridrato de
+epinastina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+83
+
+Cloridrato de
+epinastina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+Solução oral
+
+84
+
+Cloridrato de
+fenazopiridina
+
+G04B - Urológicos
+
+Comprimido
+revestido
+
+85
+
+Cloridrato de
+fexofenadina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+Comprimido
+revestido
+
+86
+
+Cloridrato de
+fexofenadina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+Suspensão
+oral
+
+6 mg/mL
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele.
+
+Cloridrato de
+isotipendil
+
+D04A Antipruriginosos,
+incluindo antiGel
+7,5 mg/g
+histamínicos,
+dermatológico
+anestésicos e outros
+de uso local
+
+Prurido. Picada de
+insetos.
+
+82
+
+87
+
+Comprimido
+revestido
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+88
+
+Cloridrato de
+levamisol
+
+P02C Antinematóides
+
+89
+
+Cloridrato de
+lidocaína + cloreto
+de benzetônio
+
+D08A - Antissépticos
+Solução
+25 + 1,3
+e desinfetantes de
+dermatológica mg/mL
+uso local
+
+90
+
+S01G Cloridrato de
+Descongestionantes Solução
+nafazolina + maleato
+e antialérgicos
+oftálmica
+de feniramina
+oftálmicos
+
+0,25 + 3
+mg/mL
+
+Irritação e prurido
+oculares causados
+por exposição a
+agentes irritantes.
+
+91
+
+Cloridrato de
+nafazolina + sulfato
+de zinco
+heptaidratado
+
+0,15 + 0,3
+mg/mL
+
+Irritação e prurido
+oculares causados
+por exposição a
+agentes irritantes.
+
+92
+
+R05C Expectorantes,
+Cloridrato de
+excluindo
+oxomemazina +
+associações com
+iodeto de potássio +
+antitussígenos
+benzoato de sódio +
+R06A - Antiguaifenesina
+histamínicos para
+uso sistêmico
+
+0,4 + 20 + 4 +
+6 mg/mL
+
+Tosse seca, sem
+catarro.
+
+93
+
+Cloridrato de
+papaverina +
+dipirona + extrato
+fluido de Atropa
+belladonna
+
+A03D Antiespasmódicos
+Comprimido
+em associação com
+analgésicos
+
+30 mg + 250
+mg + 0,03 mL
+
+Alívio de cólicas
+gastrintestinais, das
+vias biliares, dos
+órgãos sexuais e das
+vias urinárias.
+
+94
+
+Cloridrato de
+procaína + timol +
+mentol + cânfora
+
+A01A - Preparações
+Solução
+bucais
+
+1+4+8+2
+mg/mL
+
+Alívio da dor de
+dente.
+
+95
+
+Cloridrato de
+terbinafina
+
+D01A - Antifúngicos Creme
+10 mg/g
+de uso local
+dermatológico
+
+Micoses superficiais
+de pele.
+
+96
+
+Cloridrato de
+terbinafina
+
+D01A - Antifúngicos Solução
+10 mg/mL
+de uso local
+dermatológica
+
+Micoses superficiais
+de pele.
+
+D01A - Antifúngicos Creme
+10 mg/g
+de uso local
+dermatológico
+
+Micoses superficiais
+de pele, dermatite
+seborreica,
+candidíase vulvar e
+peniana.
+
+97
+
+Clotrimazol
+
+Comprimido
+
+S01G Descongestionantes Solução
+e antialérgicos
+oftálmica
+oftálmicos
+
+Solução oral
+
+150 mg
+
+Ascaridíase.
+Ferimentos
+superficiais na pele.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+98
+
+99
+
+100
+
+101
+
+102
+
+103
+
+104
+
+Clotrimazol
+
+D01A - Antifúngicos Solução
+10 mg/mL
+de uso local
+dermatológica
+
+Micoses superficiais
+de pele, dermatite
+seborreica,
+candidíase vulvar e
+peniana.
+
+Clotrimazol
+
+G01A - Antiinfecciosos e
+antissépticos
+ginecológicos,
+excluindo
+associações com
+corticosteroides
+
+Cápsula mole
+vaginal,
+comprimido
+vaginal
+
+500 mg
+
+Candidíase vaginal.
+
+Clotrimazol
+
+G01A - Antiinfecciosos e
+antissépticos
+ginecológicos,
+excluindo
+associações com
+corticosteroides
+
+Creme vaginal 20 mg/g
+
+Candisíase vaginal e
+peniana.
+
+D01A - Antifúngicos
+de uso local D05A Xampu
+Antipsoriásicos de
+uso local
+
+Coaltar
+
+40 mg/mL
+
+Caspa. Oleosidade
+do couro cabeludo.
+Dermatite
+seborreica, psoríase
+e eczema do couro
+cabeludo.
+
+Cobamamida +
+cloridrato de
+ciproeptadina
+
+A15 - Estimulantes
+do apetite
+
+Comprimido
+
+1 + 4 mg
+
+Estimulante do
+apetite. Estado de
+fraqueza e
+diminuição do
+apetite. Períodos de
+convalescença.
+
+Colagenase
+
+D03B - Enzimas de
+uso local
+
+Pomada
+1,2 U/g
+dermatológica
+
+Ferimentos leves e
+escoriações. Escaras.
+Fissuras da pele.
+
+Deltametrina
+
+P03A Ectoparasiticidas,
+incluindo
+escabicidas
+
+Emulsão
+dermatológica,
+suspensão
+0,2 mg/mL
+dermatológica,
+xampu
+
+Pediculose, ftiríase,
+escabiose,
+infestações por
+carrapatos.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+5 mg
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele.
+
+1,25 mg/mL
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele.
+
+Desloratadina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+106
+
+Desloratadina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+107
+
+dexpantenol
+
+D03A - Cicatrizantes Pomada
+50 mg/g
+de uso local
+dermatológica
+
+Fissuras de pele e
+mucosas, ferimentos
+leves e escaras.
+
+108
+
+Dextrana +
+hipromelose
+
+S01X - Outros
+produtos
+oftalmológicos
+
+Solução
+oftálmica
+
+1 + 3 mg/mL
+
+Lubrificante
+oftálmico / lágrima
+artificial.
+
+109
+
+Dextrana +
+hipromelose +
+glicerol
+
+S01X - Outros
+produtos
+oftalmológicos
+
+Solução
+oftálmica
+
+1+3+2
+mg/mL
+
+Lubrificante
+oftálmico / lágrima
+artificial.
+
+110
+
+Diclofenaco
+dietilamônio
+
+M02A - Produtos
+para dor articular e
+muscular de uso
+local
+
+Gel
+23,2 mg/g
+dermatológico
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+111
+
+Diclofenaco
+dietilamônio
+
+M02A - Produtos
+para dor articular e
+muscular de uso
+local
+
+Solução
+11,6 mg/g
+dermatológica
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+112
+
+Diclofenaco sódico
+
+M02A - Produtos
+para dor articular e
+muscular de uso
+local
+
+Gel
+10 mg/g
+dermatológico
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+113
+
+Dicloridrato de
+levocetirizina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+Comprimido
+revestido
+
+5 mg
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele.
+
+114
+
+Dicloridrato de
+levocetirizina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+5 mg/mL
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele.
+
+105
+
+Comprimido
+revestido
+
+Solução oral
+
+Solução oral
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+Dicloridrato de
+meclozina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+50 mg
+
+Profilaxia e
+tratamento da
+cinetose
+
+Dipirona
+
+Comprimido,
+N02B - Analgésicos e
+comprimido
+antipiréticos
+efervescente
+
+116
+
+1000 mg
+
+Dor e febre.
+
+117
+
+Dipirona
+
+N02B - Analgésicos e
+Solução oral
+antipiréticos
+
+500 mg/mL
+
+Dor e febre.
+
+118
+
+Dipirona
+
+N02B - Analgésicos e
+Supositório
+antipiréticos
+
+300 mg
+
+Dor e febre.
+
+119
+
+Dipirona + cafeína
+
+N02B - Analgésicos e
+Comprimido
+antipiréticos
+
+500 + 65 mg
+
+Cefaleia e
+enxaqueca.
+
+300 + 35 + 50
+mg
+
+Dor associada a
+contraturas
+musculares,
+incluindo cefaleia
+tensional.
+
+115
+
+120
+
+Comprimido
+simples
+
+Dipirona + citrato de M03B - Relaxantes
+orfenadrina +
+musculares de ação Comprimido
+cafeína
+central
+
+121
+
+Dipirona + citrato de M03B - Relaxantes
+orfenadrina +
+musculares de ação Solução oral
+cafeína
+central
+
+300 + 35 + 50
+mg/mL
+
+Dor associada a
+contraturas
+musculares,
+incluindo cefaleia
+tensional.
+
+122
+
+Dipirona + cloridrato
+N02B - Analgésicos e
+de isometepteno +
+Solução oral
+antipiréticos
+cafeína
+
+300 + 50 + 30
+mg/mL
+
+Cefaleia, enxaqueca
+e cólicas
+abdominais.
+
+123
+
+Dipirona + cloridrato
+de prometazina +
+N02B - Analgésicos e
+Comprimido
+cloridrato de
+antipiréticos
+adifenina
+
+500 + 5 + 10
+mg
+
+Febre e dores leves
+a moderadas.
+
+124
+
+Dipirona + cloridrato
+de prometazina +
+N02B - Analgésicos e
+Solução oral
+cloridrato de
+antipiréticos
+adifenina
+
+333,333 +
+Febre e dores leves
+3,333 + 6,666
+a moderadas.
+mg/mL
+
+Dipirona + maleato
+N02B - Analgésicos e Comprimido
+de clorfeniramina +
+antipiréticos
+revestido
+cafeína
+
+Sintomas da gripe e
+resfriado comuns,
+como febre, dor,
+coriza e congestão
+nasal.
+
+125
+
+500 + 2 + 30
+mg
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+126
+
+Dipirona + mucato
+de isometepteno +
+cafeína
+
+N02B - Analgésicos e Comprimido
+antipiréticos
+revestido
+
+300 + 30 + 30
+mg
+
+Cefaleia, enxaqueca
+e cólicas
+abdominais.
+
+Docusato sódico +
+bisacodil
+
+A06A - Laxantes
+
+Comprimido
+revestido
+
+60 + 5 mg
+
+Laxativo. Prisão de
+ventre. Sob
+orientação de
+profissional de
+saúde: preparo
+diagnóstico ou
+cirúrgico.
+
+Dropropizina
+
+R05D Antitussígenos,
+excluindo
+associações com
+expectorantes
+
+Solução oral
+
+30 mg/mL
+
+Tosse seca, sem
+catarro.
+
+Ebastina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+10 mg
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele.
+
+130
+
+Ebastina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+1 mg/mL
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele.
+
+131
+
+Eucaliptol + terpina R05X - Outros
+Solução
+monoidratada +
+produtos para gripe
+inalatória
+mentol
+e resfriados
+
+33 + 22 + 22
+mg/mL
+
+Secreções mucosas
+densas e viscosas
+nas vias
+respiratórias.
+
+127
+
+128
+
+129
+
+132
+
+133
+
+Comprimido
+revestido
+
+Solução oral
+
+Fendizoato de
+cloperastina
+
+R05D Antitussígenos,
+excluindo
+associações com
+expectorantes
+
+Suspensão oral 35,4 mg/mL
+
+Tosse seca, sem
+catarro.
+
+Fendizoato de
+cloperastina
+
+R05D Antitussígenos,
+excluindo
+associações com
+expectorantes
+
+Solução oral
+
+Tosse seca, sem
+catarro.
+
+3,54 mg/mL
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+18,6 + 1,3
+mg/mL
+
+Dor de ouvido.
+Remoção de
+cerume.
+
+8,75 mg
+
+Inflamação da
+garganta.
+
+134
+
+Fenol + mentol
+
+S02D - Outros
+Solução
+produtos otológicos otológica
+
+135
+
+Flurbiprofeno
+
+R02A - Preparações
+Pastilha
+para a garganta
+
+136
+
+Flutrimazol
+
+D01A - Antifúngicos Creme
+10 mg/g
+de uso local
+dermatológico
+
+Micoses superficiais
+de pele.
+
+137
+
+Flutrimazol
+
+D01A - Antifúngicos Solução
+10 mg/mL
+de uso local
+dermatológica
+
+Micoses superficiais
+de pele.
+
+138
+
+Guaifenesina
+
+R05C Expectorantes,
+excluindo
+associações com
+antitussígenos
+
+Solução oral
+
+16 mg/mL
+
+Tosse associada a
+gripes e resfriados.
+
+139
+
+Guaifenesina +
+bromidrato de
+dextrometorfano
+
+R05F Antitussígenos
+associados a
+expectorantes
+
+Solução oral
+
+13,3 + 1,3
+mg/mL
+
+Tosse com ou sem
+catarro associada a
+gripes e resfriados.
+
+140
+
+Heparina sódica
+
+C05B - Terapia
+antivaricosa
+
+Gel
+200 U/g
+dermatológico
+
+Flebites e
+tromboflebites
+superficiais,
+hematomas e
+contusões, dor pós
+escleroterapia
+venosa.
+
+141
+
+Hialuronato de
+sódio
+
+S01X - Outros
+produtos
+oftalmológicos
+
+Solução
+oftálmica
+
+2 mg/mL
+
+Lubrificante
+oftálmico / lágrima
+artificial.
+
+142
+
+Hidróxido de
+alumínio
+
+A02A - Antiácidos
+
+Comprimido,
+comprimido
+mastigável
+
+230 mg
+
+Alívio da azia devido
+à má digestão.
+
+Pó
+efervescente
+
+Alívio da azia e dor
+de estômago devido
+à má digestão,
+35,6 + 37 mg/g
+enjôo, vômito e
+distensão
+abdominal.
+
+143
+
+Hidróxido de
+alumínio + hidróxido A02A - Antiácidos
+de magnésio
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+144
+
+145
+
+Hidróxido de
+alumínio + hidróxido
+A02A - Antiácidos
+de magnésio +
+carbonato de cálcio
+
+Hidróxido de
+alumínio + hidróxido
+A02A - Antiácidos
+de magnésio +
+carbonato de cálcio
+
+Comprimido
+178 + 185 +
+mastigável, pó
+230 mg
+efervescente
+
+Alívio da azia e dor
+de estômago devido
+à má digestão,
+enjôo, vômito e
+distensão
+abdominal.
+
+35,6 + 37 +
+48,4 mg/mL
+
+Alívio da azia e dor
+de estômago devido
+à má digestão,
+enjôo, vômito e
+distensão
+abdominal.
+
+60 + 20 + 2
+mg/mL
+
+Alívio da
+regurgitação ácida,
+azia e dor de
+estômago devido à
+má digestão e
+distensão
+abdominal.
+
+Suspensão oral
+
+146
+
+Hidróxido de
+alumínio + hidróxido
+A02A - Antiácidos
+de magnésio +
+oxetacaína
+
+Suspensão oral
+
+147
+
+Hidróxido de
+alumínio + hidróxido
+A02A - Antiácidos
+de magnésio +
+simeticona
+
+Alívio da azia,
+120 + 41,5 + 7
+Suspensão oral
+eructação e
+mg/mL
+flatuência.
+
+148
+
+Hidroxiquinolina +
+trolamina
+
+S02D - Outros
+Solução
+produtos otológicos otológica
+
+0,4 + 140
+mg/mL
+
+Dor de ouvido.
+Remoção de
+cerume.
+
+149
+
+Hipromelose
+
+S01X - Outros
+produtos
+oftalmológicos
+
+5 mg/mL
+
+Lubrificante
+oftálmico / lágrima
+artificial.
+
+400 mg
+
+Febre. Dores leves a
+moderadas,
+incluindo as
+associadas a gripes
+e resfriados
+comuns.
+
+400 mg
+
+Febre. Dores leves a
+moderadas,
+incluindo as
+associadas a gripes
+
+150
+
+151
+
+Ibuprofeno
+
+Ibuprofeno
+
+Solução
+oftálmica
+
+Cápsula
+N02B - Analgésicos e gelatinosa
+antipiréticos
+mole,
+comprimido
+
+N02B - Analgésicos e Comprimido
+antipiréticos
+revestido
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+e resfriados
+comuns.
+
+152
+
+153
+
+154
+
+155
+
+Ibuprofeno
+
+Ibuprofeno
+
+Ibuprofeno
+
+Ibuprofeno +
+paracetamol
+
+N02B - Analgésicos e
+Suspensão oral 100 mg/mL
+antipiréticos
+
+Febre. Dores leves a
+moderadas,
+incluindo as
+associadas a gripes
+e resfriados
+comuns.
+
+N02B - Analgésicos e
+Suspensão oral 200 mg/mL
+antipiréticos
+
+Febre e dores leves
+a moderadas,
+incluindo as
+associadas a gripes
+e resfriados
+comuns, dor de
+garganta, cefaleia,
+dor de dente,
+dorsalgia,
+dismenorreias e
+mialgias em adultos.
+
+Comprimido
+N02B - Analgésicos e revestido de
+antipiréticos
+liberação
+prolongada
+
+Febre. Dores leves a
+moderadas,
+600 mg (200 incluindo as
+mg liberação associadas a gripes
+imediata + 400 e resfriados
+mg liberação comuns,
+prolongada)
+musculares,
+cefaleia, enxaqueca
+e traumatismos.
+
+M01A Antiinflamatórios e Comprimido
+antirreumáticos não revestido
+esteroidais
+
+Febre. Dores leves a
+moderadas,
+incluindo as
+associadas a gripes
+e resfriados
+comuns,
+musculares,
+cefaleia, enxaqueca
+e cólicas
+abdominais.
+
+200 + 500 mg
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+156
+
+Comprimido
+N02B - Analgésicos e
+Ibuprofeno arginina
+revestido,
+antipiréticos
+granulado
+
+157
+
+D08A - Antissépticos
+Iodo + óleo de cade
+Solução
+10 + 10 + 20
+e desinfetantes de
++ ácido salicílico
+dermatológica mg/mL
+uso local
+
+158
+
+159
+
+160
+
+161
+
+770 mg
+
+Febre. Dores leves a
+moderadas,
+incluindo as
+associadas a gripes
+e resfriados comuns
+e traumatismos.
+Micoses superficiais
+de pele.
+
+Iodopovidona
+
+D08A - Antissépticos
+Pomada
+e desinfetantes de
+100 mg/g
+dermatológica
+uso local
+
+Ferimentos
+superficiais na pele.
+
+Iodopovidona
+
+D08A - Antissépticos
+e desinfetantes de Sabonete
+uso local
+
+7 mg/g
+
+Higienização das
+mãos e corpo.
+Ferimentos
+superficiais na pele.
+Afecções cutâneas.
+
+667 mg/mL
+
+Laxativo. Prisão de
+ventre.
+Encefalopatia
+hepática.
+
+415,4 + 415,4
+mg/mL
+
+Congestão nasal.
+
+28,2 + 52,6 +
+13,3 mg/g
+
+Congestão nasal,
+tosse e dor
+muscular associadas
+à gripes e
+resfriados.
+
+Solução oral,
+xarope
+
+Lactulose
+
+A06A - Laxantes
+
+Levomentol +
+cânfora
+
+R01A Descongestionantes
+e outras
+Óleo
+preparações nasais
+de uso local
+
+Levomentol +
+cânfora + óleo de
+eucalipto
+
+R05X - Outros
+produtos para gripe Pomada
+e resfriados
+
+163
+
+Loratadina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+Cápsula
+gelatinosa
+mole
+
+10 mg
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele.
+
+164
+
+Loratadina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+Comprimido,
+comprimido
+revestido
+
+10 mg
+
+Sintomas da rinite
+alérgica. Sintomas
+
+162
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+de urticária ou
+alergias de pele.
+R06A - Antihistamínicos para
+uso sistêmico
+
+1 mg/mL
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele.
+
+100 mg
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+Solução
+oftálmica
+
+4 mg/ml + 3
+mg/ml
+
+Lubrificante
+oftálmico / lágrima
+artificial.
+
+Solução
+oftálmica
+
+4 mg/ml + 3
+mg/ml + 1,8
+mg/mL
+
+Lubrificante
+oftálmico / lágrima
+artificial.
+
+13,125 +
+0,1775 +
+0,0466 +
+0,3507 g
+
+Laxativo. Prisão de
+ventre. Sob
+orientação de
+profissional de
+saúde: preparo
+diagnóstico ou
+cirúrgico.
+Alívio da azia devido
+à má digestão.
+
+165
+
+Loratadina
+
+Solução oral
+
+166
+
+M01A Antiinflamatórios e Adesivo
+Loxoprofeno sódico
+antirreumáticos não transdérmico
+esteroidais
+
+167
+
+Macrogol +
+propilenoglicol
+
+S01X - Outros
+produtos
+oftalmológicos
+
+168
+
+Macrogol +
+propilenoglicol +
+hidroxipropil guar
+
+S01X - Outros
+produtos
+oftalmológicos
+
+169
+
+Macrogol +
+bicarbonato de
+sódio + cloreto de
+potássio + cloreto
+de sódio
+
+A06A - Laxantes
+
+Pó
+
+170
+
+Magaldrato
+
+A02A - Antiácidos
+
+Suspensão oral 80 mg/mL
+
+171
+
+Magaldrato +
+simeticona
+
+A02A - Antiácidos
+
+Alívio da azia,
+Suspensão oral 80 + 10 mg/mL eructação e
+flatuência.
+
+172
+
+Maleato de
+bronfeniramina +
+cloridrato de
+fenilefrina
+
+R01B Descongestionantes
+nasais para uso
+sistêmico
+
+Comprimido
+revestido de
+liberação
+prolongada
+
+173
+
+Maleato de
+bronfeniramina +
+cloridrato de
+fenilefrina
+
+R01B Descongestionantes
+Solução oral
+nasais para uso
+sistêmico
+
+Sintomas de gripe,
+resfriado, rinite e
+2 + 2,5 mg/mL
+sinusite, alérgicas
+ou não.
+
+174
+
+Maleato de
+bronfeniramina +
+
+R01B Solução oral
+Descongestionantes
+
+0,4 + 1 mg/mL
+
+12 + 15 mg
+
+Sintomas de gripe,
+resfriado, rinite e
+sinusite, alérgicas
+ou não.
+
+Sintomas de gripe,
+resfriado, rinite e
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+cloridrato de
+fenilefrina
+
+175
+
+Maleato de
+clorfeniramina +
+ácido ascórbico +
+dipirona
+monoidratada
+
+nasais para uso
+sistêmico
+
+sinusite, alérgicas
+ou não.
+
+N02B - Analgésicos e Comprimido
+antipiréticos
+revestido
+
+1 + 50 +100
+mg
+
+Sintomas da gripe e
+resfriado comuns,
+como febre, dor no
+corpo, cefaleia e
+coriza. Sintomas de
+distúrbios do estado
+geral decorrentes
+de alterações
+climáticas e de
+abuso de álcool ou
+nicotina.
+
+2 mg
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele,
+eczemas. Picada de
+insetos. Conjutivite
+alérgica. Dermatite
+atópica.
+
+176
+
+Maleato de
+dexclorfeniramina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+Comprimido,
+comprimido
+revestido
+
+177
+
+Maleato de
+dexclorfeniramina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+Creme
+10 mg/g
+dermatológico
+
+Prurido.
+Eczemas/dermatites
+alérgicos. Urticária.
+Picada de insetos.
+
+Comprimido
+revestido de
+liberação
+prolongada
+
+6 mg
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele,
+eczemas. Picada de
+insetos. Conjutivite
+alérgica. Dermatite
+atópica.
+
+2,8 mg/mL
+
+Sintomas da rinite
+alérgica. Sintomas
+de urticária ou
+alergias de pele,
+eczemas. Picada de
+insetos. Conjutivite
+
+178
+
+179
+
+Maleato de
+dexclorfeniramina
+
+Maleato de
+dexclorfeniramina
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+R06A - Antihistamínicos para
+uso sistêmico
+
+Solução oral
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+alérgica. Dermatite
+atópica.
+
+180
+
+181
+
+182
+
+183
+
+184
+
+185
+
+Maleato de
+mepiramina +
+hidróxido de
+alumínio + ácido
+acetilsalicílico +
+cafeína
+
+Mebendazol
+
+N02B - Analgésicos e
+antipiréticos R06A Comprimido
+Antihistamínicos
+para uso sistêmico
+
+P02C Antinematóides
+
+Comprimido
+
+15 + 150 + 150
+Cefaleia e alergias.
++ 50 mg
+
+500 mg
+
+Enterobíase,
+tricuríase,
+ascaridíase,
+ancilostomíase,
+necatoríase,
+teníase.
+Enterobíase,
+tricuríase,
+ascaridíase,
+ancilostomíase,
+necatoríase,
+teníase.
+
+Mebendazol
+
+P02C Antinematóides
+
+Menaeptenona
+
+M05B Medicamentos
+afetando a estrutura Comprimido
+óssea e
+mineralização
+
+Metronidazol
+
+Creme
+D06B dermatológico,
+Quimioterápicos de
+7,5 mg/g
+gel
+uso local
+dermatológico
+
+Rosácea.
+
+M01A Antiinflamatórios e
+Comprimido
+antirreumáticos não
+esteroidais
+
+Dores agudas
+causadas por
+inflamação; dor e
+febre, incluindo às
+associadas a
+sintomas de gripe e
+resfriado; dores
+musculares e
+articulares; dor após
+traumas.
+
+Naproxeno
+
+Suspensão oral 20 mg/mL
+
+180 mcg
+
+500 mg
+
+Auxiliar no processo
+de mineralização
+óssea.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+186
+
+187
+
+188
+
+189
+
+550 mg
+
+Dores agudas
+causadas por
+inflamação; dor e
+febre, incluindo às
+associadas a
+sintomas de gripe e
+resfriado; dores
+musculares e
+articulares; dor após
+traumas.
+
+21 mg
+
+Dependência do
+tabaco. Sintomas da
+síndrome de
+abstinência de
+nicotina.
+
+Nicotina
+
+N07B - Transtornos
+de dependência
+(vício)
+
+Pastilha, goma
+4 mg
+de mascar
+
+Dependência do
+tabaco. Sintomas da
+síndrome de
+abstinência de
+nicotina.
+
+Nimesulida
+
+M02A - Produtos
+para dor articular e
+muscular de uso
+local
+
+Gel
+20mg/g
+dermatológico
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+Naproxeno sódico
+
+M01A Antiinflamatórios e Comprimido
+antirreumáticos não revestido
+esteroidais
+
+Nicotina
+
+N07B - Transtornos
+de dependência
+(vício)
+
+Adesivo
+transdérmico
+
+190
+
+Nistatina + óxido de D01A - Antifúngicos Pomada
+100.000U.I./g
+zinco
+de uso local
+dermatológica + 200mg/g
+
+191
+
+Nitrato de
+miconazol
+
+Creme
+D01A - Antifúngicos dermatológico,
+20 mg/g
+de uso local
+pó
+dermatológico
+
+Dermatite de
+fraldas. Irritações na
+região dos órgãos
+genitais e das
+nádegas, entre os
+dedos, nas axilas,
+sob os seios ou em
+outras áreas da pele
+que sofrem atrito
+em crianças e
+adultos.
+Micoses superficiais
+de pele e unha.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+192
+
+193
+
+Nitrato de
+miconazol
+
+Emulsão
+D01A - Antifúngicos dermatológica,
+20 mg/mL
+de uso local
+suspensão
+dermatológica
+
+Dermatite de
+fraldas. Micoses
+superficiais de pele
+e unha.
+
+Nitrato de
+miconazol
+
+G01A - Antiinfecciosos e
+antissépticos
+ginecológicos,
+excluindo
+associações com
+corticosteroides
+
+Candidíase vaginal e
+perianal.
+
+Creme vaginal 20 mg/g
+
+D01A - Antifúngicos Creme
+10,0 mg/g
+de uso local
+dermatológico
+
+Micoses superficiais
+de pele, dermatite
+seborreica,
+candidíase vulvar e
+peniana e infecções
+mistas por fungos e
+bactérias.
+
+D01A - Antifúngicos Solução
+10,0 mg/mL
+de uso local
+dermatológica
+
+Micoses superficiais
+de pele, dermatite
+seborreica,
+candidíase vulvar e
+peniana e infecções
+mistas por fungos e
+bactérias.
+
+196
+
+Óxido de zinco +
+salicilato de fenila +
+10 + 2,0 + 5,0
+D01A - Antifúngicos Pó
+ácido bórico +
++ 5,0 + 0,2 +
+de uso local
+dermatológico
+enxofre + mentol +
+1,0 mg/g
+cânfora
+
+Dermatite de
+fraldas. Brotoeja.
+Desodorante e
+antiperspirante de
+pés e axilas.
+Prevenção de
+frieiras e pruridos na
+pele.
+
+197
+
+Palmitato de retinol
+(Vit. A) +
+D02A - Emolientes e
+5000 + 1000 +
+colecalciferol (Vit.
+Creme
+protetores de uso
+20 UI/g + 2
+D3) + acetato de
+dermatológico
+local
+mg/g
+racealfatocoferol
+(Vit. E) + alantoína
+
+Pele seca e áspera.
+Irritações da pele de
+pequena
+intensidade
+provocadas pela
+exposição ao sol.
+
+194
+
+195
+
+Nitrato de
+oxiconazol
+
+Nitrato de
+oxiconazol
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+198
+
+199
+
+200
+
+201
+
+202
+
+Paracetamol
+
+Paracetamol
+
+N02B - Analgésicos e Comprimido
+antipiréticos
+efervescente
+
+N02B - Analgésicos e Comprimido
+antipiréticos
+mastigável
+
+Paracetamol
+
+N02B - Analgésicos e Comprimido
+antipiréticos
+revestido
+
+Paracetamol
+
+Comprimido
+N02B - Analgésicos e revestido de
+antipiréticos
+liberação
+prolongada
+
+Paracetamol
+
+N02B - Analgésicos e
+Pó
+antipiréticos
+
+500 mg
+
+Febre. Dores leves a
+moderadas,
+incluindo as
+associadas a gripes e
+resfriados comuns.
+
+160 mg
+
+Febre. Dores leves a
+moderadas,
+incluindo as
+associadas a gripes e
+resfriados comuns.
+
+750 mg
+
+Febre. Dores leves a
+moderadas,
+incluindo as
+associadas a gripes e
+resfriados comuns.
+
+650 mg
+
+Febre. Dores leves a
+moderadas,
+incluindo as
+associadas a gripes e
+resfriados comuns.
+
+100 mg/g
+
+Febre. Dores leves a
+moderadas,
+incluindo as
+associadas a gripes e
+resfriados comuns.
+Febre. Dores leves a
+moderadas,
+incluindo as
+associadas a gripes e
+resfriados comuns.
+
+203
+
+Paracetamol +
+cafeína
+
+N02B - Analgésicos e Comprimido
+antipiréticos
+efervescente
+
+500 + 65 mg
+
+204
+
+Paracetamol +
+carisoprodol +
+cafeína
+
+N02B - Analgésicos e
+Comprimido
+antipiréticos
+
+350 + 150 + 50 Dores musculares
+mg
+leves a moderadas.
+
+205
+
+Paracetamol +
+citrato de
+orfenadrina +
+cafeína
+
+M03B - Relaxantes
+musculares de ação Comprimido
+central
+
+450 + 35 + 50
+mg
+
+Dores leves a
+moderadas
+associadas a
+contraturas
+musculares,
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+incluindo cefaleia
+tensional.
+
+800 + 20 mg
+
+Sintomas da gripe e
+resfriado comuns,
+como febre, dor,
+coriza e congestão
+nasal.
+
+800 + 20 + 4
+mg
+
+Sintomas da gripe e
+resfriado comuns,
+como febre, dor,
+coriza e congestão
+nasal.
+
+208
+
+Paracetamol +
+cloridrato de
+N02B - Analgésicos e
+Solução oral
+fenilefrina + maleato antipiréticos
+de carbinoxamina
+
+40 + 1 + 0,4
+mg/mL
+
+Sintomas da gripe e
+resfriado comuns,
+como febre, dor,
+coriza e congestão
+nasal.
+
+209
+
+Paracetamol +
+cloridrato de
+fenilefrina + maleato N02B - Analgésicos e
+Comprimido
+de carbinoxamina + antipiréticos
+citrato de
+pentoxiverina
+
+Sintomas da gripe e
+resfriado comuns,
+400 + 10 + 2 +
+como febre, dor,
+10 mg
+coriza e congestão
+nasal.
+
+210
+
+Sintomas da gripe e
+Paracetamol +
+resfriado comuns,
+cloridrato de
+N02B - Analgésicos e Cápsula dura,
+400 + 4 + 4 mg como febre, dor,
+fenilefrina + maleato antipiréticos
+comprimido
+coriza e congestão
+de clorfeniramina
+nasal.
+
+211
+
+Paracetamol +
+cloridrato de
+N02B - Analgésicos e Pó para
+fenilefrina + maleato antipiréticos
+solução oral
+de clorfeniramina
+
+212
+
+Paracetamol +
+cloridrato de
+N02B - Analgésicos e
+Solução oral
+fenilefrina + maleato antipiréticos
+de clorfeniramina
+
+206
+
+Paracetamol +
+cloridrato de
+fenilefrina
+
+207
+
+Paracetamol +
+cloridrato de
+N02B - Analgésicos e
+Comprimido
+fenilefrina + maleato antipiréticos
+de carbinoxamina
+
+N02B - Analgésicos e
+Comprimido
+antipiréticos
+
+80 + 0,8 + 0,8
+mg/g
+
+Sintomas da gripe e
+resfriado comuns,
+como febre, dor,
+coriza e congestão
+nasal.
+
+40 + 0,6 + 0,6
+mg/mL
+
+Sintomas da gripe e
+resfriado comuns,
+como febre, dor,
+coriza e congestão
+nasal.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+N02B - Analgésicos e
+Solução oral
+antipiréticos
+
+Sintomas da gripe e
+resfriado comuns,
+120 + 2 mg/mL como febre, dor,
+coriza e congestão
+nasal.
+
+214
+
+Paracetamol +
+propifenazona +
+cafeína
+
+N02B - Analgésicos e
+Comprimido
+antipiréticos
+
+Febre. Dores leves a
+moderadas,
+250 + 150 + 50 incluindo as
+mg
+associadas com
+gripes e resfriados
+comuns.
+
+215
+
+Penciclovir
+
+D06B Quimioterápicos
+para uso local
+
+Creme
+
+10 mg/g
+
+Permetrina
+
+P03A Ectoparasiticidas,
+incluindo
+escabicidas
+
+Emulsão
+dermatológica,
+10 mg/mL
+suspensão
+dermatológica
+
+Pediculose.
+
+Permetrina
+
+P03A Ectoparasiticidas,
+incluindo
+escabicidas
+
+Emulsão
+dermatológica,
+50 mg/mL
+suspensão
+dermatológica
+
+Escabiose.
+
+Solução oral
+
+7,5 mg/mL
+
+Laxativo. Prisão de
+ventre. Sob
+orientação de
+profissional de
+saúde: preparo
+diagnóstico ou
+cirúrgico.
+
+213
+
+216
+
+217
+
+Paracetamol +
+maleato de
+carbinoxamina
+
+Tratamento tópico
+de herpes labial.
+
+218
+
+Picossulfato de
+sódio
+
+219
+
+Picossulfato de
+sódio + Cássia senna
+1DH + Polygonum
+A06A - Laxantes
+punctatum 1CH +
+Collinsonia
+canadensis 1CH
+
+Comprimido
+
+0,005g+ 0,020
+Laxativo. Prisão de
++ 0,015 +
+ventre.
+0,015 g
+
+220
+
+Picossulfato de
+sódio + óleo mineral A06A - Laxantes
+leve + ágarágar
+
+Emulsão oral
+
+0,334 + 282,25 Laxativo. Prisão de
++ 2,72 mg/mL ventre.
+
+A06A - Laxantes
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+221
+
+222
+
+223
+
+224
+
+Policarbofila cálcica A06A - Laxantes
+
+Comprimido
+revestido
+
+Policresuleno +
+cloridrato de
+cinchocaína
+
+C05A - Agentes para
+tratamento de
+hemorroidas e
+Pomada retal
+fissuras anais de uso
+local
+
+Policresuleno +
+cloridrato de
+cinchocaína
+
+C05A - Agentes para
+tratamento de
+hemorroidas e
+Supositório
+fissuras anais de uso
+local
+
+Polissulfato de
+C05B - Terapia
+mucopolissacarídeo antivaricosa
+
+625 mg
+
+Regularização do
+hábito intestinal.
+Constipação
+intestinal ou diarreia
+associadas a
+condições como
+diverticulose e
+síndrome do
+intestino irritável.
+
+50 + 10 mg/g
+
+Hemorroidas.
+Fissuras, prurido e
+eczemas da região
+do ânus. Curativo
+após cirurgias
+proctológicas.
+
+100 + 27 mg
+
+Hemorroidas.
+Fissuras, prurido e
+eczemas da região
+do ânus. Curativo
+após cirurgias
+proctológicas.
+
+Gel
+dermatológico
+5 mg/g
+, pomada
+dermatológica
+
+225
+
+Prometazina
+
+D04A Antipruriginosos,
+incluindo
+Creme
+20 mg/g
+antihistamínicos,
+dermatológico
+anestésicos e outros
+de uso local
+
+226
+
+Racemetionina +
+cloreto de colina
+
+A05B - Terapia biliar, Comprimido
+lipotrópicos
+revestido
+
+100 + 20 mg
+
+Hematomas e
+inflamação
+provocada por
+varizes e em
+processos
+inflamatórios
+localizados.
+
+Prurido. Picada de
+insetos.
+
+Auxiliar no
+tratamento dos
+distúrbios do fígado
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+Diarreias de
+diferentes causas.
+Restauração da flora
+intestinal.
+
+227
+
+Saccharomyces
+boulardii
+
+A07F Microrganismos
+antidiarreicos
+
+228
+
+Salicilato de
+etilenoglicol +
+levomentol +
+acetato de
+racealfatocoferol +
+cânfora
+
+M02A - Produtos
+para dor articular e
+muscular de uso
+local
+
+Emplasto
+
+175 + 140 +
+140 + 42 mg
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+229
+
+Salicilato de
+etilenoglicol +
+levomentol +
+acetato de
+racealfatocoferol+
+cânfora
+
+M02A - Produtos
+para dor articular e
+muscular de uso
+local
+
+12,5 mg+ 10
+Adesivo
+mg + 10 mg +
+dermatológico
+3 mg
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+230
+
+M02A - Produtos
+Salicilato de metila +
+para dor articular e
+cânfora +
+muscular de uso
+levomentol
+local
+
+Adesivo
+144 + 28,4 +
+dermatológico 131 mg
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+231
+
+M02A - Produtos
+Salicilato de metila +
+para dor articular e
+cânfora +
+muscular de uso
+levomentol
+local
+
+Pomada
+52,5 + 44,4 +
+dermatológica 20 mg/g
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+232
+
+M02A - Produtos
+Salicilato de metila +
+para dor articular e
+cânfora +
+muscular de uso
+levomentol
+local
+
+0,0333 mL/mL Dor e inflamação do
+Solução
++ 33,3 + 8,3
+sistema
+dermatológica
+mg/mL
+musculoesquelético.
+
+233
+
+M02A - Produtos
+Salicilato de metila + para dor articular e
+cânfora + mentol
+muscular de uso
+local
+
+Pomada
+52,5 + 44,4 +
+dermatológica 20 mg/g
+
+234
+
+M02A - Produtos
+Salicilato de metila + para dor articular e
+cânfora + mentol
+muscular de uso
+local
+
+0,0333 mL/mL Dor e inflamação do
+Solução
++ 33,3 + 8,3
+sistema
+dermatológica
+mg/mL
+musculoesquelético.
+
+Cápsula dura,
+250 mg
+pó oral
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+235
+
+M02A - Produtos
+Salicilato de metila + para dor articular e
+levomentol
+muscular de uso
+local
+
+Dor e inflamação do
+Adesivo
+105 + 31,5 mg sistema
+dermatológico
+musculoesquelético.
+
+236
+
+M02A - Produtos
+Salicilato de metila + para dor articular e
+levomentol
+muscular de uso
+local
+
+Dor e inflamação do
+Gel
+150 + 70 mg/g sistema
+dermatológico
+musculoesquelético.
+
+237
+
+M02A - Produtos
+Salicilato de metila + para dor articular e
+mentol
+muscular de uso
+local
+
+Gel
+dermatológico 150 + 100
+, creme
+mg/g
+dermatológico
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+238
+
+M02A - Produtos
+Salicilato de metila + para dor articular e
+mentol
+muscular de uso
+local
+
+Pomada
+250 + 250
+dermatológica mg/g
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+239
+
+M02A - Produtos
+Salicilato de metila + para dor articular e
+mentol
+muscular de uso
+local
+
+Solução
+50 + 10 mg/g
+dermatológica
+
+Dor e inflamação do
+sistema
+musculoesquelético.
+
+240
+
+Salicilato de metila +
+M02A - Produtos
+salicilato de
+para dor articular e
+etilenoglicol +
+muscular de uso
+levomentol +
+local
+cânfora
+
+Dor e inflamação do
+Solução
+30 + 19 + 38,5
+sistema
+dermatológica + 38,5 mg/mL
+musculoesquelético.
+
+241
+
+Silybum marianum + A05B - Terapia biliar, Comprimido
+racemetionina
+lipotrópicos
+revestido
+
+70 + 100 mg
+
+242
+
+Sorbitol +
+laurilsulfato de
+sódio
+
+A06A - Laxantes
+
+Laxativo. Prisão de
+ventre. Sob
+orientação de
+714 + 7,7 mg/g profissional de
+saúde: preparo
+diagnóstico ou
+cirúrgico.
+
+243
+
+Subgalato de
+bismuto + óxido de
+zinco
+
+D02A - Emolientes e
+Dermatite de
+Gel
+protetores de uso
+1,5 + 45 mg/g fraldas. Brotoejas.
+dermatológico
+local
+Irritações da pele de
+
+Solução retal
+
+Auxiliar no
+tratamento dos
+distúrbios do fígado
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+pequena
+intensidade
+provocadas pelo
+vento ou exposição
+prolongada ao sol.
+
+244
+
+Subgalato de
+bismuto + óxido de
+zinco + iodeto de
+timol
+
+245
+
+Sulfato de magnésio
++ ácido cítrico +
+A02A - Antiácidos
+bicarbonato de
+sódio
+
+246
+
+Sulfato de
+neomicina
+
+D08A - Antissépticos
+Pó
+3,0 + 93,33 +
+e desinfetantes de
+dermatológico 1,5 mg/g
+uso local
+
+D06A - Antibióticos
+de uso local
+
+Pó
+efervescente
+
+176,5 + 367 +
+436 mg/g
+
+Alívio da azia e dor
+de estômago devido
+à má digestão.
+Laxante leve.
+
+Pomada
+5 mg/g
+dermatológica
+
+Infecções
+bacterianas da pele
+e mucosas, como
+impetigo e
+furúnculo. Eczemas
+e queimaduras
+infectados. Úlcera
+cutânea.
+
+Pomada
+5 mg/g + 250
+dermatológica UI/g
+
+Infecções
+bacterianas da pele
+e mucosas, como
+impetigo e
+furúnculo. Eczemas
+e queimaduras
+infectados. Úlcera
+cutânea. Profilaxia
+de infecções
+cutâneomucosas
+decorrentes de
+ferimentos
+cortantes.
+
+247
+
+Sulfato de
+neomicina +
+bacitracina zíncica
+
+248
+
+Sulfato de
+neomicina +
+A01A - Preparações Suspensão de 25 + 25 + 15
+tartarato de bismuto
+bucais
+uso local
+mg/ml
+e sódio + cloridrato
+de procaína
+
+D06A - Antibióticos
+de uso local
+
+Dermatite de
+fraldas. Brotoejas.
+Desodorante e
+antiperspirante dos
+pés e axilas.
+
+Aftas e outras
+inflamações da
+mucosa da boca.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+249
+
+Sulfato de
+neomicina +
+Aftas e outras
+tartarato de bismuto A01A - Preparações Suspensão de 26 + 25 + 15 +
+inflamações da
+e sódio + cloridrato bucais
+uso local
+1 mg/ml
+mucosa da boca.
+de procaína +
+mentol
+
+250
+
+Sulfeto de selênio
+
+251
+
+Tintura Matricaria
+chamomilla L +
+cloridrato de
+lidocaína +
+polidocanol
+
+252
+
+Tintura Matricaria
+chamomilla L.,
+cloridrato de
+lidocaína,
+polidocanol
+
+253
+
+Tioconazol
+
+Caspa, dermatite
+seborreica, micose
+superficial do couro
+cabeludo.
+
+D01A - Antifúngicos
+Xampu
+de uso local
+
+25 mg/mL
+
+A01A - Preparações
+Gel
+bucais
+
+Alívio dos
+150 + 3,4 + 3,2 deconfortos bucais
+mg/g
+da primeira
+dentição.
+
+A01A - Preparações
+Solução
+bucais
+
+Alívio dos
+150,0 mg/g +
+deconfortos bucais
+3,4 mg/g + 3,2
+da primeira
+mg/g
+dentição.
+
+D01A - Antifúngicos Creme
+10 mg/g
+de uso local
+dermatológico
+
+Micoses superficiais
+de pele e unha e
+infecções mistas por
+fungos e bactérias.
+Aftas e outras
+inflamações na
+mucosa da boca.
+Dor de garganta.
+
+254
+
+Tirotricina + sulfato R02A - Preparações
+Solução
+de hidroxiquinolina para a garganta
+
+0,3 + 10
+mg/mL
+
+255
+
+Tirotricina + sulfato
+R02A - Preparações
+de hidroxiquinolina
+Pastilha
+para a garganta
++ benzocaína
+
+Aftas e outras
+inflamações na
+1 + 0,7 + 5 mg
+mucosa da boca.
+Dor de garganta.
+
+256
+
+Tirotricina + sulfato
+de hidroxiquinolina R02A - Preparações
+Solução
++ cloridrato de
+para a garganta
+lidocaína
+
+0,1 + 2 + 4
+mg/mL
+
+Aftas e outras
+inflamações na
+mucosa da boca.
+Dor de garganta.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+0,25 + 6,2 +
+2,2 mg/g
+
+Aftas e outras
+inflamações na
+mucosa da boca.
+Profilaxia da cárie.
+
+C05A - Agentes para
+tratamento de
+hemorroidas e
+Creme retal
+fissuras anais de uso
+local
+
+50 + 20 mg/g
+
+Hemorroidas
+internas e externas.
+
+C05A - Agentes para
+tratamento de
+hemorroidas e
+Supositório
+fissuras anais de uso
+local
+
+400 + 40 mg
+
+Hemorroidas
+internas e externas.
+
+257
+
+Tirotricina + sulfato
+A01A - Preparações
+de hidroxiquinolina
+Gel
+bucais
++ fluoreto de sódio
+
+258
+
+Tribenosídeo +
+cloridrato de
+lidocaína
+
+Tribenosídeo +
+cloridrato de
+lidocaína
+
+259
+
+260
+
+Ureia
+
+D02A - Emolientes e
+Creme
+protetores de uso
+200 mg/g
+dermatológico
+local
+
+Pele seca e áspera.
+Espessamento da
+pele, ressecamento
+e descamação da
+pele, eczema e
+calosidade de mãos,
+cotovelos, joelhos e
+pés.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+ANEXO II
+LISTA DE MEDICAMENTOS ISENTOS DE PRESCRIÇÃO (LMIP)
+Fitoterápicos
+Espécie
+
+1
+
+Produtos com ação
+Aesculus
+sobre o aparelho
+Sementes
+hippocastanum
+cardiovascular
+
+Alívio dos sintomas relacionados a inchaços nas
+pernas, veias varicosas, sensação de peso, dor,
+cansaço, coceira, tensão nas pernas e câimbras na
+panturrilha. Restrições: uso oral.
+
+2
+
+Digestivos,
+hepatoprotetores,
+colagogos e
+Rizoma +
+coleréticos com ou folhas
+sem efeito
+antiespasmódico
+
+Auxiliar no funcionamento da vesícula biliar.
+Auxiliar no tratamento dos sintomas da dispepsia
+funcional. Prevenção e tratamento auxiliar de
+distúrbios hepáticos e dos distúrbios
+gastrointestinais espásticos. Digestivo. Uso oral.
+Cicatrizante, destinado ao tratamento de
+queimaduras térmicas leves. Anti-inflamatório.
+Auxiliar no tratamento dos sintomas das
+dispepsias funcionais e dos distúrbios
+gastrointestinais espásticos (uso oral). Antiinflamatório (uso tópico).
+
+Aloe ferox +
+Gentiana lutea
+
+Classe terapêutica
+
+Parte
+Indicações terapêuticas e via de administração
+empregada
+
+n
+
+3
+
+Aloe vera
+
+Anti-inflamatórios.
+Cicatrizantes com
+Folhas
+ação antiinflamatória
+
+4
+
+Arnica montana
+
+Produtos com ação Capítulo
+na pele e mucosas floral
+
+Alívio dos sintomas de equimoses, hematomas e
+contusões. Uso tópico.
+
+5
+
+Atropa
+belladona
+
+Antiespasmódicos
+e anticolinérgicos
+gastrointestinais
+
+Alívio dos sintomas de cólicas e espasmos
+gastrintestinais. Uso oral.
+
+Folhas
+
+6
+
+Calendula
+officinalis
+
+Anti-inflamatórios.
+Cicatrizantes com
+Flores
+ação antiinflamatória
+
+Cicatrizante, destinado ao tratamento de
+queimaduras térmicas leves. Anti-inflamatório.
+Auxiliar no tratamento dos sintomas das
+dispepsias funcionais e dos distúrbios
+gastrointestinais espásticos (uso oral). Antiinflamatório (uso tópico).
+
+7
+
+Cassia fistula +
+Senna
+alexandrina
+
+Laxantes irritantes Fruto +
+ou estimulantes
+folhas
+
+Constipação ocasional. Uso oral.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+
+8
+
+Produtos com ação
+Partes
+Centella asiatica sobre o aparelho
+aéreas
+cardiovascular
+
+Alívio dos sintomas relacionados a inchaços nas
+pernas, veias varicosas, sensação de peso, dor,
+cansaço, coceira, tensão nas pernas e câimbras na
+panturrilha. Uso oral.
+
+9
+
+Cinchona
+calisaya
+
+Estimulantes do
+apetite
+
+Casca
+
+Estimulante do apetite e para cansaço físico e
+mental. Uso oral.
+
+Cinnamomum
+verum +
+10
+Syzygium
+aromaticum
+
+Outros produtos
+para o aparelho
+digestivo e
+metabolismo
+
+Cascas +
+botões
+florais
+
+Antiflatulento em casos de problemas digestivos.
+Uso oral.
+
+Produtos para dor
+Cordia
+articular e
+11
+verbenacea DC. muscular de uso
+tópico
+
+Folhas
+
+Auxiliar no alívio de sintomas dolorosos
+decorrentes de processos inflamatórios
+localizados. Uso dermatológico (tópico)
+
+Crataegus
+rhipidophylla +
+12 Salix alba +
+Passiflora
+incarnata
+
+Flores +
+casca +
+flores
+
+Ansiolítico leve. Auxiliar no tratamento da
+ansiedade leve e da insônia. Uso oral.
+
+Ansiolíticos
+
+Digestivos,
+hepatoprotetores,
+colagogos e
+13 Cynara scolymus
+Folhas
+coleréticos com ou
+sem efeito
+antiespasmódico
+
+Auxiliar no funcionamento da vesícula biliar.
+Auxiliar no tratamento dos sintomas da dispepsia
+funcional. Prevenção e tratamento auxiliar de
+distúrbios hepáticos e dos distúrbios
+gastrointestinais espásticos. Digestivo. Uso oral.
+
+Digestivos,
+hepatoprotetores,
+Cynara scolymus
+colagogos e
+Folhas +
+14 + Peumus
+coleréticos com ou folhas
+boldus
+sem efeito
+antiespasmódico
+
+Auxiliar no funcionamento da vesícula biliar.
+Auxiliar no tratamento dos sintomas da dispepsia
+funcional. Prevenção e tratamento auxiliar de
+distúrbios hepáticos e dos distúrbios
+gastrointestinais espásticos. Digestivo. Uso oral.
+
+15
+
+Eucaliptus
+globulus
+
+Expectorantes
+
+Folhas
+
+Digestivos,
+Gentiana lutea +
+hepatoprotetores, Rizoma +
+16 Chamaemelum
+colagogos e
+raiz
+nobile
+coleréticos com ou
+
+Antisséptico das vias aéreas superiores e
+expectorante. Broncodilatador. Uso oral.
+Auxiliar no funcionamento da vesícula biliar.
+Auxiliar no tratamento dos sintomas da dispepsia
+funcional. Prevenção e tratamento auxiliar de
+distúrbios hepáticos e dos distúrbios
+gastrointestinais espásticos. Digestivo. Uso oral.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+sem efeito
+antiespasmódico
+17 Glycine max
+18
+
+Glycyrrhiza
+glabra
+
+Hamamelis
+19
+virginiana
+
+Produtos para uso
+Sementes
+em ginecologia
+
+Auxiliar no alívio dos sintomas do climatério. Uso
+oral.
+
+Antiulcerosos
+
+Alívio dos sintomas digestivos incluindo
+queimação e dispepsia. Uso oral.
+
+Raízes
+
+Antihemorroidários
+tópicos e/ou
+terapia varicosa
+Folhas
+inclusive
+antihemorroidário
+
+Auxiliar no tratamento de hemorroidas externas e
+equimoses (uso tópico). Alívio do prurido e ardor
+associados a hemorroidas (uso oral).
+
+Harpagophytum
+procumbens
+Anti-inflamatórios
+Raízes
+Alívio de dores articulares menores e dor lombar
+20 e/ou
+ou antirreumáticos
+secundárias aguda. Uso oral.
+Harpagophytum simples
+zeyheri
+21 Hedera helix
+
+Expectorantes
+
+Matricaria
+chamomilla +
+22 Gentiana lutea + Antiespasmódico
+Nux vomica +
+Peumus boldus
+
+Folhas
+
+Expectorante em caso de tosse produtiva. Uso
+oral.
+
+Flores +
+rizoma e
+Auxiliar no tratamento dos sintomas das
+raízes +
+dispepsias. Uso oral.
+sementes +
+folhas
+Cicatrizante, destinado ao tratamento de
+queimaduras térmicas leves. Anti-inflamatório.
+Auxiliar no tratamento dos sintomas das
+dispepsias funcionais e dos distúrbios
+gastrointestinais espásticos (uso oral). Antiinflamatório (uso tópico).
+
+23
+
+Matricaria
+recutita
+
+Anti-inflamatórios.
+Cicatrizantes com Capítulos
+ação antiflorais
+inflamatória
+
+24
+
+Monteverdia
+ilicifolia
+
+Antiulcerosos
+
+Folhas
+
+Alívio dos sintomas digestivos incluindo
+queimação e dispepsia. Uso oral.
+
+Monteverdia
+ilicifolia +
+25
+Jateoriza
+palmata
+
+Outros produtos
+para o aparelho
+digestivo e
+metabolismo
+
+Folhas +
+raízes
+
+Auxiliar no tratamento dos sintomas das
+dispepsias funcionais, principalmente na dor
+epigástrica. Uso oral.
+
+Melissa
+26
+officinalis
+
+Antiespasmódico,
+ansiolítico,
+cicatrizantes
+
+Folhas
+
+Antiflatulento (combate gases), antiespasmódico
+e ansiolítico leve. Uso oral.
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+27
+
+Mikania
+glomerata
+
+Expectorantes
+
+Mikania
+glomerata +
+28 Polygala senega Expectorantes
++ Cephaelis
+ipecacuanha
+
+Folhas
+
+Antisséptico das vias aéreas superiores e
+expectorante. Broncodilatador. Uso oral.
+
+Folhas +
+raízes +
+raízes
+
+Antitussígeno, broncodilatador e expectorante.
+Uso oral.
+
+Partes
+aéreas
+
+Antisséptico das vias aéreas superiores e
+expectorante. Broncodilatador. Uso oral.
+
+29
+
+Nasturtium
+officinale
+
+Expectorantes
+
+30
+
+Operculina
+hamiltonii
+
+Laxantes irritantes
+Raiz
+ou estimulantes
+
+Laxativo, nos casos de constipação funcional
+aguda. Uso oral.
+
+Neurotônico
+
+Raiz
+
+Para cansaço físico e mental. Uso oral.
+
+Passiflora alata
++ Erythrina
+32 verna +
+Crataegus
+rhipidophylla
+
+Ansiolíticos
+
+Folhas +
+casca +
+flores e
+folhas
+
+Ansiolítico leve. Auxiliar no tratamento da
+ansiedade leve e da insônia. Uso oral.
+
+Passiflora
+incarnata
+
+Ansiolíticos
+
+Partes
+aéreas
+
+Ansiolítico leve. Auxiliar no tratamento da
+ansiedade leve e da insônia. Uso oral.
+
+Ansiolíticos
+
+Flores e
+folhas +
+flores e
+folhas +
+casca
+
+Ansiolítico leve. Auxiliar no tratamento da
+ansiedade leve e da insônia. Uso oral.
+
+Ansiolíticos
+
+Partes
+aéreas +
+folhas e
+flores +
+raízes
+
+Ansiolítico leve. Auxiliar no tratamento da
+ansiedade leve e da insônia. Uso oral.
+
+36 Paullinia cupana Neurotônico
+
+Semente
+
+Para cansaço físico e mental. Uso oral.
+
+31 Panax ginseng
+
+33
+
+Passiflora
+incarnata +
+34 Crataegus
+rhipidophylla +
+Salix alba
+Passiflora
+incarnata +
+Crataegus
+35
+rhipidophylla +
+Valeriana
+officinalis
+
+37
+
+Pelargonium
+sidoides
+
+Produtos para
+terapia sintomática Raízes
+da gripe
+
+Digestivos,
+38 Peumus boldus hepatoprotetores, Folhas
+colagogos e
+
+Tratamento sintomático da gripe. Uso oral.
+Auxiliar no funcionamento da vesícula biliar.
+Auxiliar no tratamento dos sintomas da dispepsia
+funcional. Prevenção e tratamento auxiliar de
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+coleréticos com ou
+sem efeito
+antiespasmódico
+
+distúrbios hepáticos e dos distúrbios
+gastrointestinais espásticos. Digestivo. Uso oral.
+
+Peumus boldus
++ Frangula
+39 purshiana +
+Rheum
+palmatum
+
+Digestivos,
+hepatoprotetores,
+colagogos e
+coleréticos com ou
+sem efeito
+antiespasmódico
+
+Folha +
+casca +
+rizoma e
+raiz
+
+Auxiliar no funcionamento da vesícula biliar.
+Auxiliar no tratamento dos sintomas da dispepsia
+funcional. Prevenção e tratamento auxiliar de
+distúrbios hepáticos e dos distúrbios
+gastrointestinais espásticos. Digestivo. Uso oral.
+
+40 Plantago ovata
+
+Laxantes
+incrementadores
+do bolo intestinal
+
+Casca da
+semente
+
+Auxiliar no tratamento de constipação intestinal.
+Constipação ocasional. Uso oral.
+
+Plantago ovata + Laxantes
+41 Senna
+incrementadores
+alexandrina
+do bolo intestinal
+
+Semente e
+casca da
+semente +
+frutos
+
+Auxiliar no tratamento de constipação intestinal.
+Constipação ocasional. Uso oral.
+
+Produtos para o
+42 Polygala senega aparelho
+respiratório
+
+Raízes
+
+Auxiliar no tratamento dos sintomas da bronquite
+crônica e da faringite. Uso oral.
+
+43
+
+Polypodium
+Anti-inflamatório
+leucatomos Poir
+
+Partes
+aéreas
+
+Anti-inflamatório na profilaxia de irritação da pele
+agravada pelo sol. Uso oral.
+
+44
+
+Frangula
+purshiana
+
+Laxantes irritantes
+Casca
+ou estimulantes
+
+Constipação ocasional. Uso oral.
+
+45 Rhodiola rosea
+
+Psicoestimulantes
+
+Rizoma e
+raiz
+
+Alívio temporário dos sintomas do estress, tais
+como fadiga e sensação de fraqueza. Uso oral.
+
+46 Salix alba
+
+Analgésicos, antiinflamatórios
+
+Casca
+
+Antitérmico, anti-inflamatório e analgésico. Uso
+oral.
+
+47
+
+Senna
+alexandrina
+
+48 Serenoa repens
+
+49
+
+Silybum
+marianum
+
+Laxantes irritantes Folhas e
+ou estimulantes
+frutos
+
+Constipação ocasional. Uso oral.
+
+Produtos com ação
+Frutos
+no trato urinário
+
+Alívio dos sintomas do trato urinário baixo
+relacionados a hiperplasia prostática benigna
+depois que condições mais sérias tenham sido
+excluídas por um médico. Uso oral.
+
+Digestivos,
+Auxiliar no funcionamento da vesícula biliar.
+hepatoprotetores, Frutos sem
+Auxiliar no tratamento dos sintomas da dispepsia
+colagogos e
+papilho
+funcional. Prevenção e tratamento auxiliar de
+coleréticos com ou
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+Ministério da Saúde - MS
+Agência Nacional de Vigilância Sanitária – ANVISA
+sem efeito
+antiespasmódico
+
+distúrbios hepáticos e dos distúrbios
+gastrointestinais espásticos. Digestivo. Uso oral.
+
+50
+
+Solidago
+chilensis
+
+Analgésicos, antiinflamatórios
+
+Partes
+aéreas
+
+Anti-inflamatório nos casos de contusões, dores
+musculares e hematomas (uso tópico). Antiinflamatório (uso oral).
+
+51
+
+Symphytum
+officinale
+
+Analgésicos, antiinflamatórios
+
+Raiz
+
+Alívio sintomático de entorses leves e contusões.
+Uso tópico.
+
+Thymus vulgaris
+52 e/ou Thymus
+Antitussígeno
+zygis
+
+Folhas e
+flores
+
+Alívio de tosse produtiva associada ao resfriado.
+Uso oral.
+
+Trichilia catigua
++ Croton
+53 heliotropiifolius Neurotônico
++ Paullinia
+cupana
+
+Cascas do
+caule +
+caules +
+sementes
+
+Para cansaço físico e mental. Uso oral.
+
+54
+
+Uncaria
+tomentosa
+
+Analgésicos, antiinflamatórios
+
+55
+
+Vaccinium
+macrocarpon
+
+Produtos com ação
+Frutos
+no trato urinário
+
+Prevenção de infecções do trato urinário. Uso
+oral.
+
+56 Vitis vinífera
+
+Produtos com ação
+sobre o aparelho
+Folhas
+cardiovascular
+
+Alívio dos sintomas relacionados a inchaços nas
+pernas, veias varicosas, sensação de peso, dor,
+cansaço, coceira, tensão nas pernas e câimbras na
+panturrilha. Uso oral.
+
+Antieméticos e
+antinauseantes
+
+Profilaxia de náuseas causadas por movimento
+(cinetose) e pós-cirúrgicas. Uso oral.
+
+57
+
+Zingiber
+officinale
+
+Casca do
+Anti-inflamatório. Uso oral.
+caule e raiz
+
+Rizomas
+
+Este texto não substitui o(s) publicado(s) em Diário Oficial da União.
+
+
