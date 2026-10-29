@@ -25,7 +25,13 @@ python sbrca_run.py --input ~/Downloads/mass_update.xlsx --out-dir ./out
 # 产出：产出目录下的 audit_report.md（六节结构的中文报告）+ audit_summary.json
 ```
 
-> **想在 ChatGPT 里用这个仓库？** 见 `docs/CHATGPT_USAGE.md`（代码解释器 / Actions / 本地跑三种方案）。
+> **省略 `--input` 也会自动找** —— 脚本按 `--search-dir` → `/mnt/data` →
+> `/mnt/user-data` → `/home/oai/share` → 当前目录 的优先级搜索，**找到即停**。
+> 所以在 ChatGPT 网页版里，传完文件直接跑 `python sbrca_run.py` 就行。
+
+> **想在 ChatGPT 里用这个仓库？**
+> - `docs/CHATGPT_WEB.md` —— **网页版**：传文件 + 贴一句话
+> - `docs/CHATGPT_USAGE.md` —— 总览（代码解释器 / Actions / 本地跑）
 
 > **为什么要 `env -u LD_LIBRARY_PATH`？** Hermes 自带运行时会让 `libcrypto.so.3` 覆盖系统 OpenSSL，导致 `import ssl` 失败。
 > `sbrca_run.py` 已自动清理该环境变量；直接跑底层脚本时才需要手动加前缀。
@@ -79,7 +85,7 @@ env -u LD_LIBRARY_PATH bash scripts/check_all.sh
 
 | 文件 | 作用 |
 |---|---|
-| **`sbrca_run.py`** | ★★★ **单文件入口**（纯标准库，克隆后跑这一个文件即可完成审核） |
+| **`sbrca_run.py`** | ★★★ **单文件入口**（纯标准库；自动发现上传目录，不用指定格式和路径） |
 | **`docs/合规审核SOP.md`** | ★★★ **主作业手册**（按《跨境发货SOP》格式，含全部可填写字段） |
 | `PROJECT_RULES.md` | 公共工程规范：定位、格式政策、契约总览、四态语义、风险×动作、规则 ID、证据引用、复核要求、错误处理、交付标准、命名、禁止事项 |
 | `AGENT_COLLABORATION.md` | 多 Agent 协作规则：分工、边界、冲突处理、变更建议流程、交付规范 |

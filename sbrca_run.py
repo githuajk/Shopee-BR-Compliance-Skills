@@ -122,12 +122,92 @@ def shutil_which(cmd: str) -> str | None:
     return None
 
 
+# 会被 ingestion 接受的扩展名（见 skills/shopee-br-data-ingestion/references/format_matrix.md）
+AUDITABLE_EXT = (".xlsx", ".xlsm", ".csv", ".tsv", ".json", ".jsonl",
+                 ".txt", ".md", ".docx", ".pdf")
+
+# ChatGPT 代码解释器的上传目录（按优先级）
+UPLOAD_DIRS = ("/mnt/data", "/mnt/user-data", "/home/oai/share")
+
+# 兜底搜索目录 —— 只有当上面都没找到时才用，且要排除仓库自身
+FALLBACK_DIRS = (".",)
+
+# 明显不是商品清单的文件（仓库自带、说明文档等）
+_SKIP_NAME_HINT = ("readme", "license", "changelog", "manifest", "project_rules",
+                   "agent_collaboration", "requirements", "makefile", "sop",
+                   "deliverable", "notes")
+
+
+def _looks_like_products(path: str) -> bool:
+    """看 JSON 内容里有没有 products/记录数组 —— 用于区分「商品清单」与「其他 JSON」。"""
+    try:
+        with open(path, encoding="utf-8", errors="replace") as fh:
+            head = fh.read(4096)
+    except OSError:
+        return False
+    low = head.lower()
+    return ("products" in low or "sku" in low or "descricao" in low
+            or "description" in low or "titulo" in low or "title" in low)
+
+
+def discover_inputs(explicit: list[str] | None = None,
+                    search_dirs: list[str] | None = None) -> list[str]:
+    """自动找出可审核的商品文件。
+
+    规则：**按目录优先级，找到就停** —— 不把多个目录的结果混在一起，
+    否则会误抓无关文件。
+
+    优先级：显式指定 > --search-dir > ChatGPT 上传目录 > 当前目录。
+    同一目录内找到多个时全部返回（多文件是同批商品的分片）。
+    """
+    if explicit:
+        return list(explicit)
+
+    dirs = list(search_dirs or []) + list(UPLOAD_DIRS) + list(FALLBACK_DIRS)
+    tried: set[str] = set()
+
+    for d in dirs:
+        if not d or d in tried:
+            continue
+        tried.add(d)
+        if not os.path.isdir(d):
+            continue
+        try:
+            names = sorted(os.listdir(d))
+        except OSError:
+            continue
+        found: list[str] = []
+        for name in names:
+            full = os.path.join(d, name)
+            if not os.path.isfile(full):
+                continue
+            low = name.lower()
+            if not low.endswith(AUDITABLE_EXT):
+                continue
+            # 跳过明显是说明文档 / 仓库自带的
+            stem = os.path.splitext(low)[0]
+            if any(h in stem for h in _SKIP_NAME_HINT):
+                continue
+            # JSON 要看一眼内容，避免把无关 JSON 当商品清单
+            if low.endswith(".json") and not _looks_like_products(full):
+                continue
+            found.append(full)
+        if found:
+            return found
+    return []
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(
         description="Shopee BR 合规审核 —— 单文件入口（纯标准库）",
     )
     ap.add_argument("--input", action="append", dest="inputs", metavar="FILE",
-                    help="外部文件（.xlsx/.json），走完整 ingestion 链路；可重复")
+                    help="外部文件（.xlsx/.csv/.json/...），走完整 ingestion 链路；"
+                         "可重复。省略则自动发现上传目录里的商品文件")
+    ap.add_argument("--auto", action="store_true",
+                    help="强制自动发现输入文件（默认在未指定 --input 时已自动）")
+    ap.add_argument("--search-dir", action="append", dest="search_dirs",
+                    metavar="DIR", help="自动发现时额外搜索的目录；可重复")
     ap.add_argument("--skill-input", metavar="FILE",
                     help="已规范化的 SkillInput JSON（跳过 ingestion）")
     ap.add_argument("--product-file", metavar="FILE",
@@ -147,12 +227,25 @@ def main() -> int:
     ap.add_argument("--quiet", action="store_true", help="不打印摘要")
     args = ap.parse_args()
 
-    if not (args.inputs or args.skill_input or args.product_file or args.result_files):
+    # ★ 自动发现输入 —— 不要求用户指定格式或位置
+    inputs = list(args.inputs or [])
+    if not inputs and not (args.skill_input or args.product_file or args.result_files):
+        search = list(args.search_dirs or []) + list(UPLOAD_DIRS)
+        inputs = discover_inputs(None, search)
+        if inputs:
+            print("[sbrca] 自动发现输入文件 %d 个：" % len(inputs), flush=True)
+            for f in inputs:
+                print("[sbrca]   - %s" % f, flush=True)
+        else:
+            die("没找到可审核的文件。请把商品文件（xlsx/csv/json 等）上传到对话，"
+                "或用 --input 指定路径。")
+
+    if not (inputs or args.skill_input or args.product_file or args.result_files):
         die("至少要指定 --input / --skill-input / --product-file / --result-file 之一")
 
     # 先校验输入文件存在（避免为无效输入白白克隆仓库）
-    for group in (args.inputs or [], [args.skill_input, args.product_file,
-                                      args.case_file] + (args.result_files or [])):
+    for group in (inputs, [args.skill_input, args.product_file,
+                            args.case_file] + (args.result_files or [])):
         for f in group:
             if f and not os.path.isfile(f):
                 die("输入文件不存在：%s" % f)
@@ -179,7 +272,7 @@ def main() -> int:
            "--request-id", args.request_id,
            "--out-dir", os.path.abspath(args.out_dir),
            "--root", root]
-    for f in (args.inputs or []):
+    for f in inputs:
         cmd += ["--input", f]
     if args.skill_input:
         cmd += ["--skill-input", args.skill_input]

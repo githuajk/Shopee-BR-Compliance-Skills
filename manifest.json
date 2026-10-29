@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "manifest_version": "1.8.0",
+  "manifest_version": "1.9.0",
   "project": {
     "code": "SBRCA",
     "name": "Shopee Brazil Compliance Agent",
@@ -415,9 +415,19 @@
       "path": "sbrca_run.py",
       "purpose": "单文件入口 —— 纯标准库，克隆仓库后跑这一个文件即可完成完整审核；自动探测/克隆仓库（含 zip 回退）",
       "owner": "integrator",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "created": "2026-10-29",
-      "deps": "无（纯 Python 标准库，3.9+）"
+      "deps": "无（纯 Python 标准库，3.9+）",
+      "note": "v1.1.0 起支持自动发现输入文件：按 --search-dir > /mnt/data > /mnt/user-data > /home/oai/share > 当前目录 的优先级搜索，找到即停"
+    },
+    "chatgpt_web": {
+      "path": "docs/CHATGPT_WEB.md",
+      "purpose": "ChatGPT 网页版使用指南 —— 传文件 + 贴一句话即可，不指定输入格式与位置（sbrca_run.py 自动发现上传目录）",
+      "owner": "integrator",
+      "audience": "用 ChatGPT 网页版的运营/店主",
+      "status": "Draft — 待用户审批",
+      "version": "1.0.0",
+      "created": "2026-10-29"
     }
   },
   "existing_state": {
