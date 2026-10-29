@@ -47,7 +47,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(cigarro(s)?|charuto(s)?|cachimbo(s)?|tabaco|vape(s)?\\b|juice\\s+de\\s+nicotina|narguil[ée]|narguilh[êe]s?|pods?\\s+de\\s+(vapor|nicotina)|atomizador(es)?\\s+de\\s+(vapor|cigarro))(?![a-zA-Zà-ÿÀ-ß])"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(cigarro(s)?|charuto(s)?|cachimbo(s)?|tabaco|vape(s)?\\b|juice\\s+de\\s+nicotina|narguil[ée]|narguilh[êe]s?|pods?\\s+de\\s+(vapor|nicotina)|atomizador(es)?\\s+de\\s+(vapor|cigarro)|vaping|vaporizer|e-cigarette|ecig|electronic cigarette|hookah|shisha|nicotine pouch)(?![a-zA-Zà-ÿÀ-ß])"
         }
       ],
       "severity": "critical",
@@ -62,13 +62,14 @@
       "source_excerpt": "[311] Anúncio proibido para tabaco, cigarros, charutos, cachimbos e vapes. Severidade: Extrema. Gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 1,
+      "version": 2,
       "tags": [
         "tobacco",
         "vape",
         "critical",
         "platform_code_311"
-      ]
+      ],
+      "notes": "2026-10-28 B5：补英文烟草/电子烟词（vaping/vaporizer/e-cigarette/ecig/electronic cigarette/hookah/shisha/nicotine，严格 word-boundary；「nicotine」不单独入正则（戒烟贴片属 MIP 走 SBR-MED-002），仅匹配 「nicotine pouch」与词库组 proibido_tabaco_en 联动），与词库组 proibido_tabaco_en 联动。"
     },
     {
       "rule_id": "SBR-PI-003",
@@ -79,7 +80,7 @@
         {
           "field": "any_text",
           "operator": "regex",
-          "value": "(?<![a-zA-Zà-ÿÀ-ß])(droga(s)?\\s+il[íi]cita(s)?|trato\\s+tarja\\s+(preta|vermelha)|tarja\\s+(preta|vermelha)|medicamento(s)?\\s+controlado(s)?|antidepressivo(s)?|estimulante(s)?\\s+sexual(is)?|abortivo(s)?|minoxidil|botox|toxina\\s+botul[íi]nica)(?![a-zA-Zà-ÿÀ-ß])"
+          "value": "(?<![a-zA-Zà-ÿÀ-ß])(droga(s)?\\s+il[íi]cita(s)?|trato\\s+tarja\\s+(preta|vermelha)|tarja\\s+(preta|vermelha)|medicamento(s)?\\s+controlado(s)?|antidepressivo(s)?|estimulante(s)?\\s+sexual(is)?|abortivo(s)?|minoxidil|botox|toxina\\s+botul[íi]nica|fentanyl|heroin|ketamine|psilocybin|nandrolone|stanozolol|dianabol|clenbuterol|methamphetamine|prednisone|testosterone|lsd|mdma|cannabis|marijuana|thc|cocaine|anabolic)(?![a-zA-Zà-ÿÀ-ß])"
         }
       ],
       "severity": "critical",
@@ -94,14 +95,14 @@
       "source_excerpt": "[313] Anúncio proibido para medicamentos com tarja preta, abortivos, injetáveis, estimulantes sexuais e antidepressivos. Severidade: Extrema. Gera ponto de penalidade.",
       "last_verified": "2026-10-27",
       "status": "active",
-      "version": 2,
+      "version": 3,
       "tags": [
         "medicine",
         "controlled",
         "critical",
         "platform_code_313"
       ],
-      "notes": "2026-10-28 集成补齐：正则补 `botox` / `toxina botulínica|botulinica` —— 来源依据本条现有引文 [313]「Anúncio proibido para medicamentos com tarja preta, abortivos, **injetáveis**, estimulantes sexuais e antidepressivos」（platform_official，severidade Extrema）与本条 description 的 prescription-only medicines；肉毒毒素属 ANVISA 管制注射药品（见词库 catalog_anvisa_restricted_medicine_active_ingredients）。"
+      "notes": "2026-10-28 集成补齐：正则补 `botox` / `toxina botulínica|botulinica` —— 来源依据本条现有引文 [313]「Anúncio proibido para medicamentos com tarja preta, abortivos, **injetáveis**, estimulantes sexuais e antidepressivos」（platform_official，severidade Extrema）与本条 description 的 prescription-only medicines；肉毒毒素属 ANVISA 管制注射药品（见词库 catalog_anvisa_restricted_medicine_active_ingredients）。 2026-10-28 B5：补英文管制物质名（18 词：fentanyl/heroin/ketamine/psilocybin/nandrolone/stanozolol/dianabol/clenbuterol/methamphetamine/prednisone/testosterone/lsd/mdma/cannabis/marijuana/thc/cocaine/anabolic），与词库组 proibido_drogas_en 联动；未含 steroid 等化妆品语境歧义词。"
     },
     {
       "rule_id": "SBR-PI-004",

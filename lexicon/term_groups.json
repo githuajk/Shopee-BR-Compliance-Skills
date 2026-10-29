@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "name": "Shopee BR — 合并词库",
-  "description": "合并来源：2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 现有 25 组 179 词。每个词组是筛查信号，不是违规结论 —— 结论由规则层依据来源判定。 2026-10-28 集成修复：删除 catalog_anvisa_saneante_product_names__single 中的裸日常词「Marca」（匹配平台默认品牌值「Sem Marca」导致 SBR-MED-004 误触发；与 D6 批量剔除 gasolina/etanol/diesel 同类原则）。 2026-10-28 集成补齐：新增 proibido_botulino（3 词，platform_official → SBR-PI-003 阻断）与 restrito_apitoxina（5 词，internal_risk → SBR-MED-003/SBR-LV-001 flag）两组。",
+  "description": "合并来源：2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 现有 25 组 179 词。每个词组是筛查信号，不是违规结论 —— 结论由规则层依据来源判定。 2026-10-28 集成修复：删除 catalog_anvisa_saneante_product_names__single 中的裸日常词「Marca」（匹配平台默认品牌值「Sem Marca」导致 SBR-MED-004 误触发；与 D6 批量剔除 gasolina/etanol/diesel 同类原则）。 2026-10-28 集成补齐：新增 proibido_botulino（3 词，platform_official → SBR-PI-003 阻断）与 restrito_apitoxina（5 词，internal_risk → SBR-MED-003/SBR-LV-001 flag）两组。 2026-10-28 B5 批次：新增英文信号组 proibido_drogas_en / proibido_tabaco_en（27 词）。",
   "last_updated": "2026-10-28",
   "usage": "加载后用 Aho-Corasick 建立多模式索引（规模扩大时）。匹配时：大小写不敏感 → NFD 去重音 → 显式 lookaround 边界。",
   "matching_notes": [
@@ -211207,6 +211207,37 @@
       "veneno de abelha",
       "bee venom",
       "toxina de abelha"
+    ],
+    "proibido_drogas_en": [
+      "fentanyl",
+      "heroin",
+      "ketamine",
+      "psilocybin",
+      "nandrolone",
+      "stanozolol",
+      "dianabol",
+      "clenbuterol",
+      "methamphetamine",
+      "prednisone",
+      "testosterone",
+      "lsd",
+      "mdma",
+      "cannabis",
+      "marijuana",
+      "thc",
+      "cocaine",
+      "anabolic"
+    ],
+    "proibido_tabaco_en": [
+      "e-cigarette",
+      "ecig",
+      "vape",
+      "vaping",
+      "vaporizer",
+      "electronic cigarette",
+      "hookah",
+      "shisha",
+      "nicotine"
     ]
   },
   "group_meta": {
@@ -211923,10 +211954,24 @@
       "source_tier": "internal_risk",
       "matching": "strict",
       "note": "平台政策未明文禁止；蜂毒/蜂毒肽（apitoxin）美容成分属 internal_risk 级信号，映射 SBR-MED-003 / SBR-LV-001（flag_for_review，不阻断）。2026-10-28 集成补齐。"
+    },
+    "proibido_drogas_en": {
+      "label": "禁售 — 管制/违禁药物英文名（跨境清单）",
+      "risk_hint": "prohibited",
+      "source_tier": "platform_official",
+      "matching": "strict",
+      "note": "B5 批次（2026-10-28 集成补齐）：对应 proibido_drogas 组（platform_official）的英文同名管制物质 —— 跨境卖家英文高频词。词表取高精度物质名（fentanyl/heroin/ketamine/psilocybin/nandrolone/stanozolol/dianabol/clenbuterol/methamphetamine/prednisone/testosterone/lsd/mdma/cannabis/marijuana/thc/cocaine/anabolic），映射 SBR-PI-003 + SBR-MED-001（block 级）。不含「steroid」等化妆品语境歧义词。"
+    },
+    "proibido_tabaco_en": {
+      "label": "禁售 — 烟草电子烟类英文名",
+      "risk_hint": "prohibited",
+      "source_tier": "platform_official",
+      "matching": "strict",
+      "note": "B5 批次（2026-10-28 集成补齐）：对应 proibido_tabaco 组的英文/跨境高频词（e-cigarette/ecig/vape/vaping/vaporizer/electronic cigarette/hookah/shisha/nicotine），映射 SBR-PI-002 + SBR-MED-001（block 级）。「nicotine」严格 word-boundary 匹配，不会命中「nicotinamide（烟酰胺）」等前缀词。"
     }
   },
   "stats": {
-    "group_count": 102,
-    "term_count": 210992
+    "group_count": 104,
+    "term_count": 211019
   }
 }

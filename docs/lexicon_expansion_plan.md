@@ -42,7 +42,17 @@
 | S3 | **Aho–Corasick 索引**（`lexicon_scanning.md` §7 未决项） | 词库 21 万词线性扫描 50 s/品不可持续；**B1–B6 扩容前应先做** | 扫描 50 s → 毫秒级；测试套件 45 min → 分钟级 |
 | S4 | **置信度分层** | catalog 单词命中 = signal（只 provenance）；catalog 多词命中 = candidate（可驱动规则）；政策词命中 = 高置信 candidate | 对齐 H3「筛查缺失 ≠ 通过」语义 |
 
-## 4. 建议执行顺序
+## 4. 执行进度（2026-10-28 当晚更新）
+
+- [x] **B5 英文信号词**：`proibido_drogas_en`（18 词）/ `proibido_tabaco_en`（9 词）入库；SBR-PI-003 v3 / SBR-PI-002 v2 正则联动（「nicotine」不入正则——戒烟贴片走 SBR-MED-002，仅「nicotine pouch」入正则）。靶向 11 例全过（7 阳性全命中、4 阴性零误伤）。
+- [x] **S2 剔除候选清单**：`docs/lexicon_exclusion_candidates.json`（848 项：≤4 字符 + 容器通用词，待 data-ingestion 按 C3 逐词留痕执行）。
+- [x] **S3 索引**：已由集成轮完成（前缀分桶 + C 级 str.find，见 lexicon_scanning.md §7.1）。
+- [ ] B1 药妆 / B2 RDC44（重抓 URL 已 404，需新来源）/ B3 MAPA / B4 ANATEL —— 下一批
+- [ ] S1 scan_fields + S4 分层（契约变更建议，与 dbdf8d7 豁免收窄联动）
+
+---
+
+## 5. 建议执行顺序（原始）
 
 1. **立即（本集成轮可做）**：S3 前置评估 + S2 剔除候选清单（数据-only，留痕后交 data-ingestion）；B5 英文信号词表（无需抓取，可本批做）
 2. **下一批（data-ingestion 任务包）**：B1 药妆 + B2 RDC44 重抓（补两个已知缺口）
