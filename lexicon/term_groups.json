@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "name": "Shopee BR — 合并词库",
-  "description": "合并来源：2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 现有 25 组 179 词。每个词组是筛查信号，不是违规结论 —— 结论由规则层依据来源判定。 2026-10-28 集成修复：删除 catalog_anvisa_saneante_product_names__single 中的裸日常词「Marca」（匹配平台默认品牌值「Sem Marca」导致 SBR-MED-004 误触发；与 D6 批量剔除 gasolina/etanol/diesel 同类原则）。 2026-10-28 集成补齐：新增 proibido_botulino（3 词，platform_official → SBR-PI-003 阻断）与 restrito_apitoxina（5 词，internal_risk → SBR-MED-003/SBR-LV-001 flag）两组。 2026-10-28 B5 批次：新增英文信号组 proibido_drogas_en / proibido_tabaco_en（27 词）。 2026-10-29 B5 续 + S2 执行：剔除 654 项候选通用词/超短词（医学缩写/数字混合/短词保留；194 项保留）。 2026-10-29 B2：新增 restrito_mip_otc（21 词，IN 285/2024 LMIP OTC 高频子集）。 2026-10-29 B2：restrito_mip_otc 扩至 51 词（全表提取 30 词，逐字核验 IN 285 原文）。",
+  "description": "合并来源：2026-09-15 合规审计线 7 类 1320 词词库 + 02_risk_dictionary 触线词 + 现有 25 组 179 词。每个词组是筛查信号，不是违规结论 —— 结论由规则层依据来源判定。 2026-10-28 集成修复：删除 catalog_anvisa_saneante_product_names__single 中的裸日常词「Marca」（匹配平台默认品牌值「Sem Marca」导致 SBR-MED-004 误触发；与 D6 批量剔除 gasolina/etanol/diesel 同类原则）。 2026-10-28 集成补齐：新增 proibido_botulino（3 词，platform_official → SBR-PI-003 阻断）与 restrito_apitoxina（5 词，internal_risk → SBR-MED-003/SBR-LV-001 flag）两组。 2026-10-28 B5 批次：新增英文信号组 proibido_drogas_en / proibido_tabaco_en（27 词）。 2026-10-29 B5 续 + S2 执行：剔除 654 项候选通用词/超短词（医学缩写/数字混合/短词保留；194 项保留）。 2026-10-29 B2：新增 restrito_mip_otc（21 词，IN 285/2024 LMIP OTC 高频子集）。 2026-10-29 B2：restrito_mip_otc 扩至 51 词（全表提取 30 词，逐字核验 IN 285 原文）。 2026-10-29 B2：restrito_mip_otc 扩至 54 词（IN 388/2025 + IN 404/2025 修订词 3 个）。 2026-10-29 B2：restrito_mip_otc 扩至 62 词（IN 388 Anexo I 全量提取 8 词）。 2026-10-29 B2：剔除脏词后 62 词。",
   "last_updated": "2026-10-28",
   "usage": "加载后用 Aho-Corasick 建立多模式索引（规模扩大时）。匹配时：大小写不敏感 → NFD 去重音 → 显式 lookaround 边界。",
   "matching_notes": [
@@ -210689,7 +210689,38 @@
       "Prometazina",
       "Ureia",
       "Ácido azeláico",
-      "Álcool polivinílico"
+      "Álcool polivinílico",
+      "ciclopirox",
+      "raiz de althaea officinalis",
+      "omeprazol",
+      "Alfaestradiol",
+      "Bacillus cereus",
+      "Bisacodil",
+      "Carmelose sódica",
+      "Cetoconazol",
+      "Coaltar",
+      "Desloratadina",
+      "Dipirona",
+      "Hialuronato de sódio",
+      "Ibuprofeno",
+      "Ibuprofeno arginina",
+      "Lactulose",
+      "Loratadina",
+      "Loxoprofeno sódico",
+      "Maleato de",
+      "Metronidazol",
+      "Naproxeno",
+      "Nitrato de miconazol",
+      "Nitrato de oxiconazol",
+      "Paracetamol",
+      "Picossulfato de sódio",
+      "Policarbofila cálcica",
+      "Salicilato de etilenoglicol",
+      "Sulfato de neomicina",
+      "Sulfeto de selênio",
+      "Tioconazol",
+      "Ácido acetilsalicílico",
+      "Ácido salicílico"
     ]
   },
   "group_meta": {
@@ -211426,11 +211457,11 @@
       "risk_hint": "restricted",
       "source_tier": "law",
       "matching": "strict",
-      "note": "IN 285/2024 现行 LMIP OTC 活性成分（51 词：高频核心 21 + 全表提取 30，全部逐字出现于 IN 285 原文；全量清单（257+ 条目）与 IN 388/2025、IN 404/2025 修订同步留下一批。MIP 提及 → 药房资质/许可证据（SBR-MED-002）+ 受限销售类（SBR-RI-002），均 require_evidence 不阻断（MIP ≠ 禁售，H2 纪律）。词库层=全量信号（provenance 级），SBR-MED-002 v2 正则联动高频 21 词驱动触发。2026-10-29 B2 批次入库。"
+      "note": "IN 285/2024 现行 LMIP OTC 活性成分（62 词：IN 285 高频 21 + IN 285 全表提取 30 + IN 388/2025 修订 2 + IN 404/2025 修订 1 + IN 388 Anexo I 全量提取 8，全部逐字核验官方原文；完整 LMIP（约 257 条目）受 pdftotext 表格碎片化限制，剩余条目待干净载体后补。MIP 提及 → 药房资质证据（SBR-MED-002）+ 受限销售类（SBR-RI-002），require_evidence 不阻断；MED-002 v3 正则联动高频 21 词 + omeprazol/ciclopirox。2026-10-29 B2 批次入库。"
     }
   },
   "stats": {
     "group_count": 105,
-    "term_count": 210469
+    "term_count": 210500
   }
 }

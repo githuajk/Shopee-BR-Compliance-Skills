@@ -361,9 +361,12 @@ def test_src_implementation() -> None:
     check("dispositions.validate_dispositions 无问题",
           pr_dispositions.validate_dispositions(sources) == [],
           str(pr_dispositions.validate_dispositions(sources))[:200])
+    quarantined = {s["slug"] for s in failed
+                   if disps.get(s["slug"], {}).get("status") == "quarantined"}
     check("quarantined_slugs 与登记一致",
-          pr_dispositions.quarantined_slugs(sources) == {qslug},
-          str(pr_dispositions.quarantined_slugs(sources)))
+          pr_dispositions.quarantined_slugs(sources) == quarantined,
+          f"引擎={sorted(pr_dispositions.quarantined_slugs(sources))} "
+          f"登记={sorted(quarantined)}")
 
     slugs_known = {s["slug"] for s in sources}
     rebased_to = qdisp.get("rebased_to", [])
